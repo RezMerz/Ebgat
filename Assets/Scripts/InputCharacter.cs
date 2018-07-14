@@ -18,12 +18,12 @@ public class InputCharacter : MonoBehaviour {
             if(Input.GetAxis("Horizontal")>0)
             {
                 List<RaycastHit2D> hitObjects = move.CheckMove(Vector2.right, speed * Time.deltaTime, 256);
-                move.Move(Vector2.right, speed * Time.deltaTime, hitObjects);
+                move.Move(Vector2.right, speed * Input.GetAxis("Horizontal") * Time.deltaTime, hitObjects);
             }
             else
             {
                 List<RaycastHit2D> hitObjects = move.CheckMove(Vector2.left, speed * Time.deltaTime, 256);
-                move.Move(Vector2.left,speed * Time.deltaTime, hitObjects);
+                move.Move(Vector2.left, speed * -Input.GetAxis("Horizontal") * Time.deltaTime, hitObjects);
             }
         }
 	}
