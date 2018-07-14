@@ -4,10 +4,10 @@ using UnityEngine;
 
 
 public class Moveable : MonoBehaviour {
-    public float threshold_;
+    public float threshold;
 
-    float size_x;
-    float size_y;
+    float sizeX;
+    float sizeY;
 
 	void Start ()
     {
@@ -15,12 +15,51 @@ public class Moveable : MonoBehaviour {
 	}
     void Set_Size()
     {
-        size_x = transform.localScale.x * GetComponent<BoxCollider2D>().size.x;
-        size_y = transform.localScale.y * GetComponent<BoxCollider2D>().size.y;
+        sizeX = transform.localScale.x * GetComponent<BoxCollider2D>().size.x;
+        sizeY = transform.localScale.y * GetComponent<BoxCollider2D>().size.y;
     }
     public Vector2 Get_Size()
     {
-        return new Vector2(size_x, size_y);
+        return new Vector2(sizeX, sizeY);
+    }
+    
+    // ray cast for move in square objects
+    public List<RaycastHit2D> CheckMove(Vector2 direction, float distance, int layer )
+    {
+        List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
+        Vector2 rayOrigin = transform.position;
+        rayOrigin += Toolkit.Transpose2(direction) * Get_Size() / 2;
+        Vector2 multiplier = -Toolkit.Transpose2(direction);
+        float size = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
+        for (int i = 0; i < size; i++)
+        {
+            float k = 0;
+            // first point threshold
+            if (i == 0)
+                k = threshold;
+            // last point threshold
+            if (i == size)
+                k = -threshold;
+            RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin + multiplier * (i + k), direction, distance + size / 2, layer, 0, 0);
+            if (hitPoint.collider != null)
+                hitObjects.Add(hitPoint);
+        }
+        hitObjects.Sort(new HitDistanceCompare());
+        return hitObjects;
+    }
+
+    public void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
+    {
+        // hit nothing , move at distance
+        if(hitObjects.Count == 0)
+        {
+            transform.position += distance * (Vector3)direction;
+        }
+        else
+        {
+            float size = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
+            transform.position += (Vector3)direction * (hitObjects[0].distance - size / 2);
+        }
     }
     public bool Move_Down(float distance)
     {
@@ -28,13 +67,13 @@ public class Moveable : MonoBehaviour {
         float j = 0;
         Vector2 max_hit_point = new Vector2(0, -Mathf.Infinity);
         Vector2 ray_origin = transform.position;
-        ray_origin.x -= (size_x / 2);
-        for (int i = 0; i <= size_x; i++)
+        ray_origin.x -= (sizeX / 2);
+        for (int i = 0; i <= sizeX; i++)
         {
             float k = 0;
-            if (i == 0) k = threshold_;
-            if (i == size_x) k = -threshold_;
-            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.right * (i+k), Vector2.down, distance + size_y / 2, 256, 0, 0);
+            if (i == 0) k = threshold;
+            if (i == sizeX) k = -threshold;
+            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.right * (i+k), Vector2.down, distance + sizeY / 2, 256, 0, 0);
             if (hit_point.collider != null && hit_point.point.y > max_hit_point.y)
             {
                 hit = true;
@@ -44,7 +83,7 @@ public class Moveable : MonoBehaviour {
         }
         if (hit)
         {
-            transform.position = max_hit_point + new Vector2(size_x / 2 - j, size_y / 2);
+            transform.position = max_hit_point + new Vector2(sizeX / 2 - j, sizeY / 2);
         }
         else
         {
@@ -59,13 +98,13 @@ public class Moveable : MonoBehaviour {
         float j = 0;
         Vector2 max_hit_point = new Vector2(0, Mathf.Infinity);
         Vector2 ray_origin = transform.position;
-        ray_origin.x -= (size_x / 2);
-        for (int i = 0; i <= size_x; i++)
+        ray_origin.x -= (sizeX / 2);
+        for (int i = 0; i <= sizeX; i++)
         {
             float k = 0;
-            if (i == 0) k = threshold_;
-            if (i == size_x) k = -threshold_;
-            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.right * (i+k), Vector2.up, distance + size_y / 2, 256, 0, 0);
+            if (i == 0) k = threshold;
+            if (i == sizeX) k = -threshold;
+            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.right * (i+k), Vector2.up, distance + sizeY / 2, 256, 0, 0);
             if (hit_point.collider != null && hit_point.point.y < max_hit_point.y)
             {
                 hit = true;
@@ -75,7 +114,7 @@ public class Moveable : MonoBehaviour {
         }
         if (hit)
         {
-            transform.position = max_hit_point + new Vector2(size_x / 2 - j, -size_y / 2);
+            transform.position = max_hit_point + new Vector2(sizeX / 2 - j, -sizeY / 2);
         }
         else if(!grab)
         {
@@ -86,17 +125,18 @@ public class Moveable : MonoBehaviour {
     }
     public bool Move_Right(float distance,bool grab)
     {
+        CheckMove(new Vector2(1, 0), distance, 256);
         bool hit = false;
         float j = 0;
         Vector2 max_hit_point = new Vector2(Mathf.Infinity,0);
         Vector2 ray_origin = transform.position;
-        ray_origin.y -= (size_y / 2);
-        for (int i = 0; i <= size_y; i++)
+        ray_origin.y -= (sizeY / 2);
+        for (int i = 0; i <= sizeY; i++)
         {
             float k = 0;
-            if (i == 0) k = threshold_;
-            if (i == size_y) k = -threshold_;
-            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.up * (i+k), Vector2.right, distance + size_x / 2, 256, 0, 0);
+            if (i == 0) k = threshold;
+            if (i == sizeY) k = -threshold;
+            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.up * (i+k), Vector2.right, distance + sizeX / 2, 256, 0, 0);
             if (hit_point.collider != null && hit_point.point.x < max_hit_point.x)
             {
                 hit = true;
@@ -106,7 +146,7 @@ public class Moveable : MonoBehaviour {
         }
         if (hit)
         {
-            transform.position = max_hit_point + new Vector2(-size_x/2, size_y / 2 - j);
+            transform.position = max_hit_point + new Vector2(-sizeX/2, sizeY / 2 - j);
         }
         else if(!grab)
         {
@@ -121,13 +161,13 @@ public class Moveable : MonoBehaviour {
         float j = 0;
         Vector2 max_hit_point = new Vector2(-Mathf.Infinity, 0);
         Vector2 ray_origin = transform.position;
-        ray_origin.y -= (size_y / 2);
-        for (int i = 0; i <= size_y; i++)
+        ray_origin.y -= (sizeY / 2);
+        for (int i = 0; i <= sizeY; i++)
         {
             float k = 0;
-            if (i == 0) k = threshold_;
-            if (i == size_y) k = -threshold_;
-            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.up * (i+k), Vector2.left, distance + size_x / 2, 256, 0, 0);
+            if (i == 0) k = threshold;
+            if (i == sizeY) k = -threshold;
+            RaycastHit2D hit_point = Physics2D.Raycast(ray_origin + Vector2.up * (i+k), Vector2.left, distance + sizeX / 2, 256, 0, 0);
             if (hit_point.collider != null && hit_point.point.x > max_hit_point.x)
             {
                 hit = true;
@@ -137,7 +177,7 @@ public class Moveable : MonoBehaviour {
         }
         if (hit)
         {
-            transform.position = max_hit_point + new Vector2(size_x / 2, size_y / 2 - j);
+            transform.position = max_hit_point + new Vector2(sizeX / 2, sizeY / 2 - j);
         }
         else if(!grab)
         {
@@ -145,5 +185,18 @@ public class Moveable : MonoBehaviour {
         }
         return hit;
 
+    }
+}
+
+
+public class HitDistanceCompare : IComparer<RaycastHit2D>
+{
+    public int Compare(RaycastHit2D x, RaycastHit2D y)
+    {
+        if (x.distance == y.distance)
+            return 0;
+        if (x.distance < y.distance)
+            return -1;
+        else return 1;
     }
 }
