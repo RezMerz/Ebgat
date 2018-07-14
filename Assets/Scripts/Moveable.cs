@@ -28,17 +28,19 @@ public class Moveable : MonoBehaviour {
     {
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         Vector2 rayOrigin = transform.position;
-        rayOrigin += Toolkit.Transpose2(direction) * Get_Size() / 2;
-        Vector2 multiplier = -Toolkit.Transpose2(direction);
-        float size = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
-        for (int i = 0; i < size; i++)
+        rayOrigin -= Toolkit.Transpose2(direction) * Get_Size() / 2;
+        Vector2 multiplier = Toolkit.Transpose2(direction);
+        float loopSize = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
+        float size = Mathf.Abs(direction.x) * sizeX + Mathf.Abs(direction.y) * sizeY;
+        print(rayOrigin);
+        for (int i = 0; i <= loopSize; i++)
         {
             float k = 0;
             // first point threshold
             if (i == 0)
                 k = threshold;
             // last point threshold
-            if (i == size)
+            if (i == loopSize)
                 k = -threshold;
             RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin + multiplier * (i + k), direction, distance + size / 2, layer, 0, 0);
             if (hitPoint.collider != null)
@@ -50,6 +52,9 @@ public class Moveable : MonoBehaviour {
 
     public void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
     {
+        print("Move");
+        if (hitObjects.Count != 0)
+            print(hitObjects[0].collider.name);
         // hit nothing , move at distance
         if(hitObjects.Count == 0)
         {
@@ -57,7 +62,10 @@ public class Moveable : MonoBehaviour {
         }
         else
         {
-            float size = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
+            float size = Mathf.Abs(direction.x) * sizeX + Mathf.Abs(direction.y) * sizeY;
+            print((Vector3)direction * (hitObjects[0].distance - size / 2));
+            print(hitObjects[0].distance);
+            print(size / 2);
             transform.position += (Vector3)direction * (hitObjects[0].distance - size / 2);
         }
     }
