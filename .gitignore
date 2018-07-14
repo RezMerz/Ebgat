@@ -31,3 +31,5 @@ ExportedObj/
 *.app
 *.exe
 /Library/
+/Library
+.sln
