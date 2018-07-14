@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour {
     public bool on_ground_;
-    public float gravity_scale_;
-    public float gravity_max_speed_;
-    public float cayote_time_;
-    bool active_ = true;
+
+    // switch to turn on/off gravity
+    public bool active = true;
+
+    // Base Variable to set to defaults whenever needed
+    public  float baseSpeed;
+    public float baseMaxSpeed;
+    public float baseAcceleration;
+    public float baseCayoteTime;
+
+    // Variables of that bases
+    private float acceleration;
+    private float maxSpeed;
+    private float speed;
+    private float cayoteTime;
+    
+
+    private List<RaycastHit2D> hitObjects;
     bool hovering_;
     bool hit_;
     float distance_;
-    float gravity_speed_;
-    float base_sacle_;
-    float base_max_speed_;
+
     float hovering_time_;
     float actual_speed_;
     float timer_;
@@ -21,23 +33,39 @@ public class Gravity : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        actual_speed_ = gravity_scale_;
-        base_sacle_ = gravity_scale_;
-        gravity_speed_ = gravity_scale_;
-        base_max_speed_ = gravity_max_speed_;
+        actual_speed_ = acceleration;
+
+        acceleration = baseAcceleration;
+        speed = baseSpeed;
+        maxSpeed = baseMaxSpeed;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Speed_Check();
-        Gravity_Call();
+        HeroGravity();
+       // Speed_Check();
+       // Gravity_Call();
        // Hovering();
+    }
+
+    private void HeroGravity()
+    {
+
+    }
+
+    public void SetToDefaults()
+    {
+        acceleration = baseAcceleration;
+        speed = baseSpeed;
+        maxSpeed = baseMaxSpeed;
     }
     void Gravity_Call()
     {
-        distance_ = gravity_speed_ * Time.deltaTime;
-        if (active_)
+        distance_ = speed * Time.deltaTime;
+        if (active)
         {
             hit_ = GetComponent<Moveable>().Move_Down(distance_);
             if (hit_)
@@ -48,7 +76,7 @@ public class Gravity : MonoBehaviour {
             {
                 timer_ += Time.deltaTime;
             }
-            if(timer_ >= cayote_time_)
+            if(timer_ >= cayoteTime)
             {
                 on_ground_ = false;
             }
@@ -67,19 +95,19 @@ public class Gravity : MonoBehaviour {
     {
         if (on_ground_)
         {
-            gravity_speed_ = gravity_scale_;
-            actual_speed_ = gravity_scale_;
+            speed = acceleration;
+            actual_speed_ = acceleration;
         }
         else
         {
-            actual_speed_ += gravity_scale_;
-            if(gravity_speed_ < gravity_max_speed_)
+            actual_speed_ += acceleration;
+            if(speed < maxSpeed)
             {
-                gravity_speed_ += gravity_scale_;
+                speed += acceleration;
             }
-            if(gravity_speed_ > gravity_max_speed_)
+            if(speed > maxSpeed)
             {
-                gravity_speed_ -= 1.5f*(base_sacle_ - gravity_scale_);
+                speed -= 1.5f*(baseAcceleration - acceleration);
             }
         }
     }
@@ -92,11 +120,11 @@ public class Gravity : MonoBehaviour {
             if (hovering_time_ <= 0)
             {
                 hovering_ = false;
-                active_ = true;
+                active = true;
             }
             else
             {
-                active_ = false;
+                active = false;
             }
         }
     }
@@ -107,12 +135,12 @@ public class Gravity : MonoBehaviour {
     }
     public void Activation()
     {
-        active_ = true;
-        gravity_speed_ = gravity_scale_;
+        active = true;
+        speed = acceleration;
     }
     public void Deactivition()
     {
-        active_ = false;
+        active = false;
     }
     public float Get_Distance()
     {
@@ -120,14 +148,14 @@ public class Gravity : MonoBehaviour {
     }
     public void Speed_Reset()
     {
-        gravity_speed_ = gravity_scale_;
+        speed = acceleration;
     }
     public void Change_Properties(float scale,float max_speed)
     {
-        if (scale == -1) scale = base_sacle_;
-        if (max_speed == -1) max_speed = base_max_speed_;
-        gravity_scale_ = scale;
-        gravity_max_speed_ = max_speed; 
+        if (scale == -1) scale = baseAcceleration;
+        if (max_speed == -1) max_speed = baseMaxSpeed;
+        acceleration = scale;
+        maxSpeed = max_speed; 
 
     }
 
