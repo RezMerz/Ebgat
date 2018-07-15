@@ -62,6 +62,7 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float gravitySpeedMaxBase;
 
+    public float cayoteTime;
     public float gravitySpeed { get; set; }
     public float gravityAcceleration { get; set; }
     public float gravitySpeedMax { get; set; }
