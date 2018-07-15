@@ -1,69 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using system.collections;
+//using system.collections.generic;
+//using unityengine;
 
-public class Player_Grab : MonoBehaviour {
-    public float grab_range_;
+//public class player_grab : monobehaviour {
+//    public float grab_range_;
 
-    bool is_grabing_;
-    Vector2 direction_;
+//    bool is_grabing_;
+//    vector2 direction_;
 
-    KeyCode grab_key_;
+//    keycode grab_key_;
 	
-    // Use this for initialization
-	void Start ()
-    {
-        grab_key_ = GetComponent<Player_Control>().grab_;
-	}
+//    // use this for initialization
+//    void start ()
+//    {
+//        grab_key_ = getcomponent<player_control>().grab_;
+//    }
 	
-	// Update is called once per frame
-	void Update ()
-    {
-        Grab();
+//    // update is called once per frame
+//    void update ()
+//    {
+//        grab();
 		
-	}
-    void Grab()
-    {
-        if (!is_grabing_ && Input.GetKey(grab_key_))
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (GetComponent<Moveable>().Move_Up(grab_range_, true))
-                {
-                    is_grabing_ = true;
-                    GetComponent<Player_Move>().Jump_off();
-                    GetComponent<Gravity>().Deactivition();
+//    }
+//    void grab()
+//    {
+//        if (!is_grabing_ && input.getkey(grab_key_))
+//        {
+//            if (input.getkey(keycode.uparrow))
+//            {
+//                if (getcomponent<moveable>().move_up(grab_range_, true))
+//                {
+//                    is_grabing_ = true;
+//                    getcomponent<player_move>().jump_off();
+//                    getcomponent<gravity>().deactivition();
 
-                }
-            }
-            else
-            {
-                direction_ =GetComponent<Player_Move>().Get_Direction();
-                if(direction_ == Vector2.right)
-                {
-                    if (GetComponent<Moveable>().Move_Right(grab_range_, true))
-                    {
-                        is_grabing_ = true;
-                        GetComponent<Player_Move>().Jump_off();
-                        GetComponent<Gravity>().Deactivition();
-                    }
-                }
-                else
-                {
-                    if (GetComponent<Moveable>().Move_Left(grab_range_, true))
-                    {
-                        is_grabing_ = true;
-                        GetComponent<Player_Move>().Jump_off();
-                        GetComponent<Gravity>().Deactivition();
-                    }
-                }
+//                }
+//            }
+//            else
+//            {
+//                direction_ =getcomponent<player_move>().get_direction();
+//                if(direction_ == vector2.right)
+//                {
+//                    if (getcomponent<moveable>().move_right(grab_range_, true))
+//                    {
+//                        is_grabing_ = true;
+//                        getcomponent<player_move>().jump_off();
+//                        getcomponent<gravity>().deactivition();
+//                    }
+//                }
+//                else
+//                {
+//                    if (getcomponent<moveable>().move_left(grab_range_, true))
+//                    {
+//                        is_grabing_ = true;
+//                        getcomponent<player_move>().jump_off();
+//                        getcomponent<gravity>().deactivition();
+//                    }
+//                }
 
-            }
-        }
-        if(is_grabing_ && Input.GetKeyUp(grab_key_))
-        {
-            is_grabing_ = false;
-            GetComponent<Gravity>().Activation();
-        }
-    }
-}
+//            }
+//        }
+//        if(is_grabing_ && input.getkeyup(grab_key_))
+//        {
+//            is_grabing_ = false;
+//            getcomponent<gravity>().activation();
+//        }
+//    }
+//}

@@ -67,7 +67,7 @@ public class Gravity : MonoBehaviour {
         distance = speed * Time.deltaTime;
         if (active)
         {
-            hit_ = GetComponent<Moveable>().Move_Down(distance);
+           // hit_ = GetComponent<Moveable>().Move(distance);
             if (hit_)
             {
                 timer_ = 0;
