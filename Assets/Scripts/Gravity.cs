@@ -14,7 +14,6 @@ public class Gravity : MonoBehaviour {
     public float baseMaxSpeed;
     public float baseAcceleration;
     public float baseCayoteTime;
-
     // Variables of that bases
     private float acceleration;
     private float maxSpeed;
@@ -30,10 +29,11 @@ public class Gravity : MonoBehaviour {
     float hovering_time_;
     float actual_speed_;
     float timer_;
-
+   
     // Use this for initialization
     void Start()
     {
+        hitObjects = new List<RaycastHit2D>();
         charStats = GetComponent<CharacterAttributes>();
         actual_speed_ = acceleration;
 
@@ -55,14 +55,35 @@ public class Gravity : MonoBehaviour {
 
     private void HeroGravity()
     {
+        // not int jumping state
+        if (charStats.FeetState != EFeetState.Jumping)
+        {
+            bool hit = Toolkit.CheckMove(transform.position, charStats.size, Vector2.down, Time.deltaTime * charStats.gravitySpeed, 256,out hitObjects);
 
-    }
-
-    public void SetToDefaults()
-    {
-        acceleration = baseAcceleration;
-        speed = baseSpeed;
-        maxSpeed = baseMaxSpeed;
+            if (charStats.FeetState == EFeetState.Onground)
+            {
+                // Go to Falling
+                if(!hit)
+                {
+                    charStats.FeetState = EFeetState.Falling;
+                }
+            }
+            else if (charStats.FeetState == EFeetState.Falling)
+            {
+                // Go to on Ground state
+                if(hit)
+                {
+                    transform.position += new Vector3(0,(hitObjects[0].distance - charStats.size.y / 2));
+                    charStats.FeetState = EFeetState.Onground;
+                    /// Reset Gravity Stats
+                }
+                // Still Faliing
+                else
+                {
+                    transform.position -= new Vector3(0, Time.deltaTime * charStats.gravitySpeed);
+                }
+            }
+        }
     }
     void Gravity_Call()
     {

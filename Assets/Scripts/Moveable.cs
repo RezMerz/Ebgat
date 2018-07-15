@@ -31,7 +31,7 @@ public class Moveable : MonoBehaviour {
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
         // charcterMove.CheckMove(Vector2.right, speed * Time.deltaTime, 256,out hitObjects);
-        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, threshold, 256,out hitObjects);
+        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
     }
     public void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)

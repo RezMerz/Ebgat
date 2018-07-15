@@ -5,9 +5,33 @@ using UnityEngine;
 public class CharacterAttributes : MonoBehaviour {
 
     private EHeadState headState;
+
+    public EHeadState HeadState
+    {
+        get { return headState; }
+        set { headState = value; }
+    }
     private EBodyState bodyState;
+
+    public EBodyState BodyState
+    {
+        get { return bodyState; }
+        set { bodyState = value; }
+    }
     private EHandState handState;
+
+    public EHandState HandState
+    {
+        get { return handState; }
+        set { handState = value; }
+    }
     private EFeetState feetState;
+
+    public EFeetState FeetState
+    {
+        get { return feetState; }
+        set { feetState = value; }
+    }
 
 
 
@@ -67,15 +91,19 @@ public class CharacterAttributes : MonoBehaviour {
     public float gravityAcceleration { get; set; }
     public float gravitySpeedMax { get; set; }
 
-
+    // size attributes
+    public Vector2 size { get; set; }
     // Use this for initialization
     void Start ()
     {
+        
         Initialize();
 	}
 
     private void Initialize()
     {
+        //States 
+        feetState = EFeetState.Onground;
         //Hp
         hitPoints = hitPointsMax;
         //Attack
@@ -94,41 +122,10 @@ public class CharacterAttributes : MonoBehaviour {
         gravitySpeed = gravitySpeedBase;
         gravityAcceleration = gravityAccelerationBase;
         gravitySpeedMax = gravitySpeedMaxBase;
+        //Size
+        size = GetComponent<BoxCollider2D>().size;
     }
-    //GetStates
-    public EHeadState GetHeadState()
-    {
-        return headState;
-    }
-    public EBodyState GetBodyState()
-    {
-        return bodyState;
-    }
-    public EHandState GetHandState()
-    {
-        return handState;
-    }
-    public EFeetState GetFeetState()
-    {
-        return feetState;
-    }
-    //SetStates
-    public void SetHeadState(EHeadState newSTate)
-    {
-        headState = newSTate;
-    }
-    public void SetBodyState(EBodyState newSTate)
-    {
-        bodyState = newSTate;
-    }
-    public void SetHandState(EHandState newSTate)
-    {
-        handState = newSTate;
-    }
-    public void SetFeetState(EFeetState newSTate)
-    {
-        feetState = newSTate;
-    }
+
 }
 
 

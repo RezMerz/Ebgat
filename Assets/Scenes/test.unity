@@ -10311,12 +10311,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26049256be4328b4f9ec8a6af47510f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 0
+  hitPointsMax: 0
   armor: 0
   attackDamageBase: 0
   attackAnimationTimeBase: 0
   attackCooldownBase: 0
-  moveSpeedBase: 0
+  moveSpeedBase: 10
   moveAccelerationBase: 0
   moveSpeedMaxBase: 0
   jumpSpeedBase: 0
@@ -10325,6 +10325,24 @@ MonoBehaviour:
   gravitySpeedBase: 0
   gravityAccelerationBase: 0
   gravitySpeedMaxBase: 0
+  cayoteTime: 0
+--- !u!114 &1175146379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1175146376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f290b75de419f5d41874a07b74a222ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGround: 0
+  active: 1
+  baseSpeed: 0
+  baseMaxSpeed: 0
+  baseAcceleration: 0
+  baseCayoteTime: 0
 --- !u!4 &1183296309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4041770707906252, guid: dc9918c3d41c2bc4d99e5698aedc99b2,

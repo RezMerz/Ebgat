@@ -8,12 +8,13 @@ public class Toolkit : MonoBehaviour {
         return new Vector2(vec.y, vec.x);
     }
 
-    public static bool CheckMove(Vector2 originPosition, Vector2 vecSize, Vector2 direction, float distance,float threshold, int layerNumber, out List<RaycastHit2D> hitPoints)
+    public static bool CheckMove(Vector2 originPosition, Vector2 vecSize, Vector2 direction, float distance, int layerNumber, out List<RaycastHit2D> hitPoints)
     {
+        float threshold = 0.01f;
         bool hit = false;
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         Vector2 rayOrigin = originPosition;
-        rayOrigin -= Toolkit.Transpose2(direction) * vecSize / 2;
+        rayOrigin += new Vector2(direction.y*vecSize.x,direction.x*vecSize.y)/2;
         Vector2 multiplier = Toolkit.Transpose2(direction);
         float loopSize = Mathf.Abs(direction.x) * vecSize.y + Mathf.Abs(direction.y) * vecSize.x;
         float size = Mathf.Abs(direction.x) * vecSize.x + Mathf.Abs(direction.y) * vecSize.y;
