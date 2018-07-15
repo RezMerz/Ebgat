@@ -39,7 +39,7 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float moveSpeedMaxBase;
 
-    private float moveSpeed;
+    public  float moveSpeed {get;set;}
     private float moveAcceleration;
     private float moveSpeedMax;
 
