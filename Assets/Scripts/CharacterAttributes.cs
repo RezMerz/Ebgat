@@ -123,7 +123,7 @@ public class CharacterAttributes : MonoBehaviour {
         gravityAcceleration = gravityAccelerationBase;
         gravitySpeedMax = gravitySpeedMaxBase;
         //Size
-        size = GetComponent<BoxCollider2D>().size;
+        size = GetComponent<BoxCollider2D>().size * transform.localScale;
     }
 
 }

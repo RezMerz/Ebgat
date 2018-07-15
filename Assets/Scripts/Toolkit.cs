@@ -15,7 +15,7 @@ public class Toolkit : MonoBehaviour {
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         Vector2 rayOrigin = originPosition;
         rayOrigin += new Vector2(direction.y*vecSize.x,direction.x*vecSize.y)/2;
-        Vector2 multiplier = Toolkit.Transpose2(direction);
+        Vector2 multiplier = Transpose2(direction);
         float loopSize = Mathf.Abs(direction.x) * vecSize.y + Mathf.Abs(direction.y) * vecSize.x;
         float size = Mathf.Abs(direction.x) * vecSize.x + Mathf.Abs(direction.y) * vecSize.y;
         for (int i = 0; i <= loopSize; i++)
@@ -27,7 +27,7 @@ public class Toolkit : MonoBehaviour {
             // last point threshold
             if (i == loopSize)
                 k = -threshold;
-            RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin + multiplier * (i + k), direction, distance + size / 2, layerNumber, 0, 0);
+            RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin - multiplier * (i + k), direction, distance + size / 2, layerNumber, 0, 0);
             if (hitPoint.collider != null)
             {
                 hit = true;

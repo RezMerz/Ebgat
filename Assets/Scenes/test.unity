@@ -10322,7 +10322,7 @@ MonoBehaviour:
   jumpSpeedBase: 0
   jumpAccelerationBase: 0
   jumpSpeedMaxBase: 0
-  gravitySpeedBase: 0
+  gravitySpeedBase: 40
   gravityAccelerationBase: 0
   gravitySpeedMaxBase: 0
   cayoteTime: 0
@@ -17912,11 +17912,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4811183643191292, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -16.391
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4811183643191292, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14.5
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 4811183643191292, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}
       propertyPath: m_LocalPosition.z
