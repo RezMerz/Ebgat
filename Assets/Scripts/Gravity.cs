@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gravity : MonoBehaviour {
+    private CharacterAttributes charStats;
     public bool onGround;
 
     // switch to turn on/off gravity
@@ -33,6 +34,7 @@ public class Gravity : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        charStats = GetComponent<CharacterAttributes>();
         actual_speed_ = acceleration;
 
         acceleration = baseAcceleration;
