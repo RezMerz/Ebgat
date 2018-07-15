@@ -126,6 +126,10 @@ public class CharacterAttributes : MonoBehaviour {
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
     }
 
+    public void ResetGravitySpeed()
+    {
+        gravitySpeed = gravitySpeedBase;
+    }
 }
 
 
