@@ -24,15 +24,15 @@ public class Moveable : MonoBehaviour {
     }
     
     // ray cast for move in square objects
-    public List<RaycastHit2D> CheckMove(Vector2 direction, float distance, int layer )
+    public bool CheckMove(Vector2 direction, float distance, int layerNumber,out List<RaycastHit2D> hitPoints)
     {
+        bool hit = false;
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         Vector2 rayOrigin = transform.position;
         rayOrigin -= Toolkit.Transpose2(direction) * Get_Size() / 2;
         Vector2 multiplier = Toolkit.Transpose2(direction);
         float loopSize = Mathf.Abs(direction.x) * sizeY + Mathf.Abs(direction.y) * sizeX;
         float size = Mathf.Abs(direction.x) * sizeX + Mathf.Abs(direction.y) * sizeY;
-        print(rayOrigin);
         for (int i = 0; i <= loopSize; i++)
         {
             float k = 0;
@@ -42,19 +42,20 @@ public class Moveable : MonoBehaviour {
             // last point threshold
             if (i == loopSize)
                 k = -threshold;
-            RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin + multiplier * (i + k), direction, distance + size / 2, layer, 0, 0);
+            RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin + multiplier * (i + k), direction, distance + size / 2, layerNumber, 0, 0);
             if (hitPoint.collider != null)
+            {
+                hit = true;
                 hitObjects.Add(hitPoint);
+            }
         }
         hitObjects.Sort(new HitDistanceCompare());
-        return hitObjects;
+        hitPoints = hitObjects;
+        return hit;
     }
 
     public void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
     {
-        print("Move");
-        if (hitObjects.Count != 0)
-            print(hitObjects[0].collider.name);
         // hit nothing , move at distance
         if(hitObjects.Count == 0)
         {
@@ -63,9 +64,6 @@ public class Moveable : MonoBehaviour {
         else
         {
             float size = Mathf.Abs(direction.x) * sizeX + Mathf.Abs(direction.y) * sizeY;
-            print((Vector3)direction * (hitObjects[0].distance - size / 2));
-            print(hitObjects[0].distance);
-            print(size / 2);
             transform.position += (Vector3)direction * (hitObjects[0].distance - size / 2);
         }
     }
@@ -133,7 +131,6 @@ public class Moveable : MonoBehaviour {
     }
     public bool Move_Right(float distance,bool grab)
     {
-        CheckMove(new Vector2(1, 0), distance, 256);
         bool hit = false;
         float j = 0;
         Vector2 max_hit_point = new Vector2(Mathf.Infinity,0);

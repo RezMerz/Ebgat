@@ -55,7 +55,7 @@ public class Player_Move : MonoBehaviour {
             {
                 right_movement_timer_ = 0;
                 on_wall_ = true ;
-                GetComponent<Gravity>().Change_Properties(0.3f, 5);
+                GetComponent<Gravity>().ChangeProperties(0.3f, 5);
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
@@ -76,7 +76,7 @@ public class Player_Move : MonoBehaviour {
             {
                 left_movement_timer_ = 0;
                 on_wall_ = true;
-                GetComponent<Gravity>().Change_Properties(0.3f, 7.5f);
+                GetComponent<Gravity>().ChangeProperties(0.3f, 7.5f);
             }
         }
         else
@@ -87,7 +87,7 @@ public class Player_Move : MonoBehaviour {
         }
         if (!on_wall_)
         {
-            GetComponent<Gravity>().Change_Properties(-1, -1);
+            GetComponent<Gravity>().ChangeProperties(-1, -1);
         }
     }
     void Jump()
@@ -140,10 +140,10 @@ public class Player_Move : MonoBehaviour {
     void On_Ground_Check()
     {
         bool pre_on_ground = on_ground_;
-        on_ground_ = GetComponent<Gravity>().on_ground_;
+        on_ground_ = GetComponent<Gravity>().onGround;
         if (on_ground_)
         {
-            GetComponent<Gravity>().Change_Properties(-1, -1);
+            GetComponent<Gravity>().ChangeProperties(-1, -1);
             if (pre_on_ground == false)
             {
                 right_movement_timer_ = 0;

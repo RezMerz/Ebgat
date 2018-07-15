@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gravity : MonoBehaviour {
-    public bool on_ground_;
+    public bool onGround;
 
     // switch to turn on/off gravity
     public bool active = true;
 
     // Base Variable to set to defaults whenever needed
-    public  float baseSpeed;
+    public float baseSpeed;
     public float baseMaxSpeed;
     public float baseAcceleration;
     public float baseCayoteTime;
@@ -24,7 +24,7 @@ public class Gravity : MonoBehaviour {
     private List<RaycastHit2D> hitObjects;
     bool hovering_;
     bool hit_;
-    float distance_;
+    float distance;
 
     float hovering_time_;
     float actual_speed_;
@@ -64,10 +64,10 @@ public class Gravity : MonoBehaviour {
     }
     void Gravity_Call()
     {
-        distance_ = speed * Time.deltaTime;
+        distance = speed * Time.deltaTime;
         if (active)
         {
-            hit_ = GetComponent<Moveable>().Move_Down(distance_);
+            hit_ = GetComponent<Moveable>().Move_Down(distance);
             if (hit_)
             {
                 timer_ = 0;
@@ -78,35 +78,37 @@ public class Gravity : MonoBehaviour {
             }
             if(timer_ >= cayoteTime)
             {
-                on_ground_ = false;
+                onGround = false;
             }
             else
             {
-                on_ground_ = true;
+                onGround = true;
             }
         }
         else
         {
-            on_ground_ = false;
+            onGround = false;
             timer_ += Time.deltaTime;
         }
     }
     void Speed_Check()
     {
-        if (on_ground_)
+        if (onGround)
         {
-            speed = acceleration;
-            actual_speed_ = acceleration;
+            //set speed of gravity to zero if chracter is on ground
+            speed = 0;
         }
         else
-        {
-            actual_speed_ += acceleration;
+        {   
             if(speed < maxSpeed)
             {
+                //increase speed of gravity over time
                 speed += acceleration;
             }
+
             if(speed > maxSpeed)
             {
+                //decrease speed of gravity if speed passes over speed limit
                 speed -= 1.5f*(baseAcceleration - acceleration);
             }
         }
@@ -148,15 +150,12 @@ public class Gravity : MonoBehaviour {
     }
     public void Speed_Reset()
     {
-        speed = acceleration;
+        speed = 0;
     }
-    public void Change_Properties(float scale,float max_speed)
+    public void ChangeProperties(float acceleration,float maxSpeed)
     {
-        if (scale == -1) scale = baseAcceleration;
-        if (max_speed == -1) max_speed = baseMaxSpeed;
-        acceleration = scale;
-        maxSpeed = max_speed; 
-
+        this.acceleration = acceleration;
+        this.maxSpeed = maxSpeed; 
     }
 
 }                   
