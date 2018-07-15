@@ -74,9 +74,7 @@ public class Gravity : MonoBehaviour {
                 // Go to on Ground state
                 if(hit)
                 {
-                   // print(hitObjects[0].distance);
-                    transform.position += new Vector3(0,(hitObjects[0].distance - charStats.size.y / 2));
-                   // print(hitObjects[0].distance - charStats.size.y / 2);
+                    transform.position -= new Vector3(0,(hitObjects[0].distance - charStats.size.y / 2));
                     charStats.FeetState = EFeetState.Onground;
                     /// Reset Gravity Stats
                 }

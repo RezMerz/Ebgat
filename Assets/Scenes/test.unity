@@ -10322,7 +10322,7 @@ MonoBehaviour:
   jumpSpeedBase: 0
   jumpAccelerationBase: 0
   jumpSpeedMaxBase: 0
-  gravitySpeedBase: 40
+  gravitySpeedBase: 10
   gravityAccelerationBase: 0
   gravitySpeedMaxBase: 0
   cayoteTime: 0
