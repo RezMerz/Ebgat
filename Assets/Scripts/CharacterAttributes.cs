@@ -14,10 +14,9 @@ public class CharacterAttributes : MonoBehaviour {
     //health attributes
     [SerializeField]
     private float hitPointsMax;
-    [SerializeField]
-    private float armor;         //amount of reduced damage dealt to this character (%)
+    public float armor;         //amount of reduced damage dealt to this character (%)
 
-    private float hitPoints;
+    public float hitPoints { get; set; }
 
     //attack attributes
     [SerializeField]
@@ -40,8 +39,8 @@ public class CharacterAttributes : MonoBehaviour {
     private float moveSpeedMaxBase;
 
     public  float moveSpeed {get;set;}
-    private float moveAcceleration;
-    private float moveSpeedMax;
+    public float moveAcceleration { get; set; }
+    public float moveSpeedMax { get; set; }
 
     //jump attributes
     [SerializeField]
@@ -51,9 +50,9 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float jumpSpeedMaxBase;
 
-    private float jumpSpeed;
-    private float jumpAcceleration;
-    private float jumpSpeedMax;
+    public float jumpSpeed { get; set; }
+    public float jumpAcceleration { get; set; }
+    public float jumpSpeedMax { get; set; }
 
     //gravity attributes
     [SerializeField]
@@ -63,9 +62,9 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float gravitySpeedMaxBase;
 
-    private float gravitySpeed;
-    private float gravityAcceleration;
-    private float gravitySpeedMax;
+    public float gravitySpeed { get; set; }
+    public float gravityAcceleration { get; set; }
+    public float gravitySpeedMax { get; set; }
 
 
     // Use this for initialization
