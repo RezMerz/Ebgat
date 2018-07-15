@@ -66,6 +66,7 @@ public class Gravity : MonoBehaviour {
                 if(!hit)
                 {
                     charStats.FeetState = EFeetState.Falling;
+                    transform.position -= new Vector3(0, Time.deltaTime * charStats.gravitySpeed);
                 }
 
             }
