@@ -20,13 +20,12 @@ public class Bullet : MonoBehaviour {
 
     private Vector2 size;
     private bool shot;
-    private bool hitV;
-    private bool hitH;
+    private bool hit;
     private float vSpeed;
     private List<RaycastHit2D> hitObjects;
     void Start()
     {
-        hitV = false;
+        hit = false;
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
         
     }
@@ -65,8 +64,8 @@ public class Bullet : MonoBehaviour {
             vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
             vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
             print(vDirection);
-            hitH = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
-            if (hitH)
+            hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
+            if (hit)
             {
                 transform.position += (Vector3)hDirection * hitObjects[0].distance;
                 shot = false;
@@ -76,8 +75,8 @@ public class Bullet : MonoBehaviour {
             {
                 transform.position += (Vector3)direction * Time.deltaTime * speed * Mathf.Abs(direction.x);
             }
-            hitV = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
-            if (hitV)
+            hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
+            if (hit)
             {
                 transform.position += (Vector3)vDirection * hitObjects[0].distance;
                 shot = false;
