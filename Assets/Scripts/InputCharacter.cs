@@ -22,6 +22,8 @@ public class InputCharacter : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (!playerControl.isLocalPlayer)
+            return;
         // Move left and Right
         if (Input.GetKey(KeyCode.D))
         {
