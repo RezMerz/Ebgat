@@ -32,9 +32,9 @@ public class Bullet : MonoBehaviour {
     public void Shoot(Vector2 targetDirection, Vector2 origin)
     {
         direction = (targetDirection - origin).normalized;
+       // print(direction.magnitude);
+       // print(direction.y);
         hDirection = (Vector2.right * direction).normalized;
-
-        vSpeed = speed * Mathf.Abs(direction.y);
 
 
 
@@ -63,7 +63,6 @@ public class Bullet : MonoBehaviour {
             gravitySpeed += gravityAcceleration;
             vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
             vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
-            print(vDirection);
             hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
             if (hit)
             {
@@ -73,7 +72,7 @@ public class Bullet : MonoBehaviour {
             }
             else
             {
-                transform.position += (Vector3)direction * Time.deltaTime * speed * Mathf.Abs(direction.x);
+                transform.position += (Vector3)hDirection * Time.deltaTime * speed * Mathf.Abs(direction.x);
             }
             hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
             if (hit)
