@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
-
+    private CharacterAttributes charStats;
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        charStats = GetComponent<CharacterAttributes>();
 	}
 }
