@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1324738285116126, guid: 7a52c0981c4c346b4aee859370eee396,
+  bulletPrefab: {fileID: 1324738285116126, guid: b409aa38f91990a46b3e1c6b96dd6a9d,
     type: 2}
 --- !u!212 &212695970663209288
 SpriteRenderer:
