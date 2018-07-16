@@ -41,10 +41,12 @@ public class Toolkit : MonoBehaviour {
     {
         float threshold = 0.01f;
         bool hit = false;
+        Vector2 ceilingSize = new Vector2(vecSize.x / Mathf.Ceil(vecSize.x), vecSize.y / Mathf.Ceil(vecSize.y));
+
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         Vector2 rayOrigin = originPosition + vecSize * (direction.x + direction.y) / 2;
-        Vector2 multiplier = Transpose2(direction);
-        float loopSize = Mathf.Abs(direction.x) * vecSize.y + Mathf.Abs(direction.y) * vecSize.x;
+        Vector2 multiplier = Transpose2(direction) * ceilingSize;
+        float loopSize = Mathf.Abs(direction.x) * Mathf.Ceil(vecSize.y) + Mathf.Abs(direction.y) * Mathf.Ceil(vecSize.x);
         for (int i = 0; i <= loopSize; i++)
         {
             float k = 0;
