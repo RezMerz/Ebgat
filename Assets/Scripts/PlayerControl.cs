@@ -10,5 +10,11 @@ public class PlayerControl : MonoBehaviour {
         charStats = GetComponent<CharacterAttributes>();
      
         }
-	}
+
+    public void GetDamage()
+    {
+        
+    }
+}
+
 
