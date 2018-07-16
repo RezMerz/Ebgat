@@ -16,7 +16,8 @@ public class PlayerControl : NetworkBehaviour
         charStats = GetComponent<CharacterAttributes>();
         characterMove = GetComponent<Moveable>();
         jump = GetComponent<PlayerJump>();
-
+        attack = GetComponent<Attack>();
+        Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
     }
     ///////////  NETWORK //////////
 
