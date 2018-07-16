@@ -212,8 +212,8 @@ MonoBehaviour:
   damage: 0
   range: 0
   gravitySpeedBase: 0
-  gravityAcceleration: 0.75
-  speed: 25
+  gravityAcceleration: 0.4
+  speed: 28
 --- !u!212 &212340681481505212
 SpriteRenderer:
   m_ObjectHideFlags: 1

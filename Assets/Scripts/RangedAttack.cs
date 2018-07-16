@@ -19,7 +19,7 @@ public class RangedAttack : Attack {
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
         GameObject cloneBulletObj = Instantiate(bulletObj);
-        cloneBulletObj.GetComponent<Bullet>().Shoot(targetPos, transform.position);
+        cloneBulletObj.GetComponent<Bullet>().Shoot(targetPos, transform.position,charStats.attackDamage);
 
     }
 }

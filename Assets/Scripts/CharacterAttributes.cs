@@ -39,7 +39,7 @@ public class CharacterAttributes : MonoBehaviour {
 
     //health attributes
     [SerializeField]
-    private float hitPointsMax;
+    private float hitPointsBase;
     public float armor;         //amount of reduced damage dealt to this character (%)
 
     public float hitPoints { get; set; }
@@ -56,7 +56,7 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float range;
 
-    private float attackDamage;
+    public float attackDamage { get; set; }
     public float attackAnimationTime { get; set; }
     public float attackCooldown { get; set; }
 
@@ -111,7 +111,7 @@ public class CharacterAttributes : MonoBehaviour {
         //States 
         feetState = EFeetState.Onground;
         //Hp
-        hitPoints = hitPointsMax;
+        hitPoints = hitPointsBase;
         //Attack
         attackDamage = attackDamageBase;
         attackCooldown = attackCooldownBase;
