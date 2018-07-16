@@ -10313,9 +10313,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPointsMax: 0
   armor: 0
+  attackMode: 0
   attackDamageBase: 0
   attackAnimationTimeBase: 0
   attackCooldownBase: 0
+  range: 0
   moveSpeedBase: 10
   moveAccelerationBase: 0
   moveSpeedMaxBase: 0
@@ -10346,6 +10348,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1175146381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1175146376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e21dd8d98157654d89df2c9a70f3c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1183296309 stripped
