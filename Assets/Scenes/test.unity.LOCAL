@@ -10319,12 +10319,12 @@ MonoBehaviour:
   moveSpeedBase: 10
   moveAccelerationBase: 0
   moveSpeedMaxBase: 0
-  jumpSpeedBase: 30
+  jumpSpeedBase: 0
   jumpAccelerationBase: 0
   jumpSpeedMaxBase: 0
   gravitySpeedBase: 0
-  gravityAccelerationBase: 1
-  gravitySpeedMaxBase: 30
+  gravityAccelerationBase: 1.5
+  gravitySpeedMaxBase: 15
   cayoteTime: 0
 --- !u!114 &1175146379
 MonoBehaviour:
@@ -10343,17 +10343,6 @@ MonoBehaviour:
   baseMaxSpeed: 0
   baseAcceleration: 0
   baseCayoteTime: 0
---- !u!114 &1175146380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1175146376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1183296309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4041770707906252, guid: dc9918c3d41c2bc4d99e5698aedc99b2,
@@ -10975,7 +10964,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235835179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: -9.92, z: -10}
+  m_LocalPosition: {x: -19, y: -8.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10987,7 +10976,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235835179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e6c8b87bba61cf4c8ae94610fcf50b7, type: 3}
   m_Name: 
@@ -17923,7 +17912,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4811183643191292, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -18.93
+      value: -19.89
       objectReference: {fileID: 0}
     - target: {fileID: 4811183643191292, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}
       propertyPath: m_LocalPosition.y
