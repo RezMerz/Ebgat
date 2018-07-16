@@ -8,6 +8,7 @@ public abstract class Attack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("attack");
         charStats = GetComponent<CharacterAttributes>();
         cooldownTimer = 0;
 	}
