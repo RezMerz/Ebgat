@@ -57,8 +57,8 @@ public class CharacterAttributes : MonoBehaviour {
     private float range;
 
     private float attackDamage;
-    private float attackAnimationTime;
-    private float attackCooldown;
+    public float attackAnimationTime { get; set; }
+    public float attackCooldown { get; set; }
 
     //movement attributes
     [SerializeField]

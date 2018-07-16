@@ -28,7 +28,7 @@ public class InputCharacter : MonoBehaviour
 
         //Attack
         if (Input.GetMouseButtonDown(0))
-            attack.AttackPressed();
+            attack.AttackPressed(Input.mousePosition);
 
 
         // Jump
