@@ -49,9 +49,6 @@ public class Gravity : MonoBehaviour {
     {
         SpeedCheck();
         HeroGravity();
-       // Speed_Check();
-       // Gravity_Call();
-       // Hovering();
     }
 
     private void HeroGravity()
@@ -67,7 +64,7 @@ public class Gravity : MonoBehaviour {
                 if(!hit)
                 {
                     charStats.FeetState = EFeetState.Falling;
-                    transform.position -= new Vector3(0, Time.deltaTime * charStats.gravitySpeed);
+                    transform.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
                 }
 
             }
@@ -76,20 +73,20 @@ public class Gravity : MonoBehaviour {
                 // Go to on Ground state
                 if(hit)
                 {
-                    transform.position -= new Vector3(0,(hitObjects[0].distance - charStats.size.y / 2));
+                    transform.position += Vector3.down *(hitObjects[0].distance);
                     charStats.FeetState = EFeetState.Onground;
-                    /// Reset Gravity Stats
                 }
                 // Still Faliing
                 else
                 {
-                    transform.position -= new Vector3(0, Time.deltaTime * charStats.gravitySpeed);
+                    transform.position += Vector3.down *(Time.deltaTime * charStats.gravitySpeed);
                 }
             }
         }
     }
     private void SpeedCheck()
     {
+        // if falling increase speed of gravity
         if(charStats.FeetState == EFeetState.Falling)
         {
             charStats.gravitySpeed += charStats.gravityAcceleration;
@@ -98,11 +95,17 @@ public class Gravity : MonoBehaviour {
                 charStats.gravitySpeed = charStats.gravitySpeedMax;
             }
         }
+        // if onground reset speed o gravity
         if(charStats.FeetState == EFeetState.Onground)
         {
             charStats.ResetGravitySpeed();
         }
     }
+
+
+
+
+    // old functions delete these 
     void Gravity_Call()
     {
         distance = speed * Time.deltaTime;

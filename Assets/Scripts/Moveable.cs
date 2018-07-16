@@ -30,7 +30,6 @@ public class Moveable : MonoBehaviour {
     {
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        // charcterMove.CheckMove(Vector2.right, speed * Time.deltaTime, 256,out hitObjects);
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
     }
@@ -41,10 +40,10 @@ public class Moveable : MonoBehaviour {
         {
             transform.position += distance * (Vector3)direction;
         }
+        // hit some objects, move to the nearst
         else
         {
-            float size = Mathf.Abs(direction.x) * sizeX + Mathf.Abs(direction.y) * sizeY;
-            transform.position += (Vector3)direction * (hitObjects[0].distance - size / 2);
+            transform.position += (Vector3)direction * (hitObjects[0].distance);
         }
     }
 }
