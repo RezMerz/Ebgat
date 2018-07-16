@@ -10325,7 +10325,7 @@ MonoBehaviour:
   gravitySpeedBase: 0
   gravityAccelerationBase: 1
   gravitySpeedMaxBase: 30
-  cayoteTime: 0
+  cayoteTime: 0.1
 --- !u!114 &1175146379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10337,12 +10337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f290b75de419f5d41874a07b74a222ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGround: 0
-  active: 1
-  baseSpeed: 0
-  baseMaxSpeed: 0
-  baseAcceleration: 0
-  baseCayoteTime: 0
 --- !u!114 &1175146380
 MonoBehaviour:
   m_ObjectHideFlags: 0
