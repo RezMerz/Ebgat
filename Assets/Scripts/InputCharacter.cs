@@ -6,25 +6,39 @@ public class InputCharacter : MonoBehaviour
 {
     public float speed;
 
+    private PlayerControl playerControl;
+
     private Attack attack;
     private Moveable characterMove;
     private PlayerJump jump;
 	// Use this for initialization
 	void Start ()
     {
-        attack = GetComponent<Attack>();
-        characterMove = GetComponent<Moveable>();
-        jump = GetComponent<PlayerJump>();
+        playerControl = GetComponent<PlayerControl>();
+        attack = playerControl.attack;
+        characterMove = playerControl.characterMove;
+        jump = playerControl.jump;
 	}
 	// Update is called once per frame
 	void Update ()
     {
         // Move left and Right
         if (Input.GetKey(KeyCode.D))
+        {
+            playerControl.CmdMove(1);
             characterMove.MovePressed(1);
+        }
         if (Input.GetKey(KeyCode.A))
+        {
+            playerControl.CmdMove(-1);
             characterMove.MovePressed(-1);
-        
+        }
+
+        //move button released
+        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            playerControl.CmdMoveFinished(transform.position);
+        }
 
         //Attack
         if (Input.GetMouseButtonDown(0))
@@ -34,6 +48,7 @@ public class InputCharacter : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            playerControl.CmdJump(transform.position);
             jump.JumpPressed();
         }
 	}
