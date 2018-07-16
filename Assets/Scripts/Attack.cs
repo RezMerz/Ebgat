@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour {
-    float cooldownTimer;
-    private CharacterAttributes charStats;
-    public GameObject bulletObj;
+public abstract class Attack : MonoBehaviour {
+    protected float cooldownTimer;
+    protected CharacterAttributes charStats;
+
 	// Use this for initialization
 	void Start () {
         charStats = GetComponent<CharacterAttributes>();
@@ -19,30 +19,5 @@ public class Attack : MonoBehaviour {
         
 	}
 
-    public void AttackPressed(Vector2 mousePos)
-    {
-        // Attack Cooldown
-        if (cooldownTimer <= 0)
-        {
-            cooldownTimer = charStats.attackCooldown;
-
-            if (charStats.attackMode == EAttackMode.Ranged)
-                RangeAttack(mousePos);
-            else if (charStats.attackMode == EAttackMode.Melee)
-                MeleeAttack();
-        }
-    }
-
-    private void RangeAttack(Vector2 mousePos)
-    {
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
-        GameObject cloneBulletObj = Instantiate(bulletObj);
-        cloneBulletObj.GetComponent<Bullet>().Shoot(targetPos, transform.position);
-
-    }
-
-    private void MeleeAttack()
-    {
-        
-    }
+    public virtual void AttackPressed(Vector2 mousePos) { }
 }
