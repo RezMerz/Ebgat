@@ -28,7 +28,6 @@ public class Bullet : NetworkBehaviour {
         hit = false;
         size = transform.localScale;
         width = GetComponent<BoxCollider2D>().size.x * transform.localScale.x;
-        
     }
     public void Shoot(Vector2 targetDirection, Vector2 origin)
     {

@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class PlayerControl : NetworkBehaviour
 {
-    private CharacterAttributes charStats;
+    public CharacterAttributes charStats { get; private set; }
     public Moveable characterMove { get; private set; }
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
@@ -17,7 +17,6 @@ public class PlayerControl : NetworkBehaviour
         characterMove = GetComponent<Moveable>();
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
-        Debug.Log(attack);
         Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
     }
     ///////////  NETWORK //////////
@@ -39,6 +38,14 @@ public class PlayerControl : NetworkBehaviour
     {
         RpcJump(position);
     }
+
+    [Command]
+    public void CmdShootbullet(GameObject bulletPrefab, Vector3 targetdirection, Vector3 origin){
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin);
+    }
+
+
 
     [ClientRpc]
     public void RpcMove(int num)

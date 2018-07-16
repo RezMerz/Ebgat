@@ -5,8 +5,6 @@ using UnityEngine;
 public class RangedAttack : Attack {
     public GameObject bulletObj;
 
-    private PlayerControl playerControl;
-
     public override void AttackPressed(Vector2 mousePos)
     {
         // Attack Cooldown
@@ -20,8 +18,6 @@ public class RangedAttack : Attack {
     public void Attack(Vector2 mousePos)
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
-        GameObject cloneBulletObj = Instantiate(bulletObj);
-        cloneBulletObj.GetComponent<Bullet>().Shoot(targetPos, transform.position);
-
+        playerControl.CmdShootbullet(bulletObj, targetPos, transform.position);
     }
 }
