@@ -33,6 +33,8 @@ public class CharacterAttributes : MonoBehaviour {
         set { feetState = value; }
     }
 
+   
+
 
 
     //health attributes
@@ -43,12 +45,16 @@ public class CharacterAttributes : MonoBehaviour {
     public float hitPoints { get; set; }
 
     //attack attributes
+    public EAttackMode attackMode;
     [SerializeField]
     private float attackDamageBase;
     [SerializeField]
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
+
+    [SerializeField]
+    private float range;
 
     private float attackDamage;
     private float attackAnimationTime;
@@ -138,3 +144,5 @@ public enum EHeadState { Conscious, Stunned };
 public enum EBodyState { Standing,Moveing};
 public enum EHandState { Idle, Moving, Attacking, Casting };
 public enum EFeetState { Onground, Falling, Jumping };
+
+public enum EAttackMode { Ranged,Melee};
