@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedAttack : Attack {
-    public GameObject bulletObj;
 
     public override void AttackPressed(Vector2 mousePos)
     {
@@ -18,6 +17,6 @@ public class RangedAttack : Attack {
     public void Attack(Vector2 mousePos)
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
-        playerControl.CmdShootbullet(bulletObj, targetPos, transform.position);
+        playerControl.CmdShootbullet(targetPos, transform.position);
     }
 }

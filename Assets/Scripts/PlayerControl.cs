@@ -10,6 +10,8 @@ public class PlayerControl : NetworkBehaviour
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
 
+    public GameObject bulletPrefab;
+
     // Use this for initialization
     void Awake()
     {
@@ -40,7 +42,7 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [Command]
-    public void CmdShootbullet(GameObject bulletPrefab, Vector3 targetdirection, Vector3 origin){
+    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin){
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.GetComponent<Bullet>().Shoot(targetdirection, origin);
     }
