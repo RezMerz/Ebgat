@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/test.unity
     guid: c0cf68db6ee5229478d1256252a56c92
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/test-aref.unity
-    guid: 75fec54e3421b4d0982307716e2d025f
+    guid: c95ac5fe37c12e0469e05cdf9dc042a1
   m_configObjects: {}

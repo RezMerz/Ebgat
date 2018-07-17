@@ -8238,14 +8238,22 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
+<<<<<<< HEAD:Assets/Scenes/networkScene.unity
   m_PlayerPrefab: {fileID: 1243757965913828, guid: 14b3c99b3b15a44d6b12c303e6667c08,
+=======
+  m_PlayerPrefab: {fileID: 1243757965913828, guid: 5151f57ceedf80c40b8c8933572a3680,
+>>>>>>> a4983703f0a7c81e12814ca19102622997256c86:Assets/Scenes/test-aref.unity
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
+<<<<<<< HEAD:Assets/Scenes/networkScene.unity
   - {fileID: 1324738285116126, guid: 9c8fe2ea725f340aea5b875474f75651, type: 2}
+=======
+  - {fileID: 1324738285116126, guid: 208bb2345dad7ad439b82ac587f5d678, type: 2}
+>>>>>>> a4983703f0a7c81e12814ca19102622997256c86:Assets/Scenes/test-aref.unity
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
