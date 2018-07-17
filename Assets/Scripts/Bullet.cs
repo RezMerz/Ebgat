@@ -69,7 +69,7 @@ public class Bullet : NetworkBehaviour {
             vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
             vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
             if (isServer)
-                hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
+                hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), layer, out hitObjects);
             else
                 hit = false;
             if (hit)
@@ -84,7 +84,7 @@ public class Bullet : NetworkBehaviour {
                 transform.position += (Vector3)hDirection * Time.deltaTime * speed * Mathf.Abs(direction.x);
             }
             if (isServer)
-                hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
+                hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, layer, out hitObjects);
             else
                 hit = false;
             if (hit)
