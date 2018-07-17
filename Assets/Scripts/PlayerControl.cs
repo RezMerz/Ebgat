@@ -12,6 +12,8 @@ public class PlayerControl : NetworkBehaviour
 
     public GameObject bulletPrefab;
 
+    public Color color; 
+
     // Use this for initialization
     void Awake()
     {
@@ -32,6 +34,7 @@ public class PlayerControl : NetworkBehaviour
             gameObject.layer = LayerMask.NameToLayer("Team 1");
 
             //change color for localm player
+            color = Color.green;
             GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
@@ -39,6 +42,7 @@ public class PlayerControl : NetworkBehaviour
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
+            color = Color.white;
         }
     }
     // Some Damage has been done
