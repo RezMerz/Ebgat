@@ -9,6 +9,8 @@ public class Moveable : MonoBehaviour {
     float sizeX;
     float sizeY;
 
+    private Vector2 side;
+
 	void Start ()
     {
         charStats = GetComponent<CharacterAttributes>();
@@ -28,12 +30,15 @@ public class Moveable : MonoBehaviour {
 
     public void MovePressed(int i)
     {
+        SpeedCheck(i);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
+        charStats.BodyState = EBodyState.Moveing;
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
+        
     }
-    public void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
+    private void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
     {
         // hit nothing , move at distance
         if(hitObjects.Count == 0)
@@ -43,9 +48,33 @@ public class Moveable : MonoBehaviour {
         // hit some objects, move to the nearst
         else
         {
+            charStats.ResetMoveSpeed();
             transform.position += (Vector3)direction * (hitObjects[0].distance);
         }
     }
+    private void SpeedCheck(int i)
+    {
+        side = Vector2.right * i;
+        if(side  != charStats.side)
+        {
+            charStats.ResetMoveSpeed();
+            charStats.side = side;
+        }
+        if(charStats.BodyState == EBodyState.Standing)
+        {
+            charStats.ResetMoveSpeed();
+        }
+        if(charStats.BodyState == EBodyState.Moveing && charStats.FeetState == EFeetState.Onground)
+        {
+            print(charStats.moveSpeed);
+            charStats.moveSpeed += charStats.moveAcceleration;
+            if(charStats.moveSpeed > charStats.moveSpeedMax)
+            {
+                charStats.moveSpeed = charStats.moveSpeedMax;
+            }
+        }
+    }
+
 }
 
 
@@ -60,3 +89,4 @@ public class HitDistanceCompare : IComparer<RaycastHit2D>
         else return 1;
     }
 }
+
