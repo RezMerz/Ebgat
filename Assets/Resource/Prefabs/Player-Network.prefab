@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114317281418611440}
   - component: {fileID: 114801478604508316}
   - component: {fileID: 114287942758211254}
+  - component: {fileID: 114402033596058236}
   m_Layer: 0
   m_Name: Player-Network
   m_TagString: Player
@@ -252,6 +253,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47395ce1e85f60b4293284f1c359370f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114402033596058236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243757965913828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98253be33f29374428602f2e070498f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114600926897762182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,6 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26049256be4328b4f9ec8a6af47510f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamName: 
+  enemyTeamName: 
   hitPointsBase: 0
   armor: 0
   attackMode: 0

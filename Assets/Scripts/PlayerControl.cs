@@ -135,13 +135,14 @@ public class PlayerControl : NetworkBehaviour
             return;
         }
     }
- 
+
     [ClientRpc]
-    public void RpcTakeAttack(float damage, Buff buff)
+    public void RpcTakeAttack(float damage)
     {
         if (isServer)
             return;
-        TakeAttack(damage, buff);
+        TakeAttack(damage, null);
+    }
 }
 
 
