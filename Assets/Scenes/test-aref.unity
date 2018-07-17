@@ -8238,14 +8238,14 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1243757965913828, guid: 25422ab28af814bc9b06b4a07d9448db,
+  m_PlayerPrefab: {fileID: 1243757965913828, guid: 5151f57ceedf80c40b8c8933572a3680,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: test-aref
   m_SpawnPrefabs:
-  - {fileID: 1324738285116126, guid: 36868def2632c4e50856c63a21d64560, type: 2}
+  - {fileID: 1324738285116126, guid: 208bb2345dad7ad439b82ac587f5d678, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
