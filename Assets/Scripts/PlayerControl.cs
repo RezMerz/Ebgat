@@ -27,10 +27,12 @@ public class PlayerControl : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            Debug.Log("local player");
             charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
             gameObject.layer = LayerMask.NameToLayer("Team 1");
+
+            //change color for localm player
+            GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
@@ -56,14 +58,21 @@ public class PlayerControl : NetworkBehaviour
         charStats.hitPoints -= damage;
         if (charStats.hitPoints <= 0)
         {
-            //Death
             print("Dead");
+            if(isServer){
+                CmdKillPlayer();
+            }
         }
     }
 
 
 
     ///////////  NETWORK //////////
+    [Command]
+    public void CmdKillPlayer(){
+        Destroy(gameObject);
+    }
+
 
     [Command]
     public void CmdMove(int num)
