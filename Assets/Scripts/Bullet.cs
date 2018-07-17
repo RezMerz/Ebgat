@@ -67,7 +67,10 @@ public class Bullet : NetworkBehaviour {
             gravitySpeed += gravityAcceleration;
             vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
             vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
-            hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
+            if (isServer)
+                hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
+            else
+                hit = false;
             if (hit)
             {
                 transform.position += (Vector3)hDirection * hitObjects[0].distance;
@@ -103,5 +106,5 @@ public class Bullet : NetworkBehaviour {
         }
         Destroy(gameObject);
     }
-    
+
 }
