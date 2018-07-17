@@ -83,10 +83,11 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [Command]
-    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage,int layer){
+    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage){
         GameObject bulletObj = Instantiate(bulletPrefab);
         NetworkServer.Spawn(bulletObj);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
+        int layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
         bullet.Shoot(targetdirection, origin, bulletDamage,layer);
         bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage,layer);
     }
