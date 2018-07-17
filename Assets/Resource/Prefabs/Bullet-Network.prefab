@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114128960254170102}
   - component: {fileID: 114951034215619350}
   m_Layer: 0
-  m_Name: Bullet-Networked
+  m_Name: Bullet-Network
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,22 +213,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 54
-    i1: 134
-    i2: 141
-    i3: 239
-    i4: 38
-    i5: 50
-    i6: 196
-    i7: 229
-    i8: 8
-    i9: 86
-    i10: 198
-    i11: 58
-    i12: 33
-    i13: 214
-    i14: 69
-    i15: 96
+    i0: 156
+    i1: 143
+    i2: 226
+    i3: 234
+    i4: 114
+    i5: 95
+    i6: 52
+    i7: 10
+    i8: 234
+    i9: 91
+    i10: 135
+    i11: 84
+    i12: 116
+    i13: 247
+    i14: 86
+    i15: 81
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114951034215619350
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509af3900270364a8b4532f967d63b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
   range: 0
   gravitySpeedBase: 0
   gravityAcceleration: 0.4

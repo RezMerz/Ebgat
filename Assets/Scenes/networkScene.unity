@@ -8238,14 +8238,14 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1243757965913828, guid: 25422ab28af814bc9b06b4a07d9448db,
+  m_PlayerPrefab: {fileID: 1243757965913828, guid: 14b3c99b3b15a44d6b12c303e6667c08,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
-  m_OnlineScene: test-aref
+  m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 1324738285116126, guid: 36868def2632c4e50856c63a21d64560, type: 2}
+  - {fileID: 1324738285116126, guid: 9c8fe2ea725f340aea5b875474f75651, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -14312,7 +14312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4041770707906252, guid: dc9918c3d41c2bc4d99e5698aedc99b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4041770707906252, guid: dc9918c3d41c2bc4d99e5698aedc99b2, type: 2}
       propertyPath: m_LocalPosition.z
