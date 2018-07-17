@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MeleeWaepon : MonoBehaviour {
+    public Vector2 size;
+
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+
+    // Attack in direction and alert objects of attack
+    public void Attack(Vector2 origin,float damage,Vector2 direction,int layer)
+    {
+        print("Attack Meele");
+        print(size.x);
+        print(direction);
+        RaycastHit2D[] hitObjects = Physics2D.BoxCastAll(origin, new Vector2(1,size.y), 0, direction, size.x, layer, 0, 0);
+        foreach (RaycastHit2D hit in hitObjects)
+        {
+            if (hit.collider.tag == "Player")
+            {
+                hit.collider.GetComponent<PlayerControl>().TakeAttack(damage, null);
+            }
+        }
+    }
+}

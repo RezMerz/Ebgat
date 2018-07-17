@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void TakeDamage(float damage)
     {
+        print("Took Damage");
         charStats.hitPoints -= damage;
         if (charStats.hitPoints <= 0)
         {
