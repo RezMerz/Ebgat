@@ -16,20 +16,27 @@ public class PlayerControl : NetworkBehaviour
     void Awake()
     {
         charStats = GetComponent<CharacterAttributes>();
-        if(isServer){
-            charStats.teamName = "Team 1";
-            charStats.enemyTeamName = "Team 2";
-        }
-        else{
-            charStats.teamName = "Team 2";
-            charStats.enemyTeamName = "Team 1";
-        }
+       
         characterMove = GetComponent<Moveable>();
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
     }
 
+    void Start()
+    {
+        if (isServer)
+        {
+            charStats.teamName = "Team 1";
+            charStats.enemyTeamName = "Team 2";
+            gameObject.layer = LayerMask.NameToLayer("Team 1");
+        }
+         else{
+            charStats.teamName = "Team 2";
+            gameObject.layer = LayerMask.NameToLayer("Team 2");
+             charStats.enemyTeamName = "Team 1";
+          }
+    }
     // Some Damage has been done
     public void TakeAttack(float damage, Buff buff)
     {

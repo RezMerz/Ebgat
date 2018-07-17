@@ -128,6 +128,8 @@ public class CharacterAttributes : MonoBehaviour {
         gravitySpeedMax = gravitySpeedMaxBase;
         //Size
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
+
+        gameObject.layer = LayerMask.NameToLayer(teamName);
     }
 
     public void ResetGravitySpeed()
