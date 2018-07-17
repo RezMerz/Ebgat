@@ -15,8 +15,6 @@ public class MeleeWaepon : MonoBehaviour {
     public void Attack(Vector2 origin,float damage,Vector2 direction,int layer)
     {
         print("Attack Meele");
-        print(size.x);
-        print(direction);
         RaycastHit2D[] hitObjects = Physics2D.BoxCastAll(origin, new Vector2(1,size.y), 0, direction, size.x, layer, 0, 0);
         foreach (RaycastHit2D hit in hitObjects)
         {
