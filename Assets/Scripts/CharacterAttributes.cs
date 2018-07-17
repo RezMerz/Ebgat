@@ -141,6 +141,7 @@ public class CharacterAttributes : MonoBehaviour {
     {
         moveSpeed = moveSpeedBase;
     }
+
 }
 
 
