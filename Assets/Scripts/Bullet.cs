@@ -26,13 +26,14 @@ public class Bullet : NetworkBehaviour {
     private bool hit;
     private float vSpeed;
     private List<RaycastHit2D> hitObjects;
+    private int layer;
     void Start()
     {
         hit = false;
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
         
     }
-    public void Shoot(Vector2 targetDirection, Vector2 origin,float bulletDamage)
+    public void Shoot(Vector2 targetDirection, Vector2 origin,float bulletDamage,int layer)
     {
         damage = bulletDamage;
         direction = (targetDirection - origin).normalized;

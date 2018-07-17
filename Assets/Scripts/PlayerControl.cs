@@ -66,10 +66,10 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [Command]
-    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage){
+    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage,int layer){
         GameObject bullet = Instantiate(bulletPrefab);
         NetworkServer.Spawn(bullet);
-        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
+        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage,layer);
         //RpcShootBullet(targetdirection, origin, bulletDamage);
     }
 
