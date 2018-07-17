@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 114128172665716862}
   - component: {fileID: 114723531615993216}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player-Networked
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,6 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1324738285116126, guid: 36868def2632c4e50856c63a21d64560,
+    type: 2}
 --- !u!114 &114143317216127424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,7 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47395ce1e85f60b4293284f1c359370f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObj: {fileID: 1324738285116126, guid: b409aa38f91990a46b3e1c6b96dd6a9d, type: 2}
 --- !u!114 &114600926897762182
 MonoBehaviour:
   m_ObjectHideFlags: 1
