@@ -5606,17 +5606,42 @@ Prefab:
     - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
         type: 2}
       propertyPath: moveAccelerationBase
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
         type: 2}
       propertyPath: moveSpeedMaxBase
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
         type: 2}
       propertyPath: moveSpeedBase
-      value: 2
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
+        type: 2}
+      propertyPath: jumpSpeedBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
+        type: 2}
+      propertyPath: jumpSpeedFullBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114108444675590370, guid: c85ec9db4be6a22448e6ae25212f1fab,
+        type: 2}
+      propertyPath: fullJumpHoldTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
+        type: 2}
+      propertyPath: jumpAccelerationBase
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600926897762182, guid: c85ec9db4be6a22448e6ae25212f1fab,
+        type: 2}
+      propertyPath: jumpSpeedMaxBase
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c85ec9db4be6a22448e6ae25212f1fab, type: 2}

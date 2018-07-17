@@ -33,9 +33,13 @@ public class InputCharacter : MonoBehaviour
 
 
         // Jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             jump.JumpPressed();
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            jump.JumpReleased();
         }
 	}
 
