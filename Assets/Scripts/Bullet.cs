@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    public float damage;
+    private float damage;
     public float range;
     public float width { get; set; }
     public float gravitySpeedBase;
@@ -29,8 +29,9 @@ public class Bullet : MonoBehaviour {
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
         
     }
-    public void Shoot(Vector2 targetDirection, Vector2 origin)
+    public void Shoot(Vector2 targetDirection, Vector2 origin,float bulletDamage)
     {
+        damage = bulletDamage;
         direction = (targetDirection - origin).normalized;
        // print(direction.magnitude);
        // print(direction.y);
@@ -68,6 +69,7 @@ public class Bullet : MonoBehaviour {
             {
                 transform.position += (Vector3)hDirection * hitObjects[0].distance;
                 shot = false;
+                Hit();
                 return;
             }
             else
@@ -79,6 +81,7 @@ public class Bullet : MonoBehaviour {
             {
                 transform.position += (Vector3)vDirection * hitObjects[0].distance;
                 shot = false;
+                Hit();
                 return;
             }
             else
@@ -87,6 +90,15 @@ public class Bullet : MonoBehaviour {
             }
 
         }
+    }
+
+    private void Hit()
+    {
+        if (hitObjects[0].collider.tag == "Player")
+        {
+            hitObjects[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, null);
+        }
+        Destroy(gameObject);
     }
     
 }

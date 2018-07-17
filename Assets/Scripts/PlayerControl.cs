@@ -11,9 +11,25 @@ public class PlayerControl : MonoBehaviour {
      
         }
 
-    public void GetDamage()
+    // Some Damage has been done
+    public void TakeAttack(float damage,Buff buff)
     {
-        
+        if (buff != null)
+        {
+            // buff code here
+        }
+        TakeDamage(damage);
+
+    }
+
+    private void TakeDamage(float damage)
+    {
+        charStats.hitPoints -= damage;
+        if (charStats.hitPoints <= 0)
+        {
+            //Death
+            print("Dead");
+        }
     }
 }
 
