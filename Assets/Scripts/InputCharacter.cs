@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class InputCharacter : MonoBehaviour
 {
-    public float speed;
-
+    private CharacterAttributes charStats;
     private Attack attack;
     private Moveable characterMove;
     private PlayerJump jump;
 	// Use this for initialization
 	void Start ()
     {
+        charStats = GetComponent<CharacterAttributes>();
         attack = GetComponent<Attack>();
         characterMove = GetComponent<Moveable>();
         jump = GetComponent<PlayerJump>();
@@ -20,11 +20,12 @@ public class InputCharacter : MonoBehaviour
 	void Update ()
     {
         // Move left and Right
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             characterMove.MovePressed(1);
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             characterMove.MovePressed(-1);
-        
+        else
+            charStats.BodyState = EBodyState.Standing;
 
         //Attack
         if (Input.GetMouseButtonDown(0))

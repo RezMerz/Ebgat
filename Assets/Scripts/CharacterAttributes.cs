@@ -36,6 +36,7 @@ public class CharacterAttributes : MonoBehaviour {
    
 
 
+    public Vector2 side { get; set; }
 
     //health attributes
     [SerializeField]
@@ -136,6 +137,10 @@ public class CharacterAttributes : MonoBehaviour {
     {
         gravitySpeed = gravitySpeedBase;
     }
+    public void ResetMoveSpeed()
+    {
+        moveSpeed = moveSpeedBase;
+    }
 }
 
 
@@ -146,3 +151,4 @@ public enum EHandState { Idle, Moving, Attacking, Casting };
 public enum EFeetState { Onground, Falling, Jumping };
 
 public enum EAttackMode { Ranged,Melee};
+
