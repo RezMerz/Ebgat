@@ -21,6 +21,30 @@ public class PlayerControl : NetworkBehaviour
         attack = GetComponent<Attack>();
         Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
     }
+
+    // Some Damage has been done
+    public void TakeAttack(float damage, Buff buff)
+    {
+        if (buff != null)
+        {
+            // buff code here
+        }
+        TakeDamage(damage);
+
+    }
+
+    private void TakeDamage(float damage)
+    {
+        charStats.hitPoints -= damage;
+        if (charStats.hitPoints <= 0)
+        {
+            //Death
+            print("Dead");
+        }
+    }
+
+
+
     ///////////  NETWORK //////////
 
     [Command]
@@ -42,10 +66,10 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [Command]
-    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin){
+    public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage){
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin);
-        RpcShootBullet(targetdirection, origin);
+        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
+        RpcShootBullet(targetdirection, origin, bulletDamage);
     }
 
 
@@ -57,6 +81,7 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
+
 
         characterMove.MovePressed(num);
     }
@@ -82,14 +107,16 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcShootBullet(Vector3 targetdirection, Vector3 origin){
-        if(isServer)
+    public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
+    {
+        if (isServer)
         {
             return;
         }
         GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin);
+        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
     }
+ 
 }
 
 

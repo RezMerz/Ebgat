@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 public class Bullet : NetworkBehaviour {
     public float damage;
+
     public float range;
     public float width { get; set; }
     public float gravitySpeedBase;
@@ -22,16 +24,24 @@ public class Bullet : NetworkBehaviour {
     private Vector2 size;
     private bool shot;
     private bool hit;
+    private float vSpeed;
     private List<RaycastHit2D> hitObjects;
     void Start()
     {
         hit = false;
-        size = transform.localScale;
-        width = GetComponent<BoxCollider2D>().size.x * transform.localScale.x;
+        size = GetComponent<BoxCollider2D>().size * transform.localScale;
+        
     }
-    public void Shoot(Vector2 targetDirection, Vector2 origin)
+    public void Shoot(Vector2 targetDirection, Vector2 origin,float bulletDamage)
     {
+        damage = bulletDamage;
         direction = (targetDirection - origin).normalized;
+       // print(direction.magnitude);
+       // print(direction.y);
+        hDirection = (Vector2.right * direction).normalized;
+
+
+
         transform.position = origin;
         shot = true;
        
@@ -43,20 +53,7 @@ public class Bullet : NetworkBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (shot)
-        {
-            hit = Toolkit.CheckMoveFloat(transform.position, size, direction, Time.deltaTime * speed, 256, out hitObjects);
-            if (hit)
-            {
-                transform.position += (Vector3)direction * Time.deltaTime * speed;
-                shot = false;
-            }
-            else
-            {
-                transform.position += (Vector3)direction * Time.deltaTime * speed;
-            }
-           
-        }
+        Move();
 		// Check Move
         // Move
         // if hit damage hero
@@ -65,7 +62,46 @@ public class Bullet : NetworkBehaviour {
     
     private void Move()
     {
+        if (shot)
+        {
+            gravitySpeed += gravityAcceleration;
+            vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
+            vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
+            hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
+            if (hit)
+            {
+                transform.position += (Vector3)hDirection * hitObjects[0].distance;
+                shot = false;
+                Hit();
+                return;
+            }
+            else
+            {
+                transform.position += (Vector3)hDirection * Time.deltaTime * speed * Mathf.Abs(direction.x);
+            }
+            hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
+            if (hit)
+            {
+                transform.position += (Vector3)vDirection * hitObjects[0].distance;
+                shot = false;
+                Hit();
+                return;
+            }
+            else
+            {
+                transform.position += (Vector3)vDirection * Time.deltaTime * vSpeed;
+            }
 
+        }
+    }
+
+    private void Hit()
+    {
+        if (hitObjects[0].collider.tag == "Player")
+        {
+            hitObjects[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, null);
+        }
+        Destroy(gameObject);
     }
     
 }

@@ -18,5 +18,6 @@ public class RangedAttack : Attack {
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
         playerControl.CmdShootbullet(targetPos, transform.position);
+
     }
 }

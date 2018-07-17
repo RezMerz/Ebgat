@@ -210,11 +210,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509af3900270364a8b4532f967d63b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   damage: 0
   range: 0
   gravitySpeedBase: 0
   gravityAcceleration: 0.75
   speed: 25
+=======
+  range: 0
+  gravitySpeedBase: 0
+  gravityAcceleration: 0.4
+  speed: 28
+>>>>>>> master
 --- !u!114 &114616504242394872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,6 +236,7 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
+<<<<<<< HEAD
     i0: 122
     i1: 82
     i2: 192
@@ -245,6 +253,24 @@ MonoBehaviour:
     i13: 238
     i14: 227
     i15: 150
+=======
+    i0: 180
+    i1: 9
+    i2: 170
+    i3: 56
+    i4: 249
+    i5: 25
+    i6: 144
+    i7: 164
+    i8: 107
+    i9: 62
+    i10: 28
+    i11: 107
+    i12: 150
+    i13: 221
+    i14: 106
+    i15: 157
+>>>>>>> master
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!212 &212304357884574250

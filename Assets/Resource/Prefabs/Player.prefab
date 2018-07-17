@@ -24,14 +24,21 @@ GameObject:
   - component: {fileID: 114143317216127424}
   - component: {fileID: 114670463922977846}
   - component: {fileID: 114600926897762182}
+<<<<<<< HEAD
   - component: {fileID: 114316015123793394}
   - component: {fileID: 114410894930199974}
   - component: {fileID: 114557043445522494}
   - component: {fileID: 114722349052451894}
   - component: {fileID: 114156252637358462}
+=======
+  - component: {fileID: 114641074450444170}
+  - component: {fileID: 114108444675590370}
+  - component: {fileID: 114317281418611440}
+  - component: {fileID: 114128172665716862}
+>>>>>>> master
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +79,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243757965913828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -2.16057, y: -0.5000001, z: 0}
+=======
+  m_LocalPosition: {x: 3.07, y: -10.5, z: 0}
+>>>>>>> master
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 4650648836745212}
@@ -205,7 +216,11 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+<<<<<<< HEAD
 --- !u!114 &114143317216127424
+=======
+--- !u!114 &114108444675590370
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,11 +228,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243757965913828}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.01
 --- !u!114 &114156252637358462
+=======
+  m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114128172665716862
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,6 +247,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243757965913828}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -250,6 +273,12 @@ MonoBehaviour:
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114316015123793394
+=======
+  m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114143317216127424
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f290b75de419f5d41874a07b74a222ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &114410894930199974
+=======
+  threshold: 0.01
+--- !u!114 &114317281418611440
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,10 +301,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243757965913828}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47395ce1e85f60b4293284f1c359370f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletObj: {fileID: 1324738285116126, guid: b409aa38f91990a46b3e1c6b96dd6a9d, type: 2}
+--- !u!114 &114600926897762182
+>>>>>>> master
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243757965913828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114557043445522494
+=======
+  m_Script: {fileID: 11500000, guid: 26049256be4328b4f9ec8a6af47510f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPointsBase: 0
+  armor: 0
+  attackMode: 0
+  attackDamageBase: 10
+  attackAnimationTimeBase: 0
+  attackCooldownBase: 0.5
+  range: 0
+  moveSpeedBase: 10
+  moveAccelerationBase: 0
+  moveSpeedMaxBase: 0
+  jumpSpeedBase: 30
+  jumpAccelerationBase: 0
+  jumpSpeedMaxBase: 0
+  gravitySpeedBase: 0
+  gravityAccelerationBase: 1
+  gravitySpeedMaxBase: 30
+  cayoteTime: 0.1
+--- !u!114 &114641074450444170
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,8 +391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   speed: 5
 --- !u!114 &114722349052451894
+=======
+--- !u!114 &114670463922977846
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,11 +404,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243757965913828}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1324738285116126, guid: b409aa38f91990a46b3e1c6b96dd6a9d,
     type: 2}
+=======
+  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+>>>>>>> master
 --- !u!212 &212695970663209288
 SpriteRenderer:
   m_ObjectHideFlags: 1
