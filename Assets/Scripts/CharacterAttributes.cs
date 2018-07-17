@@ -33,9 +33,7 @@ public class CharacterAttributes : MonoBehaviour {
         set { feetState = value; }
     }
 
-   
-
-
+    public string teamName, enemyTeamName;
 
     //health attributes
     [SerializeField]

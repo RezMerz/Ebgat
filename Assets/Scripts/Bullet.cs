@@ -112,4 +112,12 @@ public class Bullet : NetworkBehaviour {
         Destroy(gameObject);
     }
 
+
+    [ClientRpc]
+    public void RpcShootBulletForClient(Vector2 targetDirection, Vector2 origin, float bulletDamage){
+        if (isServer)
+            return;
+        Shoot(targetDirection, origin, bulletDamage);
+    }
+
 }
