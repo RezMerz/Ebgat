@@ -134,14 +134,14 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
-        //bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
     }
-
-    /*[ClientRpc]
-    public void RpcBulletHit(Bullet bullet){
-        
-    }*/
  
+    [ClientRpc]
+    public void RpcTakeAttack(float damage, Buff buff)
+    {
+        if (isServer)
+            return;
+        TakeAttack(damage, buff);
 }
 
 

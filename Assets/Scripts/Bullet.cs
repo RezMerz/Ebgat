@@ -107,7 +107,9 @@ public class Bullet : NetworkBehaviour {
     {
         if (hitObjects[0].collider.tag == "Player")
         {
-            hitObjects[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, null);
+            PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
+            playerControl.TakeAttack(damage, null);
+            playerControl.RpcTakeAttack(damage, null);
         }
         Destroy(gameObject);
     }
@@ -119,5 +121,6 @@ public class Bullet : NetworkBehaviour {
             return;
         Shoot(targetDirection, origin, bulletDamage,layer);
     }
+
 
 }
