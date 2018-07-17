@@ -66,7 +66,6 @@ public class Moveable : MonoBehaviour {
         }
         if(charStats.BodyState == EBodyState.Moveing && charStats.FeetState == EFeetState.Onground)
         {
-            print(charStats.moveSpeed);
             charStats.moveSpeed += charStats.moveAcceleration;
             if(charStats.moveSpeed > charStats.moveSpeedMax)
             {
