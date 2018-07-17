@@ -16,6 +16,14 @@ public class PlayerControl : NetworkBehaviour
     void Awake()
     {
         charStats = GetComponent<CharacterAttributes>();
+        if(isServer){
+            charStats.teamName = "Team 1";
+            charStats.enemyTeamName = "Team 2";
+        }
+        else{
+            charStats.teamName = "Team 2";
+            charStats.enemyTeamName = "Team 1";
+        }
         characterMove = GetComponent<Moveable>();
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
@@ -67,10 +75,11 @@ public class PlayerControl : NetworkBehaviour
 
     [Command]
     public void CmdShootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage){
-        GameObject bullet = Instantiate(bulletPrefab);
-        NetworkServer.Spawn(bullet);
-        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
-        //RpcShootBullet(targetdirection, origin, bulletDamage);
+        GameObject bulletObj = Instantiate(bulletPrefab);
+        NetworkServer.Spawn(bulletObj);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.Shoot(targetdirection, origin, bulletDamage);
+        bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage);
     }
 
 
@@ -114,8 +123,7 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
-        GameObject bullet = Instantiate(bulletPrefab);
-        bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
+        //bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
     }
 
     /*[ClientRpc]
