@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: 
   enemyTeamName: 
-  hitPointsBase: 0
+  hitPointsBase: 40
   armor: 0
   attackMode: 0
   attackDamageBase: 10
