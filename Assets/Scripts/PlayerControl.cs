@@ -52,6 +52,7 @@ public class PlayerControl : NetworkBehaviour
 
     private void TakeDamage(float damage)
     {
+        GetComponent<HeroGraphics>().TakeDamage();
         charStats.hitPoints -= damage;
         if (charStats.hitPoints <= 0)
         {
