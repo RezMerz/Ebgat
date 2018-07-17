@@ -17,7 +17,7 @@ public class RangedAttack : Attack {
     public void Attack(Vector2 mousePos)
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(mousePos);
-        
-        playerControl.CmdShootbullet(targetPos, transform.position, charStats.attackDamage,256);
+        int layer = LayerMask.NameToLayer(charStats.enemyTeamName) + LayerMask.NameToLayer("Blocks");
+        playerControl.CmdShootbullet(targetPos, transform.position, charStats.attackDamage,layer);
     }
 }

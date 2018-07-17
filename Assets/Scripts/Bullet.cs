@@ -114,10 +114,10 @@ public class Bullet : NetworkBehaviour {
 
 
     [ClientRpc]
-    public void RpcShootBulletForClient(Vector2 targetDirection, Vector2 origin, float bulletDamage){
+    public void RpcShootBulletForClient(Vector2 targetDirection, Vector2 origin, float bulletDamage,int layer){
         if (isServer)
             return;
-        Shoot(targetDirection, origin, bulletDamage);
+        Shoot(targetDirection, origin, bulletDamage,layer);
     }
 
 }
