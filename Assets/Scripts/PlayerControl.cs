@@ -118,10 +118,10 @@ public class PlayerControl : NetworkBehaviour
         bullet.GetComponent<Bullet>().Shoot(targetdirection, origin, bulletDamage);
     }
 
-    [ClientRpc]
+    /*[ClientRpc]
     public void RpcBulletHit(Bullet bullet){
         
-    }
+    }*/
  
 }
 
