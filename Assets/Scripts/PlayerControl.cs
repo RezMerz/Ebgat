@@ -25,17 +25,19 @@ public class PlayerControl : NetworkBehaviour
 
     void Start()
     {
-        if (isServer)
+        if (isLocalPlayer)
         {
+            Debug.Log("local player");
             charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
             gameObject.layer = LayerMask.NameToLayer("Team 1");
         }
-         else{
+        else
+        {
             charStats.teamName = "Team 2";
+            charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
-             charStats.enemyTeamName = "Team 1";
-          }
+        }
     }
     // Some Damage has been done
     public void TakeAttack(float damage, Buff buff)
