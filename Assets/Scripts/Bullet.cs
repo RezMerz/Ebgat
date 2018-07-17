@@ -41,7 +41,7 @@ public class Bullet : NetworkBehaviour {
        // print(direction.y);
         hDirection = (Vector2.right * direction).normalized;
 
-
+        this.layer = layer;
 
         transform.position = origin;
         shot = true;
