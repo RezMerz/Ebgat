@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour {
     private float gravitySpeed;
     private float distance;
 
+    private Vector2 vMove;
     private Vector2 size;
     private bool shot;
     private bool hit;
@@ -33,27 +34,17 @@ public class Bullet : MonoBehaviour {
     {
         damage = bulletDamage;
         direction = (targetDirection - origin).normalized;
-       // print(direction.magnitude);
-       // print(direction.y);
+        // Move Right or Left
         hDirection = (Vector2.right * direction).normalized;
-
-
-
         transform.position = origin;
-        shot = true;
-       
-        
+        shot = true; 
         
     }
-	// Use this for initialization
 	
 	// Update is called once per frame
 	void Update ()
     {
         Move();
-		// Check Move
-        // Move
-        // if hit damage hero
 
 	}
     
@@ -61,14 +52,11 @@ public class Bullet : MonoBehaviour {
     {
         if (shot)
         {
-            gravitySpeed += gravityAcceleration;
-            vDirection = ((Vector2.up * direction) * speed + Vector2.down * gravitySpeed).normalized;
-            vSpeed = Mathf.Abs(((Vector2.up * direction) *speed  + Vector2.down * gravitySpeed).y);
+            
             hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), 256, out hitObjects);
             if (hit)
             {
                 transform.position += (Vector3)hDirection * hitObjects[0].distance;
-                shot = false;
                 Hit();
                 return;
             }
@@ -76,11 +64,16 @@ public class Bullet : MonoBehaviour {
             {
                 transform.position += (Vector3)hDirection * Time.deltaTime * speed * Mathf.Abs(direction.x);
             }
+
+            // Calculations to see the bullet should go down or up
+            gravitySpeed += gravityAcceleration;
+            vMove = (Vector2.up * direction) * speed + (Vector2.down * gravitySpeed);
+            vDirection = vMove.normalized;
+            vSpeed = Mathf.Abs((vMove).y);
             hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, 256, out hitObjects);
             if (hit)
             {
                 transform.position += (Vector3)vDirection * hitObjects[0].distance;
-                shot = false;
                 Hit();
                 return;
             }
@@ -94,6 +87,7 @@ public class Bullet : MonoBehaviour {
 
     private void Hit()
     {
+        shot = false;
         if (hitObjects[0].collider.tag == "Player")
         {
             hitObjects[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, null);

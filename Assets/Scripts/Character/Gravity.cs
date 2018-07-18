@@ -7,13 +7,14 @@ public class Gravity : MonoBehaviour {
 
     private CharacterAttributes charStats;
     private List<RaycastHit2D> hitObjects;
-
+    private Transform transformHero;
     private float timer;
 
    
     // Use this for initialization
     void Start()
     {
+        transformHero = transform;
         hitObjects = new List<RaycastHit2D>();
         charStats = GetComponent<CharacterAttributes>();
     }
@@ -30,7 +31,7 @@ public class Gravity : MonoBehaviour {
         // not int jumping state
         if (charStats.FeetState != EFeetState.Jumping)
         {
-            bool hit = Toolkit.CheckMove(transform.position, charStats.size, Vector2.down, Time.deltaTime * charStats.gravitySpeed, 256,out hitObjects);
+            bool hit = Toolkit.CheckMove(transformHero.position, charStats.size, Vector2.down, Time.deltaTime * charStats.gravitySpeed, 256, out hitObjects);
 
             if (charStats.FeetState == EFeetState.Onground)
             {
@@ -40,7 +41,7 @@ public class Gravity : MonoBehaviour {
                     if(timer > charStats.cayoteTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
-                        transform.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
+                        transformHero.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
                         timer = 0;
                     }
                     else
@@ -55,13 +56,13 @@ public class Gravity : MonoBehaviour {
                 // Go to on Ground state
                 if(hit)
                 {
-                    transform.position += Vector3.down *(hitObjects[0].distance);
+                    transformHero.position += Vector3.down * (hitObjects[0].distance);
                     charStats.FeetState = EFeetState.Onground;
                 }
                 // Still Faliing
                 else
                 {
-                    transform.position += Vector3.down *(Time.deltaTime * charStats.gravitySpeed);
+                    transformHero.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
                 }
             }
         }
