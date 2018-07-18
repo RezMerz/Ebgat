@@ -148,7 +148,7 @@ public class CharacterAttributes : MonoBehaviour {
 
 
 public enum EHeadState { Conscious, Stunned };
-public enum EBodyState { Standing,Moveing};
+public enum EBodyState { Standing,Moving};
 public enum EHandState { Idle, Moving, Attacking, Casting };
 public enum EFeetState { Onground, Falling, Jumping };
 

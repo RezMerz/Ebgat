@@ -34,7 +34,7 @@ public class CharacterMove : MonoBehaviour {
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
-        charStats.BodyState = EBodyState.Moveing;
+        charStats.BodyState = EBodyState.Moving;
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
         
     }
@@ -65,7 +65,7 @@ public class CharacterMove : MonoBehaviour {
         {
             charStats.ResetMoveSpeed();
         }
-        if(charStats.BodyState == EBodyState.Moveing && charStats.FeetState == EFeetState.Onground)
+        if(charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground)
         {
             charStats.moveSpeed += charStats.moveAcceleration;
             if(charStats.moveSpeed > charStats.moveSpeedMax)
