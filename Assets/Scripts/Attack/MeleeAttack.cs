@@ -19,7 +19,7 @@ public class MeleeAttack :Attack {
         
         Vector2 direction = charStats.side;
         Vector2 origin = (Vector2)transform.position + (direction * (charStats.size / 2));
-        weapon.Attack(transform.position, charStats.attackDamage, Vector2.right, 256);
+        weapon.Attack(origin, charStats.attackDamage, direction,256);
         
     }
 }
