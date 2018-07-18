@@ -29,12 +29,12 @@ public class InputCharacter : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             playerControl.CmdMove(1);
-            characterMove.MovePressed(1);
+            //characterMove.MovePressed(1);
         }
         if (Input.GetKey(KeyCode.A))
         {
             playerControl.CmdMove(-1);
-            characterMove.MovePressed(-1);
+            //characterMove.MovePressed(-1);
         }
 
         //move button released
@@ -53,7 +53,7 @@ public class InputCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerControl.CmdJump(transform.position);
-            jump.JumpPressed();
+            //jump.JumpPressed();
         }
 	}
 

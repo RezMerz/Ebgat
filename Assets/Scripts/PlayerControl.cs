@@ -111,10 +111,10 @@ public class PlayerControl : NetworkBehaviour
     [ClientRpc]
     public void RpcMove(int num)
     {
-        if (isLocalPlayer)
-        {
-            return;
-        }
+        //if (isLocalPlayer)
+        //{
+          //  return;
+        //}
 
 
         characterMove.MovePressed(num);
@@ -123,10 +123,10 @@ public class PlayerControl : NetworkBehaviour
     [ClientRpc]
     public void RpcMoveFinished(Vector3 position)
     {
-        if (isLocalPlayer)
-        {
-            return;
-        }
+        //if (isLocalPlayer)
+        //{
+          //  return;
+        //}
         Debug.Log("RPC MoveFINISHED");
         transform.position = position;
     }
@@ -134,8 +134,8 @@ public class PlayerControl : NetworkBehaviour
     [ClientRpc]
     public void RpcJump(Vector3 position)
     {
-        if (isLocalPlayer)
-            return;
+        //if (isLocalPlayer)
+            //return;
         transform.position = position;
         jump.JumpPressed();
     }
