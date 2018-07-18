@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Moveable : MonoBehaviour {
+public class CharacterMove : MonoBehaviour {
     public float threshold;
     private CharacterAttributes charStats;
     float sizeX;
@@ -38,6 +38,7 @@ public class Moveable : MonoBehaviour {
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
         
     }
+    
     private void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
     {
         // hit nothing , move at distance

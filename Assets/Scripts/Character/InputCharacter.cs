@@ -6,14 +6,14 @@ public class InputCharacter : MonoBehaviour
 {
     private CharacterAttributes charStats;
     private Attack attack;
-    private Moveable characterMove;
+    private CharacterMove characterMove;
     private PlayerJump jump;
 	// Use this for initialization
 	void Start ()
     {
         charStats = GetComponent<CharacterAttributes>();
         attack = GetComponent<Attack>();
-        characterMove = GetComponent<Moveable>();
+        characterMove = GetComponent<CharacterMove>();
         jump = GetComponent<PlayerJump>();
 	}
 	// Update is called once per frame
@@ -33,14 +33,17 @@ public class InputCharacter : MonoBehaviour
 
 
         // Jump
-        if (Input.GetKey(KeyCode.Space))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Space))
             jump.JumpPressed();
-        }
+        else if (Input.GetKey(KeyCode.Space))
+            jump.JumpHold();
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             jump.JumpReleased();
         }
+
 	}
 
 

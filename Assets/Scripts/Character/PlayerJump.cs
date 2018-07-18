@@ -13,17 +13,13 @@ public class PlayerJump : MonoBehaviour {
     public float fullJumpHoldTime;
 
     private float timer;
-    private bool jumpHold;
-    private bool jumpCommand;
-    private bool jumpSpeedINcrease;
+    private bool jumpSpeedIncrease;
 
 	// Use this for initialization
 	void Start ()
     {
         charStats = GetComponent<CharacterAttributes>();
-        jumpHold = true;
-        jumpCommand = true;
-        jumpSpeedINcrease = false;
+        jumpSpeedIncrease = false;
 
 	}
     private void Update()
@@ -31,22 +27,13 @@ public class PlayerJump : MonoBehaviour {
         Jumping();
     }
 
+    // First Jump
     public void JumpPressed()
     {
-        if ( jumpHold && charStats.FeetState == EFeetState.Jumping)
-        {
-            timer += Time.deltaTime;
-            if(timer >= fullJumpHoldTime)
-            {
-                jumpSpeedINcrease = true;
-                jumpHold = false;
-            }
-        }
         // Jump only if on 
-        if (jumpCommand && charStats.FeetState == EFeetState.Onground)
+        if (charStats.FeetState == EFeetState.Onground)
         {
-            jumpCommand = false;
-            jumpSpeedINcrease = false;
+            jumpSpeedIncrease = false;
             timer = 0;
             gravitySpeed = 0f;
             jumpSpeed = charStats.jumpSpeed;
@@ -54,20 +41,29 @@ public class PlayerJump : MonoBehaviour {
         }
         
     }
+
+    // Holding the Jump
+    public void JumpHold()
+    {
+        if (charStats.FeetState == EFeetState.Jumping)
+        {
+            timer += Time.deltaTime;
+            if (timer >= fullJumpHoldTime)
+            {
+                jumpSpeedIncrease = true;
+            }
+        }
+    }
     public void JumpReleased()
     {
-        if(charStats.FeetState == EFeetState.Jumping)
-        {
-            jumpHold = false;
-        }
-        jumpCommand = true;
+        timer = -Mathf.Infinity;
     }
 
     private void Jumping()
     {
         if(charStats.FeetState == EFeetState.Jumping)
         {
-            if (jumpSpeedINcrease)
+            if (jumpSpeedIncrease)
             {
                 jumpSpeed += charStats.jumpAcceleration;
                 if(jumpSpeed > charStats.jumpSpeedMax)
@@ -87,14 +83,12 @@ public class PlayerJump : MonoBehaviour {
                 else
                 {
                     transform.position += Vector3.up * (hitObjects[0].distance);
-                    jumpHold = true;
                     charStats.FeetState = EFeetState.Falling;
                 }
 
             }
             else
             {
-                jumpHold = true;
                 charStats.FeetState = EFeetState.Falling;
             }
         }
