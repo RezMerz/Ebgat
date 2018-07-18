@@ -24,6 +24,7 @@ public class InputCharacter : MonoBehaviour
     {
         if (!playerControl.isLocalPlayer)
             return;
+
         // Move left and Right
         if (Input.GetKey(KeyCode.D))
         {
@@ -37,9 +38,10 @@ public class InputCharacter : MonoBehaviour
         }
 
         //move button released
-        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             playerControl.CmdMoveFinished(transform.position);
+            Debug.Log("Local: Move Press Released");
         }
 
         //Attack

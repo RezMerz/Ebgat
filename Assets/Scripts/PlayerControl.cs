@@ -127,7 +127,7 @@ public class PlayerControl : NetworkBehaviour
         {
             return;
         }
-
+        Debug.Log("RPC MoveFINISHED");
         transform.position = position;
     }
 
