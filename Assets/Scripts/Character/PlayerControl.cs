@@ -126,10 +126,10 @@ public class PlayerControl : NetworkBehaviour
     [ClientRpc]
     public void RpcMoveFinished(Vector3 position)
     {
-        //if (isLocalPlayer)
-        //{
-          //  return;
-        //}
+        if (isLocalPlayer)
+        {
+            return;
+        }
         Debug.Log("RPC MoveFINISHED");
         transform.position = position;
     }
