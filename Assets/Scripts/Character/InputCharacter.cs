@@ -55,14 +55,17 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerControl.CmdJump(transform.position);
+            playerControl.CmdJumpPressed(transform.position);
             jump.JumpPressed();
         }
-        else if (Input.GetKey(KeyCode.Space)){
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            playerControl.CmdJumpHold(transform.position);
             jump.JumpHold();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            playerControl.CmdJumpReleased(transform.position);
             jump.JumpReleased();
         }
 	}

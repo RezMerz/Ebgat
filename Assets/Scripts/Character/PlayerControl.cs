@@ -94,9 +94,21 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [Command]
-    public void CmdJump(Vector3 position)
+    public void CmdJumpPressed(Vector3 position)
     {
-        RpcJump(position);
+        RpcJumpPressed(position);
+    }
+
+    [Command]
+    public void CmdJumpHold(Vector3 position)
+    {
+        RpcJumpHold(position);
+    }
+
+    [Command]
+    public void CmdJumpReleased(Vector3 position)
+    {
+        RpcJumpReleased(position);
     }
 
     [Command]
@@ -133,12 +145,30 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcJump(Vector3 position)
+    public void RpcJumpPressed(Vector3 position)
     {
         if (isLocalPlayer)
             return;
         transform.position = position;
         jump.JumpPressed();
+    }
+
+    [ClientRpc]
+    public void RpcJumpHold(Vector3 position)
+    {
+        if (isLocalPlayer)
+            return;
+        transform.position = position;
+        jump.JumpHold();
+    }
+
+    [ClientRpc]
+    public void RpcJumpReleased(Vector3 position)
+    {
+        if (isLocalPlayer)
+            return;
+        transform.position = position;
+        jump.JumpReleased();
     }
 
     [ClientRpc]
