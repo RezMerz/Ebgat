@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullJumpHoldTime: 0.1
 --- !u!114 &114143317216127424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,11 +287,11 @@ MonoBehaviour:
   attackCooldownBase: 0.5
   range: 0
   moveSpeedBase: 10
-  moveAccelerationBase: 0
-  moveSpeedMaxBase: 0
-  jumpSpeedBase: 30
-  jumpAccelerationBase: 0
-  jumpSpeedMaxBase: 0
+  moveAccelerationBase: 1
+  moveSpeedMaxBase: 15
+  jumpSpeedBase: 20
+  jumpAccelerationBase: 1.5
+  jumpSpeedMaxBase: 30
   gravitySpeedBase: 0
   gravityAccelerationBase: 1
   gravitySpeedMaxBase: 30
@@ -348,7 +349,7 @@ MonoBehaviour:
     i13: 102
     i14: 124
     i15: 8
-  m_ServerOnly: 0
+  m_ServerOnly: 1
   m_LocalPlayerAuthority: 0
 --- !u!212 &212695970663209288
 SpriteRenderer:
