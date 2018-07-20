@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114563909224352236}
   - component: {fileID: 114065575438310620}
   - component: {fileID: 114443031708535354}
+  - component: {fileID: 114571949810739002}
   m_Layer: 0
   m_Name: Player-networked
   m_TagString: Player
@@ -282,7 +283,7 @@ MonoBehaviour:
     i13: 21
     i14: 178
     i15: 6
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114489793379525310
 MonoBehaviour:
@@ -309,6 +310,21 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114571949810739002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314286711458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf0f7c7dbbcf204ab325ee7c472f7d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftBorder: -14.5
+  rightBorder: 38.5
+  bottomBorder: -11
+  topBorder: 19
 --- !u!114 &114633997228676266
 MonoBehaviour:
   m_ObjectHideFlags: 1
