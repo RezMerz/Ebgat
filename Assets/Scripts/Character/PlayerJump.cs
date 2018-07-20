@@ -50,10 +50,15 @@ public class PlayerJump : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer >= fullJumpHoldTime)
             {
-                jumpSpeedIncrease = true;
+                IncreaseJumpSpeed();
             }
         }
     }
+
+    public void IncreaseJumpSpeed(){
+        jumpSpeedIncrease = true;
+    }
+
     public void JumpReleased()
     {
         timer = -Mathf.Infinity;

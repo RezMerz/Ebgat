@@ -29,10 +29,12 @@ public class InputCharacter : MonoBehaviour
 
         // Move left and Right
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
+            Debug.Log(Time.frameCount);
             characterMove.MovePressed(1);
             playerControl.CmdMove(1);
         }
         else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
+            Debug.Log(Time.frameCount);
             characterMove.MovePressed(-1);
             playerControl.CmdMove(-1);
         }
@@ -42,29 +44,34 @@ public class InputCharacter : MonoBehaviour
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
+            Debug.Log(Time.frameCount);
             playerControl.CmdMoveFinished(transform.position);
-            Debug.Log("Local: Move Press Released");
         }
 
         //Attack
         if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log(Time.frameCount);
             attack.AttackPressed(Input.mousePosition);
-
+        }
 
         // Jump
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log(Time.frameCount);
             playerControl.CmdJumpPressed(transform.position);
             jump.JumpPressed();
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            playerControl.CmdJumpHold(transform.position);
+            Debug.Log(Time.frameCount);
+            //.CmdJumpHold(transform.position);
             jump.JumpHold();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            Debug.Log(Time.frameCount);
             playerControl.CmdJumpReleased(transform.position);
             jump.JumpReleased();
         }
