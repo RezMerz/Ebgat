@@ -334,7 +334,7 @@ MonoBehaviour:
   moveSpeedMaxBase: 15
   jumpSpeedBase: 20
   jumpAccelerationBase: 1.5
-  jumpSpeedMaxBase: 30
+  jumpSpeedMaxBase: 35
   gravitySpeedBase: 0
   gravityAccelerationBase: 1
   gravitySpeedMaxBase: 30
