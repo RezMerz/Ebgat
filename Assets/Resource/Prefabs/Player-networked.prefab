@@ -343,7 +343,7 @@ MonoBehaviour:
   attackMode: 0
   attackDamageBase: 10
   attackAnimationTimeBase: 0
-  attackCooldownBase: 0.5
+  attackCooldownBase: 0.1
   range: 0
   moveSpeedBase: 10
   moveAccelerationBase: 1

@@ -261,7 +261,7 @@ MonoBehaviour:
   damage: 10
   range: 0
   gravitySpeedBase: 0
-  gravityAcceleration: 0.5
+  gravityAcceleration: 0
   speed: 40
 --- !u!212 &212608745293113040
 SpriteRenderer:

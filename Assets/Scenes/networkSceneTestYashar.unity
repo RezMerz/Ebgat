@@ -29352,7 +29352,7 @@ MonoBehaviour:
   m_OfflineScene: 
   m_OnlineScene: networkSceneTestYashar
   m_SpawnPrefabs:
-  - {fileID: 0}
+  - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

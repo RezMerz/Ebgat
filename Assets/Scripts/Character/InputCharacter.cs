@@ -63,11 +63,13 @@ public class InputCharacter : MonoBehaviour
             playerControl.CmdJumpHold(transform.position);
             jump.JumpHold();
         }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             playerControl.CmdJumpReleased(transform.position);
             jump.JumpReleased();
         }
 	}
+
 
 }
