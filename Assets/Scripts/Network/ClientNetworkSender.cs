@@ -91,9 +91,13 @@ public class ClientNetworkSender : NetworkBehaviour {
     public void TakeDamage(float damage){
         data += ECommand.TakeAttack.ToString() + "," + damage + ",\n";
     }
+
+    public void MeleeAttack(Vector3 origin, float damage, Vector3 targetdirection, int layer){
+        data += ECommand.MeleeAttack.ToString() + "," + origin.x + "," + origin.y + "," + origin.z + "," + damage + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + layer + ",\n";
+    }
 }
 
 public enum ECommand
 {
-    Move, MoveFinished, JumpPressed, JumpLong, JumpReleased, ShootBullet, KillPlayer, TakeAttack
+    Move, MoveFinished, JumpPressed, JumpLong, JumpReleased, ShootBullet, KillPlayer, TakeAttack, MeleeAttack
 }

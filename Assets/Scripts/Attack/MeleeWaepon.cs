@@ -21,7 +21,9 @@ public class MeleeWaepon : MonoBehaviour {
             if (hit.collider.tag == "Player")
             {
                 print("Took Attack");
-                hit.collider.GetComponent<PlayerControl>().TakeAttack(damage, null);
+                PlayerControl tempPlayerControl = hit.collider.GetComponent<PlayerControl>();
+                tempPlayerControl.TakeAttack(damage, null);
+                tempPlayerControl.clientNetworkReciever.RpcTakeAttack(damage);
             }
         }
     }

@@ -83,6 +83,10 @@ public class ClientNetworkReciever : NetworkBehaviour {
         jump.JumpReleased();
     }
 
+    public void RpcMeleeAttack(Vector3 position){
+        playerControl.attack.AttackPressed(position);
+    }
+
     public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
     }
