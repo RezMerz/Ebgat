@@ -11,7 +11,7 @@ public class ServerNetwork : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         playerControl = GetComponent<PlayerControl>();
-        clientNetworkReciever = playerControl.clientNetwork
+        clientNetworkReciever = playerControl.clientNetworkReciever;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,7 @@ public class ServerNetwork : NetworkBehaviour {
 
     [Command]
     public void CmdRecievecommands(string commands){
-        
+        clientNetworkReciever.RpcRecieveCommands(commands);
     }
 
     [Command]
@@ -31,7 +31,7 @@ public class ServerNetwork : NetworkBehaviour {
     }
 
 
-    [Command]
+    /*[Command]
     public void CmdMove(int num)
     {
         RpcMove(num);
@@ -70,5 +70,5 @@ public class ServerNetwork : NetworkBehaviour {
         int layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
         bullet.Shoot(targetdirection, origin, bulletDamage, layer);
         bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage, layer);
-    }
+    }*/
 }

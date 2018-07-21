@@ -34,6 +34,11 @@ public class PlayerControl : MonoBehaviour
     {
         
     }
+
+    public bool IsLocalPlayer(){
+        return serverNetwork.isLocalPlayer;
+    }
+
     // Some Damage has been done
     public void TakeAttack(float damage, Buff buff)
     {
@@ -53,8 +58,8 @@ public class PlayerControl : MonoBehaviour
         if (charStats.hitPoints <= 0)
         {
             print("Dead");
-            if(clientNetwork.isServer){
-                CmdKillPlayer();
+            if(clientNetworkSender.isServer){
+                serverNetwork.CmdKillPlayer();
             }
         }
     }

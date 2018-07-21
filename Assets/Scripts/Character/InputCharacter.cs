@@ -11,11 +11,13 @@ public class InputCharacter : MonoBehaviour
     private Attack attack;
     private CharacterMove characterMove;
     private PlayerJump jump;
+    private ClientNetworkSender clientNetworkSender;
 	// Use this for initialization
 	void Start ()
     {
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
+        clientNetworkSender = playerControl.clientNetworkSender;
         attack = playerControl.attack;
         characterMove = playerControl.characterMove;
 
@@ -24,19 +26,17 @@ public class InputCharacter : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (!playerControl.isLocalPlayer)
+        if (!playerControl.IsLocalPlayer())
             return;
 
         // Move left and Right
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
-            Debug.Log(Time.frameCount);
             characterMove.MovePressed(1);
-            playerControl.CmdMove(1);
+            clientNetworkSender.Move(1);
         }
         else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
-            Debug.Log(Time.frameCount);
             characterMove.MovePressed(-1);
-            playerControl.CmdMove(-1);
+            clientNetworkSender.Move(-1);
         }
         else
             charStats.BodyState = EBodyState.Standing;
@@ -44,14 +44,12 @@ public class InputCharacter : MonoBehaviour
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
-            Debug.Log(Time.frameCount);
-            playerControl.CmdMoveFinished(transform.position);
+            clientNetworkSender.MoveFinished(transform.position);
         }
 
         //Attack
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(Time.frameCount);
             attack.AttackPressed(Input.mousePosition);
         }
 
@@ -59,20 +57,17 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(Time.frameCount);
-            playerControl.CmdJumpPressed(transform.position);
+            clientNetworkSender.JumpPressed(transform.position);
             jump.JumpPressed();
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log(Time.frameCount);
-            //.CmdJumpHold(transform.position);
+            clientNetworkSender.JumpHold(transform.position);
             jump.JumpHold();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log(Time.frameCount);
-            playerControl.CmdJumpReleased(transform.position);
+            clientNetworkSender.JumpReleased(transform.position);
             jump.JumpReleased();
         }
 	}

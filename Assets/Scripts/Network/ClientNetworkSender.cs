@@ -40,6 +40,8 @@ public class ClientNetworkSender : NetworkBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+            return;
         if (data.Equals(""))
             return;
         SendCommands();
@@ -47,7 +49,7 @@ public class ClientNetworkSender : NetworkBehaviour {
     }
 
     private void SendCommands(){
-        
+        serverNetwork.CmdRecievecommands(data);
     }
 
     public void KillPlayer()
@@ -82,81 +84,15 @@ public class ClientNetworkSender : NetworkBehaviour {
 
     public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
-        data += ECommand.MoveFinished.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + origin.x + "," + origin.y + "," + origin.z + ",\n";
+        data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage +",\n";
     }
 
-
-
-    ///////////  NETWORK //////////
-
-
-    [ClientRpc]
-    public void RpcMove(int num)
-    {
-        if (isLocalPlayer)
-        {
-            return;
-        }
-        characterMove.MovePressed(num);
+    public void TakeDamage(float damage){
+        data += ECommand.TakeAttack.ToString() + "," + damage + ",\n";
     }
+}
 
-    [ClientRpc]
-    public void RpcMoveFinished(Vector3 position)
-    {
-        if (isLocalPlayer)
-        {
-            return;
-        }
-        Debug.Log("RPC MoveFINISHED");
-        transform.position = position;
-    }
-
-    [ClientRpc]
-    public void RpcJumpPressed(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.JumpPressed();
-    }
-
-    [ClientRpc]
-    public void RpcJumpHold(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.JumpHold();
-    }
-
-    [ClientRpc]
-    public void RpcJumpReleased(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.JumpReleased();
-    }
-
-    [ClientRpc]
-    public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
-    {
-        if (isServer)
-        {
-            return;
-        }
-    }
-
-    [ClientRpc]
-    public void RpcTakeAttack(float damage)
-    {
-        if (isServer)
-            return;
-        TakeAttack(damage, null);
-    }
-
-    public enum ECommand
-    {
-        Move, MoveFinished, JumpPressed, JumpHold, JumpReleased, ShootBullet, KillPlayer
-    }
+public enum ECommand
+{
+    Move, MoveFinished, JumpPressed, JumpHold, JumpReleased, ShootBullet, KillPlayer, TakeAttack
 }

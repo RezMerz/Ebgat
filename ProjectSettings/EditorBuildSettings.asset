@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/networkScene 1.unity
     guid: 56a9aebcb3384e34d93f0b2c041f3675
+  - enabled: 1
+    path: Assets/Scenes/networkSceneTestYashar.unity
+    guid: 17790b783265146459ccfd588193bbde
   m_configObjects: {}
