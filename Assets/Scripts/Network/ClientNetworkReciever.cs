@@ -14,6 +14,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+        characterMove = playerControl.characterMove;
+        jump = playerControl.jump;
     }
 
     [ClientRpc]
