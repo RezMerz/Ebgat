@@ -19,6 +19,7 @@ public class MeleeAttack :Attack {
         
         Vector2 direction = charStats.side;
         Vector2 origin = (Vector2)transform.position + (direction * (charStats.size / 2));
+        heroGraphics.MeleeAttack();
         weapon.Attack(origin, charStats.attackDamage, direction,256);
         
     }

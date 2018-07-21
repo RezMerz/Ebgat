@@ -6,11 +6,12 @@ public abstract class Attack : MonoBehaviour {
     
     protected float cooldownTimer;
     protected CharacterAttributes charStats;
-
+    protected HeroGraphics heroGraphics;
     protected PlayerControl playerControl;
 
 	// Use this for initialization
     void Start () {
+        heroGraphics = GetComponent<HeroGraphics>();
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
         cooldownTimer = 0;
