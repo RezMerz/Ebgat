@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour {
+    PlayerControl playerControl;
     CharacterAttributes charStats;
 
     private float jumpSpeed;
@@ -18,7 +19,8 @@ public class PlayerJump : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
+        charStats = playerControl.charStats;
         jumpSpeedIncrease = false;
 
 	}
@@ -50,10 +52,16 @@ public class PlayerJump : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer >= fullJumpHoldTime)
             {
-                jumpSpeedIncrease = true;
+                playerControl.clientNetworkSender.JumpLong(transform.position);
+                IncreaseJumpSpeed();
             }
         }
     }
+
+    public void IncreaseJumpSpeed(){
+        jumpSpeedIncrease = true;
+    }
+
     public void JumpReleased()
     {
         timer = -Mathf.Infinity;
