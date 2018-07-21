@@ -85,13 +85,15 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
-        
     }
 
+    [ClientRpc]
     public void RpcTakeAttack(float damage)
     {
+        Debug.Log("first atack");
         if (isServer)
             return;
+        Debug.Log("not server");
         playerControl.TakeAttack(damage, null);
     }
 }

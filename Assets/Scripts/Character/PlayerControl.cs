@@ -52,6 +52,7 @@ public class PlayerControl : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
+        Debug.Log("here");
         heroGraphics.TakeDamage();
         print("Took Damage");
         charStats.hitPoints -= damage;
