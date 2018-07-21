@@ -391,13 +391,13 @@ MonoBehaviour:
   hitPointsBase: 40
   armor: 0
   attackMode: 1
-  attackDamageBase: 10
+  attackDamageBase: 15
   attackAnimationTimeBase: 0
   attackCooldownBase: 0.5
   range: 0
   moveSpeedBase: 10
   moveAccelerationBase: 1
-  moveSpeedMaxBase: 15
+  moveSpeedMaxBase: 20
   jumpSpeedBase: 20
   jumpAccelerationBase: 1.5
   jumpSpeedMaxBase: 35

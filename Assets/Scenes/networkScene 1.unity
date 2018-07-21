@@ -3987,7 +3987,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 25
+  orthographic size: 20
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16038,7 +16038,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887430559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 03a93c760903f4b8d800463c4fb4e631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -16050,14 +16050,12 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc,
-    type: 2}
+  m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
-  m_OnlineScene: networkScene 1
-  m_SpawnPrefabs:
-  - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
+  m_OnlineScene: 
+  m_SpawnPrefabs: []
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -16113,6 +16111,9 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  players:
+  - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
+  - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
 --- !u!4 &1887430562
 Transform:
   m_ObjectHideFlags: 0

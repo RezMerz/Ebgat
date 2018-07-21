@@ -58,7 +58,6 @@ public class CharacterMove : MonoBehaviour {
         side = Vector2.right * i;
         if(side  != charStats.side)
         {
-            print(side);
             charStats.ResetMoveSpeed();
             charStats.side = side;
             int rotate = 0;
