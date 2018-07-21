@@ -32,7 +32,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 case ECommand.Move: RpcMove(Convert.ToInt32(parts[1])); break;
                 case ECommand.MoveFinished: RpcMoveFinished(new Vector3(float.Parse(parts[1]),float.Parse(parts[2]), float.Parse(parts[3]))); break;
                 case ECommand.JumpPressed: RpcJumpPressed(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
-                case ECommand.JumpHold: RpcJumpHold(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
+                case ECommand.JumpLong: RpcJumpLong(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
                 case ECommand.JumpReleased: RpcJumpReleased(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
                 case ECommand.ShootBullet: RpcShootBullet(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3])), new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6])), float.Parse(parts[7])); break;
                 case ECommand.TakeAttack: RpcTakeAttack(float.Parse(parts[0])); break;
@@ -67,12 +67,12 @@ public class ClientNetworkReciever : NetworkBehaviour {
         jump.JumpPressed();
     }
 
-    public void RpcJumpHold(Vector3 position)
+    public void RpcJumpLong(Vector3 position)
     {
         if (isLocalPlayer)
             return;
         transform.position = position;
-        jump.JumpHold();
+        jump.IncreaseJumpSpeed();
     }
 
     public void RpcJumpReleased(Vector3 position)

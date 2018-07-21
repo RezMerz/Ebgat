@@ -62,7 +62,6 @@ public class InputCharacter : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            clientNetworkSender.JumpHold(transform.position);
             jump.JumpHold();
         }
         if (Input.GetKeyUp(KeyCode.Space))

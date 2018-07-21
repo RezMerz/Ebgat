@@ -73,9 +73,9 @@ public class ClientNetworkSender : NetworkBehaviour {
         data += ECommand.JumpPressed.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
-    public void JumpHold(Vector3 position)
+    public void JumpLong(Vector3 position)
     {
-        data += ECommand.JumpHold.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += ECommand.JumpLong.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
     public void JumpReleased(Vector3 position)
@@ -95,5 +95,5 @@ public class ClientNetworkSender : NetworkBehaviour {
 
 public enum ECommand
 {
-    Move, MoveFinished, JumpPressed, JumpHold, JumpReleased, ShootBullet, KillPlayer, TakeAttack
+    Move, MoveFinished, JumpPressed, JumpLong, JumpReleased, ShootBullet, KillPlayer, TakeAttack
 }
