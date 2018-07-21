@@ -90,10 +90,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
     [ClientRpc]
     public void RpcTakeAttack(float damage)
     {
-        Debug.Log("first atack");
         if (isServer)
             return;
-        Debug.Log("not server");
         playerControl.TakeAttack(damage, null);
     }
 }
