@@ -21,7 +21,7 @@ public class MeleeAttack :Attack {
         Vector2 origin = (Vector2)transform.position + (direction * (charStats.size / 2));
         heroGraphics.MeleeAttack();
         if(playerControl.IsServer())
-            weapon.Attack(origin, charStats.attackDamage, direction,256);
+            weapon.Attack(origin, charStats.attackDamage, direction,LayerMask.GetMask(charStats.enemyTeamName));
         
     }
 }

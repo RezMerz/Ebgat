@@ -18,6 +18,7 @@ public class MeleeWaepon : MonoBehaviour {
         RaycastHit2D[] hitObjects = Physics2D.BoxCastAll(origin, new Vector2(0.01f,size.y), 0, direction, size.x, layer, 0, 0);
         foreach (RaycastHit2D hit in hitObjects)
         {
+            print(hit.collider.name);
             if (hit.collider.tag == "Player")
             {
                 print("Took Attack");
