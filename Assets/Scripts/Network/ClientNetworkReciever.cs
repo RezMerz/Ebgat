@@ -11,10 +11,9 @@ public class ClientNetworkReciever : NetworkBehaviour {
     CharacterMove characterMove;
     PlayerJump jump;
 
-
     void Start()
     {
-        playerControl = GetComponent<PlayerControl>();   
+        playerControl = GetComponent<PlayerControl>();
     }
 
     [ClientRpc]
@@ -84,10 +83,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
-        if (isServer)
-        {
-            return;
-        }
+        
     }
 
     public void RpcTakeAttack(float damage)

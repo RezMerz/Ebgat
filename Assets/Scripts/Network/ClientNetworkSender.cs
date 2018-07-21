@@ -45,11 +45,12 @@ public class ClientNetworkSender : NetworkBehaviour {
         if (data.Equals(""))
             return;
         SendCommands();
-        data = "";
+        //data = "";
     }
 
     private void SendCommands(){
         serverNetwork.CmdRecievecommands(data);
+        data = "";
     }
 
     public void KillPlayer()
@@ -84,7 +85,7 @@ public class ClientNetworkSender : NetworkBehaviour {
 
     public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
-        data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage +",\n";
+        data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage + ",\n";
     }
 
     public void TakeDamage(float damage){
