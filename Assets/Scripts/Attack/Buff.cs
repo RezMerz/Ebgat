@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Buff : MonoBehaviour {
     //Buff attributes
-
     public CharacterAttributes charStats{get;set;}
     public string name;
     public float time;
     public float timer;
+    public bool stackable;
     
     //health attributes
     public float deltaArmor;
@@ -43,14 +43,13 @@ public class Buff : MonoBehaviour {
 
     void Start()
     {
-        timer = time;
-        BuffCharacter();
+
         finish = false;
-        
     }
 
     public void BuffCharacter()
     {
+        timer = time;
         charStats.armor += deltaArmor;
         charStats.hitPoints += deltaHp;
         charStats.attackCooldown += deltaAttackCooldown;
