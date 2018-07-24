@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class HeroGraphics : MonoBehaviour {
     private SpriteRenderer sprite;
-
+    private Animator animator;
     private PlayerControl playerControl;
+
 
     public void TakeDamage()
     {
@@ -13,8 +14,13 @@ public class HeroGraphics : MonoBehaviour {
         StartCoroutine(DamageColorTimer(0.1f));
     }
 
+    public void MeleeAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
     void Start()
     {
+        animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerControl = GetComponent<PlayerControl>();
     }

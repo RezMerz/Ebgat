@@ -60,6 +60,11 @@ public class CharacterMove : MonoBehaviour {
         {
             charStats.ResetMoveSpeed();
             charStats.side = side;
+            int rotate = 0;
+            if (side.x == -1)
+                rotate = 180;
+
+            transform.rotation = Quaternion.Euler(0, rotate, 0);
         }
         if(charStats.BodyState == EBodyState.Standing)
         {
