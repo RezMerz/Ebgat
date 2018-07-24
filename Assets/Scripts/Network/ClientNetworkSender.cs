@@ -18,7 +18,6 @@ public class ClientNetworkSender : NetworkBehaviour {
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
         serverNetwork = playerControl.serverNetwork;
-        Debug.Log(playerControl.IsLocalPlayer());
         if (playerControl.IsLocalPlayer())
         {
             charStats.teamName = "Team 1";
