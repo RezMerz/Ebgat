@@ -14,7 +14,9 @@ public class PlayerControl : NetworkBehaviour
 
     public GameObject bulletPrefab;
 
-    public Color color; 
+    public Color color;
+
+    private BuffManager buffManager;
 
     // Use this for initialization
     void Awake()
@@ -24,6 +26,7 @@ public class PlayerControl : NetworkBehaviour
         characterMove = GetComponent<CharacterMove>();
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
+        buffManager = GetComponent<BuffManager>();
         Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
     }
 
@@ -46,13 +49,14 @@ public class PlayerControl : NetworkBehaviour
             gameObject.layer = LayerMask.NameToLayer("Team 2");
             color = Color.white;
         }
+        
     }
     // Some Damage has been done
-    public void TakeAttack(float damage, Buff buff)
+    public void TakeAttack(float damage, string buffName)
     {
-        if (buff != null)
+        if (buffName != "")
         {
-            // buff code here
+            buffManager.ActivateBuff(buffName);
         }
         TakeDamage(damage);
 
@@ -181,11 +185,11 @@ public class PlayerControl : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcTakeAttack(float damage)
+    public void RpcTakeAttack(float damage,string buffName)
     {
         if (isServer)
             return;
-        TakeAttack(damage, null);
+        TakeAttack(damage, buffName);
     }
 }
 

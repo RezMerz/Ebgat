@@ -9,46 +9,62 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1444934213204626}
+  m_RootGameObject: {fileID: 1937665350145888}
   m_IsPrefabAsset: 1
---- !u!1 &1444934213204626
+--- !u!1 &1937665350145888
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4028350829426734}
-  - component: {fileID: 114713850836239020}
+  - component: {fileID: 4095970541989092}
+  - component: {fileID: 114621828733371470}
   m_Layer: 0
-  m_Name: Test Melee Weapon
+  m_Name: Freeze Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4028350829426734
+--- !u!4 &4095970541989092
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1444934213204626}
+  m_GameObject: {fileID: 1937665350145888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.690772, y: -11.214964, z: 0.7628968}
+  m_LocalPosition: {x: 3.7887182, y: -4.1815505, z: -0.8984375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114713850836239020
+--- !u!114 &114621828733371470
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1444934213204626}
+  m_GameObject: {fileID: 1937665350145888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657a1b08044adef45a52caa9763fcd29, type: 3}
+  m_Script: {fileID: 11500000, guid: 090e216a835936e4bae58df9e67b286c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 1.5, y: 2}
+  name: 
+  time: 0
+  deltaArmot: 0
+  deltaHp: 0
+  deltaDamage: 0
+  deltaAttackCooldown: 0
+  deltaAttackAnimation: 0
+  deltaAttackRange: 0
+  deltaMoveSpeed: 0
+  deltaMoveAcceleration: 0
+  deltaMoveSpeedMax: 0
+  deltaJumpSpeed: 0
+  deltaJumpAcceleration: 0
+  deltaJumpSpeedMax: 0
+  deltaGravitySpeed: 0
+  deltaGravityAcceleration: 0
+  deltaGravitySpeedMax: 0
