@@ -67,6 +67,10 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
+
+    public void Meleeattack(){
+        
+    }
 }
 
 
