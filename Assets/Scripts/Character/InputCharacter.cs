@@ -28,7 +28,6 @@ public class InputCharacter : MonoBehaviour
     {
         if (!playerControl.IsLocalPlayer())
             return;
-
         // Move left and Right
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
             characterMove.MovePressed(1);

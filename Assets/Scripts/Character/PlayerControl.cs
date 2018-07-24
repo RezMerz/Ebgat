@@ -36,7 +36,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public bool IsLocalPlayer(){
-        return serverNetwork.isLocalPlayer;
+        return serverNetwork.isLocalPlayer || serverNetwork.hasAuthority;
     }
 
     public bool IsServer(){
