@@ -12,7 +12,8 @@ public class Bullet : NetworkBehaviour {
     public float gravitySpeedBase;
     public float gravityAcceleration;
     public float speed;
-
+    public GameObject buffObject;
+    private Buff buff;
     private Vector2 direction;
 
     private Vector2 vDirection;
@@ -30,6 +31,10 @@ public class Bullet : NetworkBehaviour {
     private int layer;
     void Start()
     {
+        if (buffObject != null)
+            buff = buffObject.GetComponent<Buff>();
+        else
+            print("Bullet does not have buff");
         hit = false;
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
         
@@ -101,8 +106,13 @@ public class Bullet : NetworkBehaviour {
         if (hitObjects[0].collider.tag == "Player")
         {
             PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
+<<<<<<< HEAD
             playerControl.TakeAttack(damage, null);
             playerControl.clientNetworkReciever.RpcTakeAttack(damage);
+=======
+            playerControl.TakeAttack(damage, buff.name);
+            playerControl.RpcTakeAttack(damage,buff.name);
+>>>>>>> Dev
         }
         Destroy(gameObject);
     }

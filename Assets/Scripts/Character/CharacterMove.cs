@@ -8,11 +8,13 @@ public class CharacterMove : MonoBehaviour {
     private CharacterAttributes charStats;
     float sizeX;
     float sizeY;
+    private Animator animator;
 
     private Vector2 side;
 
 	void Start ()
     {
+        animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();
         Set_Size();
 	}
@@ -35,8 +37,14 @@ public class CharacterMove : MonoBehaviour {
         bool hit;
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
         charStats.BodyState = EBodyState.Moving;
+        animator.SetBool("Walking", true);
         Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
         
+    }
+
+    public void MoveReleased()
+    {
+        animator.SetBool("Walking", false);
     }
     
     private void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
@@ -60,11 +68,22 @@ public class CharacterMove : MonoBehaviour {
         {
             charStats.ResetMoveSpeed();
             charStats.side = side;
+<<<<<<< HEAD
             int rotate = 0;
             if (side.x == -1)
                 rotate = 180;
 
             transform.rotation = Quaternion.Euler(0, rotate, 0);
+=======
+            if (charStats.side.x == 1)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+>>>>>>> Dev
         }
         if(charStats.BodyState == EBodyState.Standing)
         {
