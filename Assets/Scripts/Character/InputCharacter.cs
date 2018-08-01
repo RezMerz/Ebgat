@@ -28,17 +28,14 @@ public class InputCharacter : MonoBehaviour
     {
         if (!playerControl.IsLocalPlayer())
             return;
+
         // Move left and Right
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
-            characterMove.MovePressed(1);
+        if (Input.GetKeyDown(KeyCode.D))
             clientNetworkSender.Move(1);
-        }
-        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
-            characterMove.MovePressed(-1);
+        else if (Input.GetKeyDown(KeyCode.A))
             clientNetworkSender.Move(-1);
-        }
-        else
-            charStats.BodyState = EBodyState.Standing;
+        
+
 
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))

@@ -30,6 +30,15 @@ public class CharacterMove : MonoBehaviour {
     
     // ray cast for move in square objects
 
+    public void MoveRightStart()
+    {
+
+    }
+
+    public void MoveLeftStart()
+    {
+
+    }
     public void MovePressed(int i)
     {
         SpeedCheck(i);
