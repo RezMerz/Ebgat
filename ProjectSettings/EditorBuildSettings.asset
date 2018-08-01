@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/networkScene 1.unity
+    guid: 56a9aebcb3384e34d93f0b2c041f3675
+  - enabled: 0
     path: Assets/Scenes/networkSceneTestYashar.unity
     guid: 17790b783265146459ccfd588193bbde
   - enabled: 0
@@ -20,7 +23,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/networkScene.unity
     guid: 65efce36c7a4a4b9b995517f7b625705
-  - enabled: 0
-    path: Assets/Scenes/networkScene 1.unity
-    guid: 56a9aebcb3384e34d93f0b2c041f3675
   m_configObjects: {}

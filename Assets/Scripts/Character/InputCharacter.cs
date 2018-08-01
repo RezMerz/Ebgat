@@ -42,8 +42,8 @@ public class InputCharacter : MonoBehaviour
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
+            characterMove.MoveReleased();
             playerControl.CmdMoveFinished(transform.position);
-            Debug.Log("Local: Move Press Released");
         }
 
         //Attack
