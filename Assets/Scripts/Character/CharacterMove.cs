@@ -91,7 +91,7 @@ public class CharacterMove : MonoBehaviour {
 
     public void MoveReleasedServerside(Vector3 position){
         StopCoroutine(moveCycle);
-        MoveReleasedClientside(position);
+        playerControl.serverNetwork.ClientMoveFinished(position);
     }
 
     public void MoveReleasedClientside(Vector3 position)
