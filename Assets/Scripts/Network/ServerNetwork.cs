@@ -6,7 +6,8 @@ using System;
 using System.Globalization;
 
 public class ServerNetwork : NetworkBehaviour {
-    
+
+    private static int PlayerID = 1;
 
     PlayerControl playerControl;
     ClientNetworkReciever clientNetworkReciever;
@@ -33,8 +34,8 @@ public class ServerNetwork : NetworkBehaviour {
     }
 
     [Command]
-    public void CmdSetplayerID(string Id){
-        
+    public int CmdGetplayerID(){
+        return PlayerID ++;
     }
 
     [Command]
