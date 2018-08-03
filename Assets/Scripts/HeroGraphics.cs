@@ -25,6 +25,16 @@ public class HeroGraphics : MonoBehaviour {
         playerControl = GetComponent<PlayerControl>();
     }
 
+    public void MoveRight()
+    {
+
+    }
+
+    public void MoveLeft()
+    {
+
+    }
+
     IEnumerator DamageColorTimer(float time)
     {
         yield return new WaitForSeconds(time);

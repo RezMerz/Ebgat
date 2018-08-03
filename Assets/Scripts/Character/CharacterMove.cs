@@ -31,6 +31,12 @@ public class CharacterMove : MonoBehaviour {
         {
             return;
         }
+
+        if (destination.x - transform.position.x > 0)
+            charStats.side = Vector2.right;
+        else
+            charStats.side = Vector2.left;
+
         if(Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving){
             {
                 float moveDistance = Time.deltaTime * charStats.moveSpeed;
