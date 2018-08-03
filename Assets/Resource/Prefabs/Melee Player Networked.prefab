@@ -395,8 +395,8 @@ MonoBehaviour:
   attackAnimationTimeBase: 0
   attackCooldownBase: 0.5
   range: 0
-  moveSpeedBase: 10
-  moveAccelerationBase: 1
+  moveSpeedBase: 15
+  moveAccelerationBase: 0
   moveSpeedMaxBase: 20
   jumpSpeedBase: 20
   jumpAccelerationBase: 1.5
@@ -529,6 +529,6 @@ SpriteRenderer:
   m_Size: {x: 2.81, y: 6.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
