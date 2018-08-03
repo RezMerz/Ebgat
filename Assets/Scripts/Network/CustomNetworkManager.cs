@@ -12,9 +12,9 @@ public class CustomNetworkManager : NetworkManager {
     {
         int random = Random.Range(0, players.Count);
         GameObject player = Instantiate(players[random]);
-        string team = "Team" + num++;
-        Debug.Log(LayerMask.GetMask(team));
-        player.layer = LayerMask.GetMask(team); 
+        string team = "Team " + num++;
+        Debug.Log(LayerMask.NameToLayer(team));
+        player.layer = LayerMask.NameToLayer(team);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 }
