@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff : MonoBehaviour {
+public class Aurafreeze : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -23,19 +23,9 @@ public class ClientNetworkReciever : NetworkBehaviour {
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++){
             string[] parts = lines[i].Split(',');
-            /*Debug.Log(parts.Length);
-            for (int j = 0; j < parts.Length; j++){
-                Debug.Log(parts[j]);
-            }*/
-            ECommand cmd = (ECommand)Enum.Parse(typeof(ECommand), parts[0]);
-            switch(cmd){
-                case ECommand.Move: RpcMove(Convert.ToInt32(parts[1])); break;
-                case ECommand.MoveFinished: RpcMoveFinished(new Vector3(float.Parse(parts[1]),float.Parse(parts[2]), float.Parse(parts[3]))); break;
-                case ECommand.JumpPressed: RpcJumpPressed(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
-                case ECommand.JumpLong: RpcJumpLong(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
-                case ECommand.JumpReleased: RpcJumpReleased(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3]))); break;
-                case ECommand.ShootBullet: RpcShootBullet(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3])), new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6])), float.Parse(parts[7])); break;
-                case ECommand.TakeAttack: RpcTakeAttack(float.Parse(parts[0])); break;
+
+            switch(parts[0]){
+                case "1": playerControl.characterMove.MoveClientside(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
             }
         }
     }

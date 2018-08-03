@@ -28,17 +28,14 @@ public class InputCharacter : MonoBehaviour
     {
         if (!playerControl.IsLocalPlayer())
             return;
+
         // Move left and Right
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
-            characterMove.MovePressed(1);
+        if (Input.GetKeyDown(KeyCode.D))
             clientNetworkSender.Move(1);
-        }
-        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
-            characterMove.MovePressed(-1);
+        else if (Input.GetKeyDown(KeyCode.A))
             clientNetworkSender.Move(-1);
-        }
-        else
-            charStats.BodyState = EBodyState.Standing;
+        
+
 
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -47,27 +44,33 @@ public class InputCharacter : MonoBehaviour
         }
 
         //Attack
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire"))
         {
             attack.AttackPressed(Input.mousePosition);
+        }
+        else if(Input.GetAxis("Fire") > 0.1)
+        {
+            print("RT");
         }
 
         // Jump
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             clientNetworkSender.JumpPressed(transform.position);
             jump.JumpPressed();
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetButton("Jump"))
         {
             jump.JumpHold();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+
+        if (Input.GetButtonUp("Jump"))
         {
             clientNetworkSender.JumpReleased(transform.position);
             jump.JumpReleased();
         }
 	}
+
 
 }
