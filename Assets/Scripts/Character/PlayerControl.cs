@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerControl : MonoBehaviour
+using UnityEngine.Networking;
+public class PlayerControl :MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
     public CharacterMove characterMove { get; private set; }
@@ -30,12 +30,17 @@ public class PlayerControl : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
-        Camera.main.GetComponent<Camera_Follow>().player_ = gameObject;
+        print("PlayerControl");
+       
     }
 
     void Start()
     {
-        
+        if (IsLocalPlayer())
+        {
+            print("local Player Camera");
+            Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
+        }
     }
     public bool IsLocalPlayer(){
         return serverNetwork.isLocalPlayer;

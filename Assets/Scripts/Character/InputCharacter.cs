@@ -49,7 +49,7 @@ public class InputCharacter : MonoBehaviour
             axis = false;
             clientNetworkSender.MoveFinished(transform.position);
         }
-        if(Input.GetAxis("vertical") != 0)
+        if(Input.GetAxis("Vertical") != 0)
         {
             if(Input.GetAxis("Vertical") > 0.1)
             {

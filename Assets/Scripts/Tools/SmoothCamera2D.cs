@@ -20,4 +20,4 @@ public class SmoothCamera2D : MonoBehaviour {
      
      }
  }
-}
+
