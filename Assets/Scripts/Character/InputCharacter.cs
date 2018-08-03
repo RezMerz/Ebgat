@@ -45,24 +45,28 @@ public class InputCharacter : MonoBehaviour
         }
 
         //Attack
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire"))
         {
             attack.AttackPressed(Input.mousePosition);
+        }
+        else if(Input.GetAxis("Fire") > 0.1)
+        {
+            print("RT");
         }
 
         // Jump
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             clientNetworkSender.JumpPressed(transform.position);
             jump.JumpPressed();
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (Input.GetButton("Jump"))
         {
             jump.JumpHold();
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Jump"))
         {
             clientNetworkSender.JumpReleased(transform.position);
             jump.JumpReleased();
