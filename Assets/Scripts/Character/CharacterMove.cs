@@ -55,6 +55,8 @@ public class CharacterMove : MonoBehaviour {
     }
     public void MovePressed(int i)
     {
+        if(moveCycle != null)
+            StopCoroutine(moveCycle);
         MoveServerside(i);
         moveCycle =  StartCoroutine(MoveCycle(0.1f,i));
     }
@@ -84,7 +86,8 @@ public class CharacterMove : MonoBehaviour {
             print("hit");
             charStats.ResetMoveSpeed();
             des = transform.position + Vector3.right * i * (hitObjects[0].distance);
-            
+            print(des);
+            playerControl.serverNetwork.ClientMoveFinished(des);
         }
         
     }
@@ -96,16 +99,17 @@ public class CharacterMove : MonoBehaviour {
 
     public void MoveReleasedClientside(Vector3 position)
     {
+        print(position);
         transform.position = position;
         charStats.BodyState = EBodyState.Standing;
-        animator.SetBool("Walking", false);
+        //animator.SetBool("Walking", false);
     }
     
     public void MoveClientside(Vector2 position)
     {
         charStats.BodyState = EBodyState.Moving;
         destination = position;
-        animator.SetBool("Walking", true);
+        //animator.SetBool("Walking", true);
     }
 
     private void SpeedCheck(int i)
