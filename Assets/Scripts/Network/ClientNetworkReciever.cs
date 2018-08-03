@@ -21,11 +21,14 @@ public class ClientNetworkReciever : NetworkBehaviour {
     [ClientRpc]
     public void RpcRecieveCommands(string data){
         string[] lines = data.Split('\n');
-        for (int i = 0; i < lines.Length - 1; i++){
+        for (int i = 0; i < lines.Length - 1; i++)
+        {
             string[] parts = lines[i].Split(',');
 
-            switch(parts[0]){
+            switch (parts[0])
+            {
                 case "1": playerControl.characterMove.MoveClientside(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
+                case "2": playerControl.characterMove.MoveReleasedClientside(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
             }
         }
     }

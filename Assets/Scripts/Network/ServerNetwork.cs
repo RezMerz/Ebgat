@@ -99,4 +99,8 @@ public class ServerNetwork : NetworkBehaviour {
     public void ClientMove(Vector3 position){
         data += 1 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
+
+    public void ClientMoveFinished(Vector3 position){
+        data += 2 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+    }
 }

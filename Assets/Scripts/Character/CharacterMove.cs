@@ -88,11 +88,13 @@ public class CharacterMove : MonoBehaviour {
 
     public void MoveReleasedServerside(Vector3 position){
         StopCoroutine(moveCycle);
-        MoveReleasedClientside(new Vector2(0,0));
+        MoveReleasedClientside(position);
     }
 
     public void MoveReleasedClientside(Vector3 position)
     {
+        transform.position = position;
+        charStats.BodyState = EBodyState.Standing;
         animator.SetBool("Walking", false);
     }
     
