@@ -27,10 +27,16 @@ public class CharacterMove : MonoBehaviour {
 
     void Update()
     {
+        if (playerControl.IsServer())
+        {
+            return;
+        }
         if(Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving){
             {
                 float moveDistance = Time.deltaTime * charStats.moveSpeed;
                 float distance = Vector3.Distance(transform.position, destination);
+
+                
                 if (moveDistance > distance)
                 {
                     transform.position += distance* (Vector3)charStats.side;
@@ -71,7 +77,7 @@ public class CharacterMove : MonoBehaviour {
         if(moveCycle != null)
             StopCoroutine(moveCycle);
         MoveServerside(i);
-        moveCycle =  StartCoroutine(MoveCycle(0.05f,i));
+        moveCycle =  StartCoroutine(MoveCycle(0.01f,i));
     }
 
     private IEnumerator MoveCycle(float time,int i)
@@ -90,17 +96,16 @@ public class CharacterMove : MonoBehaviour {
         Vector3 des;
         if (!hit)
         {
-            transform.position = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
             des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
+            transform.position = des;
             playerControl.serverNetwork.ClientMove(des);
         }
         // hit some objects, move to the nearst
         else
         {
-            print("hit");
             charStats.ResetMoveSpeed();
             des = transform.position + Vector3.right * i * (hitObjects[0].distance);
-            print(des);
+            transform.position = des;
             playerControl.serverNetwork.ClientMoveFinished(des);
         }
         
