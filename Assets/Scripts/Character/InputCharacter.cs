@@ -50,7 +50,7 @@ public class InputCharacter : MonoBehaviour
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {
-            print("RT");
+            //print("RT");
         }
 
         // Jump

@@ -76,14 +76,17 @@ public class CharacterMove : MonoBehaviour {
         if (hitObjects.Count == 0)
         {
             des = transform.position + charStats.moveSpeed * Vector3.right * i;
+            playerControl.serverNetwork.ClientMove(des);
         }
         // hit some objects, move to the nearst
         else
         {
+            print("hit");
             charStats.ResetMoveSpeed();
             des = transform.position + Vector3.right * i * (hitObjects[0].distance);
+            
         }
-        playerControl.serverNetwork.ClientMove(des);
+        
     }
 
     public void MoveReleasedServerside(Vector3 position){
