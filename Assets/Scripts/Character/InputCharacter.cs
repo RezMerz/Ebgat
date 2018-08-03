@@ -30,7 +30,6 @@ public class InputCharacter : MonoBehaviour
         if (!playerControl.IsLocalPlayer())
             return;
 
-        print(Input.GetAxis("Horizontal"));
         // Move left and Right
         if ((Input.GetAxis("Horizontal") > 0.3 || Input.GetAxis("Horizontal") < -0.3) && !axis)
         { 
