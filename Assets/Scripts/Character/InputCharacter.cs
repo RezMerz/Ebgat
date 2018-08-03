@@ -12,6 +12,7 @@ public class InputCharacter : MonoBehaviour
     private CharacterMove characterMove;
     private PlayerJump jump;
     private ClientNetworkSender clientNetworkSender;
+    private bool axis;
 	// Use this for initialization
 	void Start ()
     {
@@ -30,12 +31,25 @@ public class InputCharacter : MonoBehaviour
             return;
 
         // Move left and Right
-        if (Input.GetKeyDown(KeyCode.D))
-            clientNetworkSender.Move(1);
-        else if (Input.GetKeyDown(KeyCode.A))
-            clientNetworkSender.Move(-1);
-        
+        if (Input.GetAxis("Horizontal")!=0  && !axis)
+        {
 
+            if (Input.GetAxis("Horizontal") > 0.1)
+            {
+                clientNetworkSender.Move(1);
+                axis = true;
+            }
+            else if (Input.GetAxis("Horizontal") < -0.1)
+            {
+                axis = true;
+                clientNetworkSender.Move(-1);
+            }
+        }
+        else if (Input.GetAxis("Horizontal") < 0.1 && Input.GetAxis("Horizontal")> -0.1 && axis)
+        {
+            clientNetworkSender.MoveFinished(transform.position);
+            axis = false;
+        }
 
         //move button released
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -50,7 +64,7 @@ public class InputCharacter : MonoBehaviour
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {
-            print("RT");
+            //print("RT");
         }
 
         // Jump
