@@ -83,6 +83,10 @@ public class PlayerControl : MonoBehaviour
         characterMove.MoveReleasedServerside(position);
     }
 
+    public void JumpPressed(){
+        jump.JumpPressed();
+    }
+
     public void Meleeattack() { }
         
 
