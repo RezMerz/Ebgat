@@ -25,7 +25,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
             string[] parts = lines[i].Split(',');
 
             switch(parts[0]){
-                case "1": playerControl.characterMove.Move(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
+                case "1": playerControl.characterMove.MoveClientside(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
             }
         }
     }

@@ -15,6 +15,7 @@ public class CharacterMove : MonoBehaviour {
 
     private Vector3 destination;
 
+    private Coroutine moveCycle;
 	void Start ()
     {
         animator = GetComponentInChildren<Animator>();
@@ -54,10 +55,22 @@ public class CharacterMove : MonoBehaviour {
     }
     public void MovePressed(int i)
     {
+        MoveServerside(i);
+        moveCycle =  StartCoroutine(MoveCycle(0.1f,i));
+    }
+
+    private IEnumerator MoveCycle(float time,int i)
+    {
+        yield return new WaitForSeconds(time);
+        MovePressed(i);
+    }
+
+    public void MoveServerside(int i)
+    {
         SpeedCheck(i);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
+        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
         charStats.BodyState = EBodyState.Moving;
         Vector3 des;
         if (hitObjects.Count == 0)
@@ -74,7 +87,8 @@ public class CharacterMove : MonoBehaviour {
     }
 
     public void MoveReleasedServerside(Vector3 position){
-        
+        StopCoroutine(moveCycle);
+        MoveReleasedClientside(new Vector2(0,0));
     }
 
     public void MoveReleasedClientside(Vector3 position)
@@ -82,7 +96,7 @@ public class CharacterMove : MonoBehaviour {
         animator.SetBool("Walking", false);
     }
     
-    public void Move(Vector2 position)
+    public void MoveClientside(Vector2 position)
     {
         charStats.BodyState = EBodyState.Moving;
         destination = position;

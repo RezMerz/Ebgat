@@ -41,7 +41,6 @@ public class InputCharacter : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             clientNetworkSender.MoveFinished(transform.position);
-            characterMove.MoveReleased();
         }
 
         //Attack

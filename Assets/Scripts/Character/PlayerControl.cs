@@ -80,7 +80,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void MoveFinished(Vector3 position){
-        characterMove.MoveReleased(position);
+        characterMove.MoveReleasedServerside(position);
     }
 
     public void Meleeattack() { }
