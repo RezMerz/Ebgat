@@ -79,6 +79,11 @@ public class PlayerControl : MonoBehaviour
         characterMove.MovePressed(-1);
     }
 
+    public void SetVerticalDirection(int i)
+    {
+        charStats.side = new Vector2(charStats.side.x, i);
+    }
+
     public void MoveFinished(Vector3 position){
         characterMove.MoveReleasedServerside(position);
     }

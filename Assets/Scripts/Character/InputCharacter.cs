@@ -49,11 +49,16 @@ public class InputCharacter : MonoBehaviour
             axis = false;
             clientNetworkSender.MoveFinished(transform.position);
         }
-
-        //move button released
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        if(Input.GetAxis("vertical") != 0)
         {
-            clientNetworkSender.MoveFinished(transform.position);
+            if(Input.GetAxis("Vertical") > 0.1)
+            {
+
+            }
+            else if(Input.GetAxis("Vertical") < -0.1)
+            {
+
+            }
         }
 
         //Attack
