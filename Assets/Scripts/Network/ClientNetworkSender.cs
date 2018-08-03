@@ -70,19 +70,9 @@ public class ClientNetworkSender : NetworkBehaviour
             Debug.Log("wrong input");
     }
 
-    public void UpVerticalDirection()
+    public void SetVerticalDirection(int num)
     {
-
-    }
-
-    public void DownVerticalDirection()
-    {
-
-    }
-
-    public void ResetVerticalDirection()
-    {
-
+        data += 7 + "," + num + ",\n";
     }
     public void MoveFinished(Vector3 position)
     {

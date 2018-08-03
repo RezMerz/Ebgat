@@ -6,6 +6,7 @@ using System;
 using System.Globalization;
 
 public class ServerNetwork : NetworkBehaviour {
+    
 
     PlayerControl playerControl;
     ClientNetworkReciever clientNetworkReciever;
@@ -32,6 +33,11 @@ public class ServerNetwork : NetworkBehaviour {
     }
 
     [Command]
+    public void CmdSetplayerID(string Id){
+        
+    }
+
+    [Command]
     public void CmdRecievecommands(string commands){
         string[] lines = commands.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++){
@@ -40,6 +46,7 @@ public class ServerNetwork : NetworkBehaviour {
                 case "1": playerControl.MoveRight(); break;
                 case "2": playerControl.MoveLeft(); break;
                 case "3": playerControl.MoveFinished(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
+                case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
             }
         }
     }
@@ -102,5 +109,9 @@ public class ServerNetwork : NetworkBehaviour {
 
     public void ClientMoveFinished(Vector3 position){
         data += 2 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+    }
+
+    public void ClientSetVerticalSide(int num){
+        data += 6 + "," + num + ",\n";
     }
 }
