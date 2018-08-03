@@ -31,7 +31,7 @@ public class InputCharacter : MonoBehaviour
             return;
 
         // Move left and Right
-        if (Input.GetAxis("Horizontal")!=0  && !axis)
+        if ((Input.GetAxis("Horizontal") > 0.3 || Input.GetAxis("Horizontal") < -0.3) && !axis)
         { 
             if (Input.GetAxis("Horizontal") > 0.1)
             {
@@ -44,7 +44,7 @@ public class InputCharacter : MonoBehaviour
                 clientNetworkSender.Move(-1);
             }
         }
-        else if (Input.GetAxis("Horizontal") < 0.1 && Input.GetAxis("Horizontal")> -0.1 && axis)
+        else if (Input.GetAxis("Horizontal") < 0.3 && Input.GetAxis("Horizontal")> -0.3 && axis)
         {
             axis = false;
             clientNetworkSender.MoveFinished(transform.position);
