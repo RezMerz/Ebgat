@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 public class CharacterMove : MonoBehaviour {
+    PlayerControl playerControl;
     public float threshold;
     private CharacterAttributes charStats;
     float sizeX;
@@ -12,12 +13,24 @@ public class CharacterMove : MonoBehaviour {
 
     private Vector2 side;
 
+    private Vector3 destination;
+
 	void Start ()
     {
         animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();
-        Set_Size();
+        playerControl = GetComponent<PlayerControl>();
+        destination = transform.position;
+        Set_Size(); 
 	}
+
+    void Update()
+    {
+        if(Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving){
+            transform.position += Time.deltaTime * charStats.moveSpeed * (Vector3)charStats.side;
+        }
+    }
+
     void Set_Size()
     {
         sizeX = transform.localScale.x * GetComponent<BoxCollider2D>().size.x;
@@ -46,30 +59,36 @@ public class CharacterMove : MonoBehaviour {
         bool hit;
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256,out hitObjects);
         charStats.BodyState = EBodyState.Moving;
-        animator.SetBool("Walking", true);
-        Move(Vector2.right * i, charStats.moveSpeed * Time.deltaTime, hitObjects);
-        
-    }
-
-    public void MoveReleased()
-    {
-        animator.SetBool("Walking", false);
-    }
-    
-    private void Move(Vector2 direction, float distance, List<RaycastHit2D> hitObjects)
-    {
-        // hit nothing , move at distance
-        if(hitObjects.Count == 0)
+        Vector3 des;
+        if (hitObjects.Count == 0)
         {
-            transform.position += distance * (Vector3)direction;
+            des = transform.position + charStats.moveSpeed * Vector3.right * i;
         }
         // hit some objects, move to the nearst
         else
         {
             charStats.ResetMoveSpeed();
-            transform.position += (Vector3)direction * (hitObjects[0].distance);
+            des = transform.position + Vector3.right * i * (hitObjects[0].distance);
         }
+        playerControl.serverNetwork.ClientMove(des);
     }
+
+    public void MoveReleasedServerside(Vector3 position){
+        
+    }
+
+    public void MoveReleasedClientside(Vector3 position)
+    {
+        animator.SetBool("Walking", false);
+    }
+    
+    public void Move(Vector2 position)
+    {
+        charStats.BodyState = EBodyState.Moving;
+        destination = position;
+        animator.SetBool("Walking", true);
+    }
+
     private void SpeedCheck(int i)
     {
         side = Vector2.right * i;

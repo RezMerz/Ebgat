@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
+using System.Globalization;
 
 public class ServerNetwork : NetworkBehaviour {
 
     PlayerControl playerControl;
     ClientNetworkReciever clientNetworkReciever;
-
+    string data = ""; 
 	// Use this for initialization
 	void Start () {
         playerControl = GetComponent<PlayerControl>();
@@ -17,22 +18,30 @@ public class ServerNetwork : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!isServer)
+            return;
+        if (data.Equals(""))
+            return;
+        SendCommands();
 	}
+
+    private void SendCommands()
+    {
+        clientNetworkReciever.RpcRecieveCommands(data);
+        data = "";
+    }
 
     [Command]
     public void CmdRecievecommands(string commands){
-        string output = ""; 
         string[] lines = commands.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++){
             string[] parts = lines[i].Split(',');
-            ECommand cmd = (ECommand)Enum.Parse(typeof(ECommand), parts[0]);
-            switch(cmd){
-                case ECommand.ShootBullet: CmdShootBullet(new Vector3(float.Parse(parts[1]), float.Parse(parts[2]), float.Parse(parts[3])), new Vector3(float.Parse(parts[4]), float.Parse(parts[5]), float.Parse(parts[6])), float.Parse(parts[7])); break;
-                default: output += lines + "\n"; break;
+            switch(parts[0]){
+                case "1": playerControl.MoveRight(); break;
+                case "2": playerControl.MoveLeft(); break;
+                case "3": playerControl.MoveFinished(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
             }
         }
-        clientNetworkReciever.RpcRecieveCommands(commands);
     }
 
     [Command]
@@ -84,5 +93,10 @@ public class ServerNetwork : NetworkBehaviour {
         int layer = LayerMask.GetMask(playerControl.charStats.enemyTeamName, "Blocks");
         bullet.Shoot(targetdirection, origin, bulletDamage, layer);
         bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage, layer);
+    }
+
+
+    public void ClientMove(Vector3 position){
+        data += 1 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 }

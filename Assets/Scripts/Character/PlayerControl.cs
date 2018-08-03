@@ -71,6 +71,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void MoveRight(){
+        characterMove.MovePressed(1);
+    }
+
+    public void MoveLeft(){
+        characterMove.MovePressed(-1);
+    }
+
+    public void MoveFinished(Vector3 position){
+        characterMove.MoveReleased(position);
+    }
 
     public void Meleeattack() { }
         
