@@ -18,6 +18,7 @@ public class ServerNetwork : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(isServer);
         if (!isServer)
             return;
         if (data.Equals(""))
