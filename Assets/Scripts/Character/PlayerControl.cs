@@ -30,7 +30,6 @@ public class PlayerControl :MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
-        print("PlayerControl");
        
     }
 
@@ -38,7 +37,6 @@ public class PlayerControl :MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-            print("local Player Camera");
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
         }
     }
