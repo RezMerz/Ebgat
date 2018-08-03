@@ -28,7 +28,20 @@ public class CharacterMove : MonoBehaviour {
     void Update()
     {
         if(Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving){
-            transform.position += Time.deltaTime * charStats.moveSpeed * (Vector3)charStats.side;
+            {
+                float moveDistance = Time.deltaTime * charStats.moveSpeed;
+                float distance = Vector3.Distance(transform.position, destination);
+                if (moveDistance > distance)
+                {
+                    transform.position += distance* (Vector3)charStats.side;
+                }
+                else
+                {
+                    transform.position += moveDistance * (Vector3)charStats.side;
+                }
+               
+            }
+           
         }
     }
 
@@ -58,7 +71,7 @@ public class CharacterMove : MonoBehaviour {
         if(moveCycle != null)
             StopCoroutine(moveCycle);
         MoveServerside(i);
-        moveCycle =  StartCoroutine(MoveCycle(0.1f,i));
+        moveCycle =  StartCoroutine(MoveCycle(0.05f,i));
     }
 
     private IEnumerator MoveCycle(float time,int i)
@@ -75,9 +88,10 @@ public class CharacterMove : MonoBehaviour {
         hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
         charStats.BodyState = EBodyState.Moving;
         Vector3 des;
-        if (hitObjects.Count == 0)
+        if (!hit)
         {
-            des = transform.position + charStats.moveSpeed * Vector3.right * i;
+            transform.position = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
+            des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
             playerControl.serverNetwork.ClientMove(des);
         }
         // hit some objects, move to the nearst
@@ -99,7 +113,6 @@ public class CharacterMove : MonoBehaviour {
 
     public void MoveReleasedClientside(Vector3 position)
     {
-        print(position);
         transform.position = position;
         charStats.BodyState = EBodyState.Standing;
         //animator.SetBool("Walking", false);

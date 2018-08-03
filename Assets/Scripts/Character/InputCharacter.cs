@@ -32,12 +32,11 @@ public class InputCharacter : MonoBehaviour
 
         // Move left and Right
         if (Input.GetAxis("Horizontal")!=0  && !axis)
-        {
-
+        { 
             if (Input.GetAxis("Horizontal") > 0.1)
             {
-                clientNetworkSender.Move(1);
                 axis = true;
+                clientNetworkSender.Move(1);
             }
             else if (Input.GetAxis("Horizontal") < -0.1)
             {
@@ -47,8 +46,8 @@ public class InputCharacter : MonoBehaviour
         }
         else if (Input.GetAxis("Horizontal") < 0.1 && Input.GetAxis("Horizontal")> -0.1 && axis)
         {
-            clientNetworkSender.MoveFinished(transform.position);
             axis = false;
+            clientNetworkSender.MoveFinished(transform.position);
         }
 
         //move button released
