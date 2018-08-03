@@ -34,8 +34,8 @@ public class ServerNetwork : NetworkBehaviour {
     }
 
     [Command]
-    public int CmdGetplayerID(){
-        return PlayerID ++;
+    public void CmdGetplayerID(){
+        //return PlayerID ++;
     }
 
     [Command]
