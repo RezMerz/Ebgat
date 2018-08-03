@@ -4,7 +4,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ClientNetworkSender : NetworkBehaviour {
+public class ClientNetworkSender : NetworkBehaviour
+{
 
     PlayerControl playerControl;
     CharacterAttributes charStats;
@@ -40,7 +41,7 @@ public class ClientNetworkSender : NetworkBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer)
+        if (!playerControl.IsLocalPlayer())
             return;
         if (data.Equals(""))
             return;
@@ -48,39 +49,45 @@ public class ClientNetworkSender : NetworkBehaviour {
         //data = "";
     }
 
-    private void SendCommands(){
+    private void SendCommands()
+    {
         serverNetwork.CmdRecievecommands(data);
         data = "";
     }
 
     public void KillPlayer()
     {
-        data += ECommand.KillPlayer.ToString() + ",\n"; 
+        data += ECommand.KillPlayer.ToString() + ",\n";
     }
 
     public void Move(int num)
     {
-        data += ECommand.Move.ToString() + "," + num + ",\n";
+        if (num == 1)
+            data += 1 + ",\n";
+        else if (num == -1)
+            data += 2 + ",\n";
+        else
+            Debug.Log("wrong input");
     }
 
     public void MoveFinished(Vector3 position)
     {
-        data += ECommand.MoveFinished.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 3 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
     public void JumpPressed(Vector3 position)
     {
-        data += ECommand.JumpPressed.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 4 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
     public void JumpLong(Vector3 position)
     {
-        data += ECommand.JumpLong.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 5 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
     public void JumpReleased(Vector3 position)
     {
-        data += ECommand.JumpReleased.ToString() + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 6 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
     public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
@@ -88,11 +95,13 @@ public class ClientNetworkSender : NetworkBehaviour {
         data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage + ",\n";
     }
 
-    public void TakeDamage(float damage){
+    public void TakeDamage(float damage)
+    {
         data += ECommand.TakeAttack.ToString() + "," + damage + ",\n";
     }
 
-    public void MeleeAttack(Vector3 origin, float damage, Vector3 targetdirection, int layer){
+    public void MeleeAttack(Vector3 origin, float damage, Vector3 targetdirection, int layer)
+    {
         data += ECommand.MeleeAttack.ToString() + "," + origin.x + "," + origin.y + "," + origin.z + "," + damage + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + layer + ",\n";
     }
 }
