@@ -9,7 +9,6 @@ public class ServerNetwork : NetworkBehaviour {
 
     public static ServerNetwork instance;
 
-    private static int PlayerID = 1;
 
     PlayerControl playerControl;
     ClientNetworkReciever clientNetworkReciever;
@@ -17,9 +16,7 @@ public class ServerNetwork : NetworkBehaviour {
 
     private void Awake()
     {
-        //if (!isServer)
-            //DestroyImmediate(gameObject);
-        //instance = this;
+        instance = this;
     }
 
     // Use this for initialization
@@ -37,19 +34,10 @@ public class ServerNetwork : NetworkBehaviour {
         SendCommands();
 	}
 
-    private int GetPlayerID(){
-        return PlayerID++;
-    }
-
     private void SendCommands()
     {
         clientNetworkReciever.RpcRecieveCommands(data);
         data = "";
-    }
-
-    [Command]
-    public void CmdGetPlayerID(){
-        //return PlayerID ++;
     }
 
     [Command]

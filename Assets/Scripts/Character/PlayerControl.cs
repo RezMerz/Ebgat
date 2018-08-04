@@ -43,11 +43,13 @@ public class PlayerControl : MonoBehaviour
         }
     }
     public bool IsLocalPlayer(){
+        return false;
         return serverNetwork.isLocalPlayer;
 
     }
 
     public bool IsServer(){
+        return false;
         return serverNetwork.isServer;
     }
 
