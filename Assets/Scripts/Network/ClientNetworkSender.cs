@@ -59,6 +59,7 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private void SendCommands()
     {
+        Debug.Log(hasAuthority);
         serverNetwork.CmdRecievecommands(data, PlayerID);
         data = "";
     }
