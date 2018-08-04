@@ -13,6 +13,9 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private string data = "";
 
+    private static int num = 1;
+    [SyncVar]public int PlayerID;
+
     // Use this for initialization
     void Start()
     {
@@ -21,20 +24,26 @@ public class ClientNetworkSender : NetworkBehaviour
         serverNetwork = playerControl.serverNetwork;
         if (playerControl.IsLocalPlayer())
         {
-            charStats.teamName = "Team 1";
+            /*charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
             gameObject.layer = LayerMask.NameToLayer("Team 1");
-
+            */
             //change color for localm player
             playerControl.color = Color.green;
             GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
+            /*
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
+            */
             playerControl.color = Color.white;
+        }
+
+        if(isServer){
+            PlayerID = num++;
         }
     }
 
@@ -46,12 +55,11 @@ public class ClientNetworkSender : NetworkBehaviour
         if (data.Equals(""))
             return;
         SendCommands();
-        //data = "";
     }
 
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data);
+        serverNetwork.CmdRecievecommands(data, PlayerID);
         data = "";
     }
 
@@ -59,6 +67,7 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += ECommand.KillPlayer.ToString() + ",\n";
     }
+
 
     public void Move(int num)
     {

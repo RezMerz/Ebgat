@@ -107,8 +107,8 @@ public class Bullet : NetworkBehaviour {
         {
             PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
 
-            playerControl.clientNetworkReciever.RpcTakeAttack(damage);
-            playerControl.TakeAttack(damage, buff.name);
+            //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
+            //playerControl.TakeAttack(damage, buff.name);
         }
         Destroy(gameObject);
     }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-public class PlayerControl :MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
     public CharacterMove characterMove { get; private set; }
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
     public HeroGraphics heroGraphics { get; private set; }
+    public ServerNetworkSender serverNetworkSender;
     public ClientNetworkSender clientNetworkSender;
     public ClientNetworkReciever clientNetworkReciever;
     public ServerNetwork serverNetwork;
@@ -22,7 +23,8 @@ public class PlayerControl :MonoBehaviour
     void Awake()
     {
         clientNetworkSender = GetComponent<ClientNetworkSender>();
-        clientNetworkReciever = GetComponent<ClientNetworkReciever>();
+        clientNetworkReciever = ClientNetworkReciever.instance;
+        serverNetworkSender = ServerNetworkSender.instance;
         serverNetwork = GetComponent<ServerNetwork>();
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
@@ -30,7 +32,10 @@ public class PlayerControl :MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
+<<<<<<< HEAD
        
+=======
+>>>>>>> origin/Network-Rework
     }
 
     void Start()
@@ -41,14 +46,14 @@ public class PlayerControl :MonoBehaviour
         }
     }
     public bool IsLocalPlayer(){
-        return serverNetwork.isLocalPlayer;
+        return clientNetworkSender.isLocalPlayer;
 
     }
 
-    public bool IsServer(){
-        return serverNetwork.isServer;
+    public bool IsServer()
+    {
+        return clientNetworkSender.isServer;
     }
-
     // Some Damage has been done
     public void TakeAttack(float damage, string buffName)
     {

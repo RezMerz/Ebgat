@@ -104,7 +104,7 @@ public class CharacterMove : MonoBehaviour {
         {
             des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
             transform.position = des;
-            playerControl.serverNetwork.ClientMove(des);
+            playerControl.serverNetworkSender.ClientMove(playerControl.clientNetworkSender.PlayerID, des);
         }
         // hit some objects, move to the nearest
         else
@@ -112,14 +112,14 @@ public class CharacterMove : MonoBehaviour {
             charStats.ResetMoveSpeed();
             des = transform.position + Vector3.right * i * (hitObjects[0].distance);
             transform.position = des;
-            playerControl.serverNetwork.ClientMoveFinished(des);
+            playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, des);
         }
         
     }
 
     public void MoveReleasedServerside(Vector3 position){
         StopCoroutine(moveCycle);
-        playerControl.serverNetwork.ClientMoveFinished(position);
+        playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
     }
 
     public void MoveReleasedClientside(Vector3 position)

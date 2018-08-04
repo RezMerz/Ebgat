@@ -6,39 +6,23 @@ using System;
 using System.Globalization;
 
 public class ServerNetwork : NetworkBehaviour {
-    
 
-    PlayerControl playerControl;
-    ClientNetworkReciever clientNetworkReciever;
-    string data = ""; 
-	// Use this for initialization
-	void Start () {
-        playerControl = GetComponent<PlayerControl>();
-        clientNetworkReciever = playerControl.clientNetworkReciever;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (!isServer)
-            return;
-        if (data.Equals(""))
-            return;
-        SendCommands();
-	}
+    public PlayerControl playerControl;// { get; set;}
+    string data = "";
 
-    private void SendCommands()
+    private void Awake()
     {
-        clientNetworkReciever.RpcRecieveCommands(data);
-        data = "";
+        playerControl = GetComponent<PlayerControl>();
+
     }
 
-    [Command]
-    public void CmdSetplayerID(string Id){
+    // Use this for initialization
+    void Start () {
         
-    }
+	}
 
     [Command]
-    public void CmdRecievecommands(string commands){
+    public void CmdRecievecommands(string commands, int playerID){
         string[] lines = commands.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++){
             string[] parts = lines[i].Split(',');
@@ -92,7 +76,7 @@ public class ServerNetwork : NetworkBehaviour {
         RpcJumpReleased(position);
     }*/
 
-    public void CmdShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
+    /*public void CmdShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
     {
         GameObject bulletObj = Instantiate(playerControl.bulletPrefab);
         NetworkServer.Spawn(bulletObj);
@@ -100,18 +84,8 @@ public class ServerNetwork : NetworkBehaviour {
         int layer = LayerMask.GetMask(playerControl.charStats.enemyTeamName, "Blocks");
         bullet.Shoot(targetdirection, origin, bulletDamage, layer);
         bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage, layer);
-    }
+    }*/
 
 
-    public void ClientMove(Vector3 position){
-        data += 1 + "," + position.x + "," + position.y + "," + position.z + ",\n";
-    }
 
-    public void ClientMoveFinished(Vector3 position){
-        data += 2 + "," + position.x + "," + position.y + "," + position.z + ",\n";
-    }
-
-    public void ClientSetVerticalSide(int num){
-        data += 6 + "," + num + ",\n";
-    }
 }
