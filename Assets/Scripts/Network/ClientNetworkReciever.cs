@@ -34,6 +34,15 @@ public class ClientNetworkReciever : NetworkBehaviour {
         }
     }
 
+    [ClientRpc]
+    public void RpcUpdatePlayers(){
+        playerControls.Clear();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < objs.Length; i++){
+            playerControls.Add(objs[i].GetComponent<PlayerControl>());
+        }
+    }
+
     /*public void RpcMove(int num)
     {
         if (isLocalPlayer)
