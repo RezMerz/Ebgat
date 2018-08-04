@@ -6,6 +6,7 @@ public class BoarForm : Ability {
     public float speed;
     public float range;
     public float stunTime;
+    public float damage;
     private float distanceMoved;
     private Vector2 originTransform;
     private int layer;
@@ -42,7 +43,7 @@ public class BoarForm : Ability {
                 transform.position += (hitObject.distance * (Vector3)charStats.side);
                 if (hitObject.collider.tag == "Player")
                 {
-                    hitObject.collider.GetComponent<PlayerControl>().TakeStun(stunTime);
+                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage,buff.name);
                 }
             }
             else
