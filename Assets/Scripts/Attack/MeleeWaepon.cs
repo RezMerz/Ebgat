@@ -24,7 +24,7 @@ public class MeleeWaepon : MonoBehaviour {
                 print("Took Attack");
                 PlayerControl tempPlayerControl = hit.collider.GetComponent<PlayerControl>();
                 tempPlayerControl.TakeAttack(damage, null);
-                tempPlayerControl.clientNetworkReciever.RpcTakeAttack(damage);
+                //tempPlayerControl.clientNetworkReciever.RpcTakeAttack(damage);
             }
         }
     }

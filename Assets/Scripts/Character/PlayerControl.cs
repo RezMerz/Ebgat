@@ -22,16 +22,14 @@ public class PlayerControl : MonoBehaviour
     void Awake()
     {
         clientNetworkSender = GetComponent<ClientNetworkSender>();
-        clientNetworkReciever = GetComponent<ClientNetworkReciever>();
-        serverNetwork = GetComponent<ServerNetwork>();
+        clientNetworkReciever = ClientNetworkReciever.instance;
+        serverNetwork = ServerNetwork.instance;
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
-        print("PlayerControl");
-       
     }
 
     void Start()
@@ -43,16 +41,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
     public bool IsLocalPlayer(){
-        return false;
-        return serverNetwork.isLocalPlayer;
+        return clientNetworkSender.isLocalPlayer;
 
     }
 
-    public bool IsServer(){
-        return false;
-        return serverNetwork.isServer;
+    public bool IsServer()
+    {
+        return clientNetworkSender.isServer;
     }
-
     // Some Damage has been done
     public void TakeAttack(float damage, string buffName)
     {

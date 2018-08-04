@@ -55,12 +55,11 @@ public class ClientNetworkSender : NetworkBehaviour
         if (data.Equals(""))
             return;
         SendCommands();
-        //data = "";
     }
 
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data);
+        serverNetwork.CmdRecievecommands(data, PlayerID);
         data = "";
     }
 
