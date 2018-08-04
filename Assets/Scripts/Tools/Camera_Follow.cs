@@ -22,8 +22,7 @@ public class Camera_Follow : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(!follow)
-            return;
+
         transform.position = Vector3.Lerp(transform.position,player_.transform.position+distance_, smoothness_);
 	}
 
