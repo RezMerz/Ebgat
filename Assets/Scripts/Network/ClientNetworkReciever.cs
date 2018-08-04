@@ -38,10 +38,14 @@ public class ClientNetworkReciever : NetworkBehaviour {
     public void RpcUpdatePlayers(){
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        PlayerControl[] playerControlArray = new PlayerControl[objs.Length];
         for (int i = 0; i < objs.Length; i++){
-            playerControls.Add(objs[i].GetComponent<PlayerControl>());
+            PlayerControl p = objs[i].GetComponent<PlayerControl>();
+            playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
         }
     }
+
+    
 
     /*public void RpcMove(int num)
     {
