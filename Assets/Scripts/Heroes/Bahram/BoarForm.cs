@@ -60,7 +60,7 @@ public class BoarForm : Ability {
         // Remember: Do some code so it can not move or attack
         originTransform = this.transform.position;
         coolDownLock = true;
-        StartCoroutine(CoolDownTimer(coolDownTime * 100));
+        StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Channeling;
         abilityUse = true;
         charStats.FeetState = EFeetState.NoGravity;

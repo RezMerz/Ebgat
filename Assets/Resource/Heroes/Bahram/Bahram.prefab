@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 5
+  coolDownTime: 5
   castTime: 0
   animationTime: 0
   buff: {fileID: 0}
