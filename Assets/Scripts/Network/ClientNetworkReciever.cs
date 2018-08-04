@@ -11,6 +11,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public List<PlayerControl> playerControls;
 
+    int playernumber;
+
     void Awake()
     {
         instance = this;
@@ -19,6 +21,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcRecieveCommands(string data){
+        if (playerControls.Count != playernumber)
+            ccss();
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
@@ -36,18 +40,20 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcUpdatePlayers(){
+        playernumber = GameObject.FindGameObjectsWithTag("Player").Length;
+    }
+
+    private void ccss(){
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         PlayerControl[] playerControlArray = new PlayerControl[objs.Length];
-        for (int i = 0; i < objs.Length; i++){
+        for (int i = 0; i < objs.Length; i++)
+        {
             PlayerControl p = objs[i].GetComponent<PlayerControl>();
-            Debug.Log(p.clientNetworkSender.PlayerID - 1);
             playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
         }
         playerControls.AddRange(playerControlArray);
     }
-
-    
 
     /*public void RpcMove(int num)
     {

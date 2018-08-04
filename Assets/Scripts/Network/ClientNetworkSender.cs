@@ -16,14 +16,6 @@ public class ClientNetworkSender : NetworkBehaviour
     private static int num = 1;
     [SyncVar]public int PlayerID;
 
-    private void Awake()
-    {
-        if (isServer)
-        {
-            PlayerID = num++;
-        }
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -48,6 +40,10 @@ public class ClientNetworkSender : NetworkBehaviour
             gameObject.layer = LayerMask.NameToLayer("Team 2");
             */
             playerControl.color = Color.white;
+        }
+
+        if(isServer){
+            PlayerID = num++;
         }
     }
 
