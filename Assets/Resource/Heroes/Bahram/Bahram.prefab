@@ -412,12 +412,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 5
+  coolDownTime: 0.1
   castTime: 0
   animationTime: 0
   buff: {fileID: 0}
   speed: 50
-  range: 5
+  range: 7
 --- !u!114 &114480550348911708
 MonoBehaviour:
   m_ObjectHideFlags: 1

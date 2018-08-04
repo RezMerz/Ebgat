@@ -5,11 +5,14 @@ using UnityEngine;
 public class BoarForm : Ability {
     public float speed;
     public float range;
+    public float stunTime;
     private float distanceMoved;
     private Vector2 originTransform;
+    private int layer;
 	// Use this for initialization
 	void Start () {
         coolDownLock = false;
+        layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
 	}
 	
 	// Update is called once per frame
@@ -32,7 +35,21 @@ public class BoarForm : Ability {
     {
         if (Vector2.Distance(originTransform,this.transform.position) < range)
         {
-            transform.position += speed * Time.deltaTime * (Vector3)charStats.side;
+            RaycastHit2D hitObject = Physics2D.BoxCast(this.transform.position, new Vector2(1, 1.8f), 0, charStats.side, speed * Time.deltaTime,layer);
+            if (hitObject.collider != null)
+            {
+                HumanForm();
+                transform.position += (hitObject.distance * (Vector3)charStats.side);
+                if (hitObject.collider.tag == "Player")
+                {
+                    hitObject.collider.GetComponent<PlayerControl>().TakeStun(stunTime);
+                }
+            }
+            else
+            {
+                transform.position += speed * Time.deltaTime * (Vector3)charStats.side;
+            }
+            
         }
         else
         {
@@ -47,7 +64,6 @@ public class BoarForm : Ability {
         charStats.HandState = EHandState.Idle;
         charStats.FeetState = EFeetState.Onground;
         abilityUse = false;
-        distanceMoved = 0;
     }
     public override void AbilityKeyPrssed()
     {

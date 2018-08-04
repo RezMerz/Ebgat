@@ -59,7 +59,10 @@ public class PlayerControl :MonoBehaviour
         TakeDamage(damage);
 
     }
-
+    public void TakeStun(float time)
+    {
+        charStats.HeadState = EHeadState.Stunned;
+    }
     private void TakeDamage(float damage)
     {
         heroGraphics.TakeDamage();
