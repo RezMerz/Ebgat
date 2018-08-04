@@ -12,6 +12,7 @@ public class InputCharacter : MonoBehaviour
     private CharacterMove characterMove;
     private PlayerJump jump;
     private ClientNetworkSender clientNetworkSender;
+    private AbilityManager abilityManager;
     private bool axis;
 	// Use this for initialization
 	void Start ()
@@ -21,6 +22,7 @@ public class InputCharacter : MonoBehaviour
         clientNetworkSender = playerControl.clientNetworkSender;
         attack = playerControl.attack;
         characterMove = playerControl.characterMove;
+        abilityManager = GetComponent<AbilityManager>();
 
         jump = playerControl.jump;
 	}
@@ -91,7 +93,7 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetButtonDown("Ability1"))
         {
-            print("Ability 1");
+            abilityManager.Ability1Pressed();
         }
         if (Input.GetButtonDown("Ability2"))
         {

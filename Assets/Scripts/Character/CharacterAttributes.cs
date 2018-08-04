@@ -148,8 +148,8 @@ public class CharacterAttributes : MonoBehaviour {
 
 public enum EHeadState { Conscious, Stunned };
 public enum EBodyState { Standing,Moving};
-public enum EHandState { Idle, Moving, Attacking, Casting };
-public enum EFeetState { Onground, Falling, Jumping };
+public enum EHandState { Idle, Moving, Attacking, Casting, Channeling };
+public enum EFeetState { Onground, Falling, Jumping, NoGravity};
 
 public enum EAttackMode { Ranged,Melee};
 

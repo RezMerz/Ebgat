@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 114235947878191078}
   - component: {fileID: 114480550348911708}
   - component: {fileID: 114772161494328486}
+  - component: {fileID: 114451276411895824}
+  - component: {fileID: 114432285978368132}
   m_Layer: 0
   m_Name: Bahram
   m_TagString: Player
@@ -388,6 +390,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
+--- !u!114 &114432285978368132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d490fc08ad2b9f64c97247fe7501536b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114451276411895824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 5
+  castTime: 0
+  animationTime: 0
+  buff: {fileID: 0}
+  speed: 50
+  range: 5
 --- !u!114 &114480550348911708
 MonoBehaviour:
   m_ObjectHideFlags: 1

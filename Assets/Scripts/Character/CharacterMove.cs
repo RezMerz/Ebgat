@@ -106,7 +106,7 @@ public class CharacterMove : MonoBehaviour {
             transform.position = des;
             playerControl.serverNetwork.ClientMove(des);
         }
-        // hit some objects, move to the nearst
+        // hit some objects, move to the nearest
         else
         {
             charStats.ResetMoveSpeed();
