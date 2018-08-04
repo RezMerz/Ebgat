@@ -7,15 +7,25 @@ using System.Globalization;
 
 public class ServerNetwork : NetworkBehaviour {
 
+    public static ServerNetwork instance;
+
     private static int PlayerID = 1;
 
     PlayerControl playerControl;
     ClientNetworkReciever clientNetworkReciever;
-    string data = ""; 
-	// Use this for initialization
-	void Start () {
-        playerControl = GetComponent<PlayerControl>();
-        clientNetworkReciever = playerControl.clientNetworkReciever;
+    string data = "";
+
+    private void Awake()
+    {
+        //if (!isServer)
+            //DestroyImmediate(gameObject);
+        //instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
+        //playerControl = GetComponent<PlayerControl>();
+        //clientNetworkReciever = playerControl.clientNetworkReciever;
 	}
 	
 	// Update is called once per frame
@@ -27,6 +37,10 @@ public class ServerNetwork : NetworkBehaviour {
         SendCommands();
 	}
 
+    private int GetPlayerID(){
+        return PlayerID++;
+    }
+
     private void SendCommands()
     {
         clientNetworkReciever.RpcRecieveCommands(data);
@@ -34,7 +48,7 @@ public class ServerNetwork : NetworkBehaviour {
     }
 
     [Command]
-    public void CmdGetplayerID(){
+    public void CmdGetPlayerID(){
         //return PlayerID ++;
     }
 

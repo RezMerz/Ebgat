@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-public class PlayerControl :MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
     public CharacterMove characterMove { get; private set; }

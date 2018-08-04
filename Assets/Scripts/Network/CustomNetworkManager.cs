@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class CustomNetworkManager : NetworkManager {
 
+    public GameObject serverNetwork;
     public List<GameObject> players;
     private static int num = 1;
 
@@ -16,5 +17,24 @@ public class CustomNetworkManager : NetworkManager {
         Debug.Log(LayerMask.NameToLayer(team));
         player.layer = LayerMask.NameToLayer(team);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+    }
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        //GameObject server = Instantiate(serverNetwork);
+        //NetworkServer.Spawn(server);
+        //Debug.Log("server Started");
+        //gameObject.AddComponent<ServerNetwork>();
+    }
+
+
+    public override void OnStartHost()
+    {
+        
+        //serverNetwork.SetActive(true);
+        base.OnStartHost();
+        Debug.Log("host started");
+
     }
 }
