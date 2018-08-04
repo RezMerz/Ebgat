@@ -27,8 +27,8 @@ public class CustomNetworkManager : NetworkManager {
     {
         int random = Random.Range(0, players.Count);
         GameObject player = Instantiate(players[random]);
-        ClientNetworkReciever.instance.playerControls.Add(player.GetComponent<PlayerControl>());
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+        ClientNetworkReciever.instance.playerControls.Add(player.GetComponent<PlayerControl>());
         ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 }
