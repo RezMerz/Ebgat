@@ -32,10 +32,6 @@ public class PlayerControl : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
-<<<<<<< HEAD
-       
-=======
->>>>>>> origin/Network-Rework
     }
 
     void Start()
