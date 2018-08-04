@@ -9,6 +9,18 @@ public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players;
     private static int num = 1;
 
+    private bool flag = true;
+
+    private void Update()
+    {
+        Debug.Log("update is calling");
+        if(NetworkServer.active && flag){
+            flag = false;
+            GameObject server = Instantiate(serverNetwork);
+            NetworkServer.Spawn(server);
+        } 
+    }
+
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         int random = Random.Range(0, players.Count);
@@ -16,8 +28,6 @@ public class CustomNetworkManager : NetworkManager {
         string team = "Team " + num++;
         Debug.Log(LayerMask.NameToLayer(team));
         player.layer = LayerMask.NameToLayer(team);
-        GameObject server = Instantiate(serverNetwork);
-        NetworkServer.Spawn(server);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
