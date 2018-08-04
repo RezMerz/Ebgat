@@ -5,7 +5,6 @@ using UnityEngine;
 public class BoarForm : Ability {
     public float speed;
     public float range;
-    public float stunTime;
     public float damage;
     private float distanceMoved;
     private Vector2 originTransform;
@@ -25,13 +24,6 @@ public class BoarForm : Ability {
         
 	}
 
-    private IEnumerator CoolDownTimer(float time)
-    {
-        yield return new WaitForSeconds(time);
-        coolDownLock = false;
-        
-    }
-
     private void BoarMove()
     {
         if (Vector2.Distance(originTransform,this.transform.position) < range)
@@ -43,7 +35,7 @@ public class BoarForm : Ability {
                 transform.position += (hitObject.distance * (Vector3)charStats.side);
                 if (hitObject.collider.tag == "Player")
                 {
-                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage,buff.name);
+                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage,buff.buffName);
                 }
             }
             else

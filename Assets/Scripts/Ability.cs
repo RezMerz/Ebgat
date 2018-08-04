@@ -9,6 +9,7 @@ public abstract class Ability : MonoBehaviour {
     public float animationTime;
     protected bool coolDownLock;
     public Buff buff;
+
     protected CharacterAttributes charStats;
     public bool abilityUse { get; set; }
 
@@ -21,6 +22,11 @@ public abstract class Ability : MonoBehaviour {
     public abstract void AbilityKeyPrssed();
     public abstract void AbilityKeyHold();
     public abstract void AbilityKeyReleased();
-    
+
+    protected IEnumerator CoolDownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        coolDownLock = false;
+    }
 
 }
