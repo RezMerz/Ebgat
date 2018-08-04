@@ -16,14 +16,14 @@ public class CustomNetworkManager : NetworkManager {
         string team = "Team " + num++;
         Debug.Log(LayerMask.NameToLayer(team));
         player.layer = LayerMask.NameToLayer(team);
+        GameObject server = Instantiate(serverNetwork);
+        NetworkServer.Spawn(server);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        //GameObject server = Instantiate(serverNetwork);
-        //NetworkServer.Spawn(server);
         //Debug.Log("server Started");
         //gameObject.AddComponent<ServerNetwork>();
     }
