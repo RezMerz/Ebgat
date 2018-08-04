@@ -88,6 +88,15 @@ public class InputCharacter : MonoBehaviour
             //clientNetworkSender.JumpReleased(transform.position);
             //jump.JumpReleased();
         }
+
+        if (Input.GetButtonDown("Ability1"))
+        {
+            print("Ability 1");
+        }
+        if (Input.GetButtonDown("Ability2"))
+        {
+            print("Ability 2");
+        }
 	}
 
 
