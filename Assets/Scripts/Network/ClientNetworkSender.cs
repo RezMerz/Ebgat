@@ -59,7 +59,6 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private void SendCommands()
     {
-        Debug.Log(hasAuthority);
         serverNetwork.CmdRecievecommands(data, PlayerID);
         data = "";
     }
@@ -68,6 +67,7 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += ECommand.KillPlayer.ToString() + ",\n";
     }
+
 
     public void Move(int num)
     {

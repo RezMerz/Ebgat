@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
     public HeroGraphics heroGraphics { get; private set; }
+    public ServerNetworkSender serverNetworkSender;
     public ClientNetworkSender clientNetworkSender;
     public ClientNetworkReciever clientNetworkReciever;
     public ServerNetwork serverNetwork;
@@ -23,7 +24,8 @@ public class PlayerControl : MonoBehaviour
     {
         clientNetworkSender = GetComponent<ClientNetworkSender>();
         clientNetworkReciever = ClientNetworkReciever.instance;
-        serverNetwork = ServerNetwork.instance;
+        serverNetworkSender = ServerNetworkSender.instance;
+        serverNetwork = GetComponent<ServerNetwork>();
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
