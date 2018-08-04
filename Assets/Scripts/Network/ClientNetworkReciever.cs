@@ -41,8 +41,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
         PlayerControl[] playerControlArray = new PlayerControl[objs.Length];
         for (int i = 0; i < objs.Length; i++){
             PlayerControl p = objs[i].GetComponent<PlayerControl>();
-            Debug.Log(p.clientNetworkSender.PlayerID);
-            playerControlArray[p.clientNetworkSender.PlayerID] = p;
+            Debug.Log(p.clientNetworkSender.PlayerID - 1);
+            playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
         }
         playerControls.AddRange(playerControlArray);
     }
