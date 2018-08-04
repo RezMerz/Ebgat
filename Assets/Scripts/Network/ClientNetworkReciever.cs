@@ -9,7 +9,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public static ClientNetworkReciever instance;
 
-    [SyncVar] public List<PlayerControl> playerControls;
+    public List<PlayerControl> playerControls;
 
     void Awake()
     {

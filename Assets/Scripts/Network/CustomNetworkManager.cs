@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class CustomNetworkManager : NetworkManager {
-
+    
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
     public List<GameObject> players;
+    public GameObject player;
 
     private bool flag = true;
 
@@ -25,8 +26,14 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         int random = Random.Range(0, players.Count);
-        GameObject player = Instantiate(players[random]);
+        player = Instantiate(players[random]);
         ClientNetworkReciever.instance.playerControls.Add(player.GetComponent<PlayerControl>());
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+    }
+
+
+    [ClientRpc]
+    public void AddPlayerComponent(){
+        ClientNetworkReciever.instance.playerControls.Add(player.GetComponent<PlayerControl>());
     }
 }
