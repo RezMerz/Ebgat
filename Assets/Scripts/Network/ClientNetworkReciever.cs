@@ -26,7 +26,6 @@ public class ClientNetworkReciever : NetworkBehaviour {
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
-            Debug.Log(lines[i]);
             string[] parts = lines[i].Split(',');
             int playerID = Convert.ToInt32(parts[0]);
             switch (parts[1])
