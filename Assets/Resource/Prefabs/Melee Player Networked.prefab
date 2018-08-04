@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114952817128732902}
   - component: {fileID: 114827184937080482}
   - component: {fileID: 95216463164827826}
+  - component: {fileID: 114881021517431168}
   m_Layer: 0
   m_Name: Melee Player Networked
   m_TagString: Player
@@ -322,7 +323,7 @@ MonoBehaviour:
     i14: 63
     i15: 220
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114489793379525310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverNetworkSender: {fileID: 0}
   clientNetworkSender: {fileID: 0}
   clientNetworkReciever: {fileID: 0}
   serverNetwork: {fileID: 0}
@@ -405,6 +407,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
+--- !u!114 &114881021517431168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314286711458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd120a957f9a4a09a9231f1b4fe4a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControl: {fileID: 0}
 --- !u!114 &114952817128732902
 MonoBehaviour:
   m_ObjectHideFlags: 1
