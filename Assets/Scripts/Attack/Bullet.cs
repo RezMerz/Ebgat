@@ -118,7 +118,7 @@ public class Bullet : MonoBehaviour {
             //playerControl.TakeAttack(damage, buff.name);
         }
         Destroy(gameObject);
-        rangedAttack.
+        rangedAttack.AttackHitServerSide(ID);
     }
 
     public void HitClient(){
