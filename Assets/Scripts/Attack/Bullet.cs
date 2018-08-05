@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public class Bullet : NetworkBehaviour {
+public class Bullet : MonoBehaviour {
     public float damage;
 
     public float range;
@@ -29,6 +29,11 @@ public class Bullet : NetworkBehaviour {
     private float vSpeed;
     private List<RaycastHit2D> hitObjects;
     private int layer;
+    private bool isServer;
+    private RangedAttack rangedAttack;
+
+    public int ID;
+
     void Start()
     {
         if (buffObject != null)
@@ -39,9 +44,17 @@ public class Bullet : NetworkBehaviour {
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
         
     }
-    public void Shoot(Vector2 targetDirection, Vector2 origin,float bulletDamage,int layer)
+
+    // Update is called once per frame
+    void Update()
     {
-        damage = bulletDamage;
+        Move();
+    }
+
+    public void Shoot(Vector2 targetDirection, Vector2 origin,int layer, bool isServer, RangedAttack rangedAttack)
+    {
+        this.rangedAttack = rangedAttack;
+        this.isServer = isServer; 
         direction = (targetDirection - origin).normalized;
         // Move Right or Left
         hDirection = (Vector2.right * direction).normalized;
@@ -50,13 +63,6 @@ public class Bullet : NetworkBehaviour {
         shot = true; 
         
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        Move();
-
-	}
     
     private void Move()
     {
@@ -69,7 +75,7 @@ public class Bullet : NetworkBehaviour {
             if (hit)
             {
                 transform.position += (Vector3)hDirection * hitObjects[0].distance;
-                Hit();
+                HitServer();
                 return;
             }
             else
@@ -88,7 +94,7 @@ public class Bullet : NetworkBehaviour {
             if (hit)
             {
                 transform.position += (Vector3)vDirection * hitObjects[0].distance;
-                Hit();
+                HitServer();
                 return;
             }
             else
@@ -100,26 +106,22 @@ public class Bullet : NetworkBehaviour {
 
     }
 
-    private void Hit()
+    private void HitServer()
     {
+        Debug.Log("hit");
         shot = false;
+        bool hitPlayer = false;
         if (hitObjects[0].collider.tag == "Player")
         {
             PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
-
-            playerControl.clientNetworkReciever.RpcTakeAttack(damage);
-            playerControl.TakeAttack(damage, buff.name);
+            hitPlayer = true;
+            //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
+            //playerControl.TakeAttack(damage, buff.name);
         }
+        rangedAttack.AttackHitServerSide(ID, damage, hitPlayer);
+    }
+
+    public void HitClient(){
         Destroy(gameObject);
     }
-
-
-    [ClientRpc]
-    public void RpcShootBulletForClient(Vector2 targetDirection, Vector2 origin, float bulletDamage,int layer){
-        if (isServer)
-            return;
-        Shoot(targetDirection, origin, bulletDamage,layer);
-    }
-
-
 }

@@ -10,12 +10,9 @@ public class CharacterMove : MonoBehaviour {
     float sizeX;
     float sizeY;
     private Animator animator;
-
     private Vector2 side;
-
     private Vector3 destination;
-
-    private Coroutine moveCycle;
+    private int moveSide;
 	void Start ()
     {
         animator = GetComponentInChildren<Animator>();
@@ -29,30 +26,34 @@ public class CharacterMove : MonoBehaviour {
     {
         if (playerControl.IsServer())
         {
-            return;
+            if(charStats.BodyState == EBodyState.Moving)
+                MoveServerside();
         }
-
-        if (destination.x - transform.position.x > 0)
-            charStats.side = Vector2.right;
         else
-            charStats.side = Vector2.left;
+        {
+            if (destination.x - transform.position.x > 0)
+                charStats.side = Vector2.right;
+            else
+                charStats.side = Vector2.left;
 
-        if(Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving){
+            if (Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving)
             {
-                float moveDistance = Time.deltaTime * charStats.moveSpeed;
-                float distance = Vector3.Distance(transform.position, destination);
+                {
+                    float moveDistance = Time.deltaTime * charStats.moveSpeed;
+                    float distance = Vector3.Distance(transform.position, destination);
 
-                
-                if (moveDistance > distance)
-                {
-                    transform.position += distance* (Vector3)charStats.side;
-                }
-                else
-                {
-                    transform.position += moveDistance * (Vector3)charStats.side;
-                }
-               
-            }
+
+                    if (moveDistance > distance)
+                    {
+                        transform.position += distance * (Vector3)charStats.side;
+                    }
+                    else
+                    {
+                        transform.position += moveDistance * (Vector3)charStats.side;
+                    }
+
+             }
+        }
            
         }
     }
@@ -68,58 +69,41 @@ public class CharacterMove : MonoBehaviour {
     }
     
     // ray cast for move in square objects
-
-    public void MoveRightStart()
-    {
-
-    }
-
-    public void MoveLeftStart()
-    {
-
-    }
     public void MovePressed(int i)
     {
-        if(moveCycle != null)
-            StopCoroutine(moveCycle);
-        MoveServerside(i);
-        moveCycle =  StartCoroutine(MoveCycle(0.01f,i));
+        if (charStats.HeadState != EHeadState.Stunned)
+        {
+            charStats.BodyState = EBodyState.Moving;
+        }
+        moveSide = i;
     }
-
-    private IEnumerator MoveCycle(float time,int i)
+    public void MoveServerside()
     {
-        yield return new WaitForSeconds(time);
-        MovePressed(i);
-    }
-
-    public void MoveServerside(int i)
-    {
-        SpeedCheck(i);
+        SpeedCheck(moveSide);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * i, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
-        charStats.BodyState = EBodyState.Moving;
+        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
         Vector3 des;
         if (!hit)
         {
-            des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * i;
+            des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * moveSide;
             transform.position = des;
-            playerControl.serverNetwork.ClientMove(des);
+            playerControl.serverNetworkSender.ClientMove(playerControl.clientNetworkSender.PlayerID, des);
         }
-        // hit some objects, move to the nearst
+        // hit some objects, move to the nearest
         else
         {
             charStats.ResetMoveSpeed();
-            des = transform.position + Vector3.right * i * (hitObjects[0].distance);
+            des = transform.position + Vector3.right * moveSide * (hitObjects[0].distance);
             transform.position = des;
-            playerControl.serverNetwork.ClientMoveFinished(des);
+            playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, des);
         }
         
     }
 
     public void MoveReleasedServerside(Vector3 position){
-        StopCoroutine(moveCycle);
-        playerControl.serverNetwork.ClientMoveFinished(position);
+        charStats.BodyState = EBodyState.Standing;
+        playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
     }
 
     public void MoveReleasedClientside(Vector3 position)
@@ -131,6 +115,8 @@ public class CharacterMove : MonoBehaviour {
     
     public void MoveClientside(Vector2 position)
     {
+        if (playerControl.IsServer())
+            return;
         charStats.BodyState = EBodyState.Moving;
         destination = position;
         //animator.SetBool("Walking", true);

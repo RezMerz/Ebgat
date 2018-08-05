@@ -9,6 +9,7 @@ public class Buff : MonoBehaviour {
     public float time;
     public float timer;
     public bool stackable;
+    public EHeadState headState;
     
     //health attributes
     public float deltaArmor;
@@ -43,13 +44,13 @@ public class Buff : MonoBehaviour {
 
     void Start()
     {
-
         finish = false;
     }
 
     public void BuffCharacter()
     {
         timer = time;
+        charStats.HeadState = headState;
         charStats.armor += deltaArmor;
         charStats.hitPoints += deltaHp;
         charStats.attackCooldown += deltaAttackCooldown;
@@ -68,6 +69,7 @@ public class Buff : MonoBehaviour {
 
     public void DebuffCharacter()
     {
+        charStats.HeadState = EHeadState.Conscious;
         charStats.armor -= deltaArmor;
         charStats.hitPoints -= deltaHp;
         charStats.attackCooldown -= deltaAttackCooldown;

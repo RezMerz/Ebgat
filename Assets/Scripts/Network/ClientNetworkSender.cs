@@ -13,6 +13,9 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private string data = "";
 
+    private static int num = 1;
+    [SyncVar]public int PlayerID;
+
     // Use this for initialization
     void Start()
     {
@@ -31,10 +34,16 @@ public class ClientNetworkSender : NetworkBehaviour
         }
         else
         {
+            
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
+
             playerControl.color = Color.white;
+        }
+
+        if(isServer){
+            PlayerID = num++;
         }
     }
 
@@ -46,12 +55,11 @@ public class ClientNetworkSender : NetworkBehaviour
         if (data.Equals(""))
             return;
         SendCommands();
-        //data = "";
     }
 
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data);
+        serverNetwork.CmdRecievecommands(data, PlayerID);
         data = "";
     }
 
@@ -59,6 +67,7 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += ECommand.KillPlayer.ToString() + ",\n";
     }
+
 
     public void Move(int num)
     {
@@ -70,10 +79,6 @@ public class ClientNetworkSender : NetworkBehaviour
             Debug.Log("wrong input");
     }
 
-    public void SetVerticalDirection(int num)
-    {
-        data += 7 + "," + num + ",\n";
-    }
     public void MoveFinished(Vector3 position)
     {
         data += 3 + "," + position.x + "," + position.y + "," + position.z + ",\n";
@@ -92,6 +97,15 @@ public class ClientNetworkSender : NetworkBehaviour
     public void JumpReleased(Vector3 position)
     {
         data += 6 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+    }
+
+    public void SetVerticalDirection(int num)
+    {
+        data += 7 + "," + num + ",\n";
+    }
+
+    public void RangedAttack(Vector2 attackDir){
+        data += 8 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
     public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)

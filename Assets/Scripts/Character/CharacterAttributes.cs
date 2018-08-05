@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Diagnostics;
 public class CharacterAttributes : MonoBehaviour {
 
     private EHeadState headState;
@@ -11,12 +11,14 @@ public class CharacterAttributes : MonoBehaviour {
         get { return headState; }
         set { headState = value; }
     }
+
     private EBodyState bodyState;
 
+    StackTrace stackTrace = new StackTrace();
     public EBodyState BodyState
     {
         get { return bodyState; }
-        set { bodyState = value; }
+        set { bodyState = value;}
     }
     private EHandState handState;
 
@@ -148,8 +150,8 @@ public class CharacterAttributes : MonoBehaviour {
 
 public enum EHeadState { Conscious, Stunned };
 public enum EBodyState { Standing,Moving};
-public enum EHandState { Idle, Moving, Attacking, Casting };
-public enum EFeetState { Onground, Falling, Jumping };
+public enum EHandState { Idle, Moving, Attacking, Casting, Channeling };
+public enum EFeetState { Onground, Falling, Jumping, NoGravity};
 
 public enum EAttackMode { Ranged,Melee};
 

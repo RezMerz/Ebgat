@@ -12,6 +12,7 @@ public class InputCharacter : MonoBehaviour
     private CharacterMove characterMove;
     private PlayerJump jump;
     private ClientNetworkSender clientNetworkSender;
+    private AbilityManager abilityManager;
     private bool axis;
 	// Use this for initialization
 	void Start ()
@@ -21,6 +22,7 @@ public class InputCharacter : MonoBehaviour
         clientNetworkSender = playerControl.clientNetworkSender;
         attack = playerControl.attack;
         characterMove = playerControl.characterMove;
+        abilityManager = GetComponent<AbilityManager>();
 
         jump = playerControl.jump;
 	}
@@ -64,6 +66,7 @@ public class InputCharacter : MonoBehaviour
         //Attack
         if (Input.GetButtonDown("Fire"))
         {
+            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             attack.AttackPressed(Input.mousePosition);
         }
         else if(Input.GetAxis("Fire") > 0.1)
@@ -87,6 +90,15 @@ public class InputCharacter : MonoBehaviour
         {
             //clientNetworkSender.JumpReleased(transform.position);
             //jump.JumpReleased();
+        }
+
+        if (Input.GetButtonDown("Ability1"))
+        {
+            abilityManager.Ability1Pressed();
+        }
+        if (Input.GetButtonDown("Ability2"))
+        {
+            print("Ability 2");
         }
 	}
 
