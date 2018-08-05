@@ -292,6 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47395ce1e85f60b4293284f1c359370f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
+    type: 2}
 --- !u!114 &114259075243721224
 MonoBehaviour:
   m_ObjectHideFlags: 1

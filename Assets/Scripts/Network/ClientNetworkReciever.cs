@@ -9,7 +9,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public static ClientNetworkReciever instance;
 
-    public List<PlayerControl> playerControls;
+    private List<PlayerControl> playerControls;
+    private PlayerControl localPlayerControl; 
 
     int playernumber;
 
@@ -20,9 +21,9 @@ public class ClientNetworkReciever : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcRecieveCommands(string data){
+    public void RpcRecieveCommands(string data, string hitdata){
         if (playerControls.Count != playernumber)
-            ccss();
+            UpdatePlayer();
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
@@ -33,6 +34,19 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 case "1": playerControls[playerID - 1].characterMove.MoveClientside(new Vector3(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[4], CultureInfo.InvariantCulture.NumberFormat))); break;
                 case "2": playerControls[playerID - 1].characterMove.MoveReleasedClientside(new Vector3(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[4], CultureInfo.InvariantCulture.NumberFormat))); break;
                 case "6": playerControls[playerID - 1].SetVerticalDirection(Convert.ToInt32(parts[2])); break;
+                case "7": playerControls[playerID - 1].attack.AttackClientside(new Vector2(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat)), Convert.ToInt32(parts[4])); break;
+                case "8": playerControls[playerID - 1].attack.AttackHitClientSide(Convert.ToInt32(parts[2])); break;
+                case "9": playerControls[playerID - 1].TakeAttack(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), parts[3]); break;
+                default: Debug.Log("wrong data"); break;
+            }
+        }
+        lines = hitdata.Split('\n');
+        for (int i = 0; i < lines.Length - 1; i++)
+        {
+            string[] parts = lines[i].Split(',');
+            switch (parts[0])
+            {
+                default: Debug.Log("wrong hit data"); break;
             }
         }
     }
@@ -42,7 +56,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
         playernumber = GameObject.FindGameObjectsWithTag("Player").Length;
     }
 
-    private void ccss(){
+    private void UpdatePlayer(){
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         PlayerControl[] playerControlArray = new PlayerControl[objs.Length];
@@ -50,6 +64,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
         {
             PlayerControl p = objs[i].GetComponent<PlayerControl>();
             playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
+            if (p.IsLocalPlayer())
+                localPlayerControl = p;
         }
         playerControls.AddRange(playerControlArray);
     }
@@ -101,10 +117,6 @@ public class ClientNetworkReciever : NetworkBehaviour {
         playerControl.attack.AttackPressed(position);
     }
     */
-
-    public void RpcShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
-    {
-    }
 
     /*[ClientRpc]
     public void RpcTakeAttack(float damage)

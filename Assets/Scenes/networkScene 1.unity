@@ -16252,7 +16252,6 @@ MonoBehaviour:
     type: 2}
   players:
   - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
-  - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
 --- !u!4 &1887430562
 Transform:
   m_ObjectHideFlags: 0
