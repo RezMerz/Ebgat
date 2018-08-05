@@ -60,7 +60,7 @@ public class ServerNetworkSender : NetworkBehaviour {
         data += playerID + "," + 7 + "," + attackDir.x + "," + attackDir.y + "," + (attackID++) + ",\n";
     }
 
-    public void ClientBulletHit(int attackID){
-        hitData += 8 + "," + attackID + ",\n";
+    public void ClientBulletHit(int playerID, int attackID){
+        data += playerID + "," + 8 + "," + attackID + ",\n";
     }
 }
