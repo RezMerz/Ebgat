@@ -61,6 +61,6 @@ public class ServerNetworkSender : NetworkBehaviour {
     }
 
     public void ClientBulletHit(int attackID){
-        data += 8 + "," + attackID + ",\n";
+        hitData += 8 + "," + attackID + ",\n";
     }
 }
