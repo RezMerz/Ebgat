@@ -10,6 +10,8 @@ public class ServerNetworkSender : NetworkBehaviour {
 
     ClientNetworkReciever clientNetworkReciever;
     string data = "";
+    string hitData = "";
+    int attackID;
 
     private void Awake()
     {
@@ -34,8 +36,9 @@ public class ServerNetworkSender : NetworkBehaviour {
 
     private void SendCommands()
     {
-        clientNetworkReciever.RpcRecieveCommands(data);
+        clientNetworkReciever.RpcRecieveCommands(data, hitData);
         data = "";
+        hitData = "";
     }
 
     public void ClientMove(int playerID, Vector3 position)
@@ -51,5 +54,13 @@ public class ServerNetworkSender : NetworkBehaviour {
     public void ClientSetVerticalSide(int playerID, int num)
     {
         data += playerID + "," + 6 + "," + num + ",\n";
+    }
+
+    public void ClientRangedAttack(int playerID, Vector2 attackDir){
+        data += playerID + "," + 7 + "," + attackDir.x + "," + attackDir.y + "," + (attackID++) + ",\n";
+    }
+
+    public void ClientBulletHit(int attackID){
+        data += 8 + "," + attackID + ",\n";
     }
 }

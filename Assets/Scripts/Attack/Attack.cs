@@ -8,7 +8,6 @@ public abstract class Attack : MonoBehaviour {
     protected CharacterAttributes charStats;
     protected HeroGraphics heroGraphics;
     protected PlayerControl playerControl;
-
 	// Use this for initialization
     void Start () {
         heroGraphics = GetComponent<HeroGraphics>();
@@ -31,5 +30,11 @@ public abstract class Attack : MonoBehaviour {
         
 	}
 
-    public virtual void AttackPressed(Vector2 mousePos) { }
+    public virtual void AttackPressed(Vector2 attackDir) {}
+
+    public virtual void AttackServerside(Vector2 attackDir){}
+
+    public virtual void AttackClientside(Vector2 attackDir, int attackID){}
+
+    public virtual void AttackHit(int attackID){} 
 }

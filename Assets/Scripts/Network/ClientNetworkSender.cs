@@ -24,21 +24,21 @@ public class ClientNetworkSender : NetworkBehaviour
         serverNetwork = playerControl.serverNetwork;
         if (playerControl.IsLocalPlayer())
         {
-            /*charStats.teamName = "Team 1";
+            charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
             gameObject.layer = LayerMask.NameToLayer("Team 1");
-            */
+
             //change color for localm player
             playerControl.color = Color.green;
             GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
-            /*
+            
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
-            */
+
             playerControl.color = Color.white;
         }
 
@@ -79,10 +79,6 @@ public class ClientNetworkSender : NetworkBehaviour
             Debug.Log("wrong input");
     }
 
-    public void SetVerticalDirection(int num)
-    {
-        data += 7 + "," + num + ",\n";
-    }
     public void MoveFinished(Vector3 position)
     {
         data += 3 + "," + position.x + "," + position.y + "," + position.z + ",\n";
@@ -101,6 +97,15 @@ public class ClientNetworkSender : NetworkBehaviour
     public void JumpReleased(Vector3 position)
     {
         data += 6 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+    }
+
+    public void SetVerticalDirection(int num)
+    {
+        data += 7 + "," + num + ",\n";
+    }
+
+    public void RangedAttack(Vector2 attackDir){
+        data += 8 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
     public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
