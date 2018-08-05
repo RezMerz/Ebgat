@@ -44,7 +44,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
             string[] parts = lines[i].Split(',');
             switch (parts[0])
             {
-                case "8": localPlayerControl.attack.AttackHit(Convert.ToInt32(parts[1])); break;
+                case "8": localPlayerControl.attack.AttackHitClientSide(Convert.ToInt32(parts[1])); break;
                 default: Debug.Log("wrong hit data"); break;
             }
         }

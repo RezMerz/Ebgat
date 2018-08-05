@@ -5,12 +5,10 @@ using UnityEngine;
 public class RangedAttack : Attack {
     
     public GameObject bulletPrefab;
-    private List<Bullet> bullets;
+    private List<Bullet> bullets = new List<Bullet>();
 
     public override void AttackPressed(Vector2 attackDir)
     {
-        if (bullets == null)
-            bullets = new List<Bullet>();
         playerControl.clientNetworkSender.RangedAttack(attackDir);
     }
 
@@ -39,7 +37,7 @@ public class RangedAttack : Attack {
         bullet.Shoot(targetdirection, transform.position, layer, playerControl.IsServer(), this);
     }
 
-    public override void AttackHit(int attackID)
+    public override void AttackHitClientSide(int attackID)
     {
         for (int i = 0; i < bullets.Count; i++){
             if(bullets[i].ID == attackID){
@@ -47,5 +45,10 @@ public class RangedAttack : Attack {
                 bullets[i].HitClient();
             }
         }
+    }
+
+    public override void AttackHitServerSide(int attackID)
+    {
+        playerControl.serverNetworkSender.ClientBulletHit(attackID);
     }
 }

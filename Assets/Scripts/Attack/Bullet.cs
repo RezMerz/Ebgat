@@ -58,7 +58,6 @@ public class Bullet : MonoBehaviour {
         direction = (targetDirection - origin).normalized;
         // Move Right or Left
         hDirection = (Vector2.right * direction).normalized;
-        Debug.Log(layer);
         this.layer = layer;
         transform.position = origin;
         shot = true; 
@@ -67,7 +66,6 @@ public class Bullet : MonoBehaviour {
     
     private void Move()
     {
-        Debug.Log("moving");
         if (shot)
         {
             if (isServer)
@@ -120,6 +118,7 @@ public class Bullet : MonoBehaviour {
             //playerControl.TakeAttack(damage, buff.name);
         }
         Destroy(gameObject);
+        rangedAttack.
     }
 
     public void HitClient(){

@@ -36,5 +36,9 @@ public abstract class Attack : MonoBehaviour {
 
     public virtual void AttackClientside(Vector2 attackDir, int attackID){}
 
-    public virtual void AttackHit(int attackID){} 
+    public virtual void AttackHitClientSide(int attackID){} 
+
+    public virtual void AttackHitServerSide(int attackID){
+        
+    }
 }
