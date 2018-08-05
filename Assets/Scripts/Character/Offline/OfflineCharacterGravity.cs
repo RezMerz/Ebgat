@@ -101,9 +101,13 @@ public class OfflineCharacterGravity : MonoBehaviour {
         }
     }
 
-    public void  ChangeMask(int masknumber)
+    public void IncludeBridge()
     {
+        mask = LayerMask.GetMask("Blocks", "Bridge");
+    }
+    public void ExcludeBridge()
+    {
+        mask = LayerMask.GetMask("Blocks");
         timer = charStats.cayoteTime;
-        mask = masknumber;
     }
 }

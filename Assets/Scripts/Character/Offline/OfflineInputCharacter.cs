@@ -11,6 +11,8 @@ public class OfflineInputCharacter : MonoBehaviour {
     private float axisX;
     private float axisY;
 
+    private bool axisYChanged;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -35,14 +37,22 @@ public class OfflineInputCharacter : MonoBehaviour {
         {
             charMoveOff.MoveReleased();
         }
+
+
+
         if(axisY < -0.1f)
         {
-            charGravityOff.ChangeMask(LayerMask.GetMask("Blocks"));
+            charGravityOff.ExcludeBridge();
+            axisYChanged = true;
         }
-        else if (axisY > -0.1f && axisY < 0f)
+        else if (axisYChanged && axisY == 0)
         {
-            charGravityOff.ChangeMask(LayerMask.GetMask("Blocks","Bridge"));
+            charGravityOff.IncludeBridge();
+            axisYChanged = false;
         }
+
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             charJumpOff.JumpPressed();
