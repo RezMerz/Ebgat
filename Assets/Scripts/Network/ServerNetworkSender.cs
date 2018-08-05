@@ -29,7 +29,7 @@ public class ServerNetworkSender : NetworkBehaviour {
     {
         if (!isServer)
             return;
-        if (data.Equals(""))
+        if (data.Equals("") && hitData.Equals(""))
             return;
         SendCommands();
     }

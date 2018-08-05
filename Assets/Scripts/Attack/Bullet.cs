@@ -117,7 +117,6 @@ public class Bullet : MonoBehaviour {
             //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
             //playerControl.TakeAttack(damage, buff.name);
         }
-        Destroy(gameObject);
         rangedAttack.AttackHitServerSide(ID);
     }
 

@@ -39,7 +39,9 @@ public class RangedAttack : Attack {
 
     public override void AttackHitClientSide(int attackID)
     {
+        Debug.Log("Hit id: " + attackID);
         for (int i = 0; i < bullets.Count; i++){
+            Debug.Log("bullet id: " + attackID);
             if(bullets[i].ID == attackID){
                 Debug.Log("attackid hit: " + attackID);
                 bullets[i].HitClient();

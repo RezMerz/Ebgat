@@ -9,7 +9,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     public static ClientNetworkReciever instance;
 
-    public List<PlayerControl> playerControls;
+    private List<PlayerControl> playerControls;
     private PlayerControl localPlayerControl; 
 
     int playernumber;
