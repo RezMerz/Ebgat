@@ -43,13 +43,17 @@ public class RangedAttack : Attack {
         for (int i = 0; i < bullets.Count; i++){
             if(bullets[i].ID == attackID){
                 Debug.Log("attackid hit: " + attackID);
-                bullets[i].HitClient();
+                Bullet temp = bullets[i];
+                bullets.RemoveAt(i);
+                temp.HitClient();
+                return;
             }
         }
     }
 
-    public override void AttackHitServerSide(int attackID)
+    public override void AttackHitServerSide(int attackID, float attackDamage)
     {
         playerControl.serverNetworkSender.ClientBulletHit(playerControl.clientNetworkSender.PlayerID, attackID);
+        playerControl.serverNetworkSender.ClienTakeAttack(playerControl.clientNetworkSender.PlayerID, attackDamage, "");
     }
 }

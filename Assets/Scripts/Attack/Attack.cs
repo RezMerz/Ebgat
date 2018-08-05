@@ -38,7 +38,7 @@ public abstract class Attack : MonoBehaviour {
 
     public virtual void AttackHitClientSide(int attackID){} 
 
-    public virtual void AttackHitServerSide(int attackID){
+    public virtual void AttackHitServerSide(int attackID, float attackDamage){
         
     }
 }

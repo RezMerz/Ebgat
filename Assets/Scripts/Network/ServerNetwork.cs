@@ -43,11 +43,6 @@ public class ServerNetwork : NetworkBehaviour {
         Destroy(gameObject);
     }
 
-    [Command]
-    public void CmdMeleeattack(){
-        
-    }
-
     /*[Command]
     public void CmdMove(int num)
     {

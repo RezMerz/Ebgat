@@ -63,4 +63,8 @@ public class ServerNetworkSender : NetworkBehaviour {
     public void ClientBulletHit(int playerID, int attackID){
         data += playerID + "," + 8 + "," + attackID + ",\n";
     }
+
+    public void ClienTakeAttack(int playerID, float attackDamage, string buffName){
+        data += playerID + "," + 9 + "," + attackDamage + "," + buffName + ",\n";
+    }
 }

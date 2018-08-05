@@ -117,7 +117,7 @@ public class Bullet : MonoBehaviour {
             //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
             //playerControl.TakeAttack(damage, buff.name);
         }
-        rangedAttack.AttackHitServerSide(ID);
+        rangedAttack.AttackHitServerSide(ID, damage);
     }
 
     public void HitClient(){
