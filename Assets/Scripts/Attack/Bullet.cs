@@ -110,14 +110,15 @@ public class Bullet : MonoBehaviour {
     {
         Debug.Log("hit");
         shot = false;
+        bool hitPlayer = false;
         if (hitObjects[0].collider.tag == "Player")
         {
             PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
-
+            hitPlayer = true;
             //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
             //playerControl.TakeAttack(damage, buff.name);
         }
-        rangedAttack.AttackHitServerSide(ID, damage);
+        rangedAttack.AttackHitServerSide(ID, damage, hitPlayer);
     }
 
     public void HitClient(){

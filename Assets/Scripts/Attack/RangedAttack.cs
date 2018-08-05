@@ -51,9 +51,10 @@ public class RangedAttack : Attack {
         }
     }
 
-    public override void AttackHitServerSide(int attackID, float attackDamage)
+    public override void AttackHitServerSide(int attackID, float attackDamage, bool hitPlayer)
     {
         playerControl.serverNetworkSender.ClientBulletHit(playerControl.clientNetworkSender.PlayerID, attackID);
-        playerControl.serverNetworkSender.ClienTakeAttack(playerControl.clientNetworkSender.PlayerID, attackDamage, "");
+        if(hitPlayer)
+            playerControl.serverNetworkSender.ClienTakeAttack(playerControl.clientNetworkSender.PlayerID, attackDamage, "");
     }
 }
