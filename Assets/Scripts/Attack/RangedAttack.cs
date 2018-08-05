@@ -34,16 +34,13 @@ public class RangedAttack : Attack {
         int layer = LayerMask.GetMask(playerControl.charStats.enemyTeamName, "Blocks");
         bullet.ID = attackID;
         bullets.Add(bullet);
-        Debug.Log("bullets size: " + bullets.Count);
         bullet.Shoot(targetdirection, transform.position, layer, playerControl.IsServer(), this);
     }
 
     public override void AttackHitClientSide(int attackID)
     {
-        Debug.Log("Hit id: " + attackID);
         Debug.Log(bullets.Count);
         for (int i = 0; i < bullets.Count; i++){
-            Debug.Log("bullet id: " + attackID);
             if(bullets[i].ID == attackID){
                 Debug.Log("attackid hit: " + attackID);
                 bullets[i].HitClient();
