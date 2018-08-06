@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour {
     PlayerControl playerControl;
-    public float threshold;
     private CharacterAttributes charStats;
     private Animator animator;
     private Vector2 side;
     private Vector2 size;
     private Vector3 destination;
     private int moveSide;
+    private int layerMask;
 	void Start ()
     {
         animator = GetComponentInChildren<Animator>();
@@ -19,6 +19,8 @@ public class CharacterMove : MonoBehaviour {
         playerControl = GetComponent<PlayerControl>();
         destination = transform.position;
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
+
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
 	}
 
     void Update()
@@ -30,29 +32,27 @@ public class CharacterMove : MonoBehaviour {
         }
         else
         {
-            if (destination.x - transform.position.x > 0)
+            float distance = destination.x - transform.position.x;
+            if (distance > 0)
                 charStats.side = Vector2.right;
             else
                 charStats.side = Vector2.left;
 
-            if (Vector3.Distance(transform.position, destination) > Mathf.Epsilon && charStats.BodyState == EBodyState.Moving)
+            if (charStats.BodyState == EBodyState.Moving && Mathf.Abs(distance) > Mathf.Epsilon)
             {
                 {
                     float moveDistance = Time.deltaTime * charStats.moveSpeed;
-                    float distance = Vector3.Distance(transform.position, destination);
 
-
-                    if (moveDistance > distance)
+                    if (moveDistance > Mathf.Abs(distance))
                     {
-                        transform.position += distance * (Vector3)charStats.side;
+                        transform.position += Mathf.Abs(distance) * (Vector3)charStats.side;
                     }
                     else
                     {
                         transform.position += moveDistance * (Vector3)charStats.side;
                     }
-
-             }
-        }
+                }
+            }
            
         }
     }
@@ -72,7 +72,7 @@ public class CharacterMove : MonoBehaviour {
         SpeedCheck(moveSide);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        hit = Toolkit.CheckMove(transform.position, size, Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
+        hit = Toolkit.CheckMove(transform.position, size, Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, layerMask, out hitObjects);
         Vector3 des;
         if (!hit)
         {
