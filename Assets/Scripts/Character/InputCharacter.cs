@@ -66,6 +66,7 @@ public class InputCharacter : MonoBehaviour
         //Attack
         if (Input.GetButtonDown("Fire"))
         {
+            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             attack.AttackPressed(Input.mousePosition);
         }
         else if(Input.GetAxis("Fire") > 0.1)

@@ -24,21 +24,21 @@ public class ClientNetworkSender : NetworkBehaviour
         serverNetwork = playerControl.serverNetwork;
         if (playerControl.IsLocalPlayer())
         {
-            /*charStats.teamName = "Team 1";
+            charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
             gameObject.layer = LayerMask.NameToLayer("Team 1");
-            */
+
             //change color for localm player
             playerControl.color = Color.green;
             GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
-            /*
+            
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
-            */
+
             playerControl.color = Color.white;
         }
 
@@ -63,11 +63,6 @@ public class ClientNetworkSender : NetworkBehaviour
         data = "";
     }
 
-    public void KillPlayer()
-    {
-        data += ECommand.KillPlayer.ToString() + ",\n";
-    }
-
 
     public void Move(int num)
     {
@@ -79,10 +74,6 @@ public class ClientNetworkSender : NetworkBehaviour
             Debug.Log("wrong input");
     }
 
-    public void SetVerticalDirection(int num)
-    {
-        data += 7 + "," + num + ",\n";
-    }
     public void MoveFinished(Vector3 position)
     {
         data += 3 + "," + position.x + "," + position.y + "," + position.z + ",\n";
@@ -103,23 +94,19 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 6 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
-    public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
+    public void SetVerticalDirection(int num)
     {
-        data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage + ",\n";
+        data += 7 + "," + num + ",\n";
     }
 
-    public void TakeDamage(float damage)
-    {
-        data += ECommand.TakeAttack.ToString() + "," + damage + ",\n";
+    public void RangedAttack(Vector2 attackDir){
+        data += 8 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
-    public void MeleeAttack(Vector3 origin, float damage, Vector3 targetdirection, int layer)
+    public void MeleeAttack(Vector2 attackDir)
     {
-        data += ECommand.MeleeAttack.ToString() + "," + origin.x + "," + origin.y + "," + origin.z + "," + damage + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + layer + ",\n";
+        data += 9 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
-}
 
-public enum ECommand
-{
-    Move, MoveFinished, JumpPressed, JumpLong, JumpReleased, ShootBullet, KillPlayer, TakeAttack, MeleeAttack
+
 }

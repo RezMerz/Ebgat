@@ -99,7 +99,13 @@ public class PlayerControl : MonoBehaviour
         jump.JumpPressed();
     }
 
-    public void Meleeattack() { }
+    public void RangedAttack(Vector2 attackDir){
+        attack.AttackServerside(attackDir);
+    }
+
+    public void Meleeattack(Vector2 attackDir) {
+        attack.AttackServerside(attackDir);
+    }
         
 
 }

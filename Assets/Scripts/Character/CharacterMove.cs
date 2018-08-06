@@ -7,10 +7,9 @@ public class CharacterMove : MonoBehaviour {
     PlayerControl playerControl;
     public float threshold;
     private CharacterAttributes charStats;
-    float sizeX;
-    float sizeY;
     private Animator animator;
     private Vector2 side;
+    private Vector2 size;
     private Vector3 destination;
     private int moveSide;
 	void Start ()
@@ -19,7 +18,7 @@ public class CharacterMove : MonoBehaviour {
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         destination = transform.position;
-        Set_Size(); 
+        size = transform.localScale * GetComponent<BoxCollider2D>().size;
 	}
 
     void Update()
@@ -58,15 +57,6 @@ public class CharacterMove : MonoBehaviour {
         }
     }
 
-    void Set_Size()
-    {
-        sizeX = transform.localScale.x * GetComponent<BoxCollider2D>().size.x;
-        sizeY = transform.localScale.y * GetComponent<BoxCollider2D>().size.y;
-    }
-    public Vector2 Get_Size()
-    {
-        return new Vector2(sizeX, sizeY);
-    }
     
     // ray cast for move in square objects
     public void MovePressed(int i)
@@ -82,7 +72,7 @@ public class CharacterMove : MonoBehaviour {
         SpeedCheck(moveSide);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        hit = Toolkit.CheckMove(transform.position, Get_Size(), Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
+        hit = Toolkit.CheckMove(transform.position, size, Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, 256, out hitObjects);
         Vector3 des;
         if (!hit)
         {

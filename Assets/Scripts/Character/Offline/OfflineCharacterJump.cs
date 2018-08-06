@@ -15,6 +15,7 @@ public class OfflineCharacterJump : MonoBehaviour {
 
     private float timer;
     private bool jumpSpeedIncrease;
+    private bool getCommand;
 
     private int mask;
 
@@ -28,17 +29,26 @@ public class OfflineCharacterJump : MonoBehaviour {
     }
     private void Update()
     {
-        Jumping();
+        if(charStats.FeetState == EFeetState.Jumping)
+        {
+            if(charStats.HeadState == EHeadState.Stunned)
+            {
+                charStats.FeetState = EFeetState.Falling;
+            }
+            else
+            {
+                Jumping();
+            }
+        }
     }
 
     // First Jump
     public void JumpPressed()
     {
         // Jump only if on 
-        if (charStats.FeetState == EFeetState.Onground)
+        if (charStats.FeetState == EFeetState.Onground && charStats.HeadState !=EHeadState.Stunned )
         {
-            jumpSpeedIncrease = false;
-            timer = 0;
+            getCommand = true;
             gravitySpeed = 0f;
             jumpSpeed = charStats.jumpSpeed;
             charStats.FeetState = EFeetState.Jumping;
@@ -49,58 +59,41 @@ public class OfflineCharacterJump : MonoBehaviour {
     // Holding the Jump
     public void JumpHold()
     {
-        if (charStats.FeetState == EFeetState.Jumping)
+        if (getCommand && charStats.FeetState == EFeetState.Jumping)
         {
-            timer += Time.deltaTime;
-            if (timer >= fullJumpHoldTime)
+            jumpSpeed += charStats.jumpAcceleration * Time.deltaTime;
+            if (jumpSpeed > charStats.jumpSpeedMax)
             {
-                IncreaseJumpSpeed();
+                jumpSpeed = charStats.jumpSpeedMax;
             }
         }
-    }
-
-    public void IncreaseJumpSpeed()
-    {
-        jumpSpeedIncrease = true;
     }
 
     public void JumpReleased()
     {
-        timer = -Mathf.Infinity;
+        getCommand = false;
     }
 
     private void Jumping()
     {
-        if (charStats.FeetState == EFeetState.Jumping)
-        {
-            if (jumpSpeedIncrease)
-            {
-                jumpSpeed += charStats.jumpAcceleration * Time.deltaTime;
-                if (jumpSpeed > charStats.jumpSpeedMax)
-                {
-                    jumpSpeed = charStats.jumpSpeedMax;
-                }
-            }
-            actualSpeed = jumpSpeed - gravitySpeed;
-            if (actualSpeed > 0)
-            {
-                bool hit = Toolkit.CheckMove(transform.position, charStats.size, Vector2.up, actualSpeed * Time.deltaTime,mask, out hitObjects);
-                if (!hit)
-                {
-                    transform.position += Vector3.up * (actualSpeed * Time.deltaTime);
-                    gravitySpeed += charStats.gravityAcceleration * Time.deltaTime;
-                }
-                else
-                {
-                    transform.position += Vector3.up * (hitObjects[0].distance);
-                    charStats.FeetState = EFeetState.Falling;
-                }
-
-            }
-            else
-            {
-                charStats.FeetState = EFeetState.Falling;
-            }
-        }
+         actualSpeed = jumpSpeed - gravitySpeed;
+         if (actualSpeed > 0)
+         {
+             bool hit = Toolkit.CheckMove(transform.position, charStats.size, Vector2.up, actualSpeed * Time.deltaTime,mask, out hitObjects);
+             if (!hit)
+             {
+                 transform.position += Vector3.up * (actualSpeed * Time.deltaTime);
+                 gravitySpeed += charStats.gravityAcceleration * Time.deltaTime;
+             }
+             else
+             {
+                 transform.position += Vector3.up * (hitObjects[0].distance);
+                 charStats.FeetState = EFeetState.Falling;
+             }
+         }
+         else
+         {
+             charStats.FeetState = EFeetState.Falling;
+         }
     }
 }
