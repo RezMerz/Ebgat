@@ -67,4 +67,8 @@ public class ServerNetworkSender : NetworkBehaviour {
     public void ClienTakeAttack(int playerID, float attackDamage, string buffName){
         data += playerID + "," + 9 + "," + attackDamage + "," + buffName + ",\n";
     }
+
+    public void ClientMeleeAttack(int playerID, Vector2 attackDir){
+        data += playerID + "," + 10 + "," + attackDir.x + "," + attackDir.y + "," + (attackID++) + ",\n";
+    }
 }

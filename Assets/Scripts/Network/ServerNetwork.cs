@@ -33,6 +33,7 @@ public class ServerNetwork : NetworkBehaviour {
                 case "4": playerControl.JumpPressed(); break;
                 case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
                 case "8": playerControl.RangedAttack(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat))); break;
+                case "9": playerControl.Meleeattack(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat))); break;
             }
         }
     }

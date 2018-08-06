@@ -103,7 +103,9 @@ public class PlayerControl : MonoBehaviour
         attack.AttackServerside(attackDir);
     }
 
-    public void Meleeattack() { }
+    public void Meleeattack(Vector2 attackDir) {
+        attack.AttackServerside(attackDir);
+    }
         
 
 }
