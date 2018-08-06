@@ -18,7 +18,7 @@ public class AbilityManager : MonoBehaviour {
     public void Ability1Pressed()
     {
         if(charStats.HeadState != EHeadState.Stunned)
-            ability1.AbilityKeyPrssed();
+            ability1.AbilityKeyPrssedServerSide();
     }
 
     public void Ability1Hold()

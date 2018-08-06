@@ -63,11 +63,6 @@ public class ClientNetworkSender : NetworkBehaviour
         data = "";
     }
 
-    public void KillPlayer()
-    {
-        data += ECommand.KillPlayer.ToString() + ",\n";
-    }
-
 
     public void Move(int num)
     {
@@ -108,23 +103,10 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 8 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
-    public void Shootbullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
+    public void MeleeAttack(Vector2 attackDir)
     {
-        data += ECommand.ShootBullet.ToString() + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + "," + origin.x + "," + origin.y + "," + origin.z + "," + bulletDamage + ",\n";
+        data += 9 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
-    public void TakeDamage(float damage)
-    {
-        data += ECommand.TakeAttack.ToString() + "," + damage + ",\n";
-    }
 
-    public void MeleeAttack(Vector3 origin, float damage, Vector3 targetdirection, int layer)
-    {
-        data += ECommand.MeleeAttack.ToString() + "," + origin.x + "," + origin.y + "," + origin.z + "," + damage + "," + targetdirection.x + "," + targetdirection.y + "," + targetdirection.z + layer + ",\n";
-    }
-}
-
-public enum ECommand
-{
-    Move, MoveFinished, JumpPressed, JumpLong, JumpReleased, ShootBullet, KillPlayer, TakeAttack, MeleeAttack
 }

@@ -1,26 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 
-public abstract class Ability : MonoBehaviour {
+public abstract class Ability : NetworkBehaviour
+{
     public float coolDownTime;
     public float castTime;
     public float animationTime;
     protected bool coolDownLock;
     public Buff buff;
+
     protected CharacterAttributes charStats;
-    public bool abilityUse { get; set; }
+    public bool abilityUseServerside { get; set; }
+    public bool abilityUseClientside { get; set; }
 
     void Awake()
     {
-        abilityUse = false;
+        abilityUseServerside = false;
         charStats = GetComponent<CharacterAttributes>();
     }
 
-    public abstract void AbilityKeyPrssed();
+    public abstract void AbilityKeyPrssedServerSide();
     public abstract void AbilityKeyHold();
     public abstract void AbilityKeyReleased();
-    
+
+    protected IEnumerator CoolDownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        coolDownLock = false;
+    }
 
 }

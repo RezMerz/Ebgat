@@ -37,6 +37,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 case "7": playerControls[playerID - 1].attack.AttackClientside(new Vector2(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat)), Convert.ToInt32(parts[4])); break;
                 case "8": playerControls[playerID - 1].attack.AttackHitClientSide(Convert.ToInt32(parts[2])); break;
                 case "9": playerControls[playerID - 1].TakeAttack(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), parts[3]); break;
+                case "10": playerControls[playerID - 1].attack.AttackClientside(new Vector2(float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat)), Convert.ToInt32(parts[4])); break;
                 default: Debug.Log("wrong data"); break;
             }
         }
