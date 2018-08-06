@@ -11,6 +11,7 @@ public abstract class Ability : NetworkBehaviour
     public float animationTime;
     protected bool coolDownLock;
     public Buff buff;
+
     protected CharacterAttributes charStats;
     public bool abilityUseServerside { get; set; }
     public bool abilityUseClientside { get; set; }
@@ -24,4 +25,11 @@ public abstract class Ability : NetworkBehaviour
     public abstract void AbilityKeyPrssedServerSide();
     public abstract void AbilityKeyHold();
     public abstract void AbilityKeyReleased();
+
+    protected IEnumerator CoolDownTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        coolDownLock = false;
+    }
+
 }

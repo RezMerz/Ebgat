@@ -15,7 +15,7 @@ public class BuffManager : MonoBehaviour {
     public void ActivateBuff(string name)
     {
         foreach(Buff buff in buffListRefrence)
-            if (buff.name == name)
+            if (buff.buffName == name)
             {
                 if(buff.stackable)
                 {
@@ -26,7 +26,7 @@ public class BuffManager : MonoBehaviour {
                     bool found = false;
                     foreach (Buff thisBuff in activatedBuffList)
                     {
-                        if (thisBuff.name == buff.name)
+                        if (thisBuff.buffName == buff.buffName)
                         {
                             // There is already a buff with this name, just extend the time
                             thisBuff.timer += buff.time;
@@ -44,11 +44,20 @@ public class BuffManager : MonoBehaviour {
             }
      }
     // Instantiate and add Buff to list of activaded buffs
-    public void AddBuffToList(Buff buff)
+    private void AddBuffToList(Buff buff)
     {
         Buff thisBuff = Instantiate(buff);
         thisBuff.charStats = charStats;
         thisBuff.BuffCharacter();
         activatedBuffList.Add(thisBuff);
+    }
+
+    public void DebuffCharacter()
+    {
+        foreach (Buff buff in activatedBuffList)
+        {
+            buff.FinishBuff();
+            activatedBuffList.Remove(buff);
+        }
     }
 }
