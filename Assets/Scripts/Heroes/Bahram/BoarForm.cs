@@ -10,17 +10,24 @@ public class BoarForm : Ability {
     private float distanceMoved;
     private Vector2 originTransform;
     private int layer;
+    private PlayerControl playerControl;
+
 	// Use this for initialization
 	void Start () {
         coolDownLock = false;
         layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
+        playerControl = GetComponent<PlayerControl>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (abilityUse)
+        if (abilityUseServerside)
         {
-            BoarMove();
+            BoarMoveServerside();
+        }
+        else if(abilityUseClientside)
+        {
+            
         }
         
 	}
@@ -32,11 +39,11 @@ public class BoarForm : Ability {
         
     }
 
-    private void BoarMove()
+    private void BoarMoveServerside()
     {
-        if (Vector2.Distance(originTransform,this.transform.position) < range)
+        if (Vector2.Distance(originTransform, transform.position) < range)
         {
-            RaycastHit2D hitObject = Physics2D.BoxCast(this.transform.position, new Vector2(1, 1.8f), 0, charStats.side, speed * Time.deltaTime,layer);
+            RaycastHit2D hitObject = Physics2D.BoxCast(transform.position, new Vector2(1, 1.8f), 0, charStats.side, speed * Time.deltaTime,layer);
             if (hitObject.collider != null)
             {
                 HumanForm();
@@ -56,7 +63,11 @@ public class BoarForm : Ability {
         {
             HumanForm();
         }
+    }
 
+    void BoarMoveClientside()
+    {
+        
     }
 
     // Boar form is done go back to human
@@ -64,25 +75,35 @@ public class BoarForm : Ability {
     {
         charStats.HandState = EHandState.Idle;
         charStats.FeetState = EFeetState.Onground;
-        abilityUse = false;
+        abilityUseServerside = false;
     }
-    public override void AbilityKeyPrssed()
+    public override void AbilityKeyPrssedServerSide()
     {
         if (!coolDownLock)
-            StartBoarForm();
+            StartBoarFormServerside();
     }
 
-    private void StartBoarForm()
+    private void StartBoarFormServerside()
     {
         // Remember: Do some code so it can not move or attack
-        originTransform = this.transform.position;
+        originTransform = transform.position;
         coolDownLock = true;
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Channeling;
-        abilityUse = true;
+        abilityUseServerside = true;
         charStats.FeetState = EFeetState.NoGravity;
         
     }
+
+    public void StartBoarFormClientSide(Vector2 originPosition){
+        originTransform = originPosition;
+        coolDownLock = true;
+        StartCoroutine(CoolDownTimer(coolDownTime));
+        charStats.HandState = EHandState.Channeling;
+        abilityUseServerside = true;
+        charStats.FeetState = EFeetState.NoGravity;
+    }
+
     public override  void AbilityKeyHold()
     {
 
