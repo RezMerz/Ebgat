@@ -26,6 +26,8 @@ public abstract class Ability : NetworkBehaviour
     public abstract void AbilityKeyHold();
     public abstract void AbilityKeyReleased();
 
+    public abstract void AbilityActivateClientSide();
+
     protected IEnumerator CoolDownTimer(float time)
     {
         yield return new WaitForSeconds(time);

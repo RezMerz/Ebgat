@@ -14,6 +14,7 @@ public class AtashBahram : Ability {
             buffManager.ActivateBuff("AtashBahramBuff");
         }
     }
+
     public override void AbilityKeyHold()
     {
         throw new System.NotImplementedException();
@@ -22,6 +23,11 @@ public class AtashBahram : Ability {
 
 
     public override void AbilityKeyReleased()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AbilityActivateClientSide()
     {
         throw new System.NotImplementedException();
     }

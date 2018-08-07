@@ -31,13 +31,6 @@ public class BoarForm : Ability {
         
 	}
 
-    private IEnumerator CoolDownTimer(float time)
-    {
-        yield return new WaitForSeconds(time);
-        coolDownLock = false;
-        
-    }
-
     private void BoarMoveServerside()
     {
         if (Vector2.Distance(originTransform, transform.position) < range)
@@ -110,5 +103,10 @@ public class BoarForm : Ability {
     public override void AbilityKeyReleased()
     {
 
+    }
+
+    public override void AbilityActivateClientSide()
+    {
+        throw new System.NotImplementedException();
     }
 }
