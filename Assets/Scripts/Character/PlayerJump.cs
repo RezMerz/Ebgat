@@ -22,6 +22,7 @@ public class PlayerJump : MonoBehaviour {
         charStats = GetComponent<CharacterAttributes>();
         layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
         playerControl = GetComponent<PlayerControl>();
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
     }
     private void Update()
     {
