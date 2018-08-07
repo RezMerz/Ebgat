@@ -33,6 +33,8 @@ GameObject:
   - component: {fileID: 114571949810739002}
   - component: {fileID: 114834879446760482}
   - component: {fileID: 114970392499330594}
+  - component: {fileID: 114324438479663174}
+  - component: {fileID: 114790626614012982}
   m_Layer: 0
   m_Name: Player-networked
   m_TagString: Player
@@ -305,7 +307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullJumpHoldTime: 0.1
+--- !u!114 &114324438479663174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314286711458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d490fc08ad2b9f64c97247fe7501536b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114443031708535354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,7 +435,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.01
+--- !u!114 &114790626614012982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314286711458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDownTime: 1
+  castTime: 3
+  animationTime: 2
+  buff: {fileID: 0}
+  speed: 30
+  range: 10
+  damage: 0
 --- !u!114 &114834879446760482
 MonoBehaviour:
   m_ObjectHideFlags: 1
