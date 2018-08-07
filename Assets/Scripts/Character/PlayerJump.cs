@@ -19,8 +19,8 @@ public class PlayerJump : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        layerMask = LayerMask.GetMask("Blocks",charStats.enemyTeamName);
         charStats = GetComponent<CharacterAttributes>();
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
         playerControl = GetComponent<PlayerControl>();
     }
     private void Update()

@@ -10,7 +10,7 @@ public class BoarForm : Ability {
     private Vector2 originTransform;
     private int layer;
     private PlayerControl playerControl;
-
+    private float distance;
 	// Use this for initialization
 	void Start () {
         coolDownLock = false;
@@ -48,6 +48,7 @@ public class BoarForm : Ability {
             else
             {
                 transform.position += speed * Time.deltaTime * (Vector3)charStats.side;
+                distance += Toolkit.FloatCut(speed * Time.deltaTime);
             }
             
         }
@@ -65,6 +66,7 @@ public class BoarForm : Ability {
     // Boar form is done go back to human
     private void HumanForm()
     {
+        print(distance);
         charStats.HandState = EHandState.Idle;
         charStats.FeetState = EFeetState.Onground;
         abilityUseServerside = false;
@@ -77,6 +79,7 @@ public class BoarForm : Ability {
 
     private void StartBoarFormServerside()
     {
+        distance = 0;
         // Remember: Do some code so it can not move or attack
         originTransform = transform.position;
         coolDownLock = true;
