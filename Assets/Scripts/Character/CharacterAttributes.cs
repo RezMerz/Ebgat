@@ -91,8 +91,12 @@ public class CharacterAttributes : MonoBehaviour {
     private float gravityAccelerationBase;
     [SerializeField]
     private float gravitySpeedMaxBase;
+    [SerializeField]
+    private float baseCayoteTime;
 
-    public float cayoteTime;
+
+
+    public float cayoteTime { get; set; }
     public float gravitySpeed { get; set; }
     public float gravityAcceleration { get; set; }
     public float gravitySpeedMax { get; set; }
@@ -128,6 +132,7 @@ public class CharacterAttributes : MonoBehaviour {
         gravitySpeed = gravitySpeedBase;
         gravityAcceleration = gravityAccelerationBase;
         gravitySpeedMax = gravitySpeedMaxBase;
+        cayoteTime = baseCayoteTime;
         //Size
         size = GetComponent<BoxCollider2D>().size * transform.localScale;
 
@@ -138,6 +143,11 @@ public class CharacterAttributes : MonoBehaviour {
     public void ResetGravitySpeed()
     {
         gravitySpeed = gravitySpeedBase;
+    }
+
+    public void ResetCayoteTime()
+    {
+        cayoteTime = baseCayoteTime;
     }
     public void ResetMoveSpeed()
     {
