@@ -49,7 +49,10 @@ abstract public class Physic : MonoBehaviour {
         bool hHit = false ;
         List<RaycastHit2D> verticalPoints = null;
         List<RaycastHit2D> horizontalPoints =null ;
+        
         distance = Vector2.zero;
+
+        Vector2 originalDistance = distance;
         while (forces.Count > 0)
         {
             var currentforce = forces[0];
@@ -93,6 +96,7 @@ abstract public class Physic : MonoBehaviour {
         if(hHit || vHit)
         {
             PhysicAction(verticalPoints, horizontalPoints, distance);
+            HitFunction(verticalPoints, horizontalPoints, originalDistance);
         }
 
         PhysicAction = null;

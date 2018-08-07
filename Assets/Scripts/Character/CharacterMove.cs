@@ -4,8 +4,11 @@ using UnityEngine;
 
 
 public class CharacterMove : MonoBehaviour {
-    PlayerControl playerControl;
+    
+
+    private PlayerControl playerControl;
     private CharacterAttributes charStats;
+    private CharacterPhysic Physic;
     private Animator animator;
     private Vector2 side;
     private Vector2 size;
@@ -14,6 +17,7 @@ public class CharacterMove : MonoBehaviour {
     private int layerMask;
 	void Start ()
     {
+        Physic = GetComponent<CharacterPhysic>();
         animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
@@ -30,31 +34,31 @@ public class CharacterMove : MonoBehaviour {
             if(charStats.BodyState == EBodyState.Moving)
                 MoveServerside();
         }
-        else
-        {
-            float distance = destination.x - transform.position.x;
-            if (distance > 0)
-                charStats.side = Vector2.right;
-            else
-                charStats.side = Vector2.left;
+        //else
+        //{
+        //    float distance = destination.x - transform.position.x;
+        //    if (distance > 0)
+        //        charStats.side = Vector2.right;
+        //    else
+        //        charStats.side = Vector2.left;
 
-            if (charStats.BodyState == EBodyState.Moving && Mathf.Abs(distance) > Mathf.Epsilon)
-            {
-                {
-                    float moveDistance = Time.deltaTime * charStats.moveSpeed;
+        //    if (charStats.BodyState == EBodyState.Moving && Mathf.Abs(distance) > Mathf.Epsilon)
+        //    {
+        //        {
+        //            float moveDistance = Time.deltaTime * charStats.moveSpeed;
 
-                    if (moveDistance > Mathf.Abs(distance))
-                    {
-                        transform.position += Mathf.Abs(distance) * (Vector3)charStats.side;
-                    }
-                    else
-                    {
-                        transform.position += moveDistance * (Vector3)charStats.side;
-                    }
-                }
-            }
+        //            if (moveDistance > Mathf.Abs(distance))
+        //            {
+        //                transform.position += Mathf.Abs(distance) * (Vector3)charStats.side;
+        //            }
+        //            else
+        //            {
+        //                transform.position += moveDistance * (Vector3)charStats.side;
+        //            }
+        //        }
+        //    }
            
-        }
+        //}
     }
 
     
@@ -70,25 +74,8 @@ public class CharacterMove : MonoBehaviour {
     public void MoveServerside()
     {
         SpeedCheck(moveSide);
-        List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
-        bool hit;
-        hit = Toolkit.CheckMove(transform.position, size, Vector2.right * moveSide, charStats.moveSpeed * Time.deltaTime, layerMask, out hitObjects);
-        Vector3 des;
-        if (!hit)
-        {
-            des = transform.position + charStats.moveSpeed * Time.deltaTime * Vector3.right * moveSide;
-            transform.position = des;
-            playerControl.serverNetworkSender.ClientMove(playerControl.clientNetworkSender.PlayerID, des);
-        }
-        // hit some objects, move to the nearest
-        else
-        {
-            charStats.ResetMoveSpeed();
-            des = transform.position + Vector3.right * moveSide * (hitObjects[0].distance);
-            transform.position = des;
-            playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, des);
-        }
-        
+        Physic.AddForce(Vector2.right * moveSide * charStats.moveSpeed * Time.deltaTime);
+        Physic.PhysicAction += HitFunction;
     }
 
     public void MoveReleasedServerside(Vector3 position){
@@ -131,6 +118,13 @@ public class CharacterMove : MonoBehaviour {
             {
                 charStats.moveSpeed = charStats.moveSpeedMax;
             }
+        }
+    }
+    private void HitFunction(List<RaycastHit2D> vHits,List<RaycastHit2D> hHits,Vector2 direction)
+    {
+        if(direction.x * moveSide > 0 && hHits.Count > 0)
+        {
+            charStats.ResetMoveSpeed();
         }
     }
 
