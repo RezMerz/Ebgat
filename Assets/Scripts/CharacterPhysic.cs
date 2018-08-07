@@ -12,15 +12,12 @@ public class CharacterPhysic : Physic {
 	// Use this for initialization
 	void Start ()
     {
-        charstats = GetComponent<CharacterAttributes>();	
-	}
+        playerControl = GetComponent<PlayerControl>();
+        charstats = GetComponent<CharacterAttributes>();
+        layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
+        gravityLayerMask = LayerMask.GetMask("Blocks","Bridge", charstats.enemyTeamName);
+    }
 	
-	// Update is called once per frame
-	void Update ()
-    {
-	    	
-	}
-
     protected override void HitFunction(List<RaycastHit2D> hits, Vector2 direction)
     {
             

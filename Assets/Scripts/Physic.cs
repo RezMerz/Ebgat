@@ -14,7 +14,8 @@ abstract public class Physic : MonoBehaviour {
 
     protected List<Vector2> forces = new List<Vector2>();
     protected List<Vector2> destenitions = new List<Vector2>();
-    protected List<RaycastHit2D> hitPoints;
+    protected List<RaycastHit2D> verticalPoints;
+    protected List<RaycastHit2D> horizontalPoints;
 
     protected PlayerControl playerControl;
 
@@ -22,8 +23,6 @@ abstract public class Physic : MonoBehaviour {
 	private void Start ()
     {
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
-        playerControl = GetComponent<PlayerControl>();
-    	    	
 	}
 
     private void Update()
@@ -43,7 +42,10 @@ abstract public class Physic : MonoBehaviour {
     } 
     private void Calculate()
     {
-        bool hit;
+        bool vHit = false ;
+        bool hHit = false ;
+        List<RaycastHit2D> verticalPoints = null;
+        List<RaycastHit2D> horizontalPoints =null ;
         distance = Vector2.zero;
         while (forces.Count > 0)
         {
@@ -53,39 +55,23 @@ abstract public class Physic : MonoBehaviour {
         }
         if (distance.x > 0)
         {
-            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.right, distance.x, layerMask, out hitPoints);
-            if (hit)
-            {
-                distance.x = hitPoints[0].distance;
-                HitFunction(hitPoints,Vector2.right);
-            }
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.right, distance.x, layerMask, out horizontalPoints);
         }
         else if (distance.x < 0)
         {
-            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out hitPoints);
-            if (hit)
-            {
-                distance.x = -hitPoints[0].distance;
-                HitFunction(hitPoints,Vector2.left);
-            }
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out horizontalPoints);
         }
         if (distance.y > 0)
         {
-            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out hitPoints);
-            if (hit)
-            {
-                distance.y = hitPoints[0].distance;
-                HitFunction(hitPoints,Vector2.up);
-            }
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
         }
         else if (distance.y < 0)
         {
-            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, layerMask, out hitPoints);
-            if (hit)
-            {
-                distance.y = -hitPoints[0].distance;
-                HitFunction(hitPoints,Vector2.down);
-            }
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, layerMask, out verticalPoints);
+        }
+        if(hHit || vHit)
+        {
+            HitFunction(verticalPoints, horizontalPoints, distance);
         }
         virtualPosition += distance;
         destenitions.Add(virtualPosition);
@@ -100,9 +86,10 @@ abstract public class Physic : MonoBehaviour {
         forces.Add(force);
     }
 
-    abstract protected void HitFunction(List<RaycastHit2D> hits,Vector2 direction);
+    abstract protected void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction);
 
 
 
 
 }
+
