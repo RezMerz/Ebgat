@@ -33,13 +33,14 @@ public class BoarForm : Ability {
 
     private void BoarMoveServerside()
     {
-        if (Vector2.Distance(originTransform, transform.position) < range)
+        float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
+        if (currentDistance + distance <= range)
         {
             RaycastHit2D hitObject = Physics2D.BoxCast(transform.position, new Vector2(1, 1.8f), 0, charStats.side, speed * Time.deltaTime,layer);
             if (hitObject.collider != null)
             {
                 HumanForm();
-                transform.position += (hitObject.distance * (Vector3)charStats.side);
+                transform.position += (Toolkit.FloatCut(hitObject.distance) * (Vector3)charStats.side);
                 if (hitObject.collider.tag == "Player")
                 {
                     hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage,buff.buffName);
@@ -47,13 +48,28 @@ public class BoarForm : Ability {
             }
             else
             {
-                transform.position += speed * Time.deltaTime * (Vector3)charStats.side;
+                transform.position += Toolkit.FloatCut(speed * Time.deltaTime )* (Vector3)charStats.side;
                 distance += Toolkit.FloatCut(speed * Time.deltaTime);
             }
             
         }
         else
         {
+            RaycastHit2D hitObject = Physics2D.BoxCast(transform.position, new Vector2(1, 1.8f), 0, charStats.side, range-distance, layer);
+            if (hitObject.collider != null)
+            {
+                HumanForm();
+                transform.position += (Toolkit.FloatCut(hitObject.distance) * (Vector3)charStats.side);
+                if (hitObject.collider.tag == "Player")
+                {
+                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.buffName);
+                }
+            }
+            else
+            {
+                transform.position += Toolkit.FloatCut(range - distance) * (Vector3)charStats.side;
+                distance += Toolkit.FloatCut(range - distance);
+            }
             HumanForm();
         }
     }
