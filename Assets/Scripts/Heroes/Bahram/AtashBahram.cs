@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AtashBahram : Ability {
     private BuffManager buffManager;
-    public override void AbilityKeyPrssed()
+    public override void AbilityKeyPrssedServerSide()
     {
         if (!coolDownLock)
         {
