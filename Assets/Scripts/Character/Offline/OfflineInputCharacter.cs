@@ -8,6 +8,9 @@ public class OfflineInputCharacter : MonoBehaviour {
     private OfflineCharacterJump charJumpOff;
     private OfflineCharacterGravity charGravityOff;
 
+
+    private Vector2 size;
+
     private float axisX;
     private float axisY;
 
@@ -16,6 +19,7 @@ public class OfflineInputCharacter : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        size = transform.localScale * GetComponent<BoxCollider2D>().size;
         charMoveOff = GetComponent<OfflineCharacterMove>();
         charJumpOff = GetComponent<OfflineCharacterJump>();
         charGravityOff = GetComponent<OfflineCharacterGravity>();
@@ -37,6 +41,7 @@ public class OfflineInputCharacter : MonoBehaviour {
         {
             charMoveOff.MoveReleased();
         }
+        
 
 
 
@@ -65,6 +70,22 @@ public class OfflineInputCharacter : MonoBehaviour {
         {
             charJumpOff.JumpReleased();
         }
-        
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            ContactFilter2D contact = new ContactFilter2D();
+            contact.layerMask = 256;
+            contact.maxDepth = 0;
+            contact.maxDepth = 0;
+            contact.useLayerMask = true;
+            contact.useDepth = true;
+
+            Vector2 mouspos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = mouspos - (Vector2)transform.position;
+            RaycastHit2D[] points = new RaycastHit2D[10];
+            int number = Physics2D.BoxCast(transform.position, size, 0, direction,contact,points);
+            Debug.Log(number);
+            transform.position +=(Vector3 )direction.normalized * points[0].fraction;
+        }
     }
 }

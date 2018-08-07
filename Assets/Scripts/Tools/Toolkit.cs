@@ -60,7 +60,10 @@ public class Toolkit : MonoBehaviour {
             if (hitPoint.collider != null)
             {
                 hit = true;
-                hitObjects.Add(hitPoint);
+                if (hitPoint.collider.tag != "Bridge" || HitSide(hitPoint) == Vector2.up)
+                {
+                    hitObjects.Add(hitPoint);
+                }
             }
         }
         hitObjects.Sort(new HitDistanceCompare());
@@ -70,6 +73,28 @@ public class Toolkit : MonoBehaviour {
     public static float FloatCut(float f)
     {
         return (int)(f * 100f) / 100f;
+    }
+
+    public static Vector2 HitSide(RaycastHit2D hit)
+    {
+        Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
+        if(hit.point.y == hit.transform.position.y + size.y / 2)
+        {
+            return Vector2.up;
+        }
+        if (hit.point.y == hit.transform.position.y - size.y / 2)
+        {
+            return Vector2.down;
+        }
+        if (hit.point.x == hit.transform.position.x + size.x / 2)
+        {
+            return Vector2.right;
+        }
+        if (hit.point.x == hit.transform.position.x - size.x / 2)
+        {
+            return Vector2.left;
+        }
+        return Vector2.zero;
     }
     
 }

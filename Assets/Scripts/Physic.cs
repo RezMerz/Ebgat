@@ -56,26 +56,41 @@ abstract public class Physic : MonoBehaviour {
         if (distance.x > 0)
         {
             hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.right, distance.x, layerMask, out horizontalPoints);
+            if (hHit)
+            {
+                distance.x = horizontalPoints[0].distance;
+            }
         }
         else if (distance.x < 0)
         {
             hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out horizontalPoints);
+            if (hHit)
+            {
+                distance.x = -horizontalPoints[0].distance;
+            }
         }
         if (distance.y > 0)
         {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
+            if (vHit)
+            {
+                distance.y = horizontalPoints[0].distance;
+            }
         }
         else if (distance.y < 0)
         {
-            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, layerMask, out verticalPoints);
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
+            if (vHit)
+            {
+                distance.y = -horizontalPoints[0].distance;
+            }
         }
+        virtualPosition += distance;
+        destenitions.Add(virtualPosition);
         if(hHit || vHit)
         {
             HitFunction(verticalPoints, horizontalPoints, distance);
         }
-        virtualPosition += distance;
-        destenitions.Add(virtualPosition);
-
     }
     private void Predict()
     {

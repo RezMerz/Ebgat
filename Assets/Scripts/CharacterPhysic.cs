@@ -18,8 +18,9 @@ public class CharacterPhysic : Physic {
         gravityLayerMask = LayerMask.GetMask("Blocks","Bridge", charstats.enemyTeamName);
     }
 	
-    protected override void HitFunction(List<RaycastHit2D> hits, Vector2 direction)
+    protected override void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
+
             
     }
 }
