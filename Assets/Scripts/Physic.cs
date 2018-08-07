@@ -4,17 +4,19 @@ using UnityEngine;
 
 abstract public class Physic : MonoBehaviour {
     public float wight;
-    private Vector2 size;
-    private int layerMask;
-    private int gravityLayerMask;
 
-    private Vector2 distance;
-    private List<Vector2> forces = new List<Vector2>();
-    private List<Vector2> destenitions = new List<Vector2>();
-    private PlayerControl playerControl;
-    private Vector2 virtualPosition;
+    protected int layerMask;
+    protected int gravityLayerMask;
 
-    private List<RaycastHit2D> hitPoints;
+    protected Vector2 size;
+    protected Vector2 distance;
+    protected Vector2 virtualPosition;
+
+    protected List<Vector2> forces = new List<Vector2>();
+    protected List<Vector2> destenitions = new List<Vector2>();
+    protected List<RaycastHit2D> hitPoints;
+
+    protected PlayerControl playerControl;
 
 	// Use this for initialization
 	private void Start ()
@@ -72,16 +74,16 @@ abstract public class Physic : MonoBehaviour {
             hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out hitPoints);
             if (hit)
             {
-                distance.x = -hitPoints[0].distance;
+                distance.y = hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.up);
             }
         }
         else if (distance.y < 0)
         {
-            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out hitPoints);
+            hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, layerMask, out hitPoints);
             if (hit)
             {
-                distance.x = -hitPoints[0].distance;
+                distance.y = -hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.down);
             }
         }
@@ -98,7 +100,7 @@ abstract public class Physic : MonoBehaviour {
         forces.Add(force);
     }
 
-    abstract public void HitFunction(List<RaycastHit2D> hits,Vector2 direction);
+    abstract protected void HitFunction(List<RaycastHit2D> hits,Vector2 direction);
 
 
 
