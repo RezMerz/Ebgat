@@ -22,8 +22,6 @@ abstract public class Physic : MonoBehaviour {
 	private void Start ()
     {
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
-        playerControl = GetComponent<PlayerControl>();
-    	    	
 	}
 
     private void Update()
@@ -56,7 +54,6 @@ abstract public class Physic : MonoBehaviour {
             hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.right, distance.x, layerMask, out hitPoints);
             if (hit)
             {
-                distance.x = hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.right);
             }
         }
@@ -65,7 +62,6 @@ abstract public class Physic : MonoBehaviour {
             hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out hitPoints);
             if (hit)
             {
-                distance.x = -hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.left);
             }
         }
@@ -74,7 +70,6 @@ abstract public class Physic : MonoBehaviour {
             hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out hitPoints);
             if (hit)
             {
-                distance.y = hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.up);
             }
         }
@@ -83,7 +78,6 @@ abstract public class Physic : MonoBehaviour {
             hit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, layerMask, out hitPoints);
             if (hit)
             {
-                distance.y = -hitPoints[0].distance;
                 HitFunction(hitPoints,Vector2.down);
             }
         }
@@ -106,3 +100,4 @@ abstract public class Physic : MonoBehaviour {
 
 
 }
+
