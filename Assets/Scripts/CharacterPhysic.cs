@@ -8,6 +8,7 @@ public class CharacterPhysic : Physic {
     private Gravity gravity;
 
 
+
 	// Use this for initialization
 	void Start ()
     {
@@ -20,23 +21,8 @@ public class CharacterPhysic : Physic {
 	    	
 	}
 
-    public override void HitFunction(List<RaycastHit2D> hits, Vector2 direction)
+    protected override void HitFunction(List<RaycastHit2D> hits, Vector2 direction)
     {
-        if(direction == Vector2.up)
-        {
-            if(charstats.FeetState == EFeetState.Jumping)
-            {
-                charstats.FeetState = EFeetState.Falling;
-                
-            }
-        }
-        else if(direction == Vector2.down)
-        {
-
-        }
-        else
-        {
-
-        }
+            
     }
 }

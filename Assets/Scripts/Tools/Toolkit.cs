@@ -67,5 +67,9 @@ public class Toolkit : MonoBehaviour {
         hitPoints = hitObjects;
         return hit;
     }
-
+    public static float FloatCut(float f)
+    {
+        return (int)(f * 100f) / 100f;
+    }
+    
 }
