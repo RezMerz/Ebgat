@@ -30,7 +30,7 @@ public class ClientNetworkSender : NetworkBehaviour
 
             //change color for localm player
             playerControl.color = Color.green;
-            GetComponent<SpriteRenderer>().color = Color.green;
+            //GetComponent<SpriteRenderer>().color = Color.green;
         }
         else
         {
