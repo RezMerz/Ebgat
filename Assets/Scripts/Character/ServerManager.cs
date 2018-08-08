@@ -16,11 +16,12 @@ public class ServerManager : NetworkBehaviour {
         instance = this;
         currentWorldState = new WorldState();
         playerControls = new List<PlayerControl>();
+        UpdatePlayers();
+        SetWorldStateOnPlayers();
     }
 
     // Use this for initialization
     void Start () {
-        SetWorldStateOnPlayers();
 	}
 	
 	// Update is called once per frame
@@ -38,8 +39,10 @@ public class ServerManager : NetworkBehaviour {
     {
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(objs.Length);
         for (int i = 0; i < objs.Length; i++)
             playerControls.Add(objs[i].GetComponent<PlayerControl>());
+        SetWorldStateOnPlayers();
     }
 
     public void PlayerSimulationFinished(int ID){
