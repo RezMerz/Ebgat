@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 abstract public class Physic : MonoBehaviour {
+    public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
+
     public float wight;
 
     protected int layerMask;
@@ -46,7 +49,10 @@ abstract public class Physic : MonoBehaviour {
         bool hHit = false ;
         List<RaycastHit2D> verticalPoints = null;
         List<RaycastHit2D> horizontalPoints =null ;
+        
         distance = Vector2.zero;
+
+        Vector2 originalDistance = distance;
         while (forces.Count > 0)
         {
             var currentforce = forces[0];
@@ -89,8 +95,11 @@ abstract public class Physic : MonoBehaviour {
         destenitions.Add(virtualPosition);
         if(hHit || vHit)
         {
-            HitFunction(verticalPoints, horizontalPoints, distance);
+            PhysicAction(verticalPoints, horizontalPoints, distance);
+            HitFunction(verticalPoints, horizontalPoints, originalDistance);
         }
+
+        PhysicAction = null;
     }
     private void Predict()
     {
@@ -102,6 +111,8 @@ abstract public class Physic : MonoBehaviour {
     }
 
     abstract protected void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction);
+
+    
 
 
 
