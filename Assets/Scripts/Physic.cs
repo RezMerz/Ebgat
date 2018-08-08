@@ -75,7 +75,7 @@ abstract public class Physic : MonoBehaviour {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
             if (vHit)
             {
-                distance.y = horizontalPoints[0].distance;
+                distance.y = verticalPoints[0].distance;
             }
         }
         else if (distance.y < 0)
@@ -83,13 +83,15 @@ abstract public class Physic : MonoBehaviour {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
             if (vHit)
             {
-                distance.y = -horizontalPoints[0].distance;
+                distance.y = -verticalPoints[0].distance;
             }
         }
         virtualPosition += distance;
         destenitions.Add(virtualPosition);
-        Debug.Log(vHit+" $ "+hHit);
-        PhysicAction(verticalPoints, horizontalPoints, distance);
+        if(PhysicAction != null)
+        {
+            PhysicAction(verticalPoints, horizontalPoints, distance);
+        }
         HitFunction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
         ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
