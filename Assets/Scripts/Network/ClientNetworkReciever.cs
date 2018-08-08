@@ -69,6 +69,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 localPlayerControl = p;
         }
         playerControls.AddRange(playerControlArray);
+        localPlayerControl.worldState.UpdatePlayerCount(playerControls, localPlayerControl);
     }
 
     /*public void RpcMove(int num)

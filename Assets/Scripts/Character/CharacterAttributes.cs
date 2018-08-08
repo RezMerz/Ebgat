@@ -7,12 +7,13 @@ public class CharacterAttributes : MonoBehaviour {
 
     private PlayerControl playerControl;
     int a;
+    int ID;
 
     private EHeadState headState; //a
     
     public EHeadState HeadState
     {
-        get { return headState; }
+        get { return headState;}
         set { headState = value; RegisterHeadState(); }
     }
 
@@ -42,7 +43,7 @@ public class CharacterAttributes : MonoBehaviour {
    
     public Vector2 side {
         get { return side; }
-        set { side = value; playerControl.worldState.RegisterCharStat('e', Toolkit.VectorSerialize(value)); } 
+        set { side = value; playerControl.worldState.RegisterCharStat(ID, 'e', Toolkit.VectorSerialize(value)); } 
     } //e
 
     //health attributes
@@ -50,12 +51,12 @@ public class CharacterAttributes : MonoBehaviour {
     private float hitPointsBase;
     public float armor{
         get { return armor; }
-        set { armor = value; playerControl.worldState.RegisterCharStat('f', value + ""); }
+        set { armor = value; playerControl.worldState.RegisterCharStat(ID, 'f', value + ""); }
     } //f         //amount of reduced damage dealt to this character (%)
 
     public float hitPoints {
         get { return hitPoints; }
-        set { hitPoints = value; playerControl.worldState.RegisterCharStat('g', value + ""); }
+        set { hitPoints = value; playerControl.worldState.RegisterCharStat(ID, 'g', value + ""); }
     } //g
 
     //attack attributes
@@ -72,20 +73,20 @@ public class CharacterAttributes : MonoBehaviour {
 
     public float range{
         get { return range; }
-        set { range = value; playerControl.worldState.RegisterCharStat('i', value + ""); }
+        set { range = value; playerControl.worldState.RegisterCharStat(ID, 'i', value + ""); }
     } //i
 
     public float attackDamage {
         get { return attackDamage; }
-        set { attackDamage = value; playerControl.worldState.RegisterCharStat('j', value + ""); } 
+        set { attackDamage = value; playerControl.worldState.RegisterCharStat(ID, 'j', value + ""); } 
     } //j
     public float attackAnimationTime {
         get { return attackAnimationTime; }
-        set { attackAnimationTime = value; playerControl.worldState.RegisterCharStat('k', value + ""); }
+        set { attackAnimationTime = value; playerControl.worldState.RegisterCharStat(ID, 'k', value + ""); }
     } //k
     public float attackCooldown {
         get { return attackCooldown; }
-        set { attackCooldown = value; playerControl.worldState.RegisterCharStat('l', value+ ""); }
+        set { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value+ ""); }
     } //l
 
     //movement attributes
@@ -98,15 +99,15 @@ public class CharacterAttributes : MonoBehaviour {
 
     public  float moveSpeed {
         get { return moveSpeed; }
-        set { moveSpeed = value; playerControl.worldState.RegisterCharStat('m', value + ""); }
+        set { moveSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'm', value + ""); }
     } //m
     public float moveAcceleration {
         get { return moveAcceleration; }
-        set { moveAcceleration = value; playerControl.worldState.RegisterCharStat('n', value + ""); }
+        set { moveAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'n', value + ""); }
     } //n
     public float moveSpeedMax {
         get { return moveSpeedMax; }
-        set { moveSpeedMax = value; playerControl.worldState.RegisterCharStat('o', value + ""); }
+        set { moveSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'o', value + ""); }
     } //o
 
     //jump attributes
@@ -119,15 +120,15 @@ public class CharacterAttributes : MonoBehaviour {
 
     public float jumpSpeed {
         get { return jumpSpeed; }
-        set { jumpSpeed = value; playerControl.worldState.RegisterCharStat('p', value + ""); }
+        set { jumpSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'p', value + ""); }
     } //p
     public float jumpAcceleration {
         get { return jumpAcceleration; }
-        set { jumpAcceleration = value; playerControl.worldState.RegisterCharStat('q', value + ""); }
+        set { jumpAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'q', value + ""); }
     } //q
     public float jumpSpeedMax {
         get { return jumpSpeedMax; }
-        set { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat('r', value + ""); }
+        set { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'r', value + ""); }
     } //r
 
     //gravity attributes
@@ -142,19 +143,19 @@ public class CharacterAttributes : MonoBehaviour {
 
     public float cayoteTime{
         get { return cayoteTime; }
-        set { cayoteTime = value; playerControl.worldState.RegisterCharStat('s', value + ""); }
+        set { cayoteTime = value; playerControl.worldState.RegisterCharStat(ID, 's', value + ""); }
     } //s
     public float gravitySpeed {
         get { return gravitySpeed; }
-        set { gravitySpeed = value; playerControl.worldState.RegisterCharStat('t', value + ""); }
+        set { gravitySpeed = value; playerControl.worldState.RegisterCharStat(ID, 't', value + ""); }
     } //t
     public float gravityAcceleration {
         get { return gravityAcceleration; }
-        set { gravityAcceleration = value; playerControl.worldState.RegisterCharStat('u', value + ""); }
+        set { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); }
     } //u
     public float gravitySpeedMax {
         get { return gravitySpeedMax; }
-        set { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat('v', value + ""); } 
+        set { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } 
     } //v
 
     // size attributes
@@ -163,6 +164,7 @@ public class CharacterAttributes : MonoBehaviour {
     void Start ()
     {
         playerControl = GetComponent<PlayerControl>();
+        ID = playerControl.clientNetworkSender.PlayerID;
         Initialize();
 	}
 
@@ -285,8 +287,8 @@ public class CharacterAttributes : MonoBehaviour {
 
     private void RegisterHeadState(){
         switch(HeadState){
-            case EHeadState.Conscious: playerControl.worldState.RegisterCharStat('a', "1"); break;
-            case EHeadState.Stunned: playerControl.worldState.RegisterCharStat('a', "2"); break;
+            case EHeadState.Conscious: playerControl.worldState.RegisterCharStat(ID, 'a', "1"); break;
+            case EHeadState.Stunned: playerControl.worldState.RegisterCharStat(ID, 'a', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -294,8 +296,8 @@ public class CharacterAttributes : MonoBehaviour {
     {
         switch (BodyState)
         {
-            case EBodyState.Standing: playerControl.worldState.RegisterCharStat('b', "1"); break;
-            case EBodyState.Moving: playerControl.worldState.RegisterCharStat('b', "2"); break;
+            case EBodyState.Standing: playerControl.worldState.RegisterCharStat(ID, 'b', "1"); break;
+            case EBodyState.Moving: playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -303,11 +305,11 @@ public class CharacterAttributes : MonoBehaviour {
     {
         switch (HandState)
         {
-            case EHandState.Idle: playerControl.worldState.RegisterCharStat('c', "1"); break;
-            case EHandState.Moving: playerControl.worldState.RegisterCharStat('c', "2"); break;
-            case EHandState.Attacking: playerControl.worldState.RegisterCharStat('c', "3"); break;
-            case EHandState.Casting: playerControl.worldState.RegisterCharStat('c', "4"); break;
-            case EHandState.Channeling: playerControl.worldState.RegisterCharStat('c', "5"); break;
+            case EHandState.Idle: playerControl.worldState.RegisterCharStat(ID, 'c', "1"); break;
+            case EHandState.Moving: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
+            case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
+            case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
+            case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -315,18 +317,18 @@ public class CharacterAttributes : MonoBehaviour {
     {
         switch (FeetState)
         {
-            case EFeetState.Onground: playerControl.worldState.RegisterCharStat('d', "1"); break;
-            case EFeetState.Falling: playerControl.worldState.RegisterCharStat('d', "2"); break;
-            case EFeetState.Jumping: playerControl.worldState.RegisterCharStat('d', "3"); break;
-            case EFeetState.NoGravity: playerControl.worldState.RegisterCharStat('d', "4"); break;
+            case EFeetState.Onground: playerControl.worldState.RegisterCharStat(ID, 'd', "1"); break;
+            case EFeetState.Falling: playerControl.worldState.RegisterCharStat(ID, 'd', "2"); break;
+            case EFeetState.Jumping: playerControl.worldState.RegisterCharStat(ID, 'd', "3"); break;
+            case EFeetState.NoGravity: playerControl.worldState.RegisterCharStat(ID, 'd', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
 
     private void RegisterAttackMode(){
         switch(attackMode){
-            case EAttackMode.Ranged: playerControl.worldState.RegisterCharStat('h', "1"); break;
-            case EAttackMode.Melee: playerControl.worldState.RegisterCharStat('h', "2"); break;
+            case EAttackMode.Ranged: playerControl.worldState.RegisterCharStat(ID, 'h', "1"); break;
+            case EAttackMode.Melee: playerControl.worldState.RegisterCharStat(ID, 'h', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
