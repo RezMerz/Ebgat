@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization;
 
 public class Toolkit : MonoBehaviour {
     ///  Vector 2 Transpose
@@ -96,5 +97,13 @@ public class Toolkit : MonoBehaviour {
         }
         return Vector2.zero;
     }
-    
+
+    public static string VectorSerialize(Vector2 vector){
+        return vector.x + "," + vector.y;
+    }
+
+    public static Vector2 DeserializeVector(string s){
+        string[] parts = s.Split(',');
+        return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
+    }
 }
