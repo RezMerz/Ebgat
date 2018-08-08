@@ -98,3 +98,14 @@ public class Toolkit : MonoBehaviour {
     }
     
 }
+public class HitDistanceCompare : IComparer<RaycastHit2D>
+{
+    public int Compare(RaycastHit2D x, RaycastHit2D y)
+    {
+        if (x.distance == y.distance)
+            return 0;
+        if (x.distance < y.distance)
+            return -1;
+        else return 1;
+    }
+}
