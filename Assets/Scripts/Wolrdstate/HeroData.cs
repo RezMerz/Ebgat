@@ -12,6 +12,7 @@ public class HeroData {
     public HeroData(int playerID){
         data = "";
         this.playerID = playerID;
+        heroPhysics = new HeroPhysicsClientSide(Vector2.down, Vector2.down);
     }
 
     public void RegisterCharstat(char keycode, string value){
@@ -23,6 +24,6 @@ public class HeroData {
     }
 
     public string GetData(){
-        return HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data;
+        return playerID + "$" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data;
     }
 }

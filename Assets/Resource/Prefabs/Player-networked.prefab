@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 114970392499330594}
   - component: {fileID: 114324438479663174}
   - component: {fileID: 114790626614012982}
+  - component: {fileID: 114812463900836744}
   m_Layer: 0
   m_Name: Player-networked
   m_TagString: Player
@@ -372,10 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverNetworkSender: {fileID: 0}
-  clientNetworkSender: {fileID: 0}
-  clientNetworkReciever: {fileID: 0}
-  serverNetwork: {fileID: 0}
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
@@ -408,12 +405,10 @@ MonoBehaviour:
   teamName: 
   enemyTeamName: 
   hitPointsBase: 40
-  armor: 0
-  attackMode: 0
+  hitPoints: 0
   attackDamageBase: 10
   attackAnimationTimeBase: 0
   attackCooldownBase: 0.1
-  range: 0
   moveSpeedBase: 15
   moveAccelerationBase: 0
   moveSpeedMaxBase: 15
@@ -423,7 +418,7 @@ MonoBehaviour:
   gravitySpeedBase: 0
   gravityAccelerationBase: 1
   gravitySpeedMaxBase: 30
-  cayoteTime: 0.1
+  baseCayoteTime: 0
 --- !u!114 &114681682171674304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +448,19 @@ MonoBehaviour:
   speed: 30
   range: 10
   damage: 0
+--- !u!114 &114812463900836744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314286711458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9dfe42df472d6418fa4ee7a3438f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wight: 0
+  hitType: 0
 --- !u!114 &114834879446760482
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,10 +15,12 @@ abstract public class Physic : MonoBehaviour {
     protected Vector2 distance;
     protected Vector2 virtualPosition;
 
+
+
     protected List<Vector2> forces = new List<Vector2>();
     protected List<Vector2> destenitions = new List<Vector2>();
-    protected List<RaycastHit2D> verticalPoints;
-    protected List<RaycastHit2D> horizontalPoints;
+    protected List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
+    protected List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
 
     protected PlayerControl playerControl;
 
@@ -26,15 +28,8 @@ abstract public class Physic : MonoBehaviour {
 	private void Start ()
     {
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
+        virtualPosition = transform.position;
 	}
-
-    private void Update()
-    {
-        if (!playerControl.IsServer())
-        {
-            Predict();
-        }
-    }
 
     private void LateUpdate()
     {
@@ -47,8 +42,8 @@ abstract public class Physic : MonoBehaviour {
     {
         bool vHit = false ;
         bool hHit = false ;
-        List<RaycastHit2D> verticalPoints = null;
-        List<RaycastHit2D> horizontalPoints =null ;
+        verticalPoints.Clear();
+        horizontalPoints.Clear() ;
         
         distance = Vector2.zero;
 
@@ -80,7 +75,7 @@ abstract public class Physic : MonoBehaviour {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
             if (vHit)
             {
-                distance.y = horizontalPoints[0].distance;
+                distance.y = verticalPoints[0].distance;
             }
         }
         else if (distance.y < 0)
@@ -88,24 +83,20 @@ abstract public class Physic : MonoBehaviour {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
             if (vHit)
             {
-                distance.y = -horizontalPoints[0].distance;
+                distance.y = -verticalPoints[0].distance;
             }
         }
         virtualPosition += distance;
         destenitions.Add(virtualPosition);
-        if(hHit || vHit)
+        if(PhysicAction != null)
         {
             PhysicAction(verticalPoints, horizontalPoints, distance);
-            HitFunction(verticalPoints, horizontalPoints, originalDistance);
         }
-
+        HitFunction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
         ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
     }
-    private void Predict()
-    {
 
-    }
     public void AddForce(Vector2 force)
     {
         forces.Add(force);

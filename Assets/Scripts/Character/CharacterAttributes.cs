@@ -330,7 +330,7 @@ public class CharacterAttributes : MonoBehaviour {
         switch (BodyState)
         {
             case EBodyState.Standing: playerControl.worldState.RegisterCharStat(ID, 'b', "1"); break;
-            case EBodyState.Moving: playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
+            case EBodyState.Moving:UnityEngine.Debug.Log(playerControl.IsServer()); playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
