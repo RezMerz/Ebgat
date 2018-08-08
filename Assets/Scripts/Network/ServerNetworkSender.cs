@@ -11,6 +11,7 @@ public class ServerNetworkSender : NetworkBehaviour {
     ClientNetworkReciever clientNetworkReciever;
     string data = "";
     string hitData = "";
+    string[] worldData;
     int attackID;
 
     private void Awake()
@@ -27,11 +28,11 @@ public class ServerNetworkSender : NetworkBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!isServer)
+        /*if (!isServer)
             return;
         if (data.Equals("") && hitData.Equals(""))
             return;
-        SendCommands();
+        SendCommands();*/
     }
 
     private void SendCommands()
@@ -39,6 +40,11 @@ public class ServerNetworkSender : NetworkBehaviour {
         clientNetworkReciever.RpcRecieveCommands(data, hitData);
         data = "";
         hitData = "";
+    }
+
+    public void SendWorldState(WorldState worldState){
+        worldData = worldState.GetWorldData();
+
     }
 
     public void ClientMove(int playerID, Vector3 position)

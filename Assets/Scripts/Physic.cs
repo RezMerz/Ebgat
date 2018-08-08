@@ -100,6 +100,7 @@ abstract public class Physic : MonoBehaviour {
         }
 
         PhysicAction = null;
+        ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
     }
     private void Predict()
     {

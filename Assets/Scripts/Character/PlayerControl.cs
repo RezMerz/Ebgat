@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     public ClientNetworkSender clientNetworkSender { get; private set; }
     public ClientNetworkReciever clientNetworkReciever { get; private set; }
     public ServerNetwork serverNetwork { get; private set; }
-    public WorldState worldState { get; private set; }
+    public WorldState worldState;
     public GameObject bulletPrefab;
 
     public Color color;
@@ -33,7 +33,6 @@ public class PlayerControl : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
-        worldState = GetComponent<WorldState>();
     }
 
     void Start()
