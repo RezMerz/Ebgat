@@ -22,15 +22,16 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcRecieveWorldData(string[] worlddata){
+        if (playerControls.Count != playernumber)
+            UpdatePlayer();
         for (int i = 0; i < worlddata.Length; i++){
-            Debug.Log(worlddata[i]);
+            string[] data = worlddata[i].Split('$');
+            playerControls[Convert.ToInt32(data[0]) - 1].GetData(worlddata[i].Substring(data[0].Length + 1));
         }
     }
 
     [ClientRpc]
     public void RpcRecieveCommands(string data, string hitdata){
-        if (playerControls.Count != playernumber)
-            UpdatePlayer();
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
@@ -76,7 +77,6 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 localPlayerControl = p;
         }
         playerControls.AddRange(playerControlArray);
-        localPlayerControl.worldState.UpdatePlayerCount(playerControls);
     }
 
     /*public void RpcMove(int num)

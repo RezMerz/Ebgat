@@ -44,7 +44,7 @@ public class ServerNetworkSender : NetworkBehaviour {
 
     public void SendWorldState(WorldState worldState){
         worldData = worldState.GetWorldData();
-
+        clientNetworkReciever.RpcRecieveWorldData(worldData);
     }
 
     public void ClientMove(int playerID, Vector3 position)

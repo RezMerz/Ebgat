@@ -8,6 +8,15 @@ public class WorldState
     public ServerNetworkSender serverNetworkSender;
     List<HeroData> heroesData;
 
+    public WorldState(){
+        heroesData = new List<HeroData>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        List<PlayerControl> temp = new List<PlayerControl>();
+        foreach (GameObject obj in objs)
+            temp.Add(obj.GetComponent<PlayerControl>());
+        UpdatePlayerCount(temp);
+    }
+
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
         if (!serverNetworkSender.isServer)
             return;
@@ -23,8 +32,6 @@ public class WorldState
 
     public void RegisterCharStat(int ID, char keycode, string value)
     {
-        if (!serverNetworkSender.isServer)
-            return;
         for (int i = 0; i<heroesData.Count; i++){
             if(ID == heroesData[i].playerID){
                 heroesData[i].RegisterCharstat(keycode, value);
@@ -35,6 +42,7 @@ public class WorldState
 
     public void UpdatePlayerCount(List<PlayerControl> playerControls)
     {
+        
         for (int i = 0; i < playerControls.Count; i++){
             for (int j = 0; j < heroesData.Count; j++){
                 if (playerControls[i].clientNetworkSender.PlayerID == heroesData[j].playerID)
