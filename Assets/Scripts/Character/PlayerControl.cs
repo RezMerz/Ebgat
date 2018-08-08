@@ -9,10 +9,11 @@ public class PlayerControl : MonoBehaviour
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
     public HeroGraphics heroGraphics { get; private set; }
-    public ServerNetworkSender serverNetworkSender;
-    public ClientNetworkSender clientNetworkSender;
-    public ClientNetworkReciever clientNetworkReciever;
-    public ServerNetwork serverNetwork;
+    public ServerNetworkSender serverNetworkSender { get; private set; }
+    public ClientNetworkSender clientNetworkSender { get; private set; }
+    public ClientNetworkReciever clientNetworkReciever { get; private set; }
+    public ServerNetwork serverNetwork { get; private set; }
+    public WorldState worldState { get; private set; }
     public GameObject bulletPrefab;
 
     public Color color;
@@ -32,6 +33,7 @@ public class PlayerControl : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
+        worldState = GetComponent<WorldState>();
     }
 
     void Start()

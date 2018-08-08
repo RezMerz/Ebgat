@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization;
 
 public class Toolkit : MonoBehaviour {
     ///  Vector 2 Transpose
@@ -60,7 +61,10 @@ public class Toolkit : MonoBehaviour {
             if (hitPoint.collider != null)
             {
                 hit = true;
-                hitObjects.Add(hitPoint);
+                if (hitPoint.collider.tag != "Bridge" || HitSide(hitPoint) == Vector2.up)
+                {
+                    hitObjects.Add(hitPoint);
+                }
             }
         }
         hitObjects.Sort(new HitDistanceCompare());
@@ -71,5 +75,46 @@ public class Toolkit : MonoBehaviour {
     {
         return (int)(f * 100f) / 100f;
     }
-    
+
+    public static Vector2 HitSide(RaycastHit2D hit)
+    {
+        Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
+        if(hit.point.y == hit.transform.position.y + size.y / 2)
+        {
+            return Vector2.up;
+        }
+        if (hit.point.y == hit.transform.position.y - size.y / 2)
+        {
+            return Vector2.down;
+        }
+        if (hit.point.x == hit.transform.position.x + size.x / 2)
+        {
+            return Vector2.right;
+        }
+        if (hit.point.x == hit.transform.position.x - size.x / 2)
+        {
+            return Vector2.left;
+        }
+        return Vector2.zero;
+    }
+
+    public static string VectorSerialize(Vector2 vector){
+        return vector.x + "," + vector.y;
+    }
+
+    public static Vector2 DeserializeVector(string s){
+        string[] parts = s.Split(',');
+        return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
+    }
+}
+public class HitDistanceCompare : IComparer<RaycastHit2D>
+{
+    public int Compare(RaycastHit2D x, RaycastHit2D y)
+    {
+        if (x.distance == y.distance)
+            return 0;
+        if (x.distance < y.distance)
+            return -1;
+        else return 1;
+    }
 }
