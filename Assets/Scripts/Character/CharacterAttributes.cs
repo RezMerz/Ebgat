@@ -13,28 +13,30 @@ public class CharacterAttributes : MonoBehaviour {
     public EHeadState HeadState
     {
         get { return headState;}
-        set { headState = value; RegisterHeadState(); }
+
+        set { if (value != headState) { headState = value; RegisterHeadState(); } }
+        
     }
     private EHeadState headState; //a
     private EBodyState bodyState; //b
     public EBodyState BodyState
     {
         get { return bodyState; }
-        set { bodyState = value; RegisterBodyState(); }
+        set { if (value != bodyState) { bodyState = value; RegisterBodyState(); } }
     }
     
     private EHandState handState; //c
     public EHandState HandState
     {
         get { return handState; }
-        set { handState = value; RegisterHandState(); }
+        set { if (value != handState) { handState = value; RegisterHandState(); } }
     }
 
     private EFeetState feetState; //d
     public EFeetState FeetState
     {
         get { return feetState; }
-        set { feetState = value; RegisterFeetState(); }
+        set { if (value != feetState) { feetState = value; RegisterFeetState(); } }
     }
 
 
@@ -45,7 +47,7 @@ public class CharacterAttributes : MonoBehaviour {
     private Vector2 side;
     public Vector2 Side {
         get { return side; }
-        set { side = value; playerControl.worldState.RegisterCharStat(ID, 'e', Toolkit.VectorSerialize(value)); } 
+        set { if (value != side) { side = value; playerControl.worldState.RegisterCharStat(ID, 'e', Toolkit.VectorSerialize(value)); } } 
     } //e
 
     //health attributes
@@ -54,12 +56,12 @@ public class CharacterAttributes : MonoBehaviour {
     private float armor;
     public float Armor{
         get { return armor; }
-        set { armor = value; playerControl.worldState.RegisterCharStat(ID, 'f', value + ""); }
+        set {if(value != armor) { armor = value; playerControl.worldState.RegisterCharStat(ID, 'f', value + ""); }}
     } //f      
     public float hitPoints;
     public float HitPoints {
         get { return hitPoints; }
-        set { hitPoints = value; playerControl.worldState.RegisterCharStat(ID, 'g', value + ""); }
+        set { if (value != hitPoints) { hitPoints = value; playerControl.worldState.RegisterCharStat(ID, 'g', value + ""); } }
     } //g
 
     //attack attributes
@@ -67,7 +69,7 @@ public class CharacterAttributes : MonoBehaviour {
     private EAttackMode attackMode;
     public EAttackMode AttackMode{
         get { return attackMode; }
-        set { attackMode = value; RegisterAttackMode(); }
+        set { if (value != attackMode) { attackMode = value; RegisterAttackMode(); } }
     } //h
     [SerializeField]
     private float attackDamageBase;
@@ -78,24 +80,24 @@ public class CharacterAttributes : MonoBehaviour {
     private float range;
     public float Range{
         get { return range; }
-        set { range = value; playerControl.worldState.RegisterCharStat(ID, 'i', value + ""); }
+        set { if (value != range) { range = value; playerControl.worldState.RegisterCharStat(ID, 'i', value + ""); } }
     } //i
 
     private float attackDamage;
     public float AttackDamage {
         get { return attackDamage; }
-        set { attackDamage = value; playerControl.worldState.RegisterCharStat(ID, 'j', value + ""); } 
+        set { if (value != attackDamage) { attackDamage = value; playerControl.worldState.RegisterCharStat(ID, 'j', value + ""); } } 
     } //j
 
     private float attackAnimationTime;
     public float AttackAnimationTime {
         get { return attackAnimationTime; }
-        set { attackAnimationTime = value; playerControl.worldState.RegisterCharStat(ID, 'k', value + ""); }
+        set { if (value != attackAnimationTime) { attackAnimationTime = value; playerControl.worldState.RegisterCharStat(ID, 'k', value + ""); } }
     } //k
     private float attackCooldown;
     public float AttackCooldown {
         get { return attackCooldown; }
-        set { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value+ ""); }
+        set { if (value != attackCooldown) { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value + ""); } }
     } //l
 
     //movement attributes
@@ -110,17 +112,17 @@ public class CharacterAttributes : MonoBehaviour {
     private float moveSpeed;
     public  float MoveSpeed {
         get { return moveSpeed; }
-        set { moveSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'm', value + ""); }
+        set { if (value != moveSpeed) { moveSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'm', value + ""); } }
     } //m
     private float moveAcceleration; 
     public float MoveAcceleration {
         get { return moveAcceleration; }
-        set { moveAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'n', value + ""); }
+        set { if (value != moveAcceleration) { moveAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'n', value + ""); } }
     } //n
     private float moveSpeedMax;
     public float MoveSpeedMax {
         get { return moveSpeedMax; }
-        set { moveSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'o', value + ""); }
+        set { if (value != moveSpeedMax) { moveSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'o', value + ""); } }
     } //o
 
     //jump attributes
@@ -134,18 +136,18 @@ public class CharacterAttributes : MonoBehaviour {
     private float jumpSpeed;
     public float JumpSpeed {
         get { return jumpSpeed; }
-        set { jumpSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'p', value + ""); }
+        set { if (value != jumpSpeed) { jumpSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'p', value + ""); } }
     } //p
 
     private float jumpAcceleration;
     public float JumpAcceleration {
         get { return jumpAcceleration; }
-        set { jumpAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'q', value + ""); }
+        set { if (value != jumpAcceleration) { jumpAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'q', value + ""); } }
     } //q
     private float jumpSpeedMax;
     public float JumpSpeedMax {
         get { return jumpSpeedMax; }
-        set { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'r', value + ""); }
+        set { if (value != jumpSpeedMax) { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'r', value + ""); } }
     } //r
 
     //gravity attributes
@@ -161,25 +163,25 @@ public class CharacterAttributes : MonoBehaviour {
     private float cayoteTime;
     public float CayoteTime{
         get { return cayoteTime; }
-        set { cayoteTime = value; playerControl.worldState.RegisterCharStat(ID, 's', value + ""); }
+        set { if (value != cayoteTime) { cayoteTime = value; playerControl.worldState.RegisterCharStat(ID, 's', value + ""); } }
     } //s
 
     private float gravitySpeed;
     public float GravitySpeed {
         get { return gravitySpeed; }
-        set { gravitySpeed = value; playerControl.worldState.RegisterCharStat(ID, 't', value + ""); }
+        set { if (value != gravitySpeed) { gravitySpeed = value; playerControl.worldState.RegisterCharStat(ID, 't', value + ""); } }
     } //t
 
     private float gravityAcceleration;
     public float GravityAcceleration {
         get { return gravityAcceleration; }
-        set { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); }
+        set { if (value != jumpAcceleration) { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); } }
     } //u
 
     private float gravitySpeedMax;
     public float GravitySpeedMax {
         get { return gravitySpeedMax; }
-        set { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } 
+        set { if (value != jumpAcceleration) { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } }
     } //v
 
     // size attributes
