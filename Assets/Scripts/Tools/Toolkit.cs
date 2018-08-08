@@ -107,3 +107,14 @@ public class Toolkit : MonoBehaviour {
         return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
     }
 }
+public class HitDistanceCompare : IComparer<RaycastHit2D>
+{
+    public int Compare(RaycastHit2D x, RaycastHit2D y)
+    {
+        if (x.distance == y.distance)
+            return 0;
+        if (x.distance < y.distance)
+            return -1;
+        else return 1;
+    }
+}
