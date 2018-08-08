@@ -26,7 +26,6 @@ public class PlayerJump : MonoBehaviour {
             {
                 if (charStats.HeadState == EHeadState.Stunned)
                 {
-                    // jump speed reset()
                     charStats.FeetState = EFeetState.Falling;
                     charStats.ResetGravitySpeed();
                 }
@@ -44,6 +43,7 @@ public class PlayerJump : MonoBehaviour {
         // Jump only if on 
         if (charStats.FeetState == EFeetState.Onground && charStats.HeadState != EHeadState.Stunned)
         {
+            charStats.ResetJumpSpeed();
             charStats.FeetState = EFeetState.Jumping;
             isHolding = true;
         }
@@ -79,11 +79,6 @@ public class PlayerJump : MonoBehaviour {
             {
                 charStats.FeetState = EFeetState.Falling;
                 charStats.ResetGravitySpeed();
-                // jump speed reset ()
-            }
-            else
-            {
-                // jump speed reset()
             }
         }
     } 

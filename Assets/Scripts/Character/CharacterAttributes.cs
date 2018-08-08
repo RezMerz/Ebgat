@@ -212,6 +212,11 @@ public class CharacterAttributes : MonoBehaviour {
         moveSpeed = moveSpeedBase;
     }
 
+    public void ResetJumpSpeed()
+    {
+        jumpSpeed = jumpSpeedBase;
+    }
+
     public void SetAttribute(char attributeCode, string value){
         switch(attributeCode){
             case 'a': SetHeadState(value); break;
