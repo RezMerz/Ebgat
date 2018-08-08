@@ -22,7 +22,7 @@ public class PlayerJump : MonoBehaviour {
     {
         if (playerControl.IsServer())
         {
-            if (charStats.FeetState == EFeetState.Jumping)
+            if (charStats.FeetState == EFeetState.Jumping || charStats.FeetState == EFeetState.DoubleJumping)
             {
                 if (charStats.HeadState == EHeadState.Stunned)
                 {
@@ -47,6 +47,13 @@ public class PlayerJump : MonoBehaviour {
             charStats.FeetState = EFeetState.Jumping;
             isHolding = true;
         }
+            // Double Jump
+        else if (charStats.FeetState == EFeetState.Jumping && charStats.canDoubleJump) 
+        {
+            charStats.ResetJumpSpeed();
+            charStats.ResetGravitySpeed();
+            charStats.FeetState = EFeetState.DoubleJumping;
+        }
     }
     // Holding the Jump
     public void JumpHold()
@@ -59,11 +66,11 @@ public class PlayerJump : MonoBehaviour {
     }
     public void JumpReleased()
     {
-        isHolding = false;
+            isHolding = false;
     }
     private  void JumpServerside()
     {
-        if (isHolding)
+        if (isHolding || charStats.FeetState == EFeetState.DoubleJumping)
         {
             JumpHold();
         }

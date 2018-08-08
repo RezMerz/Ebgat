@@ -40,7 +40,7 @@ public class CharacterAttributes : MonoBehaviour {
 
 
     public string teamName, enemyTeamName;
-
+    public bool canDoubleJump;
 
     private Vector2 side;
     public Vector2 Side {
@@ -352,6 +352,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EFeetState.Falling: playerControl.worldState.RegisterCharStat(ID, 'd', "2"); break;
             case EFeetState.Jumping: playerControl.worldState.RegisterCharStat(ID, 'd', "3"); break;
             case EFeetState.NoGravity: playerControl.worldState.RegisterCharStat(ID, 'd', "4"); break;
+            case EFeetState.DoubleJumping: playerControl.worldState.RegisterCharStat(ID, 'd', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -370,6 +371,6 @@ public class CharacterAttributes : MonoBehaviour {
 public enum EHeadState { Conscious = 1, Stunned = 2 };
 public enum EBodyState { Standing = 1,Moving = 2 };
 public enum EHandState { Idle = 1, Moving = 2, Attacking = 3, Casting = 4, Channeling = 5 };
-public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 };
+public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 
