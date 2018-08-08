@@ -24,15 +24,22 @@ public class HeroGraphics : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         playerControl = GetComponent<PlayerControl>();
     }
-
+    public void Stand()
+    {
+        animator.SetBool("Walking", false);
+    }
     public void MoveRight()
     {
-
+        print("Move Right");
+        animator.SetBool("Walking", true);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void MoveLeft()
     {
-
+        print("Move Left");
+        animator.SetBool("Walking", true);
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     IEnumerator DamageColorTimer(float time)

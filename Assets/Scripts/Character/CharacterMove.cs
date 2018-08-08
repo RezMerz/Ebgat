@@ -12,6 +12,7 @@ public class CharacterMove : MonoBehaviour {
     private Vector3 destination;
     private int moveSide;
     private int layerMask;
+    private HeroGraphics graphics;
 	void Start ()
     {
         animator = GetComponentInChildren<Animator>();
@@ -19,7 +20,7 @@ public class CharacterMove : MonoBehaviour {
         playerControl = GetComponent<PlayerControl>();
         destination = transform.position;
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
-
+        graphics = GetComponent<HeroGraphics>();
         layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
 	}
 
@@ -100,16 +101,20 @@ public class CharacterMove : MonoBehaviour {
     {
         transform.position = position;
         charStats.BodyState = EBodyState.Standing;
-        //animator.SetBool("Walking", false);
+        graphics.Stand();
     }
     
     public void MoveClientside(Vector2 position)
     {
+        if (position.x < transform.position.x)
+            graphics.MoveRight();
+        else
+            graphics.MoveLeft();
         if (playerControl.IsServer())
             return;
         charStats.BodyState = EBodyState.Moving;
         destination = position;
-        //animator.SetBool("Walking", true);
+        
     }
 
     private void SpeedCheck(int i)

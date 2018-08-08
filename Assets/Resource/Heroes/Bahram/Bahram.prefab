@@ -29,13 +29,9 @@ GameObject:
   - component: {fileID: 114289126813422942}
   - component: {fileID: 114794003109569974}
   - component: {fileID: 114991887859232998}
-  - component: {fileID: 114049193263869754}
   - component: {fileID: 114740440015595030}
-  - component: {fileID: 114342758317385538}
   - component: {fileID: 114422898562219348}
   - component: {fileID: 95622444841042292}
-  - component: {fileID: 114235947878191078}
-  - component: {fileID: 114480550348911708}
   - component: {fileID: 114772161494328486}
   - component: {fileID: 114451276411895824}
   - component: {fileID: 114432285978368132}
@@ -84,15 +80,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053505828903372}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -12.874851, y: -0.18290806, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.94, y: -6.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4728944773432002}
   - {fileID: 4545689650538170}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4545689650538170
 Transform:
   m_ObjectHideFlags: 1
@@ -135,14 +131,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
 --- !u!95 &95622444841042292
 Animator:
@@ -153,7 +149,7 @@ Animator:
   m_GameObject: {fileID: 1053505828903372}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d514d75d17429994cb935ca32e3faf6b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0892606e477c86e4e84d14becfb96a7d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -263,28 +259,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &114049193263869754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2805deb24ec484db6d42115c58e12f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114235947878191078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb25eb8c6c67425bb48fa178d43a061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114257958083322680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverNetworkSender: {fileID: 0}
   clientNetworkSender: {fileID: 0}
   clientNetworkReciever: {fileID: 0}
   serverNetwork: {fileID: 0}
@@ -324,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullJumpHoldTime: 0.1
 --- !u!114 &114334893189355080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,9 +319,9 @@ MonoBehaviour:
   attackAnimationTimeBase: 0
   attackCooldownBase: 0.5
   range: 0
-  moveSpeedBase: 15
+  moveSpeedBase: 12
   moveAccelerationBase: 0
-  moveSpeedMaxBase: 20
+  moveSpeedMaxBase: 15
   jumpSpeedBase: 20
   jumpAccelerationBase: 1.5
   jumpSpeedMaxBase: 35
@@ -355,17 +329,6 @@ MonoBehaviour:
   gravityAccelerationBase: 1
   gravitySpeedMaxBase: 30
   cayoteTime: 0.1
---- !u!114 &114342758317385538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd120a957f9a4a09a9231f1b4fe4a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114361602242757618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,17 +381,7 @@ MonoBehaviour:
   buff: {fileID: 0}
   speed: 50
   range: 7
---- !u!114 &114480550348911708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2805deb24ec484db6d42115c58e12f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!114 &114593228069086336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,7 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.01
 --- !u!114 &114740440015595030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -452,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb25eb8c6c67425bb48fa178d43a061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerID: 0
 --- !u!114 &114772161494328486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd120a957f9a4a09a9231f1b4fe4a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControl: {fileID: 0}
 --- !u!114 &114794003109569974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,7 +495,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7c0d51b51e7a6234eac1b406ed9bada7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e121687cf0b7c52408bd0c827105bc16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
