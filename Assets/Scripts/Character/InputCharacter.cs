@@ -55,11 +55,11 @@ public class InputCharacter : MonoBehaviour
         {
             if(Input.GetAxis("Vertical") > 0.1)
             {
-
+                clientNetworkSender.MoveVertical(1);
             }
             else if(Input.GetAxis("Vertical") < -0.1)
             {
-
+                clientNetworkSender.MoveVertical(-1);
             }
         }
 
