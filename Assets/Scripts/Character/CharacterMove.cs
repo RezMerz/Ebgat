@@ -47,7 +47,7 @@ public class CharacterMove : MonoBehaviour {
     public void MoveServerside()
     {
         SpeedCheck(moveSide);
-        Vector2 force = Vector2.right * moveSide * charStats.moveSpeed * Time.deltaTime;
+        Vector2 force = Vector2.right * moveSide * charStats.MoveSpeed * Time.deltaTime;
         Physic.AddForce(force);
         Physic.PhysicAction += HitFunction;
     }
@@ -58,10 +58,10 @@ public class CharacterMove : MonoBehaviour {
     private void SpeedCheck(int i)
     {
         side = Vector2.right * i;
-        if(side  != charStats.side)
+        if(side  != charStats.Side)
         {
             charStats.ResetMoveSpeed();
-            charStats.side = side;
+            charStats.Side = side;
         }
         if(charStats.BodyState == EBodyState.Standing)
         {
@@ -69,10 +69,10 @@ public class CharacterMove : MonoBehaviour {
         }
         if(charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground)
         {
-            charStats.moveSpeed += charStats.moveAcceleration;
-            if(charStats.moveSpeed > charStats.moveSpeedMax)
+            charStats.MoveSpeed += charStats.MoveAcceleration;
+            if(charStats.MoveSpeed > charStats.MoveSpeedMax)
             {
-                charStats.moveSpeed = charStats.moveSpeedMax;
+                charStats.MoveSpeed = charStats.MoveSpeedMax;
             }
         }
     }

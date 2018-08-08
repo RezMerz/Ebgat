@@ -24,11 +24,11 @@ public class OfflineCharacterMove : MonoBehaviour {
         SpeedCheck(i);
         List<RaycastHit2D> hitObjects = new List<RaycastHit2D>();
         bool hit;
-        hit = Toolkit.CheckMove(transform.position, size,side, charStats.moveSpeed * Time.deltaTime, mask , out hitObjects);
+        hit = Toolkit.CheckMove(transform.position, size,side, charStats.MoveSpeed * Time.deltaTime, mask , out hitObjects);
         charStats.BodyState = EBodyState.Moving;
         if (!hit)
         {
-            transform.position +=  charStats.moveSpeed * Time.deltaTime * (Vector3)side;
+            transform.position +=  charStats.MoveSpeed * Time.deltaTime * (Vector3)side;
         }
         // hit some objects, move to the nearst
         else
@@ -47,17 +47,17 @@ public class OfflineCharacterMove : MonoBehaviour {
     private void SpeedCheck(int i)
     {
         side = Vector2.right * i;
-        if (side != charStats.side)
+        if (side != charStats.Side)
         {
             charStats.ResetMoveSpeed();
-            charStats.side = side;
+            charStats.Side = side;
         }
         if (charStats.FeetState == EFeetState.Onground)
         {
-            charStats.moveSpeed  += charStats.moveAcceleration * Time.deltaTime;
-            if (charStats.moveSpeed > charStats.moveSpeedMax)
+            charStats.MoveSpeed  += charStats.MoveAcceleration * Time.deltaTime;
+            if (charStats.MoveSpeed > charStats.MoveSpeedMax)
             {
-                charStats.moveSpeed = charStats.moveSpeedMax;
+                charStats.MoveSpeed = charStats.MoveSpeedMax;
             }
         }
     }

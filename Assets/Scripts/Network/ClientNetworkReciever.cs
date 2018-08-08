@@ -21,6 +21,13 @@ public class ClientNetworkReciever : NetworkBehaviour {
     }
 
     [ClientRpc]
+    public void RpcRecieveWorldData(string[] worlddata){
+        for (int i = 0; i < worlddata.Length; i++){
+            Debug.Log(worlddata[i]);
+        }
+    }
+
+    [ClientRpc]
     public void RpcRecieveCommands(string data, string hitdata){
         if (playerControls.Count != playernumber)
             UpdatePlayer();

@@ -30,7 +30,7 @@ public class Gravity : MonoBehaviour {
     private void GravityServerside()
     {
         SpeedCheck();
-        Vector2 force = Vector2.down * (charStats.gravitySpeed * Time.deltaTime);
+        Vector2 force = Vector2.down * (charStats.GravitySpeed * Time.deltaTime);
         physic.AddForce(force);
         physic.PhysicAction += HitFunction;
     }
@@ -42,7 +42,7 @@ public class Gravity : MonoBehaviour {
         }
         else
         {
-            charStats.gravitySpeed += charStats.gravityAcceleration * Time.deltaTime;
+            charStats.GravitySpeed += charStats.GravityAcceleration * Time.deltaTime;
         }
     }
 
@@ -58,7 +58,7 @@ public class Gravity : MonoBehaviour {
             if(charStats.FeetState == EFeetState.Onground)
             {
                 timer += Time.deltaTime;
-                if(timer >= charStats.cayoteTime)
+                if(timer >= charStats.CayoteTime)
                 {
                     charStats.FeetState = EFeetState.Falling;
                 }

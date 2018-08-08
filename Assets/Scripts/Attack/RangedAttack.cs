@@ -17,7 +17,7 @@ public class RangedAttack : Attack {
         // Attack Cooldown
         if (cooldownTimer <= 0)
         {
-            cooldownTimer = charStats.attackCooldown;
+            cooldownTimer = charStats.AttackCooldown;
             playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackDir);
         }
     }

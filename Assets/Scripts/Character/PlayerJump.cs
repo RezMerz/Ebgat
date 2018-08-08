@@ -51,10 +51,10 @@ public class PlayerJump : MonoBehaviour {
     // Holding the Jump
     public void JumpHold()
     {
-         charStats.jumpSpeed += charStats.jumpAcceleration * Time.deltaTime;
-         if (charStats.jumpSpeed > charStats.jumpSpeedMax)
+         charStats.JumpSpeed += charStats.JumpAcceleration * Time.deltaTime;
+         if (charStats.JumpSpeed > charStats.JumpSpeedMax)
          {
-             charStats.jumpSpeed = charStats.jumpSpeedMax;
+             charStats.JumpSpeed = charStats.JumpSpeedMax;
          }
     }
     public void JumpReleased()
@@ -67,7 +67,7 @@ public class PlayerJump : MonoBehaviour {
         {
             JumpHold();
         }
-        Vector2 force = Vector2.up * (charStats.jumpSpeed * Time.deltaTime);
+        Vector2 force = Vector2.up * (charStats.JumpSpeed * Time.deltaTime);
         physic.AddForce(force);
         physic.PhysicAction += HitFunction;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Globalization;
 
-public class WorldState
+public class WorldState 
 {
     public ServerNetworkSender serverNetworkSender;
     List<HeroData> heroesData;

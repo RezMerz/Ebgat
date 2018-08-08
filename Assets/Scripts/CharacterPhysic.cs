@@ -27,7 +27,7 @@ public class CharacterPhysic : Physic {
     public void ExcludeBridge()
     {
         gravityLayerMask = layerMask;
-        charstats.cayoteTime = 0;
+        charstats.CayoteTime = 0;
     }
     protected override void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {

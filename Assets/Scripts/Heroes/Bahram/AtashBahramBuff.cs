@@ -7,11 +7,11 @@ public class AtashBahramBuff : Buff {
 
     public override void BuffCharacter()
     {
-        charStats.attackDamage += deltaDamage;
+        charStats.AttackDamage += deltaDamage;
     }
 
     public override void DebuffCharacter()
     {
-        charStats.attackDamage -= deltaDamage;
+        charStats.AttackDamage -= deltaDamage;
     }
 }
