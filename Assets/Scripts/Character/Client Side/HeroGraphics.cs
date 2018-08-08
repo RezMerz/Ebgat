@@ -7,7 +7,6 @@ public class HeroGraphics : MonoBehaviour {
     private Animator animator;
     private PlayerControl playerControl;
 
-
     public void TakeDamage()
     {
         sprite.color = Color.red;
