@@ -50,7 +50,7 @@ public class OfflineCharacterJump : MonoBehaviour {
         {
             getCommand = true;
             gravitySpeed = 0f;
-            jumpSpeed = charStats.jumpSpeed;
+            jumpSpeed = charStats.JumpSpeed;
             charStats.FeetState = EFeetState.Jumping;
         }
 
@@ -61,10 +61,10 @@ public class OfflineCharacterJump : MonoBehaviour {
     {
         if (getCommand && charStats.FeetState == EFeetState.Jumping)
         {
-            jumpSpeed += charStats.jumpAcceleration * Time.deltaTime;
-            if (jumpSpeed > charStats.jumpSpeedMax)
+            jumpSpeed += charStats.JumpAcceleration * Time.deltaTime;
+            if (jumpSpeed > charStats.JumpSpeedMax)
             {
-                jumpSpeed = charStats.jumpSpeedMax;
+                jumpSpeed = charStats.JumpSpeedMax;
             }
         }
     }
@@ -83,7 +83,7 @@ public class OfflineCharacterJump : MonoBehaviour {
              if (!hit)
              {
                  transform.position += Vector3.up * (actualSpeed * Time.deltaTime);
-                 gravitySpeed += charStats.gravityAcceleration * Time.deltaTime;
+                 gravitySpeed += charStats.GravityAcceleration * Time.deltaTime;
              }
              else
              {

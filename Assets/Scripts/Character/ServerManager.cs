@@ -13,7 +13,9 @@ public class ServerManager : NetworkBehaviour {
 
     private void Awake()
     {
+        instance = this;
         currentWorldState = new WorldState();
+        playerControls = new List<PlayerControl>();
     }
 
     // Use this for initialization
@@ -36,13 +38,8 @@ public class ServerManager : NetworkBehaviour {
     {
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-        PlayerControl[] playerControlArray = new PlayerControl[objs.Length];
         for (int i = 0; i < objs.Length; i++)
-        {
-            PlayerControl p = objs[i].GetComponent<PlayerControl>();
-            playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
-        }
-        playerControls.AddRange(playerControlArray);
+            playerControls.Add(objs[i].GetComponent<PlayerControl>());
     }
 
     public void PlayerSimulationFinished(int ID){

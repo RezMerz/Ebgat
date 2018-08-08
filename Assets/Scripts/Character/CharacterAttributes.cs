@@ -9,39 +9,41 @@ public class CharacterAttributes : MonoBehaviour {
     int a;
     int ID;
 
-    private EHeadState headState; //a
-    
+    StackTrace stackTrace = new StackTrace();
     public EHeadState HeadState
     {
         get { return headState;}
         set { headState = value; RegisterHeadState(); }
     }
-
+    private EHeadState headState; //a
     private EBodyState bodyState; //b
-
-    StackTrace stackTrace = new StackTrace();
     public EBodyState BodyState
     {
         get { return bodyState; }
         set { bodyState = value; RegisterBodyState(); }
     }
+    
     private EHandState handState; //c
-
     public EHandState HandState
     {
         get { return handState; }
         set { handState = value; RegisterHandState(); }
     }
-    private EFeetState feetState; //d
 
+    private EFeetState feetState; //d
     public EFeetState FeetState
     {
         get { return feetState; }
         set { feetState = value; RegisterFeetState(); }
     }
+
+
+
     public string teamName, enemyTeamName;
-   
-    public Vector2 side {
+
+
+    private Vector2 side;
+    public Vector2 Side {
         get { return side; }
         set { side = value; playerControl.worldState.RegisterCharStat(ID, 'e', Toolkit.VectorSerialize(value)); } 
     } //e
@@ -49,18 +51,21 @@ public class CharacterAttributes : MonoBehaviour {
     //health attributes
     [SerializeField]
     private float hitPointsBase;
-    public float armor{
+    private float armor;
+    public float Armor{
         get { return armor; }
         set { armor = value; playerControl.worldState.RegisterCharStat(ID, 'f', value + ""); }
-    } //f         //amount of reduced damage dealt to this character (%)
-
-    public float hitPoints {
+    } //f      
+    public float hitPoints;
+    public float HitPoints {
         get { return hitPoints; }
         set { hitPoints = value; playerControl.worldState.RegisterCharStat(ID, 'g', value + ""); }
     } //g
 
     //attack attributes
-    public EAttackMode attackMode{
+
+    private EAttackMode attackMode;
+    public EAttackMode AttackMode{
         get { return attackMode; }
         set { attackMode = value; RegisterAttackMode(); }
     } //h
@@ -70,21 +75,25 @@ public class CharacterAttributes : MonoBehaviour {
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
-
-    public float range{
+    private float range;
+    public float Range{
         get { return range; }
         set { range = value; playerControl.worldState.RegisterCharStat(ID, 'i', value + ""); }
     } //i
 
-    public float attackDamage {
+    private float attackDamage;
+    public float AttackDamage {
         get { return attackDamage; }
         set { attackDamage = value; playerControl.worldState.RegisterCharStat(ID, 'j', value + ""); } 
     } //j
-    public float attackAnimationTime {
+
+    private float attackAnimationTime;
+    public float AttackAnimationTime {
         get { return attackAnimationTime; }
         set { attackAnimationTime = value; playerControl.worldState.RegisterCharStat(ID, 'k', value + ""); }
     } //k
-    public float attackCooldown {
+    private float attackCooldown;
+    public float AttackCooldown {
         get { return attackCooldown; }
         set { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value+ ""); }
     } //l
@@ -97,15 +106,19 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float moveSpeedMaxBase;
 
-    public  float moveSpeed {
+
+    private float moveSpeed;
+    public  float MoveSpeed {
         get { return moveSpeed; }
         set { moveSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'm', value + ""); }
     } //m
-    public float moveAcceleration {
+    private float moveAcceleration; 
+    public float MoveAcceleration {
         get { return moveAcceleration; }
         set { moveAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'n', value + ""); }
     } //n
-    public float moveSpeedMax {
+    private float moveSpeedMax;
+    public float MoveSpeedMax {
         get { return moveSpeedMax; }
         set { moveSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'o', value + ""); }
     } //o
@@ -118,15 +131,19 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float jumpSpeedMaxBase;
 
-    public float jumpSpeed {
+    private float jumpSpeed;
+    public float JumpSpeed {
         get { return jumpSpeed; }
         set { jumpSpeed = value; playerControl.worldState.RegisterCharStat(ID, 'p', value + ""); }
     } //p
-    public float jumpAcceleration {
+
+    private float jumpAcceleration;
+    public float JumpAcceleration {
         get { return jumpAcceleration; }
         set { jumpAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'q', value + ""); }
     } //q
-    public float jumpSpeedMax {
+    private float jumpSpeedMax;
+    public float JumpSpeedMax {
         get { return jumpSpeedMax; }
         set { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'r', value + ""); }
     } //r
@@ -141,19 +158,26 @@ public class CharacterAttributes : MonoBehaviour {
     [SerializeField]
     private float baseCayoteTime;
 
-    public float cayoteTime{
+    private float cayoteTime;
+    public float CayoteTime{
         get { return cayoteTime; }
         set { cayoteTime = value; playerControl.worldState.RegisterCharStat(ID, 's', value + ""); }
     } //s
-    public float gravitySpeed {
+
+    private float gravitySpeed;
+    public float GravitySpeed {
         get { return gravitySpeed; }
         set { gravitySpeed = value; playerControl.worldState.RegisterCharStat(ID, 't', value + ""); }
     } //t
-    public float gravityAcceleration {
+
+    private float gravityAcceleration;
+    public float GravityAcceleration {
         get { return gravityAcceleration; }
         set { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); }
     } //u
-    public float gravitySpeedMax {
+
+    private float gravitySpeedMax;
+    public float GravitySpeedMax {
         get { return gravitySpeedMax; }
         set { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } 
     } //v
@@ -163,6 +187,7 @@ public class CharacterAttributes : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        print("Start");
         playerControl = GetComponent<PlayerControl>();
         ID = playerControl.clientNetworkSender.PlayerID;
         Initialize();
@@ -173,8 +198,9 @@ public class CharacterAttributes : MonoBehaviour {
         //States 
         feetState = EFeetState.Onground;
         //Hp
-        hitPoints = hitPointsBase;
+        //hitPoints = hitPointsBase;
         //Attack
+        print("Attack Damage");
         attackDamage = attackDamageBase;
         attackCooldown = attackCooldownBase;
         attackAnimationTime = attackAnimationTimeBase;
@@ -187,7 +213,7 @@ public class CharacterAttributes : MonoBehaviour {
         jumpAcceleration = jumpAccelerationBase;
         jumpSpeedMax = jumpSpeedMaxBase;
         //Gravity
-        gravitySpeed = gravitySpeedBase;
+        //gravitySpeed = gravitySpeedBase;
         gravityAcceleration = gravityAccelerationBase;
         gravitySpeedMax = gravitySpeedMaxBase;
         cayoteTime = baseCayoteTime;

@@ -30,17 +30,17 @@ public class OfflineCharacterGravity : MonoBehaviour {
         // not int jumping state
         if (charStats.FeetState != EFeetState.Jumping)
         {
-            bool hit = Toolkit.CheckMove(transformHero.position, charStats.size, Vector2.down, Time.deltaTime * charStats.gravitySpeed, mask, out hitObjects);
+            bool hit = Toolkit.CheckMove(transformHero.position, charStats.size, Vector2.down, Time.deltaTime * charStats.GravitySpeed, mask, out hitObjects);
 
             if (charStats.FeetState == EFeetState.Onground)
             {
                 // Go to Falling
                 if (!hit)
                 {
-                    if (timer >= charStats.cayoteTime)
+                    if (timer >= charStats.CayoteTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
-                        transformHero.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
+                        transformHero.position += Vector3.down * (Time.deltaTime * charStats.GravitySpeed);
                         timer = 0;
                     }
                     else
@@ -71,14 +71,14 @@ public class OfflineCharacterGravity : MonoBehaviour {
                         }
                         else
                         {
-                            transformHero.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
+                            transformHero.position += Vector3.down * (Time.deltaTime * charStats.GravitySpeed);
                         }
                     }
                 }
                 // Still Faliing
                 else
                 {
-                    transformHero.position += Vector3.down * (Time.deltaTime * charStats.gravitySpeed);
+                    transformHero.position += Vector3.down * (Time.deltaTime * charStats.GravitySpeed);
                 }
             }
         }
@@ -88,10 +88,10 @@ public class OfflineCharacterGravity : MonoBehaviour {
         // if falling increase speed of gravity
         if (charStats.FeetState == EFeetState.Falling)
         {
-            charStats.gravitySpeed += charStats.gravityAcceleration * Time.deltaTime;
-            if (charStats.gravitySpeed > charStats.gravitySpeedMax)
+            charStats.GravitySpeed += charStats.GravityAcceleration * Time.deltaTime;
+            if (charStats.GravitySpeed > charStats.GravitySpeedMax)
             {
-                charStats.gravitySpeed = charStats.gravitySpeedMax;
+                charStats.GravitySpeed = charStats.GravitySpeedMax;
             }
         }
         // if onground reset speed o gravity
@@ -108,6 +108,6 @@ public class OfflineCharacterGravity : MonoBehaviour {
     public void ExcludeBridge()
     {
         mask = LayerMask.GetMask("Blocks");
-        timer = charStats.cayoteTime;
+        timer = charStats.CayoteTime;
     }
 }

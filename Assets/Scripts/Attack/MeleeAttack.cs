@@ -17,7 +17,7 @@ public class MeleeAttack :Attack {
         // Attack Cooldown
         if (cooldownTimer <= 0)
         {
-            cooldownTimer = charStats.attackCooldown;
+            cooldownTimer = charStats.AttackCooldown;
             playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackDir);
         }
     }
@@ -25,11 +25,11 @@ public class MeleeAttack :Attack {
     public override void AttackClientside(Vector2 attackDir, int attackID)
     {
         Debug.Log("attack client side");
-        Vector2 direction = charStats.side;
+        Vector2 direction = charStats.Side;
         Vector2 origin = (Vector2)transform.position + (direction * (charStats.size / 2));
         heroGraphics.MeleeAttack();
         if (playerControl.IsServer())
-            weapon.Attack(origin, charStats.attackDamage, direction, LayerMask.GetMask(charStats.enemyTeamName), this, attackID);
+            weapon.Attack(origin, charStats.AttackDamage, direction, LayerMask.GetMask(charStats.enemyTeamName), this, attackID);
     }
 
     public override void AttackHitServerSide(int attackID, float attackDamage, bool hitPlayer)
