@@ -374,7 +374,7 @@ MonoBehaviour:
   coolDownTime: 0.1
   castTime: 0
   animationTime: 0
-  buff: {fileID: 0}
+  buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   speed: 50
   range: 7
   damage: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
-  hitType: 0
+  hitType: 2
 --- !u!114 &114593228069086336
 MonoBehaviour:
   m_ObjectHideFlags: 1
