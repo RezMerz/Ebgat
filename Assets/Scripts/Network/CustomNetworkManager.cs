@@ -28,11 +28,12 @@ public class CustomNetworkManager : NetworkManager {
         GameObject player = Instantiate(players[random]);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         ServerManager.instance.UpdatePlayers();
+        ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
     public override void OnServerReady(NetworkConnection conn)
     {
         base.OnServerReady(conn);
-        ClientNetworkReciever.instance.RpcUpdatePlayers();
+
     }
 }
