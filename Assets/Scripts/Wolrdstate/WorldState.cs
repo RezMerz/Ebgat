@@ -16,8 +16,6 @@ public class WorldState
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
-        if (!serverNetworkSender.isServer)
-            return;
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (ID == heroesData[i].playerID)
