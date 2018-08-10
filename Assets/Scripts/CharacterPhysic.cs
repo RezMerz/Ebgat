@@ -13,6 +13,8 @@ public class CharacterPhysic : Physic {
 	// Use this for initialization
 	void Start ()
     {
+        size = transform.localScale * GetComponent<BoxCollider2D>().size;
+        virtualPosition = transform.position;
         playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
         layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
