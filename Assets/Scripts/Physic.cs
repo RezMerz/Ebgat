@@ -15,7 +15,8 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 size;
     protected Vector2 distance;
     protected Vector2 virtualPosition;
-
+    private bool start;
+    private float startTimer;
     protected List<Vector2> forces = new List<Vector2>();
     protected List<Vector2> destenitions = new List<Vector2>();
     protected List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
@@ -27,10 +28,17 @@ abstract public class Physic : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (playerControl.IsServer())
+        if(start)
         {
-            Calculate();
+            if (playerControl.IsServer() )
+                Calculate();
         }
+        else{
+            startTimer+= Time.deltaTime;
+            if(startTimer>1)
+                start = true;
+        }
+
     }
     private void Calculate()
     {
