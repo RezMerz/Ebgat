@@ -4,67 +4,70 @@ using UnityEngine;
 using System.Globalization;
 
 public class CharacterAttributesClient : MonoBehaviour {
-    private PlayerControl playerControl;
+        private PlayerControl playerControl;
     int a;
     int ID;
 
-    private EHeadState headState; //a
-
     public EHeadState HeadState
     {
-        get { return headState; }
-        set { headState = value;}
+        get { return headState;}
+
+        set {  headState = value; }
+        
     }
-
+    private EHeadState headState; //a
     private EBodyState bodyState; //b
-
     public EBodyState BodyState
     {
         get { return bodyState; }
-        set { bodyState = value;}
+        set {  bodyState = value; }
     }
+    
     private EHandState handState; //c
-
     public EHandState HandState
     {
         get { return handState; }
-        set { handState = value; }
+        set { handState = value;}
     }
-    private EFeetState feetState; //d
 
+    private EFeetState feetState; //d
     public EFeetState FeetState
     {
         get { return feetState; }
-        set { feetState = value;}
+        set {  feetState = value;  }
     }
-    public string teamName, enemyTeamName;
 
-    public Vector2 side
-    {
+
+
+    public string teamName, enemyTeamName;
+    public bool canDoubleJump;
+
+    private Vector2 side;
+    public Vector2 Side {
         get { return side; }
-        set { side = value; }
+        set { side = value;  } 
     } //e
 
     //health attributes
     [SerializeField]
     private float hitPointsBase;
-    public float armor
-    {
+    private float armor;
+    public float Armor{
         get { return armor; }
-        set { armor = value; }
-    } //f         //amount of reduced damage dealt to this character (%)
-
-    public float hitPoints
-    {
+        set {armor = value; }
+    } //f      
+    public float hitPoints;
+    public float HitPoints {
         get { return hitPoints; }
-        set { hitPoints = value; }
+        set { hitPoints = value;  }
     } //g
 
     //attack attributes
-    public EAttackMode attackMode
-    {
+
+    private EAttackMode attackMode;
+    public EAttackMode AttackMode{
         get { return attackMode; }
-        set { attackMode = value; }
+        set {attackMode = value; }
     } //h
     [SerializeField]
     private float attackDamageBase;
@@ -72,27 +75,27 @@ public class CharacterAttributesClient : MonoBehaviour {
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
-
-    public float range
-    {
+    private float range;
+    public float Range{
         get { return range; }
         set { range = value;  }
     } //i
 
-    public float attackDamage
-    {
+    private float attackDamage;
+    public float AttackDamage {
         get { return attackDamage; }
-        set { attackDamage = value;  }
+        set {attackDamage = value;  } 
     } //j
-    public float attackAnimationTime
-    {
+
+    private float attackAnimationTime;
+    public float AttackAnimationTime {
         get { return attackAnimationTime; }
         set { attackAnimationTime = value;  }
     } //k
-    public float attackCooldown
-    {
+    private float attackCooldown;
+    public float AttackCooldown {
         get { return attackCooldown; }
-        set { attackCooldown = value; }
+        set {  attackCooldown = value; }
     } //l
 
     //movement attributes
@@ -103,20 +106,21 @@ public class CharacterAttributesClient : MonoBehaviour {
     [SerializeField]
     private float moveSpeedMaxBase;
 
-    public float moveSpeed
-    {
+
+    private float moveSpeed;
+    public  float MoveSpeed {
         get { return moveSpeed; }
-        set { moveSpeed = value; }
+        set {  moveSpeed = value;}
     } //m
-    public float moveAcceleration
-    {
+    private float moveAcceleration; 
+    public float MoveAcceleration {
         get { return moveAcceleration; }
-        set { moveAcceleration = value;}
+        set { moveAcceleration = value; }
     } //n
-    public float moveSpeedMax
-    {
+    private float moveSpeedMax;
+    public float MoveSpeedMax {
         get { return moveSpeedMax; }
-        set { moveSpeedMax = value;  }
+        set {  moveSpeedMax = value; }
     } //o
 
     //jump attributes
@@ -127,18 +131,19 @@ public class CharacterAttributesClient : MonoBehaviour {
     [SerializeField]
     private float jumpSpeedMaxBase;
 
-    public float jumpSpeed
-    {
+    private float jumpSpeed;
+    public float JumpSpeed {
         get { return jumpSpeed; }
-        set { jumpSpeed = value; }
+        set {  jumpSpeed = value;  }
     } //p
-    public float jumpAcceleration
-    {
+
+    private float jumpAcceleration;
+    public float JumpAcceleration {
         get { return jumpAcceleration; }
         set { jumpAcceleration = value; }
     } //q
-    public float jumpSpeedMax
-    {
+    private float jumpSpeedMax;
+    public float JumpSpeedMax {
         get { return jumpSpeedMax; }
         set { jumpSpeedMax = value;  }
     } //r
@@ -152,30 +157,33 @@ public class CharacterAttributesClient : MonoBehaviour {
     private float gravitySpeedMaxBase;
     [SerializeField]
     private float baseCayoteTime;
-    public float cayoteTime
-    {
+
+    private float cayoteTime;
+    public float CayoteTime{
         get { return cayoteTime; }
-        set { cayoteTime = value; }
+        set {  cayoteTime = value; }
     } //s
-    public float gravitySpeed
-    {
+
+    private float gravitySpeed;
+    public float GravitySpeed {
         get { return gravitySpeed; }
-        set { gravitySpeed = value;  }
+        set {  gravitySpeed = value;  }
     } //t
-    public float gravityAcceleration
-    {
+
+    private float gravityAcceleration;
+    public float GravityAcceleration {
         get { return gravityAcceleration; }
-        set { gravityAcceleration = value; }
+        set {  gravityAcceleration = value; }
     } //u
-    public float gravitySpeedMax
-    {
+
+    private float gravitySpeedMax;
+    public float GravitySpeedMax {
         get { return gravitySpeedMax; }
-        set { gravitySpeedMax = value; }
+        set {gravitySpeedMax = value;  }
     } //v
 
     // size attributes
     public Vector2 size { get; set; }
-    // Use this for initialization
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();

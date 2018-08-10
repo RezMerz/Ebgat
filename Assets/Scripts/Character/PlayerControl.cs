@@ -110,7 +110,16 @@ public class PlayerControl : MonoBehaviour
         
 
     public void GetData(string data){
-        Debug.Log(data);
+        PrintData(data);
+    }
+
+    private void PrintData(string data)
+    {
+        string[] dataSplit = data.Split('$');
+        foreach (string dataS in dataSplit)
+        {
+            print(dataS);
+        }
     }
 
 }
