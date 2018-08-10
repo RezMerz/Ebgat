@@ -29,10 +29,10 @@ public class Gravity : MonoBehaviour {
     }
     private void GravityServerside()
     {
-        SpeedCheck();
-        Vector2 force = Vector2.down * (charStats.GravitySpeed * Time.deltaTime);
-        physic.AddForce(force);
-        physic.PhysicAction += HitFunction;
+            SpeedCheck();
+            Vector2 force = Vector2.down * (charStats.GravitySpeed * Time.deltaTime);
+            physic.AddForce(force);
+            physic.PhysicAction += HitFunction;
     }
     private void SpeedCheck()
     {

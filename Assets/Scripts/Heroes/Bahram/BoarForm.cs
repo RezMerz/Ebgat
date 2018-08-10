@@ -11,8 +11,10 @@ public class BoarForm : Ability {
     private int layer;
     private PlayerControl playerControl;
     private float distance;
+    private CharacterPhysic physic;
 	// Use this for initialization
 	void Start () {
+        physic = GetComponent<CharacterPhysic>();
         coolDownLock = false;
         layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
         playerControl = GetComponent<PlayerControl>();
@@ -30,27 +32,27 @@ public class BoarForm : Ability {
         }
         
 	}
-
+    private void BoarMoveHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
+    {
+        HumanForm();
+        if (vHits.Count > 0 && vHits[0].collider.tag == "Player")
+        {
+            vHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+        }
+        else if (hHits.Count > 0 && hHits[0].collider.tag == "Player")
+            hHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+    }
     private void BoarMoveServerside()
     {
         float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
+        physic.AddForce(charStats.Side * speed * Time.deltaTime);
+        physic.PhysicAction += BoarMoveHitFunction;
+
         if (currentDistance + distance <= range)
         {
-            RaycastHit2D hitObject = Physics2D.BoxCast(transform.position, new Vector2(1, 1.8f), 0, charStats.Side, speed * Time.deltaTime,layer);
-            if (hitObject.collider != null)
-            {
-                HumanForm();
-                transform.position += (Toolkit.FloatCut(hitObject.distance) * (Vector3)charStats.Side);
-                if (hitObject.collider.tag == "Player")
-                {
-                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage,buff.buffName);
-                }
-            }
-            else
-            {
+
                 transform.position += Toolkit.FloatCut(speed * Time.deltaTime )* (Vector3)charStats.Side;
                 distance += Toolkit.FloatCut(speed * Time.deltaTime);
-            }
             
         }
         else

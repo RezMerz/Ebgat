@@ -46,6 +46,7 @@ public class PlayerJump : MonoBehaviour {
             charStats.ResetJumpSpeed();
             charStats.FeetState = EFeetState.Jumping;
             isHolding = true;
+            JumpServerside();
         }
             // Double Jump
         else if (charStats.FeetState == EFeetState.Jumping && charStats.canDoubleJump) 
