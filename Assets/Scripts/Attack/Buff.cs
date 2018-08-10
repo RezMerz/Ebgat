@@ -8,7 +8,7 @@ public abstract class Buff : MonoBehaviour {
     public float time;
     public float timer { get; set; }
     public bool stackable;
-
+    public BuffManager buffManager { get; set; }
 
 
     public bool finish { get; set; }
@@ -17,6 +17,7 @@ public abstract class Buff : MonoBehaviour {
     {
         finish = true;
         DebuffCharacter();
+        buffManager.RemoveBuffFromList(this);
         GameObject.Destroy(gameObject);
     }
 

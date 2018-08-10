@@ -29,7 +29,7 @@ public class BuffManager : MonoBehaviour {
                         if (thisBuff.name == buff.name)
                         {
                             // There is already a buff with this name, just extend the time
-                            thisBuff.timer += buff.time;
+                            thisBuff.timer = buff.time;
                             found = true;
                         }
                     }
@@ -40,24 +40,28 @@ public class BuffManager : MonoBehaviour {
                     }
                 }
 
-
             }
      }
     // Instantiate and add Buff to list of activaded buffs
     private void AddBuffToList(Buff buff)
     {
         Buff thisBuff = Instantiate(buff);
+        thisBuff.buffManager = this;
         thisBuff.charStats = charStats;
         thisBuff.BuffCharacter();
         activatedBuffList.Add(thisBuff);
     }
 
-    public void DebuffCharacter()
+    public void DebuffAllCharacter()
     {
         foreach (Buff buff in activatedBuffList)
         {
             buff.FinishBuff();
-            activatedBuffList.Remove(buff);
         }
+    }
+
+    public void RemoveBuffFromList(Buff buff)
+    {
+        activatedBuffList.Remove(buff);
     }
 }

@@ -10,7 +10,7 @@ public class AtashBahram : Ability {
         {
             coolDownLock = true;
             StartCoroutine(CoolDownTimer(coolDownTime));
-            buffManager.DebuffCharacter();
+            buffManager.DebuffAllCharacter();
             buffManager.ActivateBuff("AtashBahramBuff");
         }
     }
