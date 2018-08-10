@@ -45,33 +45,15 @@ public class BoarForm : Ability {
     private void BoarMoveServerside()
     {
         float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
-        physic.AddForce(charStats.Side * speed * Time.deltaTime);
-        physic.PhysicAction += BoarMoveHitFunction;
-
         if (currentDistance + distance <= range)
         {
-
-                transform.position += Toolkit.FloatCut(speed * Time.deltaTime )* (Vector3)charStats.Side;
-                distance += Toolkit.FloatCut(speed * Time.deltaTime);
-            
+            physic.AddForce(charStats.Side * speed * Time.deltaTime);
+            physic.PhysicAction += BoarMoveHitFunction;
+            distance += Toolkit.FloatCut(speed * Time.deltaTime); 
         }
         else
         {
-            RaycastHit2D hitObject = Physics2D.BoxCast(transform.position, new Vector2(1, 1.8f), 0, charStats.Side, range-distance, layer);
-            if (hitObject.collider != null)
-            {
-                HumanForm();
-                transform.position += (Toolkit.FloatCut(hitObject.distance) * (Vector3)charStats.Side);
-                if (hitObject.collider.tag == "Player")
-                {
-                    hitObject.collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.buffName);
-                }
-            }
-            else
-            {
-                transform.position += Toolkit.FloatCut(range - distance) * (Vector3)charStats.Side;
-                distance += Toolkit.FloatCut(range - distance);
-            }
+            print(distance);
             HumanForm();
         }
     }

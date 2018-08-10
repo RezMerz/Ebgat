@@ -7,7 +7,7 @@ abstract public class Physic : MonoBehaviour
 {
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
 
-    public float wight;
+    public float weight;
 
     protected int layerMask;
     protected int gravityLayerMask;

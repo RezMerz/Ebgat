@@ -30,10 +30,18 @@ public class HeroGraphics : MonoBehaviour {
     public void MoveRight()
     {
         print("Move Right");
-        animator.SetBool("Walking", true);
+
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
-
+    public void BodyState(string value)
+    {
+        if (value == "1")
+            animator.SetBool("Walking", false);
+        else if (value == "2")
+            animator.SetBool("Walking", true);
+        else
+            print("Body State Wrong Code");
+    }
     public void MoveLeft()
     {
         print("Move Left");
