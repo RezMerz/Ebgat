@@ -8,21 +8,32 @@ public class CharacterPhysic : Physic {
     private CharacterAttributes charstats;
     private Gravity gravity;
 
+    private bool layerSet;
+
 
 
 	// Use this for initialization
 	void Start ()
     {
+        layerSet = true;
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
         virtualPosition = transform.position;
         playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
-        layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
-        Debug.Log(charstats.enemyTeamName);
-        Debug.Log(LayerMask.GetMask(charstats.enemyTeamName));
-        gravityLayerMask = LayerMask.GetMask("Blocks","Bridge", charstats.enemyTeamName);
     }
-	
+
+    private void Update()
+    {
+        if (layerSet)
+        {
+            layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
+            Debug.Log(charstats.enemyTeamName);
+            Debug.Log(LayerMask.GetMask(charstats.enemyTeamName));
+            gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
+            layerSet = false;
+        }
+    }
+
     public void IncludeBridge()
     {
         gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge",charstats.enemyTeamName);
