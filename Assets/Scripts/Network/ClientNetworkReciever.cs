@@ -75,6 +75,8 @@ public class ClientNetworkReciever : NetworkBehaviour {
         for (int i = 0; i < objs.Length; i++)
         {
             PlayerControl p = objs[i].GetComponent<PlayerControl>();
+            if (p.clientNetworkSender.PlayerID == 0)
+                return;
             playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
             if (p.IsLocalPlayer())
                 localPlayerControl = p;
