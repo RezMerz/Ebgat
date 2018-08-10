@@ -25,6 +25,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
         if (playerControls.Count != playernumber)
             UpdatePlayer();
         for (int i = 0; i < worlddata.Length; i++){
+            //Debug.Log(worlddata[i]);
             string[] data = worlddata[i].Split('$');
             playerControls[Convert.ToInt32(data[0]) - 1].GetData(worlddata[i].Substring(data[0].Length + 1));
         }

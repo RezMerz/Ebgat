@@ -11,10 +11,8 @@ public class WorldState
     public WorldState(){
         heroesData = new List<HeroData>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-        List<PlayerControl> temp = new List<PlayerControl>();
         foreach (GameObject obj in objs)
-            temp.Add(obj.GetComponent<PlayerControl>());
-        UpdatePlayerCount(temp);
+            heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().clientNetworkSender.PlayerID));
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
@@ -32,24 +30,20 @@ public class WorldState
 
     public void RegisterCharStat(int ID, char keycode, string value)
     {
+        /*if(heroesData.Count == 0)
+        {
+            Debug.Log("frameeeesasasae: " + Time.frameCount);
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject obj in objs)
+                heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().clientNetworkSender.PlayerID));
+        }*/
         for (int i = 0; i<heroesData.Count; i++){
             if(ID == heroesData[i].playerID){
                 heroesData[i].RegisterCharstat(keycode, value);
                 return;
             }
         }
-    }
 
-    public void UpdatePlayerCount(List<PlayerControl> playerControls)
-    {
-        
-        for (int i = 0; i < playerControls.Count; i++){
-            for (int j = 0; j < heroesData.Count; j++){
-                if (playerControls[i].clientNetworkSender.PlayerID == heroesData[j].playerID)
-                    continue;
-            }
-            heroesData.Add(new HeroData(playerControls[i].clientNetworkSender.PlayerID));
-        }
     }
 
     public string[] GetWorldData(){

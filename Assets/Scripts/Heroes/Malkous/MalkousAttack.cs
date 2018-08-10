@@ -8,7 +8,10 @@ public class MalkousAttack : Attack {
 
     public override void AttackHold() { }
 
-    public override void AttackReleased() { }
+
+    public override void AttackReleased() { 
+      
+    }
 	// Use this for initialization
 	void Start () {
 		

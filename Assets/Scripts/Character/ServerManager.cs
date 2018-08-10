@@ -17,7 +17,6 @@ public class ServerManager : NetworkBehaviour {
         currentWorldState = new WorldState();
         playerControls = new List<PlayerControl>();
         UpdatePlayers();
-        SetWorldStateOnPlayers();
     }
 
     // Use this for initialization
@@ -39,7 +38,6 @@ public class ServerManager : NetworkBehaviour {
     {
         playerControls.Clear();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(objs.Length);
         for (int i = 0; i < objs.Length; i++)
             playerControls.Add(objs[i].GetComponent<PlayerControl>());
         SetWorldStateOnPlayers();
@@ -51,6 +49,7 @@ public class ServerManager : NetworkBehaviour {
             ServerNetworkSender.instance.SendWorldState(currentWorldState);
             finishedPLayercounter = 0;
             currentWorldState = new WorldState();
+            UpdatePlayers();
         }
     }
 }
