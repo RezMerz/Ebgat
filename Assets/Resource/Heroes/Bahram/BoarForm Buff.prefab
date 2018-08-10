@@ -51,6 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c55dd234511a14ab2a44693c8a236e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: Boar Buff
-  time: 1
+  time: 5
   stackable: 0

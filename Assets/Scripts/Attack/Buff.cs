@@ -24,6 +24,7 @@ public abstract class Buff : MonoBehaviour {
     void Start()
     {
         finish = false;
+        timer = time;
     }
 
     public abstract void BuffCharacter();
@@ -41,6 +42,7 @@ public abstract class Buff : MonoBehaviour {
             }
             else
             {
+                print("FinishBuff");
                 FinishBuff();
             }
         }
