@@ -30,7 +30,6 @@ GameObject:
   - component: {fileID: 114563909224352236}
   - component: {fileID: 114065575438310620}
   - component: {fileID: 114443031708535354}
-  - component: {fileID: 114571949810739002}
   - component: {fileID: 114834879446760482}
   - component: {fileID: 114970392499330594}
   - component: {fileID: 114324438479663174}
@@ -376,21 +375,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &114571949810739002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1314286711458398}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf0f7c7dbbcf204ab325ee7c472f7d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBorder: -14.5
-  rightBorder: 38.5
-  bottomBorder: -11
-  topBorder: 19
 --- !u!114 &114633997228676266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,21 +388,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: 
   enemyTeamName: 
+  canDoubleJump: 0
   hitPointsBase: 40
   hitPoints: 0
-  attackDamageBase: 10
+  attackDamageBase: 15
   attackAnimationTimeBase: 0
-  attackCooldownBase: 0.1
+  attackCooldownBase: 0.5
   moveSpeedBase: 15
   moveAccelerationBase: 0
-  moveSpeedMaxBase: 15
-  jumpSpeedBase: 20
-  jumpAccelerationBase: 1.5
-  jumpSpeedMaxBase: 30
-  gravitySpeedBase: 0
-  gravityAccelerationBase: 1
+  moveSpeedMaxBase: 20
+  jumpSpeedBase: 15
+  jumpAccelerationBase: 100
+  jumpSpeedMaxBase: 27
+  gravitySpeedBase: 0.1
+  gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
-  baseCayoteTime: 0
+  baseCayoteTime: 0.1
 --- !u!114 &114681682171674304
 MonoBehaviour:
   m_ObjectHideFlags: 1
