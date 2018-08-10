@@ -18,8 +18,19 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        if (isServer)
+        {
+            PlayerID = num++;
+        }
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
+        serverNetwork = playerControl.serverNetwork;
         if (playerControl.IsLocalPlayer())
         {
             charStats.teamName = "Team 1";
@@ -39,16 +50,6 @@ public class ClientNetworkSender : NetworkBehaviour
 
             playerControl.color = Color.white;
         }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        if (isServer)
-        {
-            PlayerID = num++;
-        }
-        serverNetwork = playerControl.serverNetwork;
     }
 
     // Update is called once per frame
