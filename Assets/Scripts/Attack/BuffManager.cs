@@ -15,7 +15,7 @@ public class BuffManager : MonoBehaviour {
     public void ActivateBuff(string name)
     {
         foreach(Buff buff in buffListRefrence)
-            if (buff.buffName == name)
+            if (buff.name == name)
             {
                 if(buff.stackable)
                 {
@@ -26,7 +26,7 @@ public class BuffManager : MonoBehaviour {
                     bool found = false;
                     foreach (Buff thisBuff in activatedBuffList)
                     {
-                        if (thisBuff.buffName == buff.buffName)
+                        if (thisBuff.name == buff.name)
                         {
                             // There is already a buff with this name, just extend the time
                             thisBuff.timer += buff.time;

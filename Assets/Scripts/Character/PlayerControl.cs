@@ -58,6 +58,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (buffName != "")
         {
+            print(buffName);
             buffManager.ActivateBuff(buffName);
         }
         TakeDamage(damage);

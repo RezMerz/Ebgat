@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoarBuff : Buff {
     public override void BuffCharacter()
     {
+        print("Stun Character");
         charStats.HeadState = EHeadState.Stunned;
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Buff : MonoBehaviour {
     //Buff attributes
     public CharacterAttributes charStats{get;set;}
-    public string buffName;
     public float time;
     public float timer { get; set; }
     public bool stackable;
