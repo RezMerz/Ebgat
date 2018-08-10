@@ -16,6 +16,7 @@ public class WorldState
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
+        //Debug.Log(ID);
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (ID == heroesData[i].playerID)
@@ -35,6 +36,7 @@ public class WorldState
             foreach (GameObject obj in objs)
                 heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().clientNetworkSender.PlayerID));
         }*/
+
         for (int i = 0; i<heroesData.Count; i++){
             if(ID == heroesData[i].playerID){
                 heroesData[i].RegisterCharstat(keycode, value);
