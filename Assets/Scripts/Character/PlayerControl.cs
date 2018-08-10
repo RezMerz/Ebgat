@@ -115,14 +115,23 @@ public class PlayerControl : MonoBehaviour
 
     private void PrintData(string data)
     {
+        bool first = true;
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
         {
             string[] deString = dataS.Split('&');
-            if (deString.Length > 1)
+            if (first)
             {
-                Deserilize(deString[0].ToCharArray()[0], deString[1]);
+                first = false;
+                transform.position = Toolkit.DeserializeVector(deString[0]);
             }
+            else
+            {
+                if (deString.Length > 1)
+                {
+                    Deserilize(deString[0].ToCharArray()[0], deString[1]);
+                }
+            }            
         }
 
 
