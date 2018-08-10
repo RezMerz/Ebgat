@@ -29,6 +29,7 @@ public class Gravity : MonoBehaviour {
     }
     private void GravityServerside()
     {
+        Debug.Log(charStats.FeetState);
         SpeedCheck();
         Vector2 force = Vector2.down * (charStats.GravitySpeed * Time.deltaTime);
         physic.AddForce(force);
@@ -48,8 +49,9 @@ public class Gravity : MonoBehaviour {
 
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if (vHits.Count > 0 && direction.y < 0)
+        if (vHits.Count > 0 && direction.y <= 0)
         {
+            Debug.Log(" hit :");
             timer = 0;
             charStats.FeetState = EFeetState.Onground;
         }
