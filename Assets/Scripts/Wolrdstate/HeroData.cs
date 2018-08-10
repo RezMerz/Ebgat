@@ -16,7 +16,9 @@ public class HeroData {
     }
 
     public void RegisterCharstat(char keycode, string value){
-        data += keycode + "&" + value;
+        //Debug.Log("kham data " + data );
+        data += keycode + "&" + value + "$";
+        //Debug.Log("por data: " + data);
     }
 
     public void RegisterHeroPhysics(Vector2 destination, Vector2 force){

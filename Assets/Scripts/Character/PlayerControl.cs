@@ -110,7 +110,7 @@ public class PlayerControl : MonoBehaviour
         
 
     public void GetData(string data){
-        Debug.Log(data);
+        //Debug.Log(data);
     }
 
 }

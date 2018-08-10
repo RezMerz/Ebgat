@@ -186,10 +186,15 @@ public class CharacterAttributes : MonoBehaviour {
 
     // size attributes
     public Vector2 size { get; set; }
+
+    private void Update()
+    {
+        ID = playerControl.clientNetworkSender.PlayerID;
+    }
+
     // Use this for initialization
     void Start ()
     {
-        print("Start");
         playerControl = GetComponent<PlayerControl>();
         ID = playerControl.clientNetworkSender.PlayerID;
         Initialize();
@@ -200,9 +205,8 @@ public class CharacterAttributes : MonoBehaviour {
         //States 
         feetState = EFeetState.Onground;
         //Hp
-        //hitPoints = hitPointsBase;
+        hitPoints = hitPointsBase;
         //Attack
-        print("Attack Damage");
         attackDamage = attackDamageBase;
         attackCooldown = attackCooldownBase;
         attackAnimationTime = attackAnimationTimeBase;
@@ -330,7 +334,7 @@ public class CharacterAttributes : MonoBehaviour {
         switch (BodyState)
         {
             case EBodyState.Standing: playerControl.worldState.RegisterCharStat(ID, 'b', "1"); break;
-            case EBodyState.Moving:UnityEngine.Debug.Log(playerControl.IsServer()); playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
+            case EBodyState.Moving: playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
