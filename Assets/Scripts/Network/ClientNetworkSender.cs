@@ -20,11 +20,6 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
-        serverNetwork = playerControl.serverNetwork;
-        if (isServer)
-        {
-            PlayerID = num++;
-        }
         if (playerControl.IsLocalPlayer())
         {
             charStats.teamName = "Team 1";
@@ -49,6 +44,11 @@ public class ClientNetworkSender : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        if (isServer)
+        {
+            PlayerID = num++;
+        }
+        serverNetwork = playerControl.serverNetwork;
     }
 
     // Update is called once per frame
