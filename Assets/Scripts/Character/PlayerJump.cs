@@ -67,7 +67,7 @@ public class PlayerJump : MonoBehaviour {
     }
     public void JumpReleased()
     {
-            isHolding = false;
+        isHolding = false;
     }
     private  void JumpServerside()
     {

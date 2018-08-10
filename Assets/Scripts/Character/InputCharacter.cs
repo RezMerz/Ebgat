@@ -81,9 +81,10 @@ public class InputCharacter : MonoBehaviour
             clientNetworkSender.JumpPressed(transform.position);
             //jump.JumpPressed();
         }
-        else if (Input.GetButton("Jump"))
+        else if (Input.GetButtonUp("Jump"))
         {
-            //jump.JumpHold();
+            clientNetworkSender.JumpReleased(transform.position);
+            //jump.JumpReleased();
         }
 
         if (Input.GetButtonUp("Jump"))

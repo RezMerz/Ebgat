@@ -102,6 +102,11 @@ public class PlayerControl : MonoBehaviour
         jump.JumpPressed();
     }
 
+    public void JumpReleased()
+    {
+        jump.JumpReleased();
+    }
+
     public void RangedAttack(Vector2 attackDir){
         attack.AttackServerside(attackDir);
     }
