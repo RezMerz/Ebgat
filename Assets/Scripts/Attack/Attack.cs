@@ -32,6 +32,10 @@ public abstract class Attack : MonoBehaviour {
 
     public virtual void AttackPressed(Vector2 attackDir) {}
 
+    public virtual void AttackHold(){}
+    
+    public virtual void AttackReleased(){}
+
     public virtual void AttackServerside(Vector2 attackDir){}
 
     public virtual void AttackClientside(Vector2 attackDir, int attackID){}

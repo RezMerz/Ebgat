@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aurafreeze : MonoBehaviour {
+public class MalkousAttack : Attack {
 
+    public override void AttackPressed(Vector2 attackDir) { }
+
+    public override void AttackHold() { }
+
+    public override void AttackReleased() { }
 	// Use this for initialization
 	void Start () {
 		
