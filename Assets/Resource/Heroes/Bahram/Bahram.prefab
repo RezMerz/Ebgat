@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 114451276411895824}
   - component: {fileID: 114432285978368132}
   - component: {fileID: 114516334755813448}
+  - component: {fileID: 114610447254143576}
   m_Layer: 0
   m_Name: Bahram
   m_TagString: Player
@@ -402,6 +403,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114610447254143576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebca011c11433da4e92f7a4902d6ae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffListRefrence:
+  - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
 --- !u!114 &114740440015595030
 MonoBehaviour:
   m_ObjectHideFlags: 1
