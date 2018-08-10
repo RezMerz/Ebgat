@@ -60,9 +60,9 @@ public class Toolkit : MonoBehaviour {
             RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin - multiplier * (i + k), direction, distance, layerNumber, 0, 0);
             if (hitPoint.collider != null)
             {
-                hit = true;
                 if (hitPoint.collider.tag != "Bridge" || HitSide(hitPoint) == Vector2.up)
                 {
+                    hit = true;
                     hitObjects.Add(hitPoint);
                 }
             }
