@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
         jump = GetComponent<PlayerJump>();
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
+        abilityManager = GetComponent<AbilityManager>();
     }
 
     void Start()
@@ -111,6 +112,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Ability1Pressed()
     {
+        print("Ability 1");
         abilityManager.Ability1Pressed();
     }
 
