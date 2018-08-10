@@ -16,18 +16,15 @@ public class ClientNetworkSender : NetworkBehaviour
     private static int num = 1;
     [SyncVar]public int PlayerID;
 
-
-
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
+        playerControl = GetComponent<PlayerControl>();
+        charStats = playerControl.charStats;
+        serverNetwork = playerControl.serverNetwork;
         if (isServer)
         {
             PlayerID = num++;
         }
-        playerControl = GetComponent<PlayerControl>();
-        charStats = playerControl.charStats;
-        serverNetwork = playerControl.serverNetwork;
         if (playerControl.IsLocalPlayer())
         {
             charStats.teamName = "Team 1";
@@ -40,13 +37,18 @@ public class ClientNetworkSender : NetworkBehaviour
         }
         else
         {
-            
+
             charStats.teamName = "Team 2";
             charStats.enemyTeamName = "Team 1";
             gameObject.layer = LayerMask.NameToLayer("Team 2");
 
             playerControl.color = Color.white;
         }
+    }
+
+    // Use this for initialization
+    void Start()
+    {
     }
 
     // Update is called once per frame
