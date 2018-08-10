@@ -74,7 +74,7 @@ abstract public class Physic : MonoBehaviour
         }
 
         virtualPosition += distance;
-        playerControl.worldState.RegisterHeroPhysics(playerControl.serverNetworkSender.playerControllerId, virtualPosition, distance);
+        playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
         destenitions.Add(virtualPosition);
         if (PhysicAction != null)
         {
