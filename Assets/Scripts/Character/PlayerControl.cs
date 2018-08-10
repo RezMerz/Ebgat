@@ -134,6 +134,7 @@ public class PlayerControl : MonoBehaviour
         switch (code)
         {
             case 'd': heroGraphics.FeetState(value); break;
+            case 'e': heroGraphics.SetSide(value); break;
         }
     }
 

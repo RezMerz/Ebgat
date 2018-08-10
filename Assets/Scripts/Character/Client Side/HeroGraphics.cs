@@ -57,6 +57,15 @@ public class HeroGraphics : MonoBehaviour {
             print("Wrong Feet State Code");
     }
 
+    public void SetSide(string value)
+    {
+        Vector2 side =Toolkit.DeserializeVector(value);
+        if (side.x == 1)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (side.x == -1)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
     IEnumerator DamageColorTimer(float time)
     {
         yield return new WaitForSeconds(time);

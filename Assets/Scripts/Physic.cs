@@ -72,10 +72,8 @@ abstract public class Physic : MonoBehaviour
                 distance.y = -verticalPoints[0].distance;
             }
         }
-        Debug.Log(vHit);
 
         virtualPosition += distance;
-        transform.position = virtualPosition;
         destenitions.Add(virtualPosition);
         if (PhysicAction != null)
         {
