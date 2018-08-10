@@ -18,6 +18,8 @@ public class CharacterPhysic : Physic {
         playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
         layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
+        Debug.Log(charstats.enemyTeamName);
+        Debug.Log(LayerMask.GetMask(charstats.enemyTeamName));
         gravityLayerMask = LayerMask.GetMask("Blocks","Bridge", charstats.enemyTeamName);
     }
 	

@@ -56,6 +56,7 @@ abstract public class Physic : MonoBehaviour
                 distance.x = -horizontalPoints[0].distance;
             }
         }
+        virtualPosition += Vector2.right * distance;
         if (distance.y > 0)
         {
             vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
@@ -73,7 +74,7 @@ abstract public class Physic : MonoBehaviour
             }
         }
 
-        virtualPosition += distance;
+        virtualPosition += Vector2.up * distance;
         playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
         destenitions.Add(virtualPosition);
         if (PhysicAction != null)
