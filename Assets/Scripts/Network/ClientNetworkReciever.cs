@@ -27,7 +27,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
         for (int i = 0; i < worlddata.Length; i++){
             string[] data = worlddata[i].Split('$');
             int id = Convert.ToInt32(data[0]);
-            if (id == 0)
+            if (id == 0 || id > playerControls.Count)
                 continue;
             playerControls[id - 1].GetData(worlddata[i].Substring(data[0].Length + 1));
         }
