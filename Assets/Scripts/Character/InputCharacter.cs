@@ -94,7 +94,7 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetButtonDown("Ability1"))
         {
-            abilityManager.Ability1Pressed();
+            clientNetworkSender.Ability1Pressed();
         }
         if (Input.GetButtonDown("Ability2"))
         {

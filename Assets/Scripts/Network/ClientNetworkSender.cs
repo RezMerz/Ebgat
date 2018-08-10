@@ -117,5 +117,31 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 9 + "," + attackDir.x + "," + attackDir.y + ",\n";
     }
 
+    public void Ability1Pressed()
+    {
+        data += 10 + ",\n";
+    }
 
+    public void Ability1Hold()
+    {
+        data += 11 + ",\n";
+    }
+    public void Ability1Released()
+    {
+        data += 12 + ",\n";
+    }
+    public void Ability2Pressed()
+    {
+        data += 13 + ",\n";
+    }
+
+    public void Ability2Hold()
+    {
+        data += 14 + ",\n";
+    }
+
+    public void Ability2Released()
+    {
+        data += 15 + ",\n";
+    }
 }

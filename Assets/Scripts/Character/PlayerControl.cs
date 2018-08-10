@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     public Color color;
 
     private BuffManager buffManager;
-
+    private AbilityManager abilityManager;
     // Use this for initialization
     void Awake()
     {
@@ -108,7 +108,35 @@ public class PlayerControl : MonoBehaviour
     public void Meleeattack(Vector2 attackDir) {
         attack.AttackServerside(attackDir);
     }
+
+    public void Ability1Pressed()
+    {
+        abilityManager.Ability1Pressed();
+    }
+
+    public void Ability1Hold()
+    {
         
+    }
+    public void Ability1Released()
+    {
+        
+    }
+    public void Ability2Pressed()
+    {
+        
+    }
+
+    public void Ability2Hold()
+    {
+        
+    }
+
+    public void Ability2Released()
+    {
+        
+    }
+
 
     public void GetData(string data){
         PrintData(data);
