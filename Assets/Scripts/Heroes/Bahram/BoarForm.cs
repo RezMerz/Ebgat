@@ -34,13 +34,17 @@ public class BoarForm : Ability {
 	}
     private void BoarMoveHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        HumanForm();
+
         if (vHits.Count > 0 && vHits[0].collider.tag == "Player")
         {
+            HumanForm();
             vHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
         }
         else if (hHits.Count > 0 && hHits[0].collider.tag == "Player")
+        {
+            HumanForm();
             hHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+        }
     }
     private void BoarMoveServerside()
     {
