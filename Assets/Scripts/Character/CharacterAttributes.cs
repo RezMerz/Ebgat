@@ -296,10 +296,9 @@ public class CharacterAttributes : MonoBehaviour {
         switch (value)
         {
             case "1": HandState = EHandState.Idle; break;
-            case "2": HandState = EHandState.Moving; break;
-            case "3": HandState = EHandState.Attacking; break;
-            case "4": HandState = EHandState.Casting; break;
-            case "5": HandState = EHandState.Channeling; break;
+            case "2": HandState = EHandState.Attacking; break;
+            case "3": HandState = EHandState.Casting; break;
+            case "4": HandState = EHandState.Channeling; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -343,10 +342,9 @@ public class CharacterAttributes : MonoBehaviour {
         switch (HandState)
         {
             case EHandState.Idle: playerControl.worldState.RegisterCharStat(ID, 'c', "1"); break;
-            case EHandState.Moving: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
-            case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
-            case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
-            case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
+            case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
+            case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
+            case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -376,7 +374,7 @@ public class CharacterAttributes : MonoBehaviour {
 
 public enum EHeadState { Conscious = 1, Stunned = 2 };
 public enum EBodyState { Standing = 1,Moving = 2 };
-public enum EHandState { Idle = 1, Moving = 2, Attacking = 3, Casting = 4, Channeling = 5 };
+public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4 };
 public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 

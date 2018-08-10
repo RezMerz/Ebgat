@@ -271,10 +271,9 @@ public class CharacterAttributesClient : MonoBehaviour {
         switch (value)
         {
             case "1": HandState = EHandState.Idle; break;
-            case "2": HandState = EHandState.Moving; break;
-            case "3": HandState = EHandState.Attacking; break;
-            case "4": HandState = EHandState.Casting; break;
-            case "5": HandState = EHandState.Channeling; break;
+            case "2": HandState = EHandState.Attacking; break;
+            case "3": HandState = EHandState.Casting; break;
+            case "4": HandState = EHandState.Channeling; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }

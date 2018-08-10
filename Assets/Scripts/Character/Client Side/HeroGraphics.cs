@@ -41,6 +41,22 @@ public class HeroGraphics : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
+    public void FeetState(string value)
+    {
+        if(value == "1") 
+            print(EFeetState.Onground);
+        else if( value == "2")
+            print(EFeetState.Falling);
+        else if(value == "3")
+            print(EFeetState.Jumping);
+        else if(value == "4")
+            print(EFeetState.NoGravity);
+        else if(value == "5")
+            print(EFeetState.DoubleJumping);
+        else
+            print("Wrong Feet State Code");
+    }
+
     IEnumerator DamageColorTimer(float time)
     {
         yield return new WaitForSeconds(time);

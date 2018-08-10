@@ -118,11 +118,26 @@ public class PlayerControl : MonoBehaviour
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
         {
-            print(dataS);
+            string[] deString = dataS.Split('&');
+            if (deString.Length > 1)
+            {
+                Deserilize(deString[0].ToCharArray()[0], deString[1]);
+            }
         }
 
 
     }
+
+    // gets the code and value of datas
+    private void Deserilize(char code,string value)
+    {
+        switch (code)
+        {
+            case 'd': heroGraphics.FeetState(value); break;
+        }
+    }
+
+    
 
 }
 
