@@ -119,6 +119,7 @@ public class PlayerControl : MonoBehaviour
         foreach (string dataS in dataSplit)
         {
             print(dataS);
+        }
 
 
     }
