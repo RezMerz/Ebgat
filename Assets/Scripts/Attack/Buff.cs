@@ -7,12 +7,12 @@ public abstract class Buff : MonoBehaviour {
     public CharacterAttributes charStats{get;set;}
     public string buffName;
     public float time;
-    public float timer;
+    public float timer { get; set; }
     public bool stackable;
-    
-    
 
-    public bool finish;
+
+
+    public bool finish { get; set; }
 
     public void FinishBuff()
     {
