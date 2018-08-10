@@ -33,6 +33,7 @@ abstract public class Physic : MonoBehaviour {
 
     private void LateUpdate()
     {
+        
         if (playerControl.IsServer())
         {
             Calculate();
