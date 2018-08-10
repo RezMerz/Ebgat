@@ -24,9 +24,10 @@ public class ServerManager : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	/*void Update () {
+        if (playerControls.Count == 0)
+            UpdatePlayers();
+	}*/
 
     private void SetWorldStateOnPlayers(){
         foreach(PlayerControl p in playerControls){

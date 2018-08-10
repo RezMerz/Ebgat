@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
         }
     }
+
     public bool IsLocalPlayer(){
         return clientNetworkSender.isLocalPlayer;
 
