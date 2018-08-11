@@ -24,6 +24,7 @@ public class CharacterPhysic : Physic {
 
     private void Update()
     {
+        PhysicAction += HitFunction;
         if (layerSet)
         {
             layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
