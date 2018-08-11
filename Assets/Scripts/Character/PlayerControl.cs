@@ -94,10 +94,12 @@ public class PlayerControl : MonoBehaviour
 
     public void SetVerticalDirection(int i)
     {
+        charStats.AimSide = new Vector2(charStats.AimSide.x,i);
         charStats.Side = new Vector2(charStats.Side.x, i);
     }
 
     public void MoveFinished(Vector3 position){
+            
         characterMove.MoveReleasedServerside(position);
     }
 

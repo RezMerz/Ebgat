@@ -184,6 +184,12 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != jumpAcceleration) { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } }
     } //v
 
+    private Vector2 aimSide;
+    public Vector2 AimSide
+    {
+        get { return aimSide; }
+        set { if (value != aimSide) { aimSide = value; playerControl.worldState.RegisterCharStat(ID, 'w', Toolkit.VectorSerialize(value)); } }
+    } //w
     // size attributes
     public Vector2 size { get; set; }
 
@@ -273,6 +279,7 @@ public class CharacterAttributes : MonoBehaviour {
             case 't': gravitySpeed = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'u': gravityAcceleration = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'v': gravitySpeedMax = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
+            case 'w': aimSide = Toolkit.DeserializeVector(value); break;
         }
     }
     private void SetHeadState(string value)

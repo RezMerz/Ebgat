@@ -40,33 +40,32 @@ public class InputCharacter : MonoBehaviour
 
         // Move left and Right
         if ((!axisXChanged && axisX > 0.3 || axisX < -0.3))
-        { 
+        {
+            axisXChanged = true;
             if (axisX > 0.1)
-            {
-                axisXChanged = true;
                 clientNetworkSender.Move(1);
-            }
             else if (axisX < -0.1)
-            {
-                axisXChanged = true;
                 clientNetworkSender.Move(-1);
-            }
         }
         else if (axisXChanged && axisX < 0.3 && axisX > -0.3)
         {
             axisXChanged = false;
             clientNetworkSender.MoveFinished(transform.position);
         }
-        if(axisY != 0)
+
+        // Move Down and Top
+        if ((!axisYChanged && axisY > 0.3 || axisY < -0.3))
         {
+            axisYChanged = true;
             if(axisY > 0.1)
-            {
-                clientNetworkSender.MoveVertical(1);
-            }
+                clientNetworkSender.SetVerticalDirection(1);
             else if(axisY < -0.1)
-            {
-                clientNetworkSender.MoveVertical(-1);
-            }
+                clientNetworkSender.SetVerticalDirection(-1);
+        }
+        else if (axisYChanged && axisY < 0.3 && axisY > -0.3)
+        {
+            axisYChanged = false;
+            clientNetworkSender.SetVerticalDirection(0);
         }
 
         //Attack

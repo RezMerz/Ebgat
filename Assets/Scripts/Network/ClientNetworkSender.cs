@@ -78,10 +78,6 @@ public class ClientNetworkSender : NetworkBehaviour
         else
             Debug.Log("wrong input");
     }
-    public void MoveVertical(int j)
-    {
-
-    }
 
     public void MoveFinished(Vector3 position)
     {

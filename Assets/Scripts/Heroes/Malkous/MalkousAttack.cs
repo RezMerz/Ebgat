@@ -24,6 +24,11 @@ public class MalkousAttack : Attack {
 
     public override void AttackReleased() {
         // Bullet Code Here
+        Vector2 attackSide = charStats.AimSide;
+        if (attackSide.y == 0 && attackSide.x == 0)
+            attackSide = charStats.Side;
+
+        print("Bullet:" + attackSide);
     }
 	// Use this for initialization
 	void Start () {
