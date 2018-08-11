@@ -40,7 +40,7 @@ abstract public class Physic : MonoBehaviour
         }
 
     }
-    private void Calculate()
+    protected virtual void Calculate()
     {
         bool vHit = false, hHit = false;
 
@@ -85,11 +85,7 @@ abstract public class Physic : MonoBehaviour
         virtualPosition += Vector2.up * distance;
         playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
         destenitions.Add(virtualPosition);
-        if (PhysicAction != null)
-        {
-            PhysicAction(verticalPoints, horizontalPoints, originalDistance);
-        }
-        HitFunction(verticalPoints, horizontalPoints, originalDistance);
+        PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
         distance = Vector2.zero;
         ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
