@@ -112,14 +112,6 @@ public class PlayerControl : MonoBehaviour
         jump.JumpReleased();
     }
 
-    public void RangedAttack(Vector2 attackDir){
-        attack.AttackServerside(attackDir);
-    }
-
-    public void Meleeattack(Vector2 attackDir) {
-        attack.AttackServerside(attackDir);
-    }
-
     public void Ability1Pressed()
     {
         print("Ability 1");

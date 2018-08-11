@@ -24,7 +24,7 @@ public class MeleeWaepon : MonoBehaviour {
             if (hit.collider.tag == "Player")
             {
                 print("Took Attack");
-                attack.AttackHitServerSide(ID, damage, true);
+                //attack.AttackHitServerSide(ID, damage, true);
             }
         }
     }

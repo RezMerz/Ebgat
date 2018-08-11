@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Move();
+        
     }
 
     public void Shoot(Vector2 targetDirection, Vector2 origin,int layer, bool isServer, RangedAttack rangedAttack)
@@ -64,64 +64,5 @@ public class Bullet : MonoBehaviour {
         
     }
     
-    private void Move()
-    {
-        if (shot)
-        {
-            if (isServer)
-                hit = Toolkit.CheckMoveFloat(transform.position, size, hDirection, Time.deltaTime * speed * Mathf.Abs(direction.x), layer, out hitObjects);
-            else
-                hit = false;
-            if (hit)
-            {
-                transform.position += (Vector3)hDirection * hitObjects[0].distance;
-                HitServer();
-                return;
-            }
-            else
-            {
-                transform.position += (Vector3)hDirection * Time.deltaTime * speed * Mathf.Abs(direction.x);
-            }
-            // Calculations to see the bullet should go down or up
-            gravitySpeed += gravityAcceleration;
-            vMove = (Vector2.up * direction) * speed + (Vector2.down * gravitySpeed);
-            vDirection = vMove.normalized;
-            vSpeed = Mathf.Abs((vMove).y);
-            if (isServer)
-                hit = Toolkit.CheckMoveFloat(transform.position, size, vDirection, Time.deltaTime * vSpeed, layer, out hitObjects);
-            else
-                hit = false;
-            if (hit)
-            {
-                transform.position += (Vector3)vDirection * hitObjects[0].distance;
-                HitServer();
-                return;
-            }
-            else
-            {
-                transform.position += (Vector3)vDirection * Time.deltaTime * vSpeed;
-            }
 
-        }
-
-    }
-
-    private void HitServer()
-    {
-        Debug.Log("hit");
-        shot = false;
-        bool hitPlayer = false;
-        if (hitObjects[0].collider.tag == "Player")
-        {
-            PlayerControl playerControl = hitObjects[0].collider.gameObject.GetComponent<PlayerControl>();
-            hitPlayer = true;
-            //playerControl.clientNetworkReciever.RpcTakeAttack(damage);
-            //playerControl.TakeAttack(damage, buff.name);
-        }
-        rangedAttack.AttackHitServerSide(ID, damage, hitPlayer);
-    }
-
-    public void HitClient(){
-        Destroy(gameObject);
-    }
 }
