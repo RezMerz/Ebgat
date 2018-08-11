@@ -46,6 +46,8 @@ public class ServerNetwork : NetworkBehaviour
                 case "13": playerControl.Ability2Pressed(); break;
                 case "14": playerControl.Ability2Hold(); break;
                 case "15": playerControl.Ability2Released(); break;
+                case "16": playerControl.DropDownPressed(); break;
+                case "17": playerControl.DropDownReleased(); break;
             }
         }
     }

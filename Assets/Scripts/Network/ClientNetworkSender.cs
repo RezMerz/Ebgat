@@ -144,4 +144,13 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 15 + ",\n";
     }
+
+    public void DropDownPressed()
+    {
+        data += 16 + ",\n";
+    }
+    public void DropDownReleased()
+    {
+        data += 17 + ",\n";
+    }
 }
