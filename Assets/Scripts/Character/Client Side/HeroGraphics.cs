@@ -30,7 +30,6 @@ public class HeroGraphics : MonoBehaviour {
     public void MoveRight()
     {
         print("Move Right");
-
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     public void BodyState(string value)
