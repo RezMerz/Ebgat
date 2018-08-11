@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        physic = GetComponent<CharacterPhysic>();
         clientNetworkSender = GetComponent<ClientNetworkSender>();
         clientNetworkReciever = ClientNetworkReciever.instance;
         serverNetworkSender = ServerNetworkSender.instance;
