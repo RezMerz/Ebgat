@@ -13,7 +13,10 @@ public class InputCharacter : MonoBehaviour
     private PlayerJump jump;
     private ClientNetworkSender clientNetworkSender;
     private AbilityManager abilityManager;
-    private bool axis;
+    private bool axisXChanged;
+    private bool axisYChanged;
+    private float axisY;
+    private float axisX;
 	// Use this for initialization
 	void Start ()
     {
@@ -32,32 +35,35 @@ public class InputCharacter : MonoBehaviour
         if (!playerControl.IsLocalPlayer())
             return;
 
+        axisX = Input.GetAxis("Horizontal");
+        axisY = Input.GetAxis("Vertical");
+
         // Move left and Right
-        if ((Input.GetAxis("Horizontal") > 0.3 || Input.GetAxis("Horizontal") < -0.3) && !axis)
+        if ((!axisXChanged && axisX > 0.3 || axisX < -0.3))
         { 
-            if (Input.GetAxis("Horizontal") > 0.1)
+            if (axisX > 0.1)
             {
-                axis = true;
+                axisXChanged = true;
                 clientNetworkSender.Move(1);
             }
-            else if (Input.GetAxis("Horizontal") < -0.1)
+            else if (axisX < -0.1)
             {
-                axis = true;
+                axisXChanged = true;
                 clientNetworkSender.Move(-1);
             }
         }
-        else if (Input.GetAxis("Horizontal") < 0.3 && Input.GetAxis("Horizontal")> -0.3 && axis)
+        else if (axisXChanged && axisX < 0.3 && axisX > -0.3)
         {
-            axis = false;
+            axisXChanged = false;
             clientNetworkSender.MoveFinished(transform.position);
         }
-        if(Input.GetAxis("Vertical") != 0)
+        if(axisY != 0)
         {
-            if(Input.GetAxis("Vertical") > 0.1)
+            if(axisY > 0.1)
             {
                 clientNetworkSender.MoveVertical(1);
             }
-            else if(Input.GetAxis("Vertical") < -0.1)
+            else if(axisY < -0.1)
             {
                 clientNetworkSender.MoveVertical(-1);
             }
@@ -89,10 +95,10 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
-            //clientNetworkSender.JumpReleased(transform.position);
+            clientNetworkSender.JumpReleased(transform.position);
             //jump.JumpReleased();
         }
-
+        //Ability
         if (Input.GetButtonDown("Ability1"))
         {
             clientNetworkSender.Ability1Pressed();
@@ -101,7 +107,18 @@ public class InputCharacter : MonoBehaviour
         {
             print("Ability 2");
         }
-	}
+        //Drop Down
+        if (axisY < -0.1f)
+        {
+            clientNetworkSender.DropDownPressed();
+            axisYChanged = true;
+        }
+        else if (axisYChanged && axisY == 0)
+        {
+            clientNetworkSender.DropDownReleased();
+            axisYChanged = false;
+        }
+    }
 
 
 }

@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public ServerNetwork serverNetwork { get; private set; }
     public WorldState worldState;
     public GameObject bulletPrefab;
+    public CharacterPhysic physic { get; private set; }
 
     public Color color;
 
@@ -144,7 +145,15 @@ public class PlayerControl : MonoBehaviour
     {
         
     }
+    public void DropDownPressed()
+    {
+        physic.ExcludeBridge();
+    } //16
 
+    public void DropDownReleased()
+    {
+        physic.IncludeBridge();
+    }//17
 
     public void GetData(string data){
         PrintData(data);
