@@ -14,13 +14,6 @@ public abstract class Attack : MonoBehaviour {
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
         cooldownTimer = 0;
-        if (charStats.AttackMode == EAttackMode.Ranged)
-            if (!(this is RangedAttack))
-                print("Character Attack Mode is Range but Component is not");
-          
-        if (charStats.AttackMode == EAttackMode.Melee)
-            if (!(this is MeleeAttack))
-                print("Character Attack Mode is Melee but Component is not");
 	}
 	
 	// Update is called once per frame

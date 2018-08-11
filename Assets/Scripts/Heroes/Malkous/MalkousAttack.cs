@@ -9,10 +9,16 @@ public class MalkousAttack : Attack {
     private bool attackCharge;
     public float damageMultiplier;
     private CharacterAttributes charStats;
-    public override void AttackPressed() { 
-        // Graphic Code that attack started
-        damage = baseDamage;
-        attackCharge = true;
+    public override void AttackPressed() {
+
+        if (cooldownTimer <= 0)
+        {
+            print("Attack Malkous Attack");
+            // Graphic Code that attack started
+            damage = baseDamage;
+            attackCharge = true;
+            cooldownTimer = charStats.AttackCooldown;
+        }
 
         
     }
@@ -23,12 +29,19 @@ public class MalkousAttack : Attack {
 
 
     public override void AttackReleased() {
-        // Bullet Code Here
-        Vector2 attackSide = charStats.AimSide;
-        if (attackSide.y == 0 && attackSide.x == 0)
-            attackSide = charStats.Side;
+        if (attackCharge)
+        {
+            attackCharge = false;
+            cooldownTimer = charStats.AttackCooldown;
+            // Calculate Side
+            Vector2 attackSide = charStats.AimSide;
+            if (attackSide.y == 0 && attackSide.x == 0)
+                attackSide = charStats.Side;
 
-        print("Bullet:" + attackSide);
+            print("Bullet:" + attackSide);
+
+            // Bullet Code Here
+        }
     }
 	// Use this for initialization
 	void Start () {
@@ -39,10 +52,16 @@ public class MalkousAttack : Attack {
 	void Update () {
 		if(attackCharge)
         {
+
             if (damage + Mathf.Floor(Time.deltaTime * 100) * damageMultiplier <= maxDamage)
                 damage += Mathf.Floor(Time.deltaTime * 100) * damageMultiplier;
             else
                 damage = maxDamage;
+        }
+        else
+        {
+            if (cooldownTimer > 0)
+                cooldownTimer -= Time.deltaTime;
         }
 	}
 }
