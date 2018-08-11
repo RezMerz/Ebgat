@@ -28,6 +28,6 @@ public class LobbyManager : MonoBehaviour {
     }
 
     public void OnHostFound(string fromAddress, string data){
-        Debug.Log("found");
+        Debug.Log(fromAddress);
     }
 }
