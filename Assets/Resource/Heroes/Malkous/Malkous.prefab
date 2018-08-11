@@ -46,15 +46,14 @@ GameObject:
   - component: {fileID: 114721468437727338}
   - component: {fileID: 114995107185790698}
   - component: {fileID: 114553468515234052}
-  - component: {fileID: 114695188605360850}
   - component: {fileID: 95267049145148780}
   - component: {fileID: 114044407571114838}
-  - component: {fileID: 114992283785878540}
   - component: {fileID: 114352001818264730}
   - component: {fileID: 114488834796104956}
   - component: {fileID: 114108135820462582}
+  - component: {fileID: 114098260815372376}
   m_Layer: 0
-  m_Name: Bahram
+  m_Name: Malkous
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +132,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 2.9975002, y: 2.625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 1341430771966434}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0892606e477c86e4e84d14becfb96a7d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -273,6 +272,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControl: {fileID: 0}
+--- !u!114 &114098260815372376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2df5b6dbc3185a4cafa7e3de8b0a591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 100
+  maxDamage: 30
+  damageMultiplier: 5
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffListRefrence:
+  - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
 --- !u!114 &114352001818264730
 MonoBehaviour:
@@ -336,18 +350,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &114695188605360850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9e7ce19f52e8e4f8d6927d93e96dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
 --- !u!114 &114721468437727338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,24 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114992283785878540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDownTime: 0.1
-  castTime: 0
-  animationTime: 0
-  buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
-  speed: 50
-  range: 7
-  damage: 0
 --- !u!114 &114995107185790698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,7 +502,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e121687cf0b7c52408bd0c827105bc16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9427086f9d5f3e34c806615901e7d0c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

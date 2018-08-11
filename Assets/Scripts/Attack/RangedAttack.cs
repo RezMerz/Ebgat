@@ -7,9 +7,9 @@ public class RangedAttack : Attack {
     public GameObject bulletPrefab;
     private List<Bullet> bullets = new List<Bullet>();
 
-    public override void AttackPressed(Vector2 attackDir)
+    public override void AttackPressed()
     {
-        playerControl.clientNetworkSender.RangedAttack(attackDir);
+        //playerControl.clientNetworkSender.RangedAttack(attackDir);
     }
 
     public override void AttackServerside(Vector2 attackDir)

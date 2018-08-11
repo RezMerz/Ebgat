@@ -145,6 +145,16 @@ public class PlayerControl : MonoBehaviour
     {
         
     }
+
+    public void AttackPressed()
+    {
+        attack.AttackPressed();
+    }
+
+    public void AttackReleased()
+    {
+        attack.AttackReleased();
+    }
     public void DropDownPressed()
     {
         physic.ExcludeBridge();

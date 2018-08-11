@@ -72,8 +72,11 @@ public class InputCharacter : MonoBehaviour
         //Attack
         if (Input.GetButtonDown("Fire"))
         {
-            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            attack.AttackPressed(Input.mousePosition);
+            attack.AttackPressed();
+        }
+        else if(Input.GetButtonUp("Fire"))
+        {
+            attack.AttackReleased();
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {
@@ -105,7 +108,7 @@ public class InputCharacter : MonoBehaviour
         }
         if (Input.GetButtonDown("Ability2"))
         {
-            print("Ability 2");
+            clientNetworkSender.Ability2Pressed();
         }
         //Drop Down
         if (axisY < -0.1f)

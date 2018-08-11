@@ -5,10 +5,9 @@ using UnityEngine;
 public class MeleeAttack :Attack {
     public MeleeWaepon weapon;
 
-    public override void AttackPressed(Vector2 attackDir)
+    public override void AttackPressed()
     {
-        Debug.Log("attack pressed");
-        playerControl.clientNetworkSender.MeleeAttack(attackDir);
+        
     }
 
     public override void AttackServerside(Vector2 attackDir)

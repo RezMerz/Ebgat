@@ -9,7 +9,7 @@ public class MalkousAttack : Attack {
     private bool attackCharge;
     public float damageMultiplier;
     private CharacterAttributes charStats;
-    public override void AttackPressed(Vector2 attackDir) { 
+    public override void AttackPressed() { 
         // Graphic Code that attack started
         damage = baseDamage;
         attackCharge = true;
@@ -23,8 +23,7 @@ public class MalkousAttack : Attack {
 
 
     public override void AttackReleased() {
-        print(charStats.Side);
-        print(damage);
+        // Bullet Code Here
     }
 	// Use this for initialization
 	void Start () {
@@ -35,8 +34,8 @@ public class MalkousAttack : Attack {
 	void Update () {
 		if(attackCharge)
         {
-            if (damage <= maxDamage)
-                damage += Time.deltaTime * damageMultiplier;
+            if (damage + Mathf.Floor(Time.deltaTime * 100) * damageMultiplier <= maxDamage)
+                damage += Mathf.Floor(Time.deltaTime * 100) * damageMultiplier;
             else
                 damage = maxDamage;
         }

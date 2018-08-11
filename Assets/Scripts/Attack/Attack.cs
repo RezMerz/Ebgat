@@ -30,7 +30,7 @@ public abstract class Attack : MonoBehaviour {
         
 	}
 
-    public virtual void AttackPressed(Vector2 attackDir) {}
+    public virtual void AttackPressed() {}
 
     public virtual void AttackHold(){}
     
