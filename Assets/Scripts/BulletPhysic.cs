@@ -4,33 +4,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletPhysic : Physic {
-    public BulletShape bulletShape;
-    private float radius;
+    public Action<RaycastHit2D> BulletAction;
 
-    // Use this for initialization
+    public BulletShape shape;
+    private float radius;
+    private RaycastHit2D hitObject;
+
     void Start ()
     {
-		if(bulletShape == BulletShape.Rectangle)
+		if(shape == BulletShape.Rectangle)
         {
             size = transform.localScale * GetComponent<BoxCollider2D>().size;
         }
-        if (bulletShape == BulletShape.Circle)
+        if (shape == BulletShape.Circle)
         {
             radius = transform.localScale.x * GetComponent<CircleCollider2D>().radius;
         }
 	}
-	
-	// Update is called once per frame
 	void Update ()
     {
-		
+        BulletAction += HitFunction;
 	}
     protected override void Calculate()
     {
-        base.Calculate();
+        if(shape == BulletShape.Circle)
+        {
+            hitObject = Physics2D.CircleCast(virtualPosition, radius, distance.normalized, distance.magnitude, layerMask, 0, 0);
+            if(hitObject.collider != null)
+            {
+                virtualPosition += distance.normalized * hitObject.fraction;
+            }
+            BulletAction(hitObject);
+        }
+        if (shape == BulletShape.Rectangle)
+        {
+            hitObject = Physics2D.BoxCast(virtualPosition, size, 0, distance.normalized, distance.magnitude, layerMask, 0, 0);
+            if (hitObject.collider != null)
+            {
+                virtualPosition += distance.normalized * hitObject.fraction;
+            }
+            BulletAction(hitObject);
+        }
+        distance = Vector2.zero;
+        BulletAction = null;
     }
-
-    protected override void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
+    private void HitFunction(RaycastHit2D hit2d)
     {
         throw new NotImplementedException();
     }

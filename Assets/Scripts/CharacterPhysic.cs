@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterPhysic : Physic {
+    public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
+    private int gravityLayerMask;
     private CharacterAttributes charstats;
-    private Gravity gravity;
-
     private bool layerSet;
-
-
-
-	// Use this for initialization
-	void Start ()
+    private List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
+    private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
+    // Use this for initialization
+    void Start ()
     {
         layerSet = true;
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
@@ -21,7 +20,6 @@ public class CharacterPhysic : Physic {
         playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
     }
-
     private void Update()
     {
         PhysicAction += HitFunction;
@@ -34,7 +32,55 @@ public class CharacterPhysic : Physic {
             layerSet = false;
         }
     }
+    protected override void Calculate()
+    {
+        bool vHit = false, hHit = false;
 
+        verticalPoints.Clear();
+        horizontalPoints.Clear();
+
+        Vector2 originalDistance = distance;
+        if (distance.x > 0)
+        {
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.right, distance.x, layerMask, out horizontalPoints);
+            if (hHit)
+            {
+                distance.x = horizontalPoints[0].distance;
+            }
+        }
+        else if (distance.x < 0)
+        {
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.left, -distance.x, layerMask, out horizontalPoints);
+            if (hHit)
+            {
+                distance.x = -horizontalPoints[0].distance;
+            }
+        }
+        virtualPosition += Vector2.right * distance;
+        if (distance.y > 0)
+        {
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.up, distance.y, layerMask, out verticalPoints);
+            if (vHit)
+            {
+                distance.y = verticalPoints[0].distance;
+            }
+        }
+        else if (distance.y < 0)
+        {
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
+            if (vHit)
+            {
+                distance.y = -verticalPoints[0].distance;
+            }
+        }
+
+        virtualPosition += Vector2.up * distance;
+        playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
+        PhysicAction(verticalPoints, horizontalPoints, originalDistance);
+        PhysicAction = null;
+        distance = Vector2.zero;
+        ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
+    }
     public void IncludeBridge()
     {
         gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge",charstats.enemyTeamName);
@@ -45,7 +91,7 @@ public class CharacterPhysic : Physic {
         gravityLayerMask = layerMask;
         charstats.CayoteTime = 0;
     }
-    protected override void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
+    private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
         if(vHits.Count> 0)
         {
