@@ -16138,6 +16138,7 @@ GameObject:
   - component: {fileID: 1887430562}
   - component: {fileID: 1887430561}
   - component: {fileID: 1887430560}
+  - component: {fileID: 1887430563}
   m_Layer: 0
   m_Name: Custom Network Manager
   m_TagString: Untagged
@@ -16153,13 +16154,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887430559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: bc17aafa0533e49f086c6e308a90effb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
+  m_BroadcastPort: 47777
+  m_BroadcastKey: 2222
+  m_BroadcastVersion: 1
+  m_BroadcastSubVersion: 1
+  m_BroadcastInterval: 1000
+  m_UseNetworkManager: 0
+  m_BroadcastData: HELLO
+  m_ShowGUI: 0
+  m_OffsetX: 0
+  m_OffsetY: 0
 --- !u!114 &1887430561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16267,6 +16274,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887430563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1887430559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d457111835a948e9904db9a0b10dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
+  bahramTexture: {fileID: 2800000, guid: 10aa35200a9a047669eaa693910028f6, type: 3}
+  malkousTexture: {fileID: 2800000, guid: bf187a4e760664e43b432046044843a9, type: 3}
 --- !u!1001 &1892981816
 Prefab:
   m_ObjectHideFlags: 0
