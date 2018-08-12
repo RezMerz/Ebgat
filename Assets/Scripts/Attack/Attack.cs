@@ -20,7 +20,6 @@ public abstract class Attack : MonoBehaviour {
 	void Update () {
         if(cooldownTimer>0)
             cooldownTimer -= Time.deltaTime;
-        
 	}
 
     public virtual void AttackPressed() {}
@@ -28,4 +27,9 @@ public abstract class Attack : MonoBehaviour {
     public virtual void AttackHold(){}
     
     public virtual void AttackReleased(){}
+
+    public virtual void AttackClientside(Vector2 direction,int attackID)
+    {
+
+    }
 }

@@ -310,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: 
   enemyTeamName: 
-  canDoubleJump: 0
+  canDoubleJump: 1
   hitPointsBase: 40
   hitPoints: 0
   attackDamageBase: 15

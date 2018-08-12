@@ -7,6 +7,10 @@ public class MeleeAttack :Attack {
 
     public override void AttackPressed()
     {
-        
+        if(cooldownTimer <= 0)
+        {
+            cooldownTimer = charStats.AttackCooldown;
+            charStats.HandState = EHandState.Attacking;
+        }
     }
 }

@@ -8,6 +8,7 @@ public class MalkousAttack : Attack {
     private float damage;
     private bool attackCharge;
     public float damageMultiplier;
+    public Bullet bulletPrefab;
     private CharacterAttributes charStats;
     public override void AttackPressed() {
 
@@ -18,19 +19,19 @@ public class MalkousAttack : Attack {
             damage = baseDamage;
             attackCharge = true;
             cooldownTimer = charStats.AttackCooldown;
+            charStats.HandState = EHandState.AttackCharge;
         }
 
         
     }
 
-    public override void AttackHold() { 
-        
-    }
+    public override void AttackHold() {}
 
 
     public override void AttackReleased() {
         if (attackCharge)
         {
+            charStats.HandState = EHandState.Attacking;
             attackCharge = false;
             cooldownTimer = charStats.AttackCooldown;
             // Calculate Side
@@ -40,9 +41,11 @@ public class MalkousAttack : Attack {
 
             print("Bullet:" + attackSide);
 
-            // Bullet Code Here
+            playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
+            Bullet bullet =  Instantiate(bulletPrefab);
         }
     }
+
 	// Use this for initialization
 	void Start () {
 		charStats = GetComponent<CharacterAttributes>();
