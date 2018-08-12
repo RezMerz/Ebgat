@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour {
     public float gravityAcceleration;
     public Buff buff;
 
+    private PlayerControl playerControl;
     private BulletPhysic physic;
     private float distance;
     private Vector2 distanceVector;
@@ -44,6 +45,7 @@ public class Bullet : MonoBehaviour {
 
     public void Shoot(Vector2 direction,PlayerControl pl,int layer)
     {
+        playerControl = pl;
         physic.SetData(pl,layer);
         shot = true;
         this.direction = direction;
@@ -83,7 +85,10 @@ public class Bullet : MonoBehaviour {
             {
                 name = buff.name;
             }
-            enemy.GetComponent<PlayerControl>().TakeAttack(damage,name);
+            if (playerControl.IsServer())
+            {
+                enemy.GetComponent<PlayerControl>().TakeAttack(damage,name);
+            }
             Destroy();
         }
         else
@@ -94,7 +99,14 @@ public class Bullet : MonoBehaviour {
 
     private void Destroy()
     {
-        Destroy(gameObject);
+        if (playerControl.IsServer())
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     
