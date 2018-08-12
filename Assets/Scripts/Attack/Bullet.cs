@@ -23,9 +23,14 @@ public class Bullet : MonoBehaviour {
 
     public int ID;
 
-    void Start()
+    private void Awake()
     {
         physic = GetComponent<BulletPhysic>();
+        Debug.Log(physic);
+        
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame
