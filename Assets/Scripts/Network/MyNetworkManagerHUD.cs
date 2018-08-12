@@ -27,7 +27,10 @@ namespace UnityEngine.Networking
         bool m_ShowServer;
 
         public void OnHostFound(string fromAddress, string data){
-            Debug.Log(fromAddress);
+            networkDiscovery.StopBroadcast();
+            String ip = fromAddress.Substring(fromAddress.LastIndexOf(':'), fromAddress.Length - 1);
+            Debug.Log(ip);
+
         }
 
         void Awake()
