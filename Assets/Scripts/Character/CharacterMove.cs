@@ -40,6 +40,7 @@ public class CharacterMove : MonoBehaviour {
     {
         if (charStats.HeadState != EHeadState.Stunned)
         {
+            charStats.AimSide = new Vector2(i, charStats.AimSide.y);
             charStats.BodyState = EBodyState.Moving;
         }
         moveSide = i;
@@ -52,6 +53,7 @@ public class CharacterMove : MonoBehaviour {
         Physic.PhysicAction += HitFunction;
     }
     public void MoveReleasedServerside(Vector3 position){
+        charStats.AimSide = new Vector2(0, charStats.AimSide.y);
         charStats.BodyState = EBodyState.Standing;
         playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
     }

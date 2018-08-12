@@ -94,10 +94,12 @@ public class PlayerControl : MonoBehaviour
 
     public void SetVerticalDirection(int i)
     {
+        charStats.AimSide = new Vector2(charStats.AimSide.x,i);
         charStats.Side = new Vector2(charStats.Side.x, i);
     }
 
     public void MoveFinished(Vector3 position){
+            
         characterMove.MoveReleasedServerside(position);
     }
 
@@ -108,14 +110,6 @@ public class PlayerControl : MonoBehaviour
     public void JumpReleased()
     {
         jump.JumpReleased();
-    }
-
-    public void RangedAttack(Vector2 attackDir){
-        attack.AttackServerside(attackDir);
-    }
-
-    public void Meleeattack(Vector2 attackDir) {
-        attack.AttackServerside(attackDir);
     }
 
     public void Ability1Pressed()
@@ -145,6 +139,16 @@ public class PlayerControl : MonoBehaviour
     public void Ability2Released()
     {
         
+    }
+
+    public void AttackPressed()
+    {
+        attack.AttackPressed();
+    }
+
+    public void AttackReleased()
+    {
+        attack.AttackReleased();
     }
     public void DropDownPressed()
     {

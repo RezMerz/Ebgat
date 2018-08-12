@@ -78,10 +78,6 @@ public class ClientNetworkSender : NetworkBehaviour
         else
             Debug.Log("wrong input");
     }
-    public void MoveVertical(int j)
-    {
-
-    }
 
     public void MoveFinished(Vector3 position)
     {
@@ -108,13 +104,13 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 7 + "," + num + ",\n";
     }
 
-    public void RangedAttack(Vector2 attackDir){
-        data += 8 + "," + attackDir.x + "," + attackDir.y + ",\n";
+    public void AttackPressed(){
+        data += 8 + ",\n";
     }
 
-    public void MeleeAttack(Vector2 attackDir)
+    public void AttackReleased()
     {
-        data += 9 + "," + attackDir.x + "," + attackDir.y + ",\n";
+        data += 9 + ",\n";
     }
 
     public void Ability1Pressed()
