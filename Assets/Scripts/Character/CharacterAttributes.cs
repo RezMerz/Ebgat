@@ -9,7 +9,15 @@ public class CharacterAttributes : MonoBehaviour {
     int a;
     int ID;
 
-    StackTrace stackTrace = new StackTrace();
+
+    private EAbility abilityState;
+    public EAbility AbilityState
+    {
+        get { return abilityState; }
+        set { abilityState = value; RegisterAbilityState(); }
+    }
+
+    private EHeadState headState; //a
     public EHeadState HeadState
     {
         get { return headState;}
@@ -17,7 +25,7 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != headState) { headState = value; RegisterHeadState(); } }
         
     }
-    private EHeadState headState; //a
+
     private EBodyState bodyState; //b
     public EBodyState BodyState
     {
@@ -190,6 +198,8 @@ public class CharacterAttributes : MonoBehaviour {
         get { return aimSide; }
         set { if (value != aimSide) { aimSide = value; playerControl.worldState.RegisterCharStat(ID, 'w', Toolkit.VectorSerialize(value)); } }
     } //w
+
+
     // size attributes
     public Vector2 size { get; set; }
 
@@ -320,6 +330,17 @@ public class CharacterAttributes : MonoBehaviour {
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
+
+    private void SetAbilityState(string value)
+    {
+        switch (value)
+        {
+            case "1": AbilityState = EAbility.Ability1Start; break;
+            case "2": AbilityState = EAbility.Ability1Finish; break;
+            case "3": AbilityState = EAbility.Ability2Start; break;
+            case "4": AbilityState = EAbility.Ability2Finish; break;
+        }
+    }
     private void SetAttackMode(string value){
         switch (value)
         {
@@ -376,6 +397,17 @@ public class CharacterAttributes : MonoBehaviour {
             case EAttackMode.Melee: playerControl.worldState.RegisterCharStat(ID, 'h', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
+    
+    }
+    private void RegisterAbilityState()
+    {
+        switch(abilityState)
+        {
+            case EAbility.Ability1Start: playerControl.worldState.RegisterCharStat(ID, 'A', "1"); break;
+            case EAbility.Ability1Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "2"); break;
+            case EAbility.Ability2Start: playerControl.worldState.RegisterCharStat(ID, 'A', "3"); break;
+            case EAbility.Ability2Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "4"); break;
+        }
     }
 }
 
@@ -386,4 +418,7 @@ public enum EBodyState { Standing = 1,Moving = 2 };
 public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4, AttackCharge = 5 };
 public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
+
+
+public enum EAbility { Ability1Start = 1, Ability1Finish = 2, Ability2Start=3,Ability2Finish =4};
 

@@ -50,6 +50,7 @@ public class MalkousAttack : Attack {
 	// Use this for initialization
 	void Start () {
 		charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
 	}
 	
 	// Update is called once per frame
