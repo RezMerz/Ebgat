@@ -52,6 +52,26 @@ public class HeroGraphics : MonoBehaviour {
             }
         }
     }
+
+    public void AbilityState(string value)
+    {
+        if(value == "1")
+        {
+            // Ability 1 Start Graphics
+        }
+        else if( value == "2")
+        {
+            // Ability 1 Finish Graphic
+        }
+        else if (value == "3")
+        {
+            // Ability 2 Start
+        }
+        else if (value == "4")
+        {
+             // Ability 2 Finish
+        }
+    }
     public void BodyState(string value)
     {
         if (value == "1")
