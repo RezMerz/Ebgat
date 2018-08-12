@@ -23,6 +23,12 @@ public class Bullet : MonoBehaviour {
 
     public int ID;
 
+    private void Awake()
+    {
+        physic = GetComponent<BulletPhysic>();
+        Debug.Log(physic);
+        
+    }
     void Start()
     {
     }
