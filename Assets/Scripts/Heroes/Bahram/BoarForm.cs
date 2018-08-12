@@ -73,7 +73,7 @@ public class BoarForm : Ability {
         charStats.FeetState = EFeetState.Onground;
         abilityUseServerside = false;
     }
-    public override void AbilityKeyPrssedServerSide()
+    public override void AbilityKeyPrssed()
     {
         if (!coolDownLock)
             StartBoarFormServerside();

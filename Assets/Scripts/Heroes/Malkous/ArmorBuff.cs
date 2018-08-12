@@ -6,11 +6,11 @@ public class ArmorBuff : Buff {
     public int deltaArmor;
     public override void BuffCharacter()
     {
-        throw new System.NotImplementedException();
+        charStats.Armor += deltaArmor;
     }
 
     public override void DebuffCharacter()
     {
-        throw new System.NotImplementedException();
+        charStats.Armor -= deltaArmor;
     }
 }

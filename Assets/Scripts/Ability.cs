@@ -22,7 +22,7 @@ public abstract class Ability : NetworkBehaviour
         charStats = GetComponent<CharacterAttributes>();
     }
 
-    public abstract void AbilityKeyPrssedServerSide();
+    public abstract void AbilityKeyPrssed();
     public abstract void AbilityKeyHold();
     public abstract void AbilityKeyReleased();
 
