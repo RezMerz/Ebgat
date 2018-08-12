@@ -71,10 +71,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  speed: 5
+  speed: 20
   useGravity: 0
   gravitySpeedBase: 0
-  gravityAcceleration: 0
+  gravityAcceleration: 50
   buff: {fileID: 0}
   ID: 0
 --- !u!114 &114999439395002206
