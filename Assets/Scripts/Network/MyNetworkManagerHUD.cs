@@ -10,7 +10,7 @@ namespace UnityEngine.Networking
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MyNetworkManagerHUD : MonoBehaviour
     {
-        private NetworkManager manager;
+        private CustomNetworkManager manager;
         [SerializeField] public bool showGUI = true;
         [SerializeField] public int offsetX;
         [SerializeField] public int offsetY;
@@ -27,15 +27,16 @@ namespace UnityEngine.Networking
         bool m_ShowServer;
 
         public void OnHostFound(string fromAddress, string data){
-            networkDiscovery.StopBroadcast();
-            String ip = fromAddress.Substring(fromAddress.LastIndexOf(':'), fromAddress.Length - 1);
+            //networkDiscovery.StopBroadcast();
+            String ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
             Debug.Log(ip);
-
+            manager.networkAddress = ip;
+            manager.StartClient();
         }
 
         void Awake()
         {
-            manager = GetComponent<NetworkManager>();
+            manager = GetComponent<CustomNetworkManager>();
             networkDiscovery = GetComponent<CustomNetworkDiscovery>();
         }
 
@@ -105,9 +106,10 @@ namespace UnityEngine.Networking
                     if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Client(C)"))
                     {
                         networkDiscovery.StartAsClient();
+
                     }
 
-                    //manager.networkAddress = GUI.TextField(new Rect(xpos + 105, ypos, 95, 20), manager.networkAddress);
+
                     ypos += spacing;
 
                     GUI.Label(new Rect(xpos + 60, ypos, 105, 20), "Choose Hero");
@@ -120,12 +122,18 @@ namespace UnityEngine.Networking
                     GUI.DrawTexture(new Rect(xpos + 5, ypos - 15, 40, 40), malkousTexture);
                     GUI.DrawTexture(new Rect(xpos + 150, ypos - 15, 40, 40), bahramTexture);
 
-                    sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 2f);
+                    sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 1f);
 
-                    if (sliderValue > 1f)
-                        sliderValue = 2f;
-                    if (sliderValue <= 1f)
+                    if (sliderValue > 0.5f)
+                    {
+                        sliderValue = 1f;
+                        manager.playerNumber = 1;
+                    }
+                    if (sliderValue <= 0.5f)
+                    {
                         sliderValue = 0f;
+                        manager.playerNumber = 0;
+                    }
                     
 
                     ypos += spacing;
