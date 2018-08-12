@@ -32,12 +32,44 @@ public class HeroGraphics : MonoBehaviour {
         print("Move Right");
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
+
+    public void HandState(string value)
+    {
+        if(value == "5")
+        {
+            for(int i=0;i<transform.childCount;i++)
+            {
+                if (transform.GetChild(i).name == "Glow")
+                    transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).name == "Glow")
+                    transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
     public void BodyState(string value)
     {
         if (value == "1")
+        {
+            foreach (Animator childAnim in GetComponentsInChildren<Animator>())
+            {
+                childAnim.SetBool("Walking", false);
+            }
             animator.SetBool("Walking", false);
+        }
         else if (value == "2")
+        {
+            foreach (Animator childAnim in GetComponentsInChildren<Animator>())
+            {
+                childAnim.SetBool("Walking", true);
+            }
             animator.SetBool("Walking", true);
+        }
         else
             print("Body State Wrong Code");
     }

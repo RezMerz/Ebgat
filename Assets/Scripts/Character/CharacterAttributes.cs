@@ -306,6 +306,7 @@ public class CharacterAttributes : MonoBehaviour {
             case "2": HandState = EHandState.Attacking; break;
             case "3": HandState = EHandState.Casting; break;
             case "4": HandState = EHandState.Channeling; break;
+            case "5": HandState = EHandState.AttackCharge; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -352,6 +353,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
             case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
             case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
+            case EHandState.AttackCharge: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }

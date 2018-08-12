@@ -41,8 +41,8 @@ public class MalkousAttack : Attack {
 
             print("Bullet:" + attackSide);
 
-            playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
-            Bullet bullet =  Instantiate(bulletPrefab);
+            //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
+           // Bullet bullet =  Instantiate(bulletPrefab);
         }
     }
 
