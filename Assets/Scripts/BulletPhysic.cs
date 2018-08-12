@@ -21,8 +21,9 @@ public class BulletPhysic : Physic {
         }
 	}
 
-    public void GetPlayerControl(PlayerControl pl)
+    public void SetData(PlayerControl pl,int layer)
     {
+        layerMask = layer;
         playerControl = pl;
     }
 	void Update ()

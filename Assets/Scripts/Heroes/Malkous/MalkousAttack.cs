@@ -42,7 +42,8 @@ public class MalkousAttack : Attack {
 
             //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
              Bullet bullet =  Instantiate(bulletPrefab);
-             bullet.Shoot(attackSide,playerControl);
+             bullet.transform.position = this.transform.position;
+             bullet.Shoot(attackSide,playerControl,LayerMask.GetMask("Blocks", charStats.enemyTeamName));
         }
     }
 
