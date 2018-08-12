@@ -6,63 +6,84 @@ using UnityEngine.Networking;
 
 public class Bullet : MonoBehaviour {
     public float damage;
-
     public float range;
-    public float width { get; set; }
+    public float speed;
+    public bool useGravity;
     public float gravitySpeedBase;
     public float gravityAcceleration;
-    public float speed;
-    public GameObject buffObject;
-    private Buff buff;
-    private Vector2 direction;
+    public Buff buff;
 
-    private Vector2 vDirection;
-    private Vector2 hDirection;
-
-    private float gravitySpeed;
+    private BulletPhysic physic;
     private float distance;
-
-    private Vector2 vMove;
-    private Vector2 size;
+    private Vector2 distanceVector;
+    private Vector2 direction;
     private bool shot;
     private bool hit;
-    private float vSpeed;
-    private List<RaycastHit2D> hitObjects;
-    private int layer;
-    private bool isServer;
     private RangedAttack rangedAttack;
 
     public int ID;
 
     void Start()
     {
-        if (buffObject != null)
-            buff = buffObject.GetComponent<Buff>();
-        else
-            print("Bullet does not have buff");
-        hit = false;
-        size = GetComponent<BoxCollider2D>().size * transform.localScale;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (shot)
+        {
+            MoveServerSide();
+        }
     }
 
-    public void Shoot(Vector2 targetDirection, Vector2 origin,int layer, bool isServer, RangedAttack rangedAttack)
+    public void Shoot(Vector2 direction)
     {
-        this.rangedAttack = rangedAttack;
-        this.isServer = isServer; 
-        direction = (targetDirection - origin).normalized;
-        // Move Right or Left
-        hDirection = (Vector2.right * direction).normalized;
-        this.layer = layer;
-        transform.position = origin;
-        shot = true; 
-        
+        shot = true;
+        this.direction = direction;
     }
+
+    private void MoveServerSide()
+    {
+        if (distance < range)
+        {
+            Vector2 force = direction.normalized * speed * Time.deltaTime;
+            distanceVector += force;
+            distance = distanceVector.magnitude;
+            if (distance > range)
+            {
+                force = direction.normalized * (distance - range);
+                distance = range;
+            }
+            Vector2 gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
+            gravitySpeedBase += gravityAcceleration * Time.deltaTime;
+            physic.AddForce(force + gravityForce);
+            physic.BulletAction += HitFunction;
+        }
+        else
+        {
+            Destroy();
+        }
+    }
+
+    private void HitFunction(RaycastHit2D hitObject)
+    {
+        if(hitObject.collider != null && hitObject.collider.tag.Equals("Player"))
+        {
+            var enemy = hitObject.collider.gameObject;
+            string name = "";
+            if(buff != null)
+            {
+                name = buff.name;
+            }
+            enemy.GetComponent<PlayerControl>().TakeAttack(damage,name);
+        }
+    }
+
+    private void Destroy()
+    {
+
+    }
+
     
 
 }

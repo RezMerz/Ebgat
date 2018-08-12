@@ -18,6 +18,6 @@ public class RangedAttack : Attack {
         int layer = LayerMask.GetMask(playerControl.charStats.enemyTeamName, "Blocks");
         bullet.ID = attackID;
         bullets.Add(bullet);
-        bullet.Shoot(targetdirection, transform.position, layer, playerControl.IsServer(), this);
+      //  bullet.Shoot(targetdirection, transform.position, layer, playerControl.IsServer(), this);
     }
 }
