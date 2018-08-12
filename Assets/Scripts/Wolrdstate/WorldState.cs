@@ -55,7 +55,7 @@ public class WorldState
     public string[] GetWorldData(){
         string[] output = new string[heroesData.Count];
         for (int i = 0; i < heroesData.Count; i++){
-            output[i] = heroesData[i].GetData();
+            output[i] = heroesData[i].GetData() + "$" + Time.frameCount;
         }
         return output;
     }

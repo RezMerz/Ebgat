@@ -169,9 +169,9 @@ public class PlayerControl : MonoBehaviour
             string[] deString = dataS.Split('&');
             if (first)
             {
-                print(clientNetworkSender.PlayerID);
-                print(Time.frameCount);
-                print(deString[0]);
+                //print(clientNetworkSender.PlayerID);
+                //print(Time.frameCount);
+                //print(deString[0]);
                 first = false;
                 transform.position = Toolkit.DeserializeVector(deString[0]);
             }
