@@ -21,8 +21,12 @@ abstract public class Physic : MonoBehaviour
         if(start)
         {
             if (playerControl != null)
-            if (playerControl.IsServer() )
-                Calculate();
+            {
+                if (playerControl.IsServer())
+                {
+                    Calculate();
+                }
+            }
         }
         else{
             startTimer+= Time.deltaTime;
