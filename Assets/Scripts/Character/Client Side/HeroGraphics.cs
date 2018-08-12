@@ -102,6 +102,7 @@ public class HeroGraphics : MonoBehaviour {
 
     public void FeetState(string value)
     {
+        /*
         if(value == "1") 
             print(EFeetState.Onground);
         else if( value == "2")
@@ -114,6 +115,7 @@ public class HeroGraphics : MonoBehaviour {
             print(EFeetState.DoubleJumping);
         else
             print("Wrong Feet State Code");
+          */
     }
 
     public void SetSide(string value)

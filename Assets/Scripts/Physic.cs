@@ -24,7 +24,6 @@ abstract public class Physic : MonoBehaviour
             {
                 if (playerControl.IsServer())
                 {
-                    Debug.Log("server only");
                     Calculate();
                 }
             }
