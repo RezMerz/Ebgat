@@ -15,9 +15,10 @@ public class CustomNetworkDiscovery : NetworkDiscovery {
 
     public override void OnReceivedBroadcast(string fromAddress, string data)
     {
-        base.OnReceivedBroadcast(fromAddress, data);
+        //base.OnReceivedBroadcast(fromAddress, data);
         if(action != null){
             action(fromAddress, data);
+            action = null;
         }
     }
 }

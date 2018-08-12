@@ -11,6 +11,8 @@ public class CustomNetworkManager : NetworkManager {
 
     private bool flag = true;
 
+    public int playerNumber { get; set; }
+
     private void Update()
     {
         if(NetworkServer.active && flag){
@@ -24,8 +26,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        int random = Random.Range(0, players.Count);
-        GameObject player = Instantiate(players[random]);
+        GameObject player = Instantiate(players[playerNumber]);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         ServerManager.instance.UpdatePlayers();
         ClientNetworkReciever.instance.RpcUpdatePlayers();
