@@ -9,7 +9,6 @@ public class MalkousAttack : Attack {
     private bool attackCharge;
     public float damageMultiplier;
     public Bullet bulletPrefab;
-    private CharacterAttributes charStats;
     public override void AttackPressed() {
 
         if (cooldownTimer <= 0)
@@ -42,7 +41,8 @@ public class MalkousAttack : Attack {
             print("Bullet:" + attackSide);
 
             //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
-           // Bullet bullet =  Instantiate(bulletPrefab);
+             Bullet bullet =  Instantiate(bulletPrefab);
+             bullet.Shoot(attackSide,playerControl);
         }
     }
 

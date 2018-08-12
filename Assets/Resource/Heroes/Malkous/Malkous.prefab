@@ -384,7 +384,8 @@ MonoBehaviour:
   baseDamage: 100
   maxDamage: 250
   damageMultiplier: 2
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3,
+    type: 2}
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
