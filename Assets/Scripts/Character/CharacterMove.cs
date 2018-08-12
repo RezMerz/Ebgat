@@ -13,8 +13,13 @@ public class CharacterMove : MonoBehaviour {
     private Vector2 side;
     private int moveSide;
 
+    void Awake()
+    {
+
+    }
 	void Start ()
     {
+
         Physic = GetComponent<CharacterPhysic>();
         animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();

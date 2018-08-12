@@ -161,6 +161,7 @@ public class PlayerControl : MonoBehaviour
     }//17
 
     public void GetData(string data){
+        
         bool first = true;
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
@@ -168,6 +169,9 @@ public class PlayerControl : MonoBehaviour
             string[] deString = dataS.Split('&');
             if (first)
             {
+                print(clientNetworkSender.PlayerID);
+                print(Time.frameCount);
+                print(deString[0]);
                 first = false;
                 transform.position = Toolkit.DeserializeVector(deString[0]);
             }

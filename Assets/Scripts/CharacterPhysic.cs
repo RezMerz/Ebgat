@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CharacterPhysic : Physic {
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
