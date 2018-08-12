@@ -42,7 +42,7 @@ public class MalkousAttack : Attack {
 
             //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
              Bullet bullet =  Instantiate(bulletPrefab);
-             bullet.Shoot(attackSide);
+             bullet.Shoot(attackSide,playerControl);
         }
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BulletPhysic : Physic {
     public Action<RaycastHit2D> BulletAction;
-
     public BulletShape shape;
     private float radius;
     private RaycastHit2D hitObject;
@@ -21,6 +20,11 @@ public class BulletPhysic : Physic {
             radius = transform.localScale.x * GetComponent<CircleCollider2D>().radius;
         }
 	}
+
+    public void GetPlayerControl(PlayerControl pl)
+    {
+        playerControl = pl;
+    }
 	void Update ()
     {
         BulletAction += HitFunction;

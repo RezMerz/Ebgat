@@ -36,8 +36,9 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    public void Shoot(Vector2 direction)
+    public void Shoot(Vector2 direction,PlayerControl pl)
     {
+        physic.GetPlayerControl(pl);
         shot = true;
         this.direction = direction;
     }
