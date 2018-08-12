@@ -26,8 +26,6 @@ public class CharacterPhysic : Physic {
         if (layerSet)
         {
             layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
-            Debug.Log(charstats.enemyTeamName);
-            Debug.Log(LayerMask.GetMask(charstats.enemyTeamName));
             gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
             layerSet = false;
         }

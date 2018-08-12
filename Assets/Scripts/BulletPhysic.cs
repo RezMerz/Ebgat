@@ -11,6 +11,7 @@ public class BulletPhysic : Physic {
 
     void Start ()
     {
+        virtualPosition = transform.position;
 		if(shape == BulletShape.Rectangle)
         {
             size = transform.localScale * GetComponent<BoxCollider2D>().size;
@@ -20,9 +21,20 @@ public class BulletPhysic : Physic {
             radius = transform.localScale.x * GetComponent<CircleCollider2D>().radius;
         }
 	}
-
-    public void GetPlayerControl(PlayerControl pl)
+    private void LateUpdate()
     {
+        if (playerControl != null)
+        {
+            if (playerControl.IsServer())
+            {
+                Calculate();
+            }
+        }
+    }
+
+    public void SetData(PlayerControl pl,int layer)
+    {
+        layerMask = layer;
         playerControl = pl;
     }
 	void Update ()
@@ -31,22 +43,27 @@ public class BulletPhysic : Physic {
 	}
     protected override void Calculate()
     {
+        Debug.Log(distance);
         if(shape == BulletShape.Circle)
         {
             hitObject = Physics2D.CircleCast(virtualPosition, radius, distance.normalized, distance.magnitude, layerMask, 0, 0);
             if(hitObject.collider != null)
             {
-                virtualPosition += distance.normalized * hitObject.fraction;
+                distance = distance * hitObject.fraction;
             }
-            BulletAction(hitObject);
         }
         if (shape == BulletShape.Rectangle)
         {
             hitObject = Physics2D.BoxCast(virtualPosition, size, 0, distance.normalized, distance.magnitude, layerMask, 0, 0);
             if (hitObject.collider != null)
             {
-                virtualPosition += distance.normalized * hitObject.fraction;
+                distance = distance * hitObject.fraction;
             }
+        }
+        virtualPosition += distance;
+        transform.position = virtualPosition;
+        if(hitObject.collider != null)
+        {
             BulletAction(hitObject);
         }
         distance = Vector2.zero;
@@ -54,7 +71,6 @@ public class BulletPhysic : Physic {
     }
     private void HitFunction(RaycastHit2D hit2d)
     {
-        throw new NotImplementedException();
     }
 }
 

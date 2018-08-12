@@ -42,13 +42,15 @@ public class MalkousAttack : Attack {
 
             //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
              Bullet bullet =  Instantiate(bulletPrefab);
-             bullet.Shoot(attackSide,playerControl);
+             bullet.transform.position = this.transform.position;
+             bullet.Shoot(attackSide,playerControl,LayerMask.GetMask("Blocks", charStats.enemyTeamName));
         }
     }
 
 	// Use this for initialization
 	void Start () {
 		charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
 	}
 	
 	// Update is called once per frame

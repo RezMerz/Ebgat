@@ -23,6 +23,12 @@ public class Bullet : MonoBehaviour {
 
     public int ID;
 
+    private void Awake()
+    {
+        physic = GetComponent<BulletPhysic>();
+        Debug.Log(physic);
+        
+    }
     void Start()
     {
     }
@@ -36,9 +42,9 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    public void Shoot(Vector2 direction,PlayerControl pl)
+    public void Shoot(Vector2 direction,PlayerControl pl,int layer)
     {
-        physic.GetPlayerControl(pl);
+        physic.SetData(pl,layer);
         shot = true;
         this.direction = direction;
     }
@@ -68,7 +74,8 @@ public class Bullet : MonoBehaviour {
 
     private void HitFunction(RaycastHit2D hitObject)
     {
-        if(hitObject.collider != null && hitObject.collider.tag.Equals("Player"))
+
+        if(hitObject.collider.tag.Equals("Player"))
         {
             var enemy = hitObject.collider.gameObject;
             string name = "";
@@ -77,12 +84,17 @@ public class Bullet : MonoBehaviour {
                 name = buff.name;
             }
             enemy.GetComponent<PlayerControl>().TakeAttack(damage,name);
+            Destroy();
+        }
+        else
+        {
+            Destroy();
         }
     }
 
     private void Destroy()
     {
-
+        Destroy(gameObject);
     }
 
     
