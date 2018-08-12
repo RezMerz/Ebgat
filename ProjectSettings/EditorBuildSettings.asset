@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/networkScene.unity
     guid: 65efce36c7a4a4b9b995517f7b625705
+  - enabled: 1
+    path: Assets/Scenes/Final/LobbySceneHost.unity
+    guid: 62f9c15b08e4c495b88ec542f1a0f0d6
   m_configObjects: {}
