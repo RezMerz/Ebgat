@@ -21,6 +21,7 @@ public class WorldState
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
+
         //Debug.Log(ID);
         for (int i = 0; i < heroesData.Count; i++)
         {

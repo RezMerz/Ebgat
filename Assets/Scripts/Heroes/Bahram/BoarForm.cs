@@ -57,7 +57,6 @@ public class BoarForm : Ability {
         }
         else
         {
-            print(distance);
             HumanForm();
         }
     }
@@ -70,12 +69,11 @@ public class BoarForm : Ability {
     // Boar form is done go back to human
     private void HumanForm()
     {
-        print(distance);
         charStats.HandState = EHandState.Idle;
         charStats.FeetState = EFeetState.Onground;
         abilityUseServerside = false;
     }
-    public override void AbilityKeyPrssedServerSide()
+    public override void AbilityKeyPrssed()
     {
         if (!coolDownLock)
             StartBoarFormServerside();
@@ -83,6 +81,7 @@ public class BoarForm : Ability {
 
     private void StartBoarFormServerside()
     {
+        charStats.AbilityState = EAbility.Ability1Start;
         distance = 0;
         // Remember: Do some code so it can not move or attack
         originTransform = transform.position;

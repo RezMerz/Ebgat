@@ -23,13 +23,7 @@ public class BulletPhysic : Physic {
 	}
     private void LateUpdate()
     {
-        if (playerControl != null)
-        {
-            if (playerControl.IsServer())
-            {
-                Calculate();
-            }
-        }
+        Calculate();
     }
 
     public void SetData(PlayerControl pl,int layer)

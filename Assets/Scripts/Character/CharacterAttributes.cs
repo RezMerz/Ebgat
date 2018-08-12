@@ -290,6 +290,7 @@ public class CharacterAttributes : MonoBehaviour {
             case 'u': gravityAcceleration = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'v': gravitySpeedMax = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'w': aimSide = Toolkit.DeserializeVector(value); break;
+            case 'A': SetAbilityState(value); break;
         }
     }
     private void SetHeadState(string value)

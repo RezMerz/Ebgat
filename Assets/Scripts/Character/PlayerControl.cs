@@ -161,11 +161,7 @@ public class PlayerControl : MonoBehaviour
     }//17
 
     public void GetData(string data){
-        PrintData(data);
-    }
-
-    private void PrintData(string data)
-    {
+        
         bool first = true;
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
@@ -173,6 +169,9 @@ public class PlayerControl : MonoBehaviour
             string[] deString = dataS.Split('&');
             if (first)
             {
+                print(clientNetworkSender.PlayerID);
+                print(Time.frameCount);
+                print(deString[0]);
                 first = false;
                 transform.position = Toolkit.DeserializeVector(deString[0]);
             }
@@ -182,10 +181,8 @@ public class PlayerControl : MonoBehaviour
                 {
                     Deserilize(deString[0].ToCharArray()[0], deString[1]);
                 }
-            }            
+            }
         }
-
-
     }
 
     // gets the code and value of datas
@@ -193,11 +190,11 @@ public class PlayerControl : MonoBehaviour
     {
         switch (code)
         {
+            case 'A': heroGraphics.AbilityState(value); break;
             case 'b': heroGraphics.BodyState(value); break;
             case 'c': heroGraphics.HandState(value); break;
             case 'd': heroGraphics.FeetState(value); break;
             case 'e': heroGraphics.SetSide(value); break;
-
         }
     }
 
