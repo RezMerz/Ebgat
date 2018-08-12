@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour {
 
     void Start()
     {
+        physic = GetComponent<BulletPhysic>();
     }
 
     // Update is called once per frame
