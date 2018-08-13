@@ -19,6 +19,7 @@ abstract public class Physic : MonoBehaviour
 
     private void LateUpdate()
     {
+       // Debug.Log(Time.deltaTime);
         if(start)
         {
             if (playerControl != null)
