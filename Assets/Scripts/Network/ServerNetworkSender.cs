@@ -43,7 +43,10 @@ public class ServerNetworkSender : NetworkBehaviour {
     }
 
     public void SendWorldState(WorldState worldState){
-        worldStates[currentTime] = worldState.GetWorldData();
+        string s = worldState.GetWorldData();
+        if (s.Length == 0)
+            return;
+        worldStates[currentTime] = s;
         currentTime++;
         if(currentTime == networkSendTime){
             clientNetworkReciever.RpcRecieveWorldData(worldStates, ID);
