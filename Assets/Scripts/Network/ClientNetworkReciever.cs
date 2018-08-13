@@ -26,15 +26,19 @@ public class ClientNetworkReciever : NetworkBehaviour {
             UpdatePlayer();
         for (int i = 0; i < worlddata.Length; i++)
         {
+            if (worlddata[i].Length == 0)
+                continue;
             string[] heroData = worlddata[i].Split('#');
             int frameBaseId = packetID * 3;
-            for (int j = 0; j < worlddata.Length; j++)
+            for (int j = 0; j < heroData.Length; j++)
             {
+                if (heroData[j].Length == 0)
+                    continue;
                 string[] data = heroData[j].Split('$');
                 int id = Convert.ToInt32(data[0]);
                 if (id == 0 || id > playerControls.Count)
                     continue;
-                playerControls[id - 1].AddTOHashTable(frameBaseId + j, worlddata[j].Substring(data[0].Length + 1));
+                playerControls[id - 1].AddTOHashTable(frameBaseId + i, heroData[j].Substring(data[0].Length + 1));
             }
         }
     }
