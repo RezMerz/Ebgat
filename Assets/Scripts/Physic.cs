@@ -10,36 +10,36 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 size;
     protected Vector2 distance;
     protected Vector2 virtualPosition;
-    private bool start;
-    private bool first;
-    private float startTimer;
+   // private bool start;
+   // private bool first;
+   // private float startTimer;
     protected PlayerControl playerControl;
 
     // Use this for initialization
 
-    private void LateUpdate()
-    {
-       // Debug.Log(Time.deltaTime);
-        if(start)
-        {
-            if (playerControl != null)
-            {
-                if (playerControl.IsServer())
-                {
-                    if (!first)
-                    {
-                        StartCoroutine(PhysicUpdate());
-                        first = true;
-                    }
-                }
-            }
-        }
-        else{
-            startTimer+= Time.deltaTime;
-            if(startTimer>1)
-                start = true;
-        }
-    }
+    //private void LateUpdate()
+    //{
+    //   // Debug.Log(Time.deltaTime);
+    //    if(start)
+    //    {
+    //        if (playerControl != null)
+    //        {
+    //            if (playerControl.IsServer())
+    //            {
+    //                if (!first)
+    //                {
+    //                    StartCoroutine(PhysicUpdate());
+    //                    first = true;
+    //                }
+    //            }
+    //        }
+    //    }
+    //    else{
+    //        startTimer+= Time.deltaTime;
+    //        if(startTimer>1)
+    //            start = true;
+    //    }
+    //}
     private const double interval = 0.01666;
     private double currentTime;
     public IEnumerator PhysicUpdate()
@@ -52,7 +52,7 @@ abstract public class Physic : MonoBehaviour
                 yield return null;
             }
             currentTime -= interval;
-            Calculate();
+           // Calculate();
             yield return null;
         }
     }

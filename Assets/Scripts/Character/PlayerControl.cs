@@ -52,17 +52,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        counter++;
-       // ReadData();
+        //counter++;
+        ReadData();
     }
 
     private void ReadData()
     {
         if (start)
         {
-            //Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
+           // Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
@@ -280,7 +280,7 @@ public class PlayerControl : MonoBehaviour
                 yield return null;
             }
             currentTime -= interval;
-            ReadData();
+           // ReadData();
             yield return null;
         }
     }

@@ -10,6 +10,9 @@ public class CharacterPhysic : Physic {
     private bool layerSet;
     private List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
     private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
+
+    private bool start;
+    private float startTimer;
     // Use this for initialization
     void Start ()
     {
@@ -19,7 +22,7 @@ public class CharacterPhysic : Physic {
         playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         PhysicAction += HitFunction;
         if (layerSet)
@@ -27,6 +30,22 @@ public class CharacterPhysic : Physic {
             layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
             gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
             layerSet = false;
+        }
+        if (start)
+        {
+            if (playerControl != null)
+            {
+                if (playerControl.IsServer())
+                {
+                    Calculate();
+                }
+            }
+        }
+        else
+        {
+            startTimer += Time.deltaTime;
+            if (startTimer > 1)
+                start = true;
         }
     }
     protected override void Calculate()

@@ -25,7 +25,7 @@ public class CharacterMove : MonoBehaviour {
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
 	}
-    void Update()
+    void FixedUpdate()
     {
         if (playerControl.IsServer())
         {

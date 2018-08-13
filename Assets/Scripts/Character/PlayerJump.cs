@@ -18,7 +18,7 @@ public class PlayerJump : MonoBehaviour {
         playerControl = GetComponent<PlayerControl>();
         physic = GetComponent<CharacterPhysic>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (playerControl.IsServer())
         {

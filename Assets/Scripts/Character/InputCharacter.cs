@@ -30,7 +30,7 @@ public class InputCharacter : MonoBehaviour
         jump = playerControl.jump;
 	}
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         if (!playerControl.IsLocalPlayer())
             return;
