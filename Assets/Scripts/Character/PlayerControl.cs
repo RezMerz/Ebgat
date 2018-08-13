@@ -269,17 +269,17 @@ public class PlayerControl : MonoBehaviour
 
 
     private const double interval = 0.01666;
-    private double currenttime;
+    private double currentTime;
     public IEnumerator PlayerControlUpdate()
     {
         while (true)
         {
-            if (currenttime < interval)
+            if (currentTime < interval)
             {
-                currenttime += Time.deltaTime;
+                currentTime += Time.deltaTime;
                 yield return null;
             }
-            currenttime = 0;
+            currentTime = 0;
             ReadData();
         }
     }

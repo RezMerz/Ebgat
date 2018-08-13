@@ -24,7 +24,7 @@ abstract public class Physic : MonoBehaviour
             {
                 if (playerControl.IsServer())
                 {
-                    Calculate();
+                    StartCoroutine(PhysicUpdate());
                 }
             }
         }
@@ -32,6 +32,21 @@ abstract public class Physic : MonoBehaviour
             startTimer+= Time.deltaTime;
             if(startTimer>1)
                 start = true;
+        }
+    }
+    private const double interval = 0.01666;
+    private double currentTime;
+    public IEnumerator PhysicUpdate()
+    {
+        while (true)
+        {
+            if (currentTime < interval)
+            {
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+            currentTime = 0;
+            Calculate();
         }
     }
     public void AddForce(Vector2 force)
