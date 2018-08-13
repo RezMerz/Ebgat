@@ -18,6 +18,10 @@ public class PlayerControl : MonoBehaviour
     public CharacterPhysic physic { get; private set; }
 
     public Color color;
+    private Hashtable playerStatesHash = new Hashtable();
+    private int lastStateChecked = -1;
+    private int currentStateNumber = 0;
+    private int biggestIdNumber = 0;
 
     private BuffManager buffManager;
     private AbilityManager abilityManager;
@@ -46,7 +50,40 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public bool IsLocalPlayer(){
+    private void LateUpdate()
+    {
+        ReadData();
+    }
+
+    private void ReadData()
+    {
+        if (playerStatesHash.Contains(currentStateNumber))
+        {
+            for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
+            {
+                GetData((string)playerStatesHash[i]);
+                playerStatesHash.Remove(i);
+            }
+            lastStateChecked = currentStateNumber;
+        }
+        else if(currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
+        {
+            for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
+            {
+                GetData((string)playerStatesHash[i]);
+                playerStatesHash.Remove(i);
+            }
+            lastStateChecked = biggestIdNumber;
+        }
+        if(currentStateNumber != 0)
+        {
+            currentStateNumber++;
+        }
+
+    }
+
+    public bool IsLocalPlayer()
+    {
         return clientNetworkSender.isLocalPlayer;
 
     }
@@ -78,32 +115,37 @@ public class PlayerControl : MonoBehaviour
         if (charStats.hitPoints <= 0)
         {
             print("Dead");
-            if(clientNetworkSender.isServer){
+            if (clientNetworkSender.isServer)
+            {
                 serverNetwork.CmdKillPlayer();
             }
         }
     }
 
-    public void MoveRight(){
+    public void MoveRight()
+    {
         characterMove.MovePressed(1);
     }
 
-    public void MoveLeft(){
+    public void MoveLeft()
+    {
         characterMove.MovePressed(-1);
     }
 
     public void SetVerticalDirection(int i)
     {
-        charStats.AimSide = new Vector2(charStats.AimSide.x,i);
+        charStats.AimSide = new Vector2(charStats.AimSide.x, i);
         charStats.Side = new Vector2(charStats.Side.x, i);
     }
 
-    public void MoveFinished(Vector3 position){
-            
+    public void MoveFinished(Vector3 position)
+    {
+
         characterMove.MoveReleasedServerside(position);
     }
 
-    public void JumpPressed(){
+    public void JumpPressed()
+    {
         jump.JumpPressed();
     }
 
@@ -120,25 +162,25 @@ public class PlayerControl : MonoBehaviour
 
     public void Ability1Hold()
     {
-        
+
     }
     public void Ability1Released()
     {
-        
+
     }
     public void Ability2Pressed()
     {
-        
+
     }
 
     public void Ability2Hold()
     {
-        
+
     }
 
     public void Ability2Released()
     {
-        
+
     }
 
     public void AttackPressed()
@@ -160,8 +202,9 @@ public class PlayerControl : MonoBehaviour
         physic.IncludeBridge();
     }//17
 
-    public void GetData(string data){
-        
+    public void GetData(string data)
+    {
+
         bool first = true;
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
@@ -169,9 +212,6 @@ public class PlayerControl : MonoBehaviour
             string[] deString = dataS.Split('&');
             if (first)
             {
-                //print(clientNetworkSender.PlayerID);
-                //print(Time.frameCount);
-                //print(deString[0]);
                 first = false;
                 transform.position = Toolkit.DeserializeVector(deString[0]);
             }
@@ -186,7 +226,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // gets the code and value of datas
-    private void Deserilize(char code,string value)
+    private void Deserilize(char code, string value)
     {
         switch (code)
         {
@@ -198,8 +238,17 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    
+    public void AddTOHashTable(int id, string state)
+    {
+        playerStatesHash.Add(id, state);
+        if(id > biggestIdNumber)
+        {
+            biggestIdNumber = id;
+        }
+    }
+
 
 }
+
 
 
