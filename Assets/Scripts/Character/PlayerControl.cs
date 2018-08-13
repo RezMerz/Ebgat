@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (start)
         {
-            Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
+            //Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
@@ -274,12 +274,12 @@ public class PlayerControl : MonoBehaviour
     {
         while (true)
         {
+            currentTime += Time.deltaTime;
             if (currentTime < interval)
             {
-                currentTime += Time.deltaTime;
                 yield return null;
             }
-            currentTime = 0;
+            currentTime -= interval;
             ReadData();
         }
     }

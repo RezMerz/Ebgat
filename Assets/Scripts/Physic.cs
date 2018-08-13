@@ -45,12 +45,13 @@ abstract public class Physic : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log(Time.deltaTime);
+            currentTime += Time.deltaTime;
             if (currentTime < interval)
             {
-                currentTime += Time.deltaTime;
                 yield return null;
             }
-            currentTime = 0;
+            currentTime -= interval;
             Calculate();
         }
     }
