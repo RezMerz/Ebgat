@@ -54,6 +54,7 @@ public class PlayerControl : MonoBehaviour
 
     private void LateUpdate()
     {
+        counter++;
         ReadData();
     }
 
@@ -246,15 +247,18 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+
+    int counter;
     public void AddTOHashTable(int id, string state)
     {
-        Debug.Log(id +"+"+ Time.frameCount);
         if (!start)
         {
+            counter = id;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
         }
+        Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {
