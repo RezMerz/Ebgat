@@ -42,6 +42,7 @@ public class ServerNetworkSender : NetworkBehaviour {
         hitData = "";
     }
 
+    //int old;
     public void SendWorldState(WorldState worldState){
         string s = worldState.GetWorldData();
         if (s.Length == 0)
@@ -49,6 +50,8 @@ public class ServerNetworkSender : NetworkBehaviour {
         worldStates[currentTime] = s;
         currentTime++;
         if(currentTime == networkSendTime){
+            //Debug.Log(Time.frameCount - old);
+            //old = Time.frameCount;
             clientNetworkReciever.RpcRecieveWorldData(worldStates, ID);
             ID++;
             currentTime = 0;

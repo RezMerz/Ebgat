@@ -45,7 +45,6 @@ abstract public class Physic : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log(Time.deltaTime);
             currentTime += Time.deltaTime;
             if (currentTime < interval)
             {
@@ -53,6 +52,7 @@ abstract public class Physic : MonoBehaviour
             }
             currentTime -= interval;
             Calculate();
+            yield return null;
         }
     }
     public void AddForce(Vector2 force)

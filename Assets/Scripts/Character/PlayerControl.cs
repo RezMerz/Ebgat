@@ -281,6 +281,7 @@ public class PlayerControl : MonoBehaviour
             }
             currentTime -= interval;
             ReadData();
+            yield return null;
         }
     }
 

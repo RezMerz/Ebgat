@@ -10,11 +10,20 @@ public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players;
 
     private bool flag = true;
-
+    bool start = true;
     public int playerNumber { get; set; }
+
+
 
     private void Update()
     {
+        /*if(Input.GetKeyDown(KeyCode.Space)){
+            start = false;
+            Debug.Log("hello");
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 30;
+        }
+        Debug.Log(Application.targetFrameRate);*/
         if(NetworkServer.active && flag){
             flag = false;
             GameObject server = Instantiate(serverNetwork);
