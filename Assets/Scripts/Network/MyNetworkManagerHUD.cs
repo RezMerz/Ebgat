@@ -106,7 +106,6 @@ namespace UnityEngine.Networking
                     if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Client(C)"))
                     {
                         networkDiscovery.StartAsClient();
-
                     }
 
 

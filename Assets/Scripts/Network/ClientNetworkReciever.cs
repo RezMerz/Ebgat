@@ -21,16 +21,21 @@ public class ClientNetworkReciever : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcRecieveWorldData(string[] worlddata){
+    public void RpcRecieveWorldData(string[] worlddata, int packetID){
         if (playerControls.Count != playernumber)
             UpdatePlayer();
-        for (int i = 0; i < worlddata.Length; i++){
-            
-            string[] data = worlddata[i].Split('$');
-            int id = Convert.ToInt32(data[0]);
-            if (id == 0 || id > playerControls.Count)
-                continue;
-            playerControls[id - 1].GetData(worlddata[i].Substring(data[0].Length + 1));
+        for (int i = 0; i < worlddata.Length; i++)
+        {
+            string[] heroData = worlddata[i].Split('#');
+            int frameBaseId = packetID * 3;
+            for (int j = 0; j < worlddata.Length; j++)
+            {
+                string[] data = heroData[j].Split('$');
+                int id = Convert.ToInt32(data[0]);
+                if (id == 0 || id > playerControls.Count)
+                    continue;
+                playerControls[id - 1].GetData(worlddata[j].Substring(data[0].Length + 1));
+            }
         }
     }
 

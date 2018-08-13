@@ -14,10 +14,15 @@ public class ServerNetworkSender : NetworkBehaviour {
     string[] worldData;
     int attackID;
 
+    public int networkSendTime = 3;
+    private string[] worldStates;
+    private int currentTime = 0;
+    private int ID = 0;
+
     private void Awake()
     {
         instance = this;
-
+        worldStates = new string[networkSendTime];
     }
 
     void Start()
@@ -28,11 +33,6 @@ public class ServerNetworkSender : NetworkBehaviour {
     // Update is called once per frame
     void Update()
     {
-        /*if (!isServer)
-            return;
-        if (data.Equals("") && hitData.Equals(""))
-            return;
-        SendCommands();*/
     }
 
     private void SendCommands()
@@ -43,8 +43,15 @@ public class ServerNetworkSender : NetworkBehaviour {
     }
 
     public void SendWorldState(WorldState worldState){
-        worldData = worldState.GetWorldData();
-        clientNetworkReciever.RpcRecieveWorldData(worldData);
+        worldStates[currentTime] = worldState.GetWorldData();
+        currentTime++;
+        if(currentTime == networkSendTime){
+            clientNetworkReciever.RpcRecieveWorldData(worldStates, ID);
+            ID++;
+            currentTime = 0;
+            worldStates = new string[networkSendTime];
+        }
+
     }
 
     public void ClientMove(int playerID, Vector3 position)
