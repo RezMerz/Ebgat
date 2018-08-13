@@ -19,9 +19,10 @@ public class PlayerControl : MonoBehaviour
 
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
-    private int lastStateChecked = -1;
-    private int currentStateNumber = 0;
-    private int biggestIdNumber = 0;
+    private int lastStateChecked ;
+    private int currentStateNumber ;
+    private int biggestIdNumber;
+    private bool start;
 
     private BuffManager buffManager;
     private AbilityManager abilityManager;
@@ -57,6 +58,10 @@ public class PlayerControl : MonoBehaviour
 
     private void ReadData()
     {
+        if (IsLocalPlayer())
+        {
+            Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
+        }
         if (playerStatesHash.Contains(currentStateNumber))
         {
             for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
@@ -75,10 +80,7 @@ public class PlayerControl : MonoBehaviour
             }
             lastStateChecked = biggestIdNumber;
         }
-        if(lastStateChecked >= 0)
-        {
-            currentStateNumber++;
-        }
+        currentStateNumber++;
 
     }
 
@@ -240,6 +242,12 @@ public class PlayerControl : MonoBehaviour
 
     public void AddTOHashTable(int id, string state)
     {
+        if (!start)
+        {
+            id = currentStateNumber;
+            lastStateChecked = id - 1;
+            start = true;
+        }
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {
