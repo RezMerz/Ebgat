@@ -248,8 +248,7 @@ public class PlayerControl : MonoBehaviour
 
     public void AddTOHashTable(int id, string state)
     {
-        Debug.Log(Time.frameCount - framCount);
-        framCount = Time.frameCount;
+        Debug.Log(id +"+"+ Time.frameCount);
         if (!start)
         {
             currentStateNumber = id;
