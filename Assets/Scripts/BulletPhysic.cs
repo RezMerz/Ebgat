@@ -37,7 +37,6 @@ public class BulletPhysic : Physic {
 	}
     protected override void Calculate()
     {
-        Debug.Log(distance);
         if(shape == BulletShape.Circle)
         {
             hitObject = Physics2D.CircleCast(virtualPosition, radius, distance.normalized, distance.magnitude, layerMask, 0, 0);

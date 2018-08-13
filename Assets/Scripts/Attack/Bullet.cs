@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour {
     private void Awake()
     {
         physic = GetComponent<BulletPhysic>();
-        Debug.Log(physic);
         
     }
     void Start()

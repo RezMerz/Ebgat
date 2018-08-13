@@ -13,7 +13,6 @@ public class MalkousAttack : Attack {
 
         if (cooldownTimer <= 0)
         {
-            print("Attack Malkous Attack");
             // Graphic Code that attack started
             damage = baseDamage;
             attackCharge = true;
@@ -38,7 +37,6 @@ public class MalkousAttack : Attack {
             if (attackSide.y == 0 && attackSide.x == 0)
                 attackSide = charStats.Side;
 
-            print("Bullet:" + attackSide);
 
             //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
              Bullet bullet =  Instantiate(bulletPrefab);

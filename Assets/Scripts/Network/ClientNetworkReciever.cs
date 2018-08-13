@@ -24,17 +24,14 @@ public class ClientNetworkReciever : NetworkBehaviour {
     public void RpcRecieveWorldData(string[] worlddata){
         if (playerControls.Count != playernumber)
             UpdatePlayer();
-        Debug.Log("start: " + Time.frameCount);
         for (int i = 0; i < worlddata.Length; i++){
             
             string[] data = worlddata[i].Split('$');
-            Debug.Log(data[data.Length - 1]);
             int id = Convert.ToInt32(data[0]);
             if (id == 0 || id > playerControls.Count)
                 continue;
             playerControls[id - 1].GetData(worlddata[i].Substring(data[0].Length + 1));
         }
-        Debug.Log("end");
     }
 
     [ClientRpc]
