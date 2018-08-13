@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
     private void LateUpdate()
     {
         counter++;
-        ReadData();
+       // ReadData();
     }
 
     private void ReadData()
@@ -253,12 +253,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (!start)
         {
+            StartCoroutine(PlayerControlUpdate());
             counter = id;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
         }
-        Debug.Log(counter - id);
+        //Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {
@@ -266,6 +267,22 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+
+    private const double interval = 0.01666;
+    private double currenttime;
+    public IEnumerator PlayerControlUpdate()
+    {
+        while (true)
+        {
+            if (currenttime < interval)
+            {
+                currenttime += Time.deltaTime;
+                yield return null;
+            }
+            currenttime = 0;
+            ReadData();
+        }
+    }
 
 }
 
