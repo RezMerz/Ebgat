@@ -11,6 +11,7 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 distance;
     protected Vector2 virtualPosition;
     private bool start;
+    private bool first;
     private float startTimer;
     protected PlayerControl playerControl;
 
@@ -24,7 +25,11 @@ abstract public class Physic : MonoBehaviour
             {
                 if (playerControl.IsServer())
                 {
-                    StartCoroutine(PhysicUpdate());
+                    if (!first)
+                    {
+                        StartCoroutine(PhysicUpdate());
+                        first = true;
+                    }
                 }
             }
         }
