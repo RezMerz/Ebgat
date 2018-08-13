@@ -58,29 +58,33 @@ public class PlayerControl : MonoBehaviour
 
     private void ReadData()
     {
-        if (IsLocalPlayer())
+        if (start)
         {
-            Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
-        }
-        if (playerStatesHash.Contains(currentStateNumber))
-        {
-            for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
+            if (playerStatesHash.Contains(currentStateNumber))
             {
-                GetData((string)playerStatesHash[i]);
-                playerStatesHash.Remove(i);
+                for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
+                {
+                    GetData((string)playerStatesHash[i]);
+                    playerStatesHash.Remove(i);
+                }
+                lastStateChecked = currentStateNumber;
             }
-            lastStateChecked = currentStateNumber;
-        }
-        else if(currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
-        {
-            for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
+            else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                GetData((string)playerStatesHash[i]);
-                playerStatesHash.Remove(i);
+                Debug.Log("data missed used old data" + Time.frameCount);
+                for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
+                {
+                    GetData((string)playerStatesHash[i]);
+                    playerStatesHash.Remove(i);
+                }
+                lastStateChecked = biggestIdNumber;
             }
-            lastStateChecked = biggestIdNumber;
+            else
+            {
+                Debug.Log("data missed used old data" + Time.frameCount);
+            }
+            currentStateNumber++;
         }
-        currentStateNumber++;
 
     }
 
