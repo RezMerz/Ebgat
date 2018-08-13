@@ -41,5 +41,5 @@ public class CustomNetworkManager : NetworkManager {
 
 
 
-    [Command]
+    //[Command]
 }
