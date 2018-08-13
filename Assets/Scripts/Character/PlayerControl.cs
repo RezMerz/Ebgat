@@ -79,8 +79,7 @@ public class PlayerControl : MonoBehaviour
                     GetData((string)playerStatesHash[i]);
                     playerStatesHash.Remove(i);
                 }
-                currentStateNumber = biggestIdNumber;
-                lastStateChecked = currentStateNumber;
+                lastStateChecked = biggestIdNumber;
             }
             else
             {
