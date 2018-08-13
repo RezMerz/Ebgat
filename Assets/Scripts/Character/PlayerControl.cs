@@ -60,6 +60,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (start)
         {
+            Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
@@ -71,7 +72,7 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                Debug.Log("data missed used old data" + Time.frameCount);
+
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
                     GetData((string)playerStatesHash[i]);
@@ -81,7 +82,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                Debug.Log("data missed used old data" + Time.frameCount);
+
             }
             currentStateNumber++;
         }
@@ -246,9 +247,10 @@ public class PlayerControl : MonoBehaviour
 
     public void AddTOHashTable(int id, string state)
     {
+        Debug.Log(id);
         if (!start)
         {
-            id = currentStateNumber;
+            currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
         }
