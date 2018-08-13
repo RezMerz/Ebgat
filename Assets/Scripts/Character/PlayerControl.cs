@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
             }
             lastStateChecked = biggestIdNumber;
         }
-        if(currentStateNumber != 0)
+        if(lastStateChecked >= 0)
         {
             currentStateNumber++;
         }
