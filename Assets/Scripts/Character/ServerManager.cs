@@ -87,6 +87,8 @@ public class ServerManager : NetworkBehaviour {
     [Command]
     public void CmdSpawnMyHero(int clientId, int heroId)
     {
+        Debug.Log(isServer);
+        Debug.Log("in server");
         SpawnHero(clientId, heroId);
     }
 

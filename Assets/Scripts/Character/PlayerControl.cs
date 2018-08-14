@@ -63,7 +63,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
+        //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
         counter++;
         ReadData();
     }
