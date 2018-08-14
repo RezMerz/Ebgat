@@ -10,12 +10,13 @@ public class PlayerConnection : NetworkBehaviour {
     private CustomNetworkManager networkManager;
     private ServerManager serverManager;
 
-
+    //string ip;
 	// Use this for initialization
 	void Start () {
+        GetComponent<NetworkIdentity>().
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
-        Debug.Log(isLocalPlayer);
+        Debug.Log(isLocalPlayer, gameObject);
         if(isLocalPlayer){
             serverManager.CmdSpawnMyHero(clientId, networkManager.playerNumber);
         }

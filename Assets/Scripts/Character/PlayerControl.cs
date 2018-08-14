@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     public WorldState worldState;
     public GameObject bulletPrefab;
     public CharacterPhysic physic { get; private set; }
-    public PlayerConnection playerConnection { get; set; }
+    public PlayerConnection playerConnection;// { get; set; }
 
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
