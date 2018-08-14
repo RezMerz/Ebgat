@@ -108,7 +108,7 @@ public class HeroGraphics : MonoBehaviour {
     {
         ResetAnimationParameters();
         if (value == "1")
-            animator.SetBool("OnGround", true);
+            animator.SetTrigger("OnGround");
         else if (value == "2")
             animator.SetTrigger("Fall");
         else if (value == "3")
@@ -127,7 +127,7 @@ public class HeroGraphics : MonoBehaviour {
 
     private void ResetAnimationParameters()
     {
-        animator.SetBool("OnGround", false);
+       
     }
 
     public void SetSide(string value)
