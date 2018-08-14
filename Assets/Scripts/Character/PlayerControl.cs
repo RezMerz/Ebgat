@@ -90,7 +90,7 @@ public class PlayerControl : MonoBehaviour
             else
             {
             }
-            if(currentStateNumber - lastStateChecked >= 6)
+            if(currentStateNumber - lastStateChecked >= 3)
             {
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
                 Debug.Log("request" + Time.frameCount + "    " + counter);
