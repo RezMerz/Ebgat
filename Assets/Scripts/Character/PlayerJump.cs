@@ -50,7 +50,7 @@ public class PlayerJump : MonoBehaviour
             JumpServerside();
         }
         // Double Jump
-        else if (charStats.FeetState == EFeetState.Jumping && charStats.canDoubleJump)
+        else if ((charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping) && charStats.canDoubleJump)
         {
             charStats.ResetJumpSpeed();
             charStats.ResetGravitySpeed();
