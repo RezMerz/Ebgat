@@ -21,7 +21,7 @@ public class HeroData {
 
     public void AppendCharstats(string stats)
     {
-        data += value;
+        data += stats;
     }
 
     public void RegisterHeroPhysics(Vector2 destination, Vector2 force){

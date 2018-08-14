@@ -60,7 +60,7 @@ public class CharacterMove : MonoBehaviour {
     public void MoveReleasedServerside(Vector3 position){
         charStats.AimSide = new Vector2(0, charStats.AimSide.y);
         charStats.BodyState = EBodyState.Standing;
-        playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
+       // playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
     }
     private void SpeedCheck(int i)
     {
