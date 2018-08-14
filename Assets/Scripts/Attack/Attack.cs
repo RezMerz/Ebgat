@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
-    protected float damage;
     protected float cooldownTimer;
     protected CharacterAttributes charStats;
     protected HeroGraphics heroGraphics;
@@ -15,7 +14,6 @@ public abstract class Attack : MonoBehaviour
         heroGraphics = GetComponent<HeroGraphics>();
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
-        damage = charStats.AttackDamage;
         cooldownTimer = 0;
     }
 
