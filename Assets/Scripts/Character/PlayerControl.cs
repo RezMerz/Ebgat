@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (start)
         {
-           // Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
+            // Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)

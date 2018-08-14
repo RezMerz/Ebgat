@@ -58,46 +58,10 @@ public class ServerNetwork : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    /*[Command]
-    public void CmdMove(int num)
-    {
-        RpcMove(num);
-    }
-
     [Command]
-    public void CmdMoveFinished(Vector3 position)
-    {
-        RpcMoveFinished(position);
+    public void CmdSendWorldStateToClient(int id){
+        ServerManager.instance.SendWorldStateToClient(id);
     }
-
-    [Command]
-    public void CmdJumpPressed(Vector3 position)
-    {
-        RpcJumpPressed(position);
-    }
-
-    [Command]
-    public void CmdJumpHold(Vector3 position)
-    {
-        RpcJumpHold(position);
-    }
-
-    [Command]
-    public void CmdJumpReleased(Vector3 position)
-    {
-        RpcJumpReleased(position);
-    }*/
-
-    /*public void CmdShootBullet(Vector3 targetdirection, Vector3 origin, float bulletDamage)
-    {
-        GameObject bulletObj = Instantiate(playerControl.bulletPrefab);
-        NetworkServer.Spawn(bulletObj);
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
-        int layer = LayerMask.GetMask(playerControl.charStats.enemyTeamName, "Blocks");
-        bullet.Shoot(targetdirection, origin, bulletDamage, layer);
-        bullet.RpcShootBulletForClient(targetdirection, origin, bulletDamage, layer);
-    }*/
-
 
 
 }

@@ -44,6 +44,25 @@ public class ClientNetworkReciever : NetworkBehaviour {
     }
 
     [ClientRpc]
+    public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
+        if (localPlayerControl.clientNetworkSender.PlayerID != RequesterID)
+            return;
+        if (worldstate.Length == 0)
+            return;
+        string[] heroData = worldstate.Split('#');
+        for (int j = 0; j < heroData.Length; j++)
+        {
+            if (heroData[j].Length == 0)
+                continue;
+            string[] data = heroData[j].Split('$');
+            int id = Convert.ToInt32(data[0]);
+            if (id == 0 || id > playerControls.Count)
+                continue;
+            playerControls[id - 1].AddTOHashTable(frameID, heroData[j].Substring(data[0].Length + 1));
+        }
+    }
+
+    [ClientRpc]
     public void RpcRecieveCommands(string data, string hitdata){
         string[] lines = data.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
@@ -94,59 +113,4 @@ public class ClientNetworkReciever : NetworkBehaviour {
         playerControls.AddRange(playerControlArray);
     }
 
-    /*public void RpcMove(int num)
-    {
-        if (isLocalPlayer)
-        {
-            return;
-        }
-        characterMove.MovePressed(num);
-    }
-
-    public void RpcMoveFinished(Vector3 position)
-    {
-        if (isLocalPlayer)
-        {
-            return;
-        }
-        Debug.Log("RPC MoveFINISHED");
-        transform.position = position;
-    }
-
-    public void RpcJumpPressed(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.JumpPressed();
-    }
-
-    public void RpcJumpLong(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.IncreaseJumpSpeed();
-    }
-
-    public void RpcJumpReleased(Vector3 position)
-    {
-        if (isLocalPlayer)
-            return;
-        transform.position = position;
-        jump.JumpReleased();
-    }
-
-    public void RpcMeleeAttack(Vector3 position){
-        playerControl.attack.AttackPressed(position);
-    }
-    */
-
-    /*[ClientRpc]
-    public void RpcTakeAttack(float damage)
-    {
-        if (isServer)
-            return;
-        playerControl.TakeAttack(damage, null);
-    }*/
 }
