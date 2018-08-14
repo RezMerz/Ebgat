@@ -87,7 +87,26 @@ public class ServerManager : NetworkBehaviour {
     [Command]
     public void CmdSpawnMyHero(int clientId, int heroId)
     {
-        networkManager.SpawnHero(clientId, heroId);
+        SpawnHero(clientId, heroId);
+    }
+
+    public void SpawnHero(int clientId, int heroId)
+    {
+        Debug.Log(heroId);
+        GameObject player = Instantiate(networkManager.players[heroId]);
+        //Debug.Log(playerConnections.Count);
+        for (int i = 0; i < networkManager.playerConnections.Count; i++)
+        {
+            if (networkManager.playerConnections[i].clientId == clientId)
+            {
+                player.GetComponent<PlayerControl>().playerConnection = networkManager.playerConnections[i];
+                break;
+            }
+        }
+        NetworkConnection connnnnn = networkManager.connectionTable[clientId] as NetworkConnection;
+        NetworkServer.SpawnWithClientAuthority(player, connnnnn);
+        ServerManager.instance.UpdatePlayers();
+        ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
 }

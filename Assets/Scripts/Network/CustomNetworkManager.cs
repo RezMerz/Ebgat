@@ -16,8 +16,8 @@ public class CustomNetworkManager : NetworkManager {
     public int playerNumber { get; set; }
 
     private int playerID = 0;
-    private Hashtable connectionTable;
-    private List<PlayerConnection> playerConnections;
+    public Hashtable connectionTable;
+    public List<PlayerConnection> playerConnections;
 
     private void Start()
     {
@@ -53,21 +53,6 @@ public class CustomNetworkManager : NetworkManager {
     {
         base.OnServerReady(conn);
 
-    }
-
-    public void SpawnHero(int clientId, int heroId){
-        GameObject player = Instantiate(players[heroId]);
-        Debug.Log(playerConnections.Count);
-        for (int i = 0; i < playerConnections.Count; i++){
-            if(playerConnections[i].clientId == clientId){
-                player.GetComponent<PlayerControl>().playerConnection = playerConnections[i];
-                break;
-            }
-        }
-        NetworkConnection connnnnn = connectionTable[clientId] as NetworkConnection;
-        NetworkServer.SpawnWithClientAuthority(player, connnnnn);
-        ServerManager.instance.UpdatePlayers();
-        ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
 }

@@ -16,9 +16,9 @@ public class PlayerConnection : NetworkBehaviour {
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
         Debug.Log(isLocalPlayer);
-        /*if(isLocalPlayer){
+        if(isLocalPlayer){
             serverManager.CmdSpawnMyHero(clientId, networkManager.playerNumber);
-        }*/
+        }
 	}
 
     private void Update()
