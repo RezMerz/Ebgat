@@ -86,9 +86,6 @@ public class PlayerControl : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            else
-            {
-            }
             if(currentStateNumber - lastStateChecked >= 3)
             {
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);

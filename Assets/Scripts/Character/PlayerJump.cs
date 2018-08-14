@@ -10,11 +10,13 @@ public class PlayerJump : MonoBehaviour
     private CharacterPhysic physic;
 
     private bool isHolding;
+    private bool doubleJumped;
 
 
     // Use this for initialization
     void Start()
     {
+        doubleJumped = true;
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         physic = GetComponent<CharacterPhysic>();
@@ -48,10 +50,15 @@ public class PlayerJump : MonoBehaviour
             charStats.FeetState = EFeetState.Jumping;
             isHolding = true;
             JumpServerside();
+            if (charStats.canDoubleJump)
+            {
+                doubleJumped = false;
+            }
         }
         // Double Jump
-        else if ((charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping) && charStats.canDoubleJump)
+        else if (!doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping))
         {
+            doubleJumped = true;
             charStats.ResetJumpSpeed();
             charStats.ResetGravitySpeed();
             charStats.FeetState = EFeetState.DoubleJumping;
