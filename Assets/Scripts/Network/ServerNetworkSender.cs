@@ -17,7 +17,7 @@ public class ServerNetworkSender : NetworkBehaviour {
     public int networkSendTime = 3;
     private string[] worldStates;
     private int currentTime = 0;
-    private int ID = 0;
+    private int currentid;
 
     private void Awake()
     {
@@ -42,52 +42,24 @@ public class ServerNetworkSender : NetworkBehaviour {
         hitData = "";
     }
 
-    //int old;
-    public void SendWorldState(WorldState worldState){
+    public void RegisterWorldState(WorldState worldState){
         string s = worldState.GetWorldData();
         if (s.Length == 0)
             return;
         worldStates[currentTime] = s;
+        ServerManager.instance.SendFullWorldStates();
         currentTime++;
         if(currentTime == networkSendTime){
-            //Debug.Log(Time.frameCount - old);
-            //old = Time.frameCount;
-            clientNetworkReciever.RpcRecieveWorldData(worldStates, ID);
-            ID++;
+            clientNetworkReciever.RpcRecieveWorldData(worldStates, ServerManager.instance.CurrentStateID);
+            ServerManager.instance.CurrentStateID++;
             currentTime = 0;
             worldStates = new string[networkSendTime];
         }
 
     }
 
-    public void ClientMove(int playerID, Vector3 position)
-    {
-        data += playerID + "," + 1 + "," + position.x + "," + position.y + "," + position.z + ",\n";
-    }
-
-    public void ClientMoveFinished(int playerID, Vector3 position)
-    {
-        data += playerID + "," + 2 + "," + position.x + "," + position.y + "," + position.z + ",\n";
-    }
-
-    public void ClientSetVerticalSide(int playerID, int num)
-    {
-        data += playerID + "," + 6 + "," + num + ",\n";
-    }
-
-    public void ClientRangedAttack(int playerID, Vector2 attackDir){
-        data += playerID + "," + 7 + "," + attackDir.x + "," + attackDir.y + "," + (attackID++) + ",\n";
-    }
-
-    public void ClientBulletHit(int playerID, int attackID){
-        data += playerID + "," + 8 + "," + attackID + ",\n";
-    }
-
-    public void ClienTakeAttack(int playerID, float attackDamage, string buffName){
-        data += playerID + "," + 9 + "," + attackDamage + "," + buffName + ",\n";
-    }
-
-    public void ClientMeleeAttack(int playerID, Vector2 attackDir){
-        data += playerID + "," + 10 + "," + attackDir.x + "," + attackDir.y + "," + (attackID++) + ",\n";
+    public void SendWorldFullstate(WorldState worldState, int requesterID){
+        int id = ServerManager.instance.CurrentStateID++ * 3 + currentTime;
+        clientNetworkReciever.RpcRecieveWorldstate(worldState.GetWorldData(), id, requesterID);
     }
 }

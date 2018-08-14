@@ -44,6 +44,17 @@ public class WorldState
 
     }
 
+    public void AppendCharstats(int Id, string stats){
+        for (int i = 0; i < heroesData.Count; i++)
+        {
+            if (Id == heroesData[i].playerID)
+            {
+                heroesData[i].AppendCharstats(stats);
+                return;
+            }
+        }
+    }
+
     public string GetWorldData(){
         string output = "";
         for (int i = 0; i < heroesData.Count; i++){

@@ -410,6 +410,34 @@ public class CharacterAttributes : MonoBehaviour {
             case EAbility.Ability2Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "4"); break;
         }
     }
+
+    public void RegisterAllStates(){
+        int id = playerControl.clientNetworkSender.PlayerID;
+        string data = "";
+        RegisterHeadState();
+        RegisterBodyState();
+        RegisterHandState();
+        RegisterFeetState();
+        data += 'e' + "&" + Side + "$";
+        data += 'f' + "&" + Armor + "$";
+        data += 'g' + "&" + HitPoints + "$";
+        data += 'i' + "&" + Range + "$";
+        data += 'j' + "&" + AttackDamage + "$";
+        data += 'k' + "&" + AttackAnimationTime + "$";
+        data += 'l' + "&" + attackCooldown + "$";
+        data += 'm' + "&" + MoveSpeed + "$";
+        data += 'n' + "&" + MoveAcceleration + "$";
+        data += 'o' + "&" + MoveSpeedMax + "$";
+        data += 'p' + "&" + JumpSpeed + "$";
+        data += 'q' + "&" + jumpAcceleration + "$";
+        data += 'r' + "&" + JumpSpeedMax + "$";
+        data += 's' + "&" + CayoteTime + "$";
+        data += 't' + "&" + GravitySpeed + "$";
+        data += 'u' + "&" + GravityAcceleration + "$";
+        data += 'v' + "&" + GravitySpeedMax + "$";
+        data += 'w' + "&" + AimSide + "$";
+        playerControl.worldState.AppendCharstats(id, data);
+    }
 }
 
 

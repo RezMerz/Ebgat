@@ -9,7 +9,7 @@ abstract public class Physic : MonoBehaviour
     protected int layerMask;
     protected Vector2 size;
     protected Vector2 distance;
-    protected Vector2 virtualPosition;
+    public Vector2 virtualPosition { get; protected set;}
    // private bool start;
    // private bool first;
    // private float startTimer;
