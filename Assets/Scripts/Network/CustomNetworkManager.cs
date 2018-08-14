@@ -55,6 +55,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public void SpawnHero(int clientId, int heroId){
         GameObject player = Instantiate(players[heroId]);
+        Debug.Log(playerConnections.Count);
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == clientId){
                 player.GetComponent<PlayerControl>().playerConnection = playerConnections[i];
