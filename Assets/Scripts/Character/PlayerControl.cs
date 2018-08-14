@@ -44,13 +44,7 @@ public class PlayerControl : MonoBehaviour
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
-        /*foreach(GameObject obj in GameObject.FindGameObjectsWithTag("PlayerConnection")){
-            PlayerConnection p = obj.GetComponent<PlayerConnection>();
-            if(p.isLocalPlayer){
-                playerConnection = p;
-                break;
-            }
-        }*/
+        playerConnection = transform.parent.GetComponent<PlayerConnection>();
     }
 
     void Start()

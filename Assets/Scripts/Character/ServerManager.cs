@@ -16,6 +16,8 @@ public class ServerManager : NetworkBehaviour {
 
     private List<int> reservelist;
 
+
+
     private void Awake()
     {
         instance = this;
@@ -87,28 +89,27 @@ public class ServerManager : NetworkBehaviour {
     [Command]
     public void CmdSpawnMyHero(int clientId, int heroId)
     {
-        Debug.Log(isServer);
-        Debug.Log("in server");
         SpawnHero(clientId, heroId);
     }
 
     public void SpawnHero(int clientId, int heroId)
     {
-        Debug.Log(heroId);
-        GameObject player = Instantiate(networkManager.players[heroId]);
-        //Debug.Log(playerConnections.Count);
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
+            Debug.Log(i);
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                player.GetComponent<PlayerControl>().playerConnection = networkManager.playerConnections[i];
+                Debug.Log("fack");
+                GameObject p = Instantiate(networkManager.players[heroId], networkManager.playerConnections[i].transform);
+                networkManager.playerConnections[i].player = p;
+                NetworkConnection connnnnn = networkManager.connectionTable[clientId] as NetworkConnection;
+                NetworkServer.SpawnWithClientAuthority(p, connnnnn);
+                ServerManager.instance.UpdatePlayers();
+                ClientNetworkReciever.instance.RpcUpdatePlayers();
                 break;
             }
         }
-        NetworkConnection connnnnn = networkManager.connectionTable[clientId] as NetworkConnection;
-        NetworkServer.SpawnWithClientAuthority(player, connnnnn);
-        ServerManager.instance.UpdatePlayers();
-        ClientNetworkReciever.instance.RpcUpdatePlayers();
+
     }
 
 }

@@ -10,10 +10,10 @@ public class PlayerConnection : NetworkBehaviour {
     private CustomNetworkManager networkManager;
     private ServerManager serverManager;
 
+    [SyncVar] public GameObject player;
     //string ip;
 	// Use this for initialization
 	void Start () {
-        GetComponent<NetworkIdentity>().
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
         Debug.Log(isLocalPlayer, gameObject);
