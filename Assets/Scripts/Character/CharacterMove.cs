@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CharacterMove : MonoBehaviour {
-    
+public class CharacterMove : MonoBehaviour
+{
+
 
     private PlayerControl playerControl;
     private CharacterAttributes charStats;
@@ -17,28 +18,36 @@ public class CharacterMove : MonoBehaviour {
     {
 
     }
-	void Start ()
+    void Start()
     {
 
         Physic = GetComponent<CharacterPhysic>();
         animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
-	}
+    }
     void FixedUpdate()
     {
         if (playerControl.IsServer())
         {
-            if(charStats.BodyState == EBodyState.Moving)
-                if(charStats.HeadState == EHeadState.Stunned)
+            if(charStats.HandState != EHandState.Idle)
+            {
+                charStats.ResetMoveSpeed();
+            }
+            if (charStats.BodyState == EBodyState.Moving)
+                if (charStats.HeadState == EHeadState.Stunned)
                 {
                     charStats.BodyState = EBodyState.Standing;
-                    charStats.ResetMoveSpeed(); 
+                    charStats.ResetMoveSpeed();
                 }
                 else
                 {
                     MoveServerside();
                 }
+            else
+            {
+                charStats.ResetMoveSpeed();
+            }
         }
     }
     public void MovePressed(int i)
@@ -57,35 +66,35 @@ public class CharacterMove : MonoBehaviour {
         Physic.AddForce(force);
         Physic.PhysicAction += HitFunction;
     }
-    public void MoveReleasedServerside(Vector3 position){
+    public void MoveReleasedServerside(Vector3 position)
+    {
         charStats.AimSide = new Vector2(0, charStats.AimSide.y);
         charStats.BodyState = EBodyState.Standing;
-       // playerControl.serverNetworkSender.ClientMoveFinished(playerControl.clientNetworkSender.PlayerID, position);
     }
     private void SpeedCheck(int i)
     {
         side = Vector2.right * i;
-        if(side  != charStats.Side)
+        if (side != charStats.Side)
         {
             charStats.ResetMoveSpeed();
             charStats.Side = side;
         }
-        if(charStats.BodyState == EBodyState.Standing)
+        if (charStats.BodyState == EBodyState.Standing)
         {
             charStats.ResetMoveSpeed();
         }
-        if(charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground)
+        if (charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground)
         {
             charStats.MoveSpeed += charStats.MoveAcceleration;
-            if(charStats.MoveSpeed > charStats.MoveSpeedMax)
+            if (charStats.MoveSpeed > charStats.MoveSpeedMax)
             {
                 charStats.MoveSpeed = charStats.MoveSpeedMax;
             }
         }
     }
-    private void HitFunction(List<RaycastHit2D> vHits,List<RaycastHit2D> hHits,Vector2 direction)
+    private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if(direction.x * moveSide > 0 && hHits.Count > 0)
+        if (direction.x * moveSide > 0 && hHits.Count > 0)
         {
             charStats.ResetMoveSpeed();
         }

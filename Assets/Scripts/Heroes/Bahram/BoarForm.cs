@@ -69,6 +69,7 @@ public class BoarForm : Ability {
     // Boar form is done go back to human
     private void HumanForm()
     {
+        charStats.AbilityState = EAbility.Ability1Finish;
         charStats.HandState = EHandState.Idle;
         charStats.FeetState = EFeetState.Onground;
         abilityUseServerside = false;

@@ -22,6 +22,7 @@ public class Gravity : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (playerControl.IsServer())
         {
             GravityServerside();
@@ -29,10 +30,13 @@ public class Gravity : MonoBehaviour {
     }
     private void GravityServerside()
     {
+        if (charStats.FeetState != EFeetState.NoGravity)
+        {
             SpeedCheck();
             Vector2 force = Vector2.down * (charStats.GravitySpeed * Time.deltaTime);
             physic.AddForce(force);
             physic.PhysicAction += HitFunction;
+        }
     }
     private void SpeedCheck()
     {

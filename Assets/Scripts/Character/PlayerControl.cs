@@ -71,10 +71,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (start)
         {
-            // Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
-              //  Debug.Log("no problem" + Time.frameCount + "    " + counter);
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
                 {
                     GetData((string)playerStatesHash[i]);
@@ -84,9 +82,6 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                //Debug.Log("request" + Time.frameCount + "    " + counter);
-                //serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
-
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
                     GetData((string)playerStatesHash[i]);
@@ -94,14 +89,9 @@ public class PlayerControl : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            else
-            {
-            }
             if(currentStateNumber - lastStateChecked >= 3)
             {
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
-                Debug.Log("request" + Time.frameCount + "    " + counter);
-
             }
             currentStateNumber++;
         }
@@ -276,7 +266,6 @@ public class PlayerControl : MonoBehaviour
     int counter;
     public void AddTOHashTable(int id, string state)
     {
-        //Debug.Log("add to hash" + id);
         if (!start &&(!firstRecieved || currentStateNumber <= id))
         {
             counter = id;
@@ -285,7 +274,6 @@ public class PlayerControl : MonoBehaviour
             start = true;
             firstRecieved = true;
         }
-        //Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {
@@ -296,8 +284,6 @@ public class PlayerControl : MonoBehaviour
     public void UpdateClient(int id,string state)
     {
         start = false;
-       // Debug.Log("-------------------------------update client"+ id);
-       // Debug.Log(state);
         currentStateNumber = id+1;
         GetData(state);
         for(int i = lastStateChecked+1;i <= id; i++)

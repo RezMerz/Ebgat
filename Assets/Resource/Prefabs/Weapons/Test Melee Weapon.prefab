@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657a1b08044adef45a52caa9763fcd29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 1.5, y: 2}
+  size: {x: 3, y: 0.75}
+  buff: {fileID: 0}

@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJump : MonoBehaviour {
+public class PlayerJump : MonoBehaviour
+{
 
     private PlayerControl playerControl;
     private CharacterAttributes charStats;
     private CharacterPhysic physic;
 
     private bool isHolding;
+    private bool doubleJumped;
 
 
     // Use this for initialization
     void Start()
     {
+        doubleJumped = true;
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         physic = GetComponent<CharacterPhysic>();
@@ -47,10 +50,15 @@ public class PlayerJump : MonoBehaviour {
             charStats.FeetState = EFeetState.Jumping;
             isHolding = true;
             JumpServerside();
+            if (charStats.canDoubleJump)
+            {
+                doubleJumped = false;
+            }
         }
-            // Double Jump
-        else if (charStats.FeetState == EFeetState.Jumping && charStats.canDoubleJump) 
+        // Double Jump
+        else if (!doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping))
         {
+            doubleJumped = true;
             charStats.ResetJumpSpeed();
             charStats.ResetGravitySpeed();
             charStats.FeetState = EFeetState.DoubleJumping;
@@ -59,17 +67,17 @@ public class PlayerJump : MonoBehaviour {
     // Holding the Jump
     public void JumpHold()
     {
-         charStats.JumpSpeed += charStats.JumpAcceleration * Time.deltaTime;
-         if (charStats.JumpSpeed > charStats.JumpSpeedMax)
-         {
-             charStats.JumpSpeed = charStats.JumpSpeedMax;
-         }
+        charStats.JumpSpeed += charStats.JumpAcceleration * Time.deltaTime;
+        if (charStats.JumpSpeed > charStats.JumpSpeedMax)
+        {
+            charStats.JumpSpeed = charStats.JumpSpeedMax;
+        }
     }
     public void JumpReleased()
     {
         isHolding = false;
     }
-    private  void JumpServerside()
+    private void JumpServerside()
     {
         if (isHolding || charStats.FeetState == EFeetState.DoubleJumping)
         {
@@ -81,15 +89,12 @@ public class PlayerJump : MonoBehaviour {
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if(vHits.Count > 0)
+        if (vHits.Count > 0 || direction.y < 0)
         {
-            if (direction.y > 0)
-            {
-                charStats.FeetState = EFeetState.Falling;
-                charStats.ResetGravitySpeed();
-            }
+            charStats.FeetState = EFeetState.Falling;
+            charStats.ResetGravitySpeed();
         }
-    } 
+    }
 
 }
 

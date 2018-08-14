@@ -6,7 +6,7 @@ public class HeroGraphics : MonoBehaviour {
     private SpriteRenderer sprite;
     private Animator animator;
     private PlayerControl playerControl;
-
+    private AudioSource audioSource;
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -19,6 +19,7 @@ public class HeroGraphics : MonoBehaviour {
     }
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerControl = GetComponent<PlayerControl>();
@@ -35,8 +36,11 @@ public class HeroGraphics : MonoBehaviour {
 
     public void HandState(string value)
     {
+        if (value == "2")
+            animator.SetTrigger("Attack");
         if(value == "5")
         {
+
             for(int i=0;i<transform.childCount;i++)
             {
                 if (transform.GetChild(i).name == "Glow")
@@ -57,11 +61,11 @@ public class HeroGraphics : MonoBehaviour {
     {
         if(value == "1")
         {
-            // Ability 1 Start Graphics
+            animator.SetBool("Ability1", true);
         }
         else if( value == "2")
         {
-            // Ability 1 Finish Graphic
+            animator.SetBool("Ability1", false);
         }
         else if (value == "3")
         {
@@ -102,20 +106,28 @@ public class HeroGraphics : MonoBehaviour {
 
     public void FeetState(string value)
     {
-        /*
-        if(value == "1") 
-            print(EFeetState.Onground);
-        else if( value == "2")
-            print(EFeetState.Falling);
-        else if(value == "3")
-            print(EFeetState.Jumping);
-        else if(value == "4")
+        ResetAnimationParameters();
+        if (value == "1")
+            animator.SetBool("OnGround", true);
+        else if (value == "2")
+            animator.SetTrigger("Fall");
+        else if (value == "3")
+        {
+            audioSource.Play();
+            animator.SetTrigger("Jump");
+        }
+        else if (value == "4")
             print(EFeetState.NoGravity);
-        else if(value == "5")
-            print(EFeetState.DoubleJumping);
+        else if (value == "5")
+            animator.SetTrigger("DoubleJump");
         else
             print("Wrong Feet State Code");
-          */
+          
+    }
+
+    private void ResetAnimationParameters()
+    {
+        animator.SetBool("OnGround", false);
     }
 
     public void SetSide(string value)

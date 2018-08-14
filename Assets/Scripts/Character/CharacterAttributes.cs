@@ -384,6 +384,8 @@ public class CharacterAttributes : MonoBehaviour {
     }
     private void RegisterFeetState()
     {
+        print(playerControl);
+        print(playerControl.worldState);
         switch (FeetState)
         {
             case EFeetState.Onground: playerControl.worldState.RegisterCharStat(ID, 'd', "1"); break;
