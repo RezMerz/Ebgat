@@ -259,7 +259,7 @@ public class PlayerControl : MonoBehaviour
             lastStateChecked = id - 1;
             start = true;
         }
-        Debug.Log(counter - id);
+        //Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {

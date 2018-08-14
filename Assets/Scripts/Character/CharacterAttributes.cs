@@ -219,7 +219,10 @@ public class CharacterAttributes : MonoBehaviour {
     private void Initialize()
     {
         //States 
-        feetState = EFeetState.Onground;
+        FeetState = EFeetState.Onground;
+        HeadState = EHeadState.Conscious;
+        BodyState = EBodyState.Standing;
+        HandState = EHandState.Idle;
         //Hp
         hitPoints = hitPointsBase;
         //Attack
@@ -369,6 +372,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
     private void RegisterHandState()
     {
+        UnityEngine.Debug.Log("fack " + HandState);
         switch (HandState)
         {
             case EHandState.Idle: playerControl.worldState.RegisterCharStat(ID, 'c', "1"); break;
