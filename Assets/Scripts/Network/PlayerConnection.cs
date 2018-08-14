@@ -18,7 +18,12 @@ public class PlayerConnection : NetworkBehaviour {
         if(isLocalPlayer){
             serverManager.CmdSpawnMyHero(clientId, networkManager.playerNumber);
         }
-           
+        Debug.Log("asdasdasdasdds  " + isLocalPlayer);
 	}
+
+    private void Update()
+    {
+        Debug.Log(isLocalPlayer);
+    }
 
 }

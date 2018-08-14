@@ -26,7 +26,6 @@ public class ServerNetwork : NetworkBehaviour
     [Command]
     public void CmdRecievecommands(string commands, int playerID)
     {
-        Debug.Log(commands);
         string[] lines = commands.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
