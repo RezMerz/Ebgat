@@ -13,7 +13,7 @@ public class MeleeAttack :Attack {
     {
         base.Start();
         weaponSize = new Vector2(transform.localScale.x * GetComponent<BoxCollider2D>().size.x * 0.5f, weapon.size.y);
-        distance = weapon.size.y;
+        distance = weapon.size.x;
         layerMask = LayerMask.NameToLayer(charStats.enemyTeamName);
         if(weapon.buff != null)
         {
@@ -34,6 +34,7 @@ public class MeleeAttack :Attack {
             RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
             foreach(RaycastHit2D target in targets)
             {
+                Debug.Log(target.collider.name);
                 target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, buffName);
             }
             StartCoroutine(AttackAnimateTime());
