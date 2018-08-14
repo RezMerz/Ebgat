@@ -5,25 +5,20 @@ using UnityEngine.Networking;
 
 public class PlayerConnection : NetworkBehaviour {
 
-    public List<GameObject> players;
+    [SyncVar] public int clientId;
+
+    private CustomNetworkManager networkManager;
+    private ServerManager serverManager;
+
 
 	// Use this for initialization
 	void Start () {
-        if (!isLocalPlayer)
-            return;
-        CmdSpawnMyUnit();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        serverManager = ServerManager.instance;
+        if(isLocalPlayer){
+            serverManager.CmdSpawnMyHero(clientId, networkManager.playerNumber);
+        }
+           
 	}
 
-
-    [Command]
-    public void CmdSpawnMyUnit(){
-        int random = Random.Range(0, players.Count);
-        GameObject player = Instantiate(players[random]);
-        NetworkServer.SpawnWithClientAuthority(player, gameObject);
-    }
 }

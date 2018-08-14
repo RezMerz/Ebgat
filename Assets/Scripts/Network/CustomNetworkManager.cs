@@ -8,22 +8,23 @@ public class CustomNetworkManager : NetworkManager {
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
     public List<GameObject> players;
+    public GameObject playerConnection;
 
     private bool flag = true;
     bool start = true;
+
     public int playerNumber { get; set; }
 
+    private int playerID = 0;
+    private Hashtable connectionTable;
 
+    private void Start()
+    {
+        connectionTable = new Hashtable();
+    }
 
     private void Update()
     {
-        /*if(Input.GetKeyDown(KeyCode.Space)){
-            start = false;
-            Debug.Log("hello");
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 30;
-        }
-        Debug.Log(Application.targetFrameRate);*/
         if(NetworkServer.active && flag){
             flag = false;
             GameObject server = Instantiate(serverNetwork);
@@ -35,10 +36,11 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        GameObject player = Instantiate(players[playerNumber]);
-        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        ServerManager.instance.UpdatePlayers();
-        ClientNetworkReciever.instance.RpcUpdatePlayers();
+        connectionTable.Add(++playerID, conn);
+        GameObject playercon = Instantiate(playerConnection);
+        playercon.GetComponent<PlayerConnection>().clientId = playerID;
+        NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
+
     }
 
     public override void OnServerReady(NetworkConnection conn)
@@ -47,8 +49,12 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
+    public void SpawnHero(int clientId, int heroId){
+        GameObject player = Instantiate(players[heroId]);
+        NetworkConnection connnnnn = connectionTable[clientId] as NetworkConnection;
+        NetworkServer.SpawnWithClientAuthority(player, connnnnn);
+        ServerManager.instance.UpdatePlayers();
+        ClientNetworkReciever.instance.RpcUpdatePlayers();
+    }
 
-
-
-    //[Command]
 }

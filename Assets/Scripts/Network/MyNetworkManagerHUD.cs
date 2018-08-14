@@ -126,12 +126,14 @@ namespace UnityEngine.Networking
                     if (sliderValue > 0.5f)
                     {
                         sliderValue = 1f;
-                        manager.playerNumber = 1;
+                        if(manager.playerNumber != 1)
+                            manager.playerNumber = 1;
                     }
                     if (sliderValue <= 0.5f)
                     {
                         sliderValue = 0f;
-                        manager.playerNumber = 0;
+                        if (manager.playerNumber != 0)
+                            manager.playerNumber = 0;
                     }
                     
 

@@ -16193,7 +16193,7 @@ GameObject:
   - component: {fileID: 1887430563}
   m_Layer: 0
   m_Name: Custom Network Manager
-  m_TagString: Untagged
+  m_TagString: NetworkManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16252,6 +16252,7 @@ MonoBehaviour:
   - {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f, type: 2}
   - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
   - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
+  - {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -16314,6 +16315,8 @@ MonoBehaviour:
   players:
   - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
   - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
+  playerConnection: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
+    type: 2}
 --- !u!4 &1887430562
 Transform:
   m_ObjectHideFlags: 0

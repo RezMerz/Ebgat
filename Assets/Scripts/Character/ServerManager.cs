@@ -8,6 +8,7 @@ public class ServerManager : NetworkBehaviour {
     public static ServerManager instance;
     public WorldState currentWorldState;
 
+    private CustomNetworkManager networkManager;
     private List<PlayerControl> playerControls;
     private int finishedPLayercounter;
 
@@ -20,6 +21,7 @@ public class ServerManager : NetworkBehaviour {
         instance = this;
         currentWorldState = new WorldState();
         playerControls = new List<PlayerControl>();
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         reservelist = new List<int>();
         UpdatePlayers();
     }
@@ -80,4 +82,12 @@ public class ServerManager : NetworkBehaviour {
         }
         reservelist.Clear();
     }
+
+
+    [Command]
+    public void CmdSpawnMyHero(int clientId, int heroId)
+    {
+        networkManager.SpawnHero(clientId, heroId);
+    }
+
 }

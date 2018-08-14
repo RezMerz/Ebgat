@@ -26,6 +26,7 @@ public class ServerNetwork : NetworkBehaviour
     [Command]
     public void CmdRecievecommands(string commands, int playerID)
     {
+        Debug.Log(commands);
         string[] lines = commands.Split('\n');
         for (int i = 0; i < lines.Length - 1; i++)
         {
@@ -62,6 +63,4 @@ public class ServerNetwork : NetworkBehaviour
     public void CmdSendWorldStateToClient(int id){
         ServerManager.instance.SendWorldStateToClient(id);
     }
-
-
 }
