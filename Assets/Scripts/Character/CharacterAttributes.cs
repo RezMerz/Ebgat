@@ -372,7 +372,6 @@ public class CharacterAttributes : MonoBehaviour {
     }
     private void RegisterHandState()
     {
-        UnityEngine.Debug.Log("fack " + HandState);
         switch (HandState)
         {
             case EHandState.Idle: playerControl.worldState.RegisterCharStat(ID, 'c', "1"); break;

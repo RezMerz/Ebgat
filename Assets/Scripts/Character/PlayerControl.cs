@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour
     private int biggestIdNumber;
     private int  framCount;
     private bool start;
+    private bool firstRecieved;
 
     private BuffManager buffManager;
     private AbilityManager abilityManager;
@@ -65,6 +66,7 @@ public class PlayerControl : MonoBehaviour
             // Debug.Log(lastStateChecked + "+" + currentStateNumber + "+" + biggestIdNumber);
             if (playerStatesHash.Contains(currentStateNumber))
             {
+              //  Debug.Log("no problem" + Time.frameCount + "    " + counter);
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
                 {
                     GetData((string)playerStatesHash[i]);
@@ -74,6 +76,7 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
+                Debug.Log("request" + Time.frameCount + "    " + counter);
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
@@ -85,6 +88,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+                Debug.Log("request" + Time.frameCount + "    " + counter);
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
             }
             currentStateNumber++;
@@ -252,12 +256,14 @@ public class PlayerControl : MonoBehaviour
     int counter;
     public void AddTOHashTable(int id, string state)
     {
-        if (!start)
+        //Debug.Log("add to hash" + id);
+        if (!start &&(!firstRecieved || currentStateNumber <= id))
         {
             counter = id;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
+            firstRecieved = true;
         }
         //Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
@@ -269,6 +275,9 @@ public class PlayerControl : MonoBehaviour
 
     public void UpdateClient(int id,string state)
     {
+        start = false;
+       // Debug.Log("-------------------------------update client"+ id);
+       // Debug.Log(state);
         currentStateNumber = id+1;
         GetData(state);
         for(int i = lastStateChecked+1;i <= id; i++)
