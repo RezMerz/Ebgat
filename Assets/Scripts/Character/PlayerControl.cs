@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("6");
         counter++;
         ReadData();
     }
@@ -76,8 +77,8 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                Debug.Log("request" + Time.frameCount + "    " + counter);
-                serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
+                //Debug.Log("request" + Time.frameCount + "    " + counter);
+                //serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
@@ -88,8 +89,12 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                Debug.Log("request" + Time.frameCount + "    " + counter);
+            }
+            if(currentStateNumber - lastStateChecked >= 6)
+            {
                 serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
+                Debug.Log("request" + Time.frameCount + "    " + counter);
+
             }
             currentStateNumber++;
         }

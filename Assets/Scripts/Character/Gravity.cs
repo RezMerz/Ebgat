@@ -22,6 +22,7 @@ public class Gravity : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log("4");
         if (playerControl.IsServer())
         {
             GravityServerside();
