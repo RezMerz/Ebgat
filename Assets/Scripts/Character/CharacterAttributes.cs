@@ -422,13 +422,13 @@ public class CharacterAttributes : MonoBehaviour {
         RegisterBodyState();
         RegisterHandState();
         RegisterFeetState();
-        data += 'e' + "&" + Side + "$";
+        data += 'e' + "&" + Toolkit.VectorSerialize(Side) + "$";
         data += 'f' + "&" + Armor + "$";
         data += 'g' + "&" + HitPoints + "$";
         data += 'i' + "&" + Range + "$";
         data += 'j' + "&" + AttackDamage + "$";
         data += 'k' + "&" + AttackAnimationTime + "$";
-        data += 'l' + "&" + attackCooldown + "$";
+        data += 'l' + "&" + AttackCooldown + "$";
         data += 'm' + "&" + MoveSpeed + "$";
         data += 'n' + "&" + MoveAcceleration + "$";
         data += 'o' + "&" + MoveSpeedMax + "$";
@@ -439,7 +439,7 @@ public class CharacterAttributes : MonoBehaviour {
         data += 't' + "&" + GravitySpeed + "$";
         data += 'u' + "&" + GravityAcceleration + "$";
         data += 'v' + "&" + GravitySpeedMax + "$";
-        data += 'w' + "&" + AimSide + "$";
+        data += 'w' + "&" + Toolkit.VectorSerialize(AimSide) + "$";
         playerControl.worldState.AppendCharstats(id, data);
     }
 }
