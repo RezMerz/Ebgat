@@ -32,7 +32,6 @@ public class InputCharacter : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        Debug.Log("1");
         if (!playerControl.IsLocalPlayer())
             return;
 

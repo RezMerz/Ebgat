@@ -55,7 +55,6 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("6");
         counter++;
         ReadData();
     }

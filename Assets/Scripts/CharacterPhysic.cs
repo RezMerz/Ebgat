@@ -24,7 +24,6 @@ public class CharacterPhysic : Physic {
     }
     private void FixedUpdate()
     {
-        Debug.Log("5");
         PhysicAction += HitFunction;
         if (layerSet)
         {

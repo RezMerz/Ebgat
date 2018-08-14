@@ -27,7 +27,6 @@ public class CharacterMove : MonoBehaviour {
 	}
     void FixedUpdate()
     {
-        Debug.Log("2");
         if (playerControl.IsServer())
         {
             if(charStats.BodyState == EBodyState.Moving)

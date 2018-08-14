@@ -20,7 +20,6 @@ public class PlayerJump : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        Debug.Log("3");
         if (playerControl.IsServer())
         {
             if (charStats.FeetState == EFeetState.Jumping || charStats.FeetState == EFeetState.DoubleJumping)
