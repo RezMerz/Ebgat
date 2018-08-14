@@ -54,7 +54,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //counter++;
+        counter++;
         ReadData();
     }
 
@@ -74,6 +74,7 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
+                ////
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
@@ -84,7 +85,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-
+                ///
             }
             currentStateNumber++;
         }
@@ -253,13 +254,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (!start)
         {
-            StartCoroutine(PlayerControlUpdate());
             counter = id;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
         }
-        //Debug.Log(counter - id);
+        Debug.Log(counter - id);
         playerStatesHash.Add(id, state);
         if(id > biggestIdNumber)
         {
@@ -267,22 +267,18 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
-    private const double interval = 0.01666;
-    private double currentTime;
-    public IEnumerator PlayerControlUpdate()
+    public void UpdateClient(int id,string state)
     {
-        while (true)
+        currentStateNumber = id+1;
+        GetData(state);
+        for(int i = lastStateChecked+1;i <= id; i++)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime < interval)
+            if (playerStatesHash.Contains(i))
             {
-                yield return null;
+                playerStatesHash.Remove(i);
             }
-            currentTime -= interval;
-           // ReadData();
-            yield return null;
         }
+        lastStateChecked = id;
     }
 
 }
