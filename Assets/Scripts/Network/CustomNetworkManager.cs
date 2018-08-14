@@ -17,10 +17,12 @@ public class CustomNetworkManager : NetworkManager {
 
     private int playerID = 0;
     private Hashtable connectionTable;
+    private List<PlayerConnection> playerConnections;
 
     private void Start()
     {
         connectionTable = new Hashtable();
+        playerConnections = new List<PlayerConnection>();
     }
 
     private void Update()
@@ -38,7 +40,9 @@ public class CustomNetworkManager : NetworkManager {
     {
         connectionTable.Add(++playerID, conn);
         GameObject playercon = Instantiate(playerConnection);
-        playercon.GetComponent<PlayerConnection>().clientId = playerID;
+        PlayerConnection p = playercon.GetComponent<PlayerConnection>();
+        p.clientId = playerID;
+        playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
     }
@@ -51,6 +55,12 @@ public class CustomNetworkManager : NetworkManager {
 
     public void SpawnHero(int clientId, int heroId){
         GameObject player = Instantiate(players[heroId]);
+        for (int i = 0; i < playerConnections.Count; i++){
+            if(playerConnections[i].clientId == clientId){
+                player.GetComponent<PlayerControl>().playerConnection = playerConnections[i];
+                break;
+            }
+        }
         NetworkConnection connnnnn = connectionTable[clientId] as NetworkConnection;
         NetworkServer.SpawnWithClientAuthority(player, connnnnn);
         ServerManager.instance.UpdatePlayers();

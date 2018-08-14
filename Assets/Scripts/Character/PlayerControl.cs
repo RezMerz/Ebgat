@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     public WorldState worldState;
     public GameObject bulletPrefab;
     public CharacterPhysic physic { get; private set; }
-    public PlayerConnection playerConnection { get; private set; }
+    public PlayerConnection playerConnection { get; set; }
 
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
@@ -44,13 +44,13 @@ public class PlayerControl : MonoBehaviour
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("PlayerConnection")){
+        /*foreach(GameObject obj in GameObject.FindGameObjectsWithTag("PlayerConnection")){
             PlayerConnection p = obj.GetComponent<PlayerConnection>();
             if(p.isLocalPlayer){
                 playerConnection = p;
                 break;
             }
-        }
+        }*/
     }
 
     void Start()
@@ -63,6 +63,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(playerConnection + "   " + playerConnection.clientId);
         counter++;
         ReadData();
     }
