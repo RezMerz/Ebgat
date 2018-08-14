@@ -102,20 +102,23 @@ public class HeroGraphics : MonoBehaviour {
 
     public void FeetState(string value)
     {
-        /*
-        if(value == "1") 
-            print(EFeetState.Onground);
-        else if( value == "2")
+
+        if (value == "1")
+        {
+            animator.SetTrigger("OnGround");
+            animator.SetBool("Jumping", false);
+        }
+        else if (value == "2")
             print(EFeetState.Falling);
-        else if(value == "3")
-            print(EFeetState.Jumping);
-        else if(value == "4")
+        else if (value == "3")
+            animator.SetBool("Jumping", true);
+        else if (value == "4")
             print(EFeetState.NoGravity);
-        else if(value == "5")
+        else if (value == "5")
             print(EFeetState.DoubleJumping);
         else
             print("Wrong Feet State Code");
-          */
+          
     }
 
     public void SetSide(string value)
