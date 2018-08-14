@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                ////
+                serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                ///
+                serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
             }
             currentStateNumber++;
         }
