@@ -38,11 +38,13 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+        //Debug.Log(conn);
         connectionTable.Add(++playerID, conn);
         GameObject playercon = Instantiate(playerConnection);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
         p.clientId = playerID;
         playerConnections.Add(p);
+        //Debug.Log(playerConnections.Count);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
     }
