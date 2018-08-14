@@ -22,6 +22,11 @@ public abstract class Attack : MonoBehaviour {
             cooldownTimer -= Time.deltaTime;
 	}
 
+    protected IEnumerator AttackAnimateTime()
+    {
+        yield return new WaitForSeconds(charStats.AttackAnimationTime);
+        charStats.HandState = EHandState.Idle;
+    }
     public virtual void AttackPressed() {}
 
     public virtual void AttackHold(){}

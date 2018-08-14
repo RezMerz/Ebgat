@@ -36,8 +36,11 @@ public class HeroGraphics : MonoBehaviour {
 
     public void HandState(string value)
     {
+        if (value == "2")
+            animator.SetTrigger("Attack");
         if(value == "5")
         {
+
             for(int i=0;i<transform.childCount;i++)
             {
                 if (transform.GetChild(i).name == "Glow")

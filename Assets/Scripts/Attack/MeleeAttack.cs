@@ -11,6 +11,8 @@ public class MeleeAttack :Attack {
         {
             cooldownTimer = charStats.AttackCooldown;
             charStats.HandState = EHandState.Attacking;
+            StartCoroutine(AttackAnimateTime());
+
         }
     }
 }
