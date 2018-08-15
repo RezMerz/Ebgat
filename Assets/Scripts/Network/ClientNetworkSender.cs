@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class ClientNetworkSender : NetworkBehaviour
 {
 
-    ServerNetwork serverNetwork;
+    ServerNetwork serverNetworkReciever;
     PlayerConnection playerConnection;
 
     private string data = "";
@@ -24,7 +24,7 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         playerConnection = GetComponent<PlayerConnection>();
         playerConnection.SetClientNetworkSender(this);
-        serverNetwork = GetComponent<ServerNetwork>();
+        serverNetworkReciever = GetComponent<ServerNetwork>();
     }
 
     // Update is called once per frame
@@ -37,9 +37,13 @@ public class ClientNetworkSender : NetworkBehaviour
         SendCommands();
     }
 
+    public void RequestWorldState(int playerId){
+        serverNetworkReciever.CmdSendWorldStateToClient(playerId);
+    }
+
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data, playerConnection.clientId);
+        serverNetworkReciever.CmdRecievecommands(data, playerConnection.clientId);
         data = "";
     }
 

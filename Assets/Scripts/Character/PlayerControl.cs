@@ -108,7 +108,7 @@ public class PlayerControl : MonoBehaviour
             }
             if(currentStateNumber - lastStateChecked >= 3)
             {
-                serverNetworkReciever.CmdSendWorldStateToClient(playerId);
+                clientNetworkSender.RequestWorldState(playerId);
             }
             currentStateNumber++;
         }
