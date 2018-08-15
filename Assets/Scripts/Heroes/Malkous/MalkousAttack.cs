@@ -8,17 +8,18 @@ public class MalkousAttack : Attack
     public VirtualBullet virttualBullet;
     public float maxHoldTime;
     public float damageMultiplier;
-    public float range;
 
     private bool attackCharge;
     private float timer;
     private int layerMask;
+    private int playerID;
 
     private new void Start()
     {
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        playerID = playerControl.clientNetworkSender.PlayerID;
     }
     void FixedUpdate()
     {
@@ -63,14 +64,17 @@ public class MalkousAttack : Attack
     protected override void ApplyAttack()
     {
         float damage = charStats.AttackDamage * (1 + (timer * damageMultiplier));
-        float gravityAcc = charStats.GravityAcceleration * (timer / maxHoldTime); 
+        float gravityAcc = charStats.GravityAcceleration * (timer / maxHoldTime);
+        float range = charStats.Range;
+        int bulletID = ServerManager.instance.GetBulletID(playerID);
         // Calculate Side
         Vector2 attackSide = charStats.AimSide;
         if (attackSide == Vector2.zero)
             attackSide = charStats.Side;
-        VirtualBullet bullet = Instantiate(virttualBullet);
-        bullet.transform.position = transform.position;
-        bullet.Shoot(damage, attackSide, layerMask, gravityAcc, range);
+        VirtualBullet virtualBullet = Instantiate(virttualBullet);
+        virtualBullet.transform.position = transform.position;
+        virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc, range,playerControl,bulletID);
         // register bullet
+        playerControl.worldState.BulletRegister(playerID, bulletID, damage, attackSide, gravityAcc);
     }
 }

@@ -15,6 +15,7 @@ public class VirtualBullet : MonoBehaviour
     private float gravitySpeedBase;
     private float gravityAcceleration;
     private BulletPhysic physic;
+    private PlayerControl playerControl;
     private float distance;
     private Vector2 distanceVector;
     private Vector2 direction;
@@ -35,7 +36,7 @@ public class VirtualBullet : MonoBehaviour
         }
     }
 
-    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc, float range)
+    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc, float range,PlayerControl pl,int id)
     {
         shot = true;
         physic.SetData(layer);
@@ -43,6 +44,8 @@ public class VirtualBullet : MonoBehaviour
         this.damage = damage;
         this.range = range;
         gravityAcceleration = gravityAcc;
+        playerControl = pl;
+        ID = id;
     }
 
     private void MoveServerSide()
@@ -95,5 +98,7 @@ public class VirtualBullet : MonoBehaviour
     {
         /// send destroyed massage
         Destroy(gameObject);
+        playerControl.worldState.BulletHit(playerControl.clientNetworkSender.PlayerID, ID);
+        
     }
 }
