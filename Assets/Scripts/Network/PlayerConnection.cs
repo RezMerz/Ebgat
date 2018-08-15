@@ -12,6 +12,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
 
+    [SerializeField]
     private GameObject player;
 
 	// Use this for initialization
@@ -22,7 +23,7 @@ public class PlayerConnection : NetworkBehaviour {
         serverNetworkReciever = GetComponent<ServerNetwork>();
         Debug.Log(isLocalPlayer, gameObject);
         if(isLocalPlayer){
-            serverManager.CmdSpawnMyHero(clientId, networkManager.playerNumber);
+            serverManager.CmdClientConnected(clientId, networkManager.playerNumber);
         }
 	}
 

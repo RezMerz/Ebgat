@@ -212,8 +212,12 @@ public class CharacterAttributes : MonoBehaviour {
     {
         playerControl = GetComponent<PlayerControl>();
         ID = playerControl.playerId;
-        Initialize();
+        playerControl.ReadyAction += SetReady;
 	}
+
+    public void SetReady(){
+        Initialize();
+    }
 
     private void Initialize()
     {

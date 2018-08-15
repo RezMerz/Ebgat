@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
+
 public class PlayerControl : MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
@@ -30,7 +32,8 @@ public class PlayerControl : MonoBehaviour
     private BuffManager buffManager;
     private AbilityManager abilityManager;
 
-    public int playerId { get; set; }
+    public Action ReadyAction;
+    public int playerId { get; private set; }
     // Use this for initialization
     void Awake()
     {
@@ -71,7 +74,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void SetReady(){
-        
+        ReadyAction();
     }
 
     private void ReadData()

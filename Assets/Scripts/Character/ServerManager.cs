@@ -16,7 +16,9 @@ public class ServerManager : NetworkBehaviour {
 
     private List<int> reservelist;
 
+    private List<PlayerId> playerIdList;
 
+    public int maxPlayerCount, currentPlayerCount;
 
     private void Awake()
     {
@@ -25,6 +27,9 @@ public class ServerManager : NetworkBehaviour {
         playerControls = new List<PlayerControl>();
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         reservelist = new List<int>();
+        playerIdList = new List<PlayerId>();
+        maxPlayerCount = networkManager.maxPlayerCount;
+        currentPlayerCount = 0;
         UpdatePlayers();
     }
 
@@ -66,6 +71,7 @@ public class ServerManager : NetworkBehaviour {
 
     public void RequestworldFullState(int playerID){
         reservelist.Add(playerID);
+
     }
     
     public void SendWorldStateToClient(int playerID){
@@ -87,9 +93,17 @@ public class ServerManager : NetworkBehaviour {
 
 
     [Command]
-    public void CmdSpawnMyHero(int clientId, int heroId)
-    {
-        SpawnHero(clientId, heroId);
+    public void CmdClientConnected(int clientId, int heroId){
+        Debug.Log("id: " + clientId + " , " + heroId);
+        playerIdList.Add(new PlayerId(clientId, heroId));
+        currentPlayerCount++;
+        if(currentPlayerCount == maxPlayerCount){
+            for (int i = 0; i < maxPlayerCount; i++){
+                SpawnHero(playerIdList[i].clientId, playerIdList[i].heroId);
+                UpdatePlayers();
+                ClientNetworkReciever.instance.RpcUpdatePlayers();
+            }
+        }
     }
 
     public void SpawnHero(int clientId, int heroId)
@@ -98,14 +112,19 @@ public class ServerManager : NetworkBehaviour {
         {
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                Debug.Log("fack");
                 networkManager.playerConnections[i].RpcInstansiatePlayer(heroId);
-                ServerManager.instance.UpdatePlayers();
-                ClientNetworkReciever.instance.RpcUpdatePlayers();
                 break;
             }
         }
 
     }
+}
 
+struct PlayerId{
+    public int clientId, heroId;
+
+    public PlayerId(int clientId, int heroId){
+        this.heroId = heroId;
+        this.clientId = clientId;
+    }
 }

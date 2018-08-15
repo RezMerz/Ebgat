@@ -19,6 +19,8 @@ public class CustomNetworkManager : NetworkManager {
     public Hashtable connectionTable;
     public List<PlayerConnection> playerConnections;
 
+    public int maxPlayerCount;
+
     private void Start()
     {
         connectionTable = new Hashtable();
@@ -55,4 +57,8 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
+    public void StartHost(int maxPlayerCount){
+        this.maxPlayerCount = maxPlayerCount;
+        base.StartHost();
+    }
 }

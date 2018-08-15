@@ -186,6 +186,10 @@ public class CharacterAttributesClient : MonoBehaviour {
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+        playerControl.ReadyAction += SetReady;
+    }
+
+    public void SetReady(){
         Initialize();
     }
 
