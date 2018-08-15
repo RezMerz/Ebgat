@@ -19,6 +19,7 @@ public class ServerManager : NetworkBehaviour {
     private List<PlayerId> playerIdList;
 
     public int maxPlayerCount, currentPlayerCount;
+    private int bulletIdCounter = 0;
 
     private void Awake()
     {
@@ -126,8 +127,7 @@ public class ServerManager : NetworkBehaviour {
 
     public int GetBulletID(int PlayerID)
     {
-        int ID = 0;
-        return ID;
+        return ++bulletIdCounter;
     }
 }
 
