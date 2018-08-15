@@ -11,6 +11,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ServerManager serverManager;
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
+    private PlayerControl playerControl;
 
     [SerializeField]
     private GameObject player;
@@ -19,9 +20,7 @@ public class PlayerConnection : NetworkBehaviour {
 	void Start () {
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
-        clientNetworkSender = GetComponent<ClientNetworkSender>();
         serverNetworkReciever = GetComponent<ServerNetwork>();
-        Debug.Log(isLocalPlayer, gameObject);
         if(isLocalPlayer){
             serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
         }
@@ -32,10 +31,27 @@ public class PlayerConnection : NetworkBehaviour {
         //Debug.Log(isLocalPlayer);
     }
 
-    [ClientRpc]
-    public void RpcInstansiatePlayer(int heroId){
-        player = Instantiate(networkManager.players[heroId], transform);
-        serverNetworkReciever.SetPlayerControl(player.GetComponent<PlayerControl>());
+    public void SetClientNetworkSender(ClientNetworkSender clientNetworkSender){
+        this.clientNetworkSender = clientNetworkSender;
     }
 
+    [ClientRpc]
+    public void RpcInstansiateHero(int heroId){
+        player = Instantiate(networkManager.players[heroId], transform);
+        playerControl = player.GetComponent<PlayerControl>();
+        serverNetworkReciever.SetPlayerControl(playerControl);
+        playerControl.SetNetworkComponents(clientNetworkSender, serverNetworkReciever, clientId);
+        StartCoroutine(SetReadyWait(1));
+        //serverNetworkReciever.CmdHeroSpawned(clientId);
+    }
+
+    [ClientRpc]
+    public void RpcSetReady(){
+        playerControl.SetReady();
+    }
+
+    private IEnumerator SetReadyWait(int time){
+        yield return new WaitForSeconds(time);
+        playerControl.SetReady();
+    }
 }

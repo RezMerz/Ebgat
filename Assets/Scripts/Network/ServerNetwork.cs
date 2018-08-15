@@ -60,4 +60,9 @@ public class ServerNetwork : NetworkBehaviour
     public void CmdClientConnected(int clientId, int heroId){
         ServerManager.instance.ClientConnected(clientId, heroId);
     }
+
+    [Command]
+    public void CmdHeroSpawned(int clientid){
+        ServerManager.instance.HeroSpawned(clientid);
+    }
 }

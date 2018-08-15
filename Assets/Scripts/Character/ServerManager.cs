@@ -18,7 +18,7 @@ public class ServerManager : NetworkBehaviour {
 
     private List<PlayerId> playerIdList;
 
-    public int maxPlayerCount, currentPlayerCount;
+    public int maxClientCount, currentClientCount, spawnedHeroCount;
     private int bulletIdCounter = 0;
 
     private void Awake()
@@ -29,8 +29,8 @@ public class ServerManager : NetworkBehaviour {
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         reservelist = new List<int>();
         playerIdList = new List<PlayerId>();
-        maxPlayerCount = networkManager.maxPlayerCount;
-        currentPlayerCount = 0;
+        maxClientCount = networkManager.maxPlayerCount;
+        currentClientCount = 0;
         UpdatePlayers();
     }
 
@@ -101,7 +101,7 @@ public class ServerManager : NetworkBehaviour {
         {
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                networkManager.playerConnections[i].RpcInstansiatePlayer(heroId);
+                networkManager.playerConnections[i].RpcInstansiateHero(heroId);
                 break;
             }
         }
@@ -113,14 +113,23 @@ public class ServerManager : NetworkBehaviour {
     {
         Debug.Log("id: " + clientId + " , " + heroId);
         playerIdList.Add(new PlayerId(clientId, heroId));
-        currentPlayerCount++;
-        if (currentPlayerCount == maxPlayerCount)
+        currentClientCount++;
+        if (currentClientCount == maxClientCount)
         {
-            for (int i = 0; i < maxPlayerCount; i++)
+            for (int i = 0; i < maxClientCount; i++)
             {
                 SpawnHero(playerIdList[i].clientId, playerIdList[i].heroId);
                 UpdatePlayers();
                 ClientNetworkReciever.instance.RpcUpdatePlayers();
+            }
+        }
+    }
+
+    public void HeroSpawned(int cliendid){
+        spawnedHeroCount++;
+        if(spawnedHeroCount == maxClientCount){
+            for (int i = 0; i < maxClientCount; i++){
+                networkManager.playerConnections[i].RpcSetReady();
             }
         }
     }

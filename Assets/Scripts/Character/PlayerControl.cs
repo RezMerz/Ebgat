@@ -38,10 +38,8 @@ public class PlayerControl : MonoBehaviour
     void Awake()
     {
         physic = GetComponent<CharacterPhysic>();
-        clientNetworkSender = GetComponent<ClientNetworkSender>();
         clientNetworkReciever = ClientNetworkReciever.instance;
         serverNetworkSender = ServerNetworkSender.instance;
-        serverNetworkReciever = GetComponent<ServerNetwork>();
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
@@ -54,6 +52,9 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
+        if(playerConnection.isServer){
+            ServerManager.instance.UpdatePlayers();
+        }
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;

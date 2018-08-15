@@ -23,6 +23,7 @@ public class ClientNetworkSender : NetworkBehaviour
     void Start()
     {
         playerConnection = GetComponent<PlayerConnection>();
+        playerConnection.SetClientNetworkSender(this);
         serverNetwork = GetComponent<ServerNetwork>();
         /*if (playerControl.IsLocalPlayer())
         {
