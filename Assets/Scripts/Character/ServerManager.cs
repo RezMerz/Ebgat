@@ -110,7 +110,7 @@ public class ServerManager : NetworkBehaviour {
     public void ClientConnected(int clientId, int heroId)
     {
         Debug.Log("id: " + clientId + " , " + heroId);
-        /*playerIdList.Add(new PlayerId(clientId, heroId));
+        playerIdList.Add(new PlayerId(clientId, heroId));
         currentPlayerCount++;
         if (currentPlayerCount == maxPlayerCount)
         {
@@ -120,7 +120,7 @@ public class ServerManager : NetworkBehaviour {
                 UpdatePlayers();
                 ClientNetworkReciever.instance.RpcUpdatePlayers();
             }
-        }*/
+        }
     }
 }
 
