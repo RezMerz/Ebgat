@@ -97,12 +97,13 @@ namespace UnityEngine.Networking
                 {
                     if (UnityEngine.Application.platform != RuntimePlatform.WebGLPlayer)
                     {
-                        if (GUI.Button(new Rect(xpos, ypos, 200, 20), "LAN Host(H)"))
+                        if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Host(H)"))
                         {
                             networkDiscovery.StartAsServer();
                             manager.StartHost(Convert.ToInt32(maxPlayerCount));
                         }
-                        maxPlayerCount = GUI.TextField(new Rect(xpos + 210, ypos, 200, 20), maxPlayerCount);
+                        GUI.Label(new Rect(xpos + 115, ypos, 100, 20), "Player Count:");
+                        maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
 
                         ypos += spacing;
                     }

@@ -61,10 +61,7 @@ GameObject:
   - component: {fileID: 114756250026874534}
   - component: {fileID: 114667824745434310}
   - component: {fileID: 114721468437727338}
-  - component: {fileID: 114995107185790698}
-  - component: {fileID: 114553468515234052}
   - component: {fileID: 95267049145148780}
-  - component: {fileID: 114044407571114838}
   - component: {fileID: 114352001818264730}
   - component: {fileID: 114488834796104956}
   - component: {fileID: 114108135820462582}
@@ -358,18 +355,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &114044407571114838
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd120a957f9a4a09a9231f1b4fe4a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerControl: {fileID: 0}
 --- !u!114 &114098260815372376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,11 +368,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3,
     type: 2}
-  virttualBullet: {fileID: 114373126038058328, guid: 5644204ab404d3e4882e04645e872fed,
-    type: 2}
-  maxHoldTime: 2
+  virttualBullet: {fileID: 0}
+  maxHoldTime: 0
   damageMultiplier: 1
-  range: 100
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,18 +409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 0
   hitType: 2
---- !u!114 &114553468515234052
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb25eb8c6c67425bb48fa178d43a061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerID: 0
 --- !u!114 &114667824745434310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -451,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
+  playerConnection: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114721468437727338
 MonoBehaviour:
@@ -537,38 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114995107185790698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 156
-    i1: 149
-    i2: 98
-    i3: 228
-    i4: 67
-    i5: 107
-    i6: 77
-    i7: 68
-    i8: 75
-    i9: 206
-    i10: 244
-    i11: 205
-    i12: 234
-    i13: 186
-    i14: 141
-    i15: 147
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!212 &212187683706714660
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -37,10 +37,10 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcInstansiateHero(int heroId){
-        player = Instantiate(networkManager.players[heroId], transform);
+        player = Instantiate(networkManager.players[heroId]);
         playerControl = player.GetComponent<PlayerControl>();
         serverNetworkReciever.SetPlayerControl(playerControl);
-        playerControl.SetNetworkComponents(clientNetworkSender, serverNetworkReciever, clientId);
+        playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
         StartCoroutine(SetReadyWait(1));
         //serverNetworkReciever.CmdHeroSpawned(clientId);
     }

@@ -47,7 +47,6 @@ public class PlayerControl : MonoBehaviour
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
-        playerConnection = transform.parent.GetComponent<PlayerConnection>();
     }
 
     void Start()
@@ -68,7 +67,8 @@ public class PlayerControl : MonoBehaviour
         ReadData();
     }
 
-    public void SetNetworkComponents(ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId){
+    public void SetNetworkComponents(PlayerConnection playerConnection, ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId){
+        this.playerConnection = playerConnection;
         this.clientNetworkSender = clientNetworkSender;
         this.serverNetworkReciever = serverNetworkReciever;
         this.playerId = playerId;
