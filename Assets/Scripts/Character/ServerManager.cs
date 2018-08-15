@@ -111,4 +111,10 @@ public class ServerManager : NetworkBehaviour {
         ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
+    public int GetBulletID(int PlayerID)
+    {
+        int ID = 0;
+        return ID;
+    }
+
 }

@@ -381,11 +381,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2df5b6dbc3185a4cafa7e3de8b0a591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 100
-  maxDamage: 250
-  damageMultiplier: 2
   bulletPrefab: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3,
     type: 2}
+  virttualBullet: {fileID: 114373126038058328, guid: 5644204ab404d3e4882e04645e872fed,
+    type: 2}
+  maxHoldTime: 2
+  damageMultiplier: 1
+  range: 100
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1

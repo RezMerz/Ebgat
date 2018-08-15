@@ -16317,6 +16317,7 @@ MonoBehaviour:
   - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
   playerConnection: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
     type: 2}
+  playerConnections: []
 --- !u!4 &1887430562
 Transform:
   m_ObjectHideFlags: 0

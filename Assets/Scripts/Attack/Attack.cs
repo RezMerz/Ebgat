@@ -27,8 +27,12 @@ public abstract class Attack : MonoBehaviour
     protected IEnumerator AttackAnimateTime()
     {
         yield return new WaitForSeconds(charStats.AttackAnimationTime);
+        ApplyAttack();
         charStats.HandState = EHandState.Idle;
     }
+
+    protected virtual void ApplyAttack() { }
+
     public virtual void AttackPressed() { }
 
     public virtual void AttackHold() { }
