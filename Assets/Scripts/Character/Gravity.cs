@@ -17,6 +17,7 @@ public class Gravity : MonoBehaviour {
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+        playerControl.ReadyAction += Initialize;
     }
 
     private void Initialize()

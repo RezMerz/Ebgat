@@ -83,13 +83,9 @@ public class CharacterPhysic : Physic
                 distance.y = -verticalPoints[0].distance;
             }
         }
-
         virtualPosition += Vector2.up * distance;
         playerControl.worldState.RegisterHeroPhysics(playerControl.playerId, virtualPosition, distance);
-        if (PhysicAction != null)
-        {
-            PhysicAction(verticalPoints, horizontalPoints, originalDistance);
-        }
+        PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
         distance = Vector2.zero;
         ServerManager.instance.PlayerSimulationFinished(playerControl.playerId);
