@@ -23,7 +23,7 @@ public class PlayerConnection : NetworkBehaviour {
         serverNetworkReciever = GetComponent<ServerNetwork>();
         Debug.Log(isLocalPlayer, gameObject);
         if(isLocalPlayer){
-            serverManager.CmdClientConnected(clientId, networkManager.playerNumber);
+            serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
         }
 	}
 

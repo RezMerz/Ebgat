@@ -55,4 +55,9 @@ public class ServerNetwork : NetworkBehaviour
         ServerManager.instance.SendWorldStateToClient(id);
     }
 
+
+    [Command]
+    public void CmdClientConnected(int clientId, int heroId){
+        ServerManager.instance.ClientConnected(clientId, heroId);
+    }
 }

@@ -107,8 +107,7 @@ public class ServerManager : NetworkBehaviour {
 
     }
 
-    [Command]
-    public void CmdClientConnected(int clientId, int heroId)
+    public void ClientConnected(int clientId, int heroId)
     {
         Debug.Log("id: " + clientId + " , " + heroId);
         /*playerIdList.Add(new PlayerId(clientId, heroId));
