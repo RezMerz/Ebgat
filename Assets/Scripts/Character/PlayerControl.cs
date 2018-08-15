@@ -74,6 +74,12 @@ public class PlayerControl : MonoBehaviour
         this.playerId = playerId;
     }
 
+    public void SetTeam(string teamName, string enemyTeamName){
+        charStats.teamName = teamName;
+        charStats.enemyTeamName = enemyTeamName;
+        gameObject.layer = LayerMask.NameToLayer(teamName);
+    }
+
     public void SetReady(){
         ReadyAction();
     }

@@ -25,26 +25,6 @@ public class ClientNetworkSender : NetworkBehaviour
         playerConnection = GetComponent<PlayerConnection>();
         playerConnection.SetClientNetworkSender(this);
         serverNetwork = GetComponent<ServerNetwork>();
-        /*if (playerControl.IsLocalPlayer())
-        {
-            charStats.teamName = "Team 1";
-            charStats.enemyTeamName = "Team 2";
-            gameObject.layer = LayerMask.NameToLayer("Team 1");
-
-            //change color for localm player
-            playerControl.color = Color.green;
-            //GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-
-            charStats.teamName = "Team 2";
-            charStats.enemyTeamName = "Team 1";
-            gameObject.layer = LayerMask.NameToLayer("Team 2");
-
-            playerControl.color = Color.white;
-        }
-        */
     }
 
     // Update is called once per frame

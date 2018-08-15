@@ -97,11 +97,16 @@ public class ServerManager : NetworkBehaviour {
 
     public void SpawnHero(int clientId, int heroId)
     {
+        int teamId = 1;
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                networkManager.playerConnections[i].RpcInstansiateHero(heroId);
+                networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId);
+                if (teamId == 1)
+                    teamId = 2;
+                else
+                    teamId = 1;
                 break;
             }
         }
