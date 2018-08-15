@@ -9,31 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1525124372124250}
+  m_RootGameObject: {fileID: 1527435919436284}
   m_IsPrefabAsset: 1
---- !u!1 &1525124372124250
+--- !u!1 &1527435919436284
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4750344802568390}
-  - component: {fileID: 114457413439459984}
-  - component: {fileID: 114845460874400582}
+  - component: {fileID: 4198334688639446}
+  - component: {fileID: 114749759989598268}
+  - component: {fileID: 114437951432622062}
+  - component: {fileID: 114231913919813978}
   m_Layer: 0
-  m_Name: Custom Network Manager
-  m_TagString: Untagged
+  m_Name: Custom Network Manager 1
+  m_TagString: NetworkManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4750344802568390
+--- !u!4 &4198334688639446
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1525124372124250}
+  m_GameObject: {fileID: 1527435919436284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.243847, y: -0.076986015, z: -1.2603654}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,12 +42,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114457413439459984
+--- !u!114 &114231913919813978
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1525124372124250}
+  m_GameObject: {fileID: 1527435919436284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d457111835a948e9904db9a0b10dd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
+  bahramTexture: {fileID: 2800000, guid: 10aa35200a9a047669eaa693910028f6, type: 3}
+  malkousTexture: {fileID: 2800000, guid: bf187a4e760664e43b432046044843a9, type: 3}
+--- !u!114 &114437951432622062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527435919436284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc17aafa0533e49f086c6e308a90effb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BroadcastPort: 47777
+  m_BroadcastKey: 2222
+  m_BroadcastVersion: 1
+  m_BroadcastSubVersion: 1
+  m_BroadcastInterval: 1000
+  m_UseNetworkManager: 0
+  m_BroadcastData: HELLO
+  m_ShowGUI: 0
+  m_OffsetX: 0
+  m_OffsetY: 0
+--- !u!114 &114749759989598268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527435919436284}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03a93c760903f4b8d800463c4fb4e631, type: 3}
@@ -70,6 +108,10 @@ MonoBehaviour:
   - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
   - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
   - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
+  - {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f, type: 2}
+  - {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f, type: 2}
+  - {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168, type: 2}
+  - {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -125,27 +167,16 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  serverNetwork: {fileID: 0}
-  clientNetworkReciever: {fileID: 0}
-  serverManager: {fileID: 0}
+  serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
+    type: 2}
+  clientNetworkReciever: {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f,
+    type: 2}
+  serverManager: {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f,
+    type: 2}
   players:
-  - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
-  - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
-  playerConnection: {fileID: 0}
+  - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
+  - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
+  playerConnection: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
+    type: 2}
   playerConnections: []
   maxPlayerCount: 0
---- !u!114 &114845460874400582
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1525124372124250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
