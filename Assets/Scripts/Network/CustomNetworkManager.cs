@@ -34,8 +34,10 @@ public class CustomNetworkManager : NetworkManager {
             flag = false;
             GameObject server = Instantiate(serverNetwork);
             GameObject clientNetwork = Instantiate(clientNetworkReciever);
+            GameObject srvmanager = Instantiate(serverManager);
             NetworkServer.Spawn(clientNetwork);
             NetworkServer.Spawn(server);
+            NetworkServer.Spawn(srvmanager);
         } 
     }
 
