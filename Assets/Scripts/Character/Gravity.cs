@@ -10,20 +10,28 @@ public class Gravity : MonoBehaviour {
 
     private float timer;
 
+    private bool start;
+
    
     // Use this for initialization
     void Start()
     {
-        physic = GetComponent<CharacterPhysic>();
         playerControl = GetComponent<PlayerControl>();
-        charStats = GetComponent<CharacterAttributes>();
     }
+
+    private void Initialize()
+    {
+        physic = GetComponent<CharacterPhysic>();
+        charStats = GetComponent<CharacterAttributes>();
+        start = true;
+    }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        if (playerControl.IsServer())
+        if (playerControl.IsServer() && start)
         {
             GravityServerside();
         }
