@@ -31,12 +31,15 @@ public class MeleeAttack :Attack {
         {
             cooldownTimer = charStats.AttackCooldown;
             charStats.HandState = EHandState.Attacking;
-            RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
-            foreach(RaycastHit2D target in targets)
-            {
-                target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
-            }
             StartCoroutine(AttackAnimateTime());
+        }
+    }
+    protected override void ApplyAttack()
+    {
+        RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
+        foreach (RaycastHit2D target in targets)
+        {
+            target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
         }
     }
 }

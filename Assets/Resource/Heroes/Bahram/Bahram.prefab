@@ -410,7 +410,7 @@ MonoBehaviour:
   hitPointsBase: 40
   hitPoints: 0
   attackDamageBase: 15
-  attackAnimationTimeBase: 0
+  attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.5
   moveSpeedBase: 10
   moveAccelerationBase: 0.1

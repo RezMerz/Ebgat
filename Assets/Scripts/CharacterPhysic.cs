@@ -7,6 +7,7 @@ public class CharacterPhysic : Physic {
     public HitType hitType;
     private int gravityLayerMask;
     private CharacterAttributes charstats;
+    private PlayerControl playerControl;
     private bool layerSet;
     private List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
     private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
