@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPhysic : Physic {
+public class BulletPhysic : Physic
+{
     public Action<RaycastHit2D> BulletAction;
     public BulletShape shape;
-    private float radius;
     private RaycastHit2D hitObject;
+    private float radius;
 
-    void Start ()
+    void Start()
     {
         virtualPosition = transform.position;
-		if(shape == BulletShape.Rectangle)
+        if (shape == BulletShape.Rectangle)
         {
             size = transform.localScale * GetComponent<BoxCollider2D>().size;
         }
@@ -20,27 +21,22 @@ public class BulletPhysic : Physic {
         {
             radius = transform.localScale.x * GetComponent<CircleCollider2D>().radius;
         }
-	}
-    private void LateUpdate()
-    {
-        Calculate();
     }
-
-    public void SetData(PlayerControl pl,int layer)
-    {
-        layerMask = layer;
-        playerControl = pl;
-    }
-	void Update ()
+    private void FixedUpdate()
     {
         BulletAction += HitFunction;
-	}
+        Calculate();
+    }
+    public void SetData(int layer)
+    {
+        layerMask = layer;
+    }
     protected override void Calculate()
     {
-        if(shape == BulletShape.Circle)
+        if (shape == BulletShape.Circle)
         {
             hitObject = Physics2D.CircleCast(virtualPosition, radius, distance.normalized, distance.magnitude, layerMask, 0, 0);
-            if(hitObject.collider != null)
+            if (hitObject.collider != null)
             {
                 distance = distance * hitObject.fraction;
             }
@@ -55,7 +51,7 @@ public class BulletPhysic : Physic {
         }
         virtualPosition += distance;
         transform.position = virtualPosition;
-        if(hitObject.collider != null)
+        if (hitObject.collider != null)
         {
             BulletAction(hitObject);
         }
@@ -67,4 +63,4 @@ public class BulletPhysic : Physic {
     }
 }
 
-public enum BulletShape {Circle,Rectangle}
+public enum BulletShape { Circle, Rectangle }

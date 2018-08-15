@@ -2,69 +2,78 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MalkousAttack : Attack {
-    public float baseDamage;
-    public float maxDamage;
-    private float damage;
-    private bool attackCharge;
-    public float damageMultiplier;
+public class MalkousAttack : Attack
+{
     public Bullet bulletPrefab;
-    public override void AttackPressed() {
+    public VirtualBullet virttualBullet;
+    public float maxHoldTime;
+    public float damageMultiplier;
 
-        if (cooldownTimer <= 0)
-        {
-            // Graphic Code that attack started
-            damage = baseDamage;
-            attackCharge = true;
-            cooldownTimer = charStats.AttackCooldown;
-            charStats.HandState = EHandState.AttackCharge;
-        }
+    private bool attackCharge;
+    private float timer;
+    private int layerMask;
+    private int playerID;
 
-        
+    private new void Start()
+    {
+        charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
     }
-
-    public override void AttackHold() {}
-
-
-    public override void AttackReleased() {
+    void FixedUpdate()
+    {
         if (attackCharge)
         {
-            charStats.HandState = EHandState.Attacking;
-            attackCharge = false;
-            cooldownTimer = charStats.AttackCooldown;
-            // Calculate Side
-            Vector2 attackSide = charStats.AimSide;
-            if (attackSide.y == 0 && attackSide.x == 0)
-                attackSide = charStats.Side;
-
-
-            //playerControl.serverNetworkSender.ClientRangedAttack(playerControl.clientNetworkSender.PlayerID, attackSide);
-             Bullet bullet =  Instantiate(bulletPrefab);
-             bullet.transform.position = this.transform.position;
-             bullet.Shoot(attackSide,playerControl,LayerMask.GetMask("Blocks", charStats.enemyTeamName));
-        }
-    }
-
-	// Use this for initialization
-	void Start () {
-		charStats = GetComponent<CharacterAttributes>();
-        playerControl = GetComponent<PlayerControl>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(attackCharge)
-        {
-
-            if (damage + Mathf.Floor(Time.deltaTime * 100) * damageMultiplier <= maxDamage)
-                damage += Mathf.Floor(Time.deltaTime * 100) * damageMultiplier;
-            else
-                damage = maxDamage;
+            timer += Time.deltaTime;
+            if (timer > maxHoldTime)
+            {
+                timer = maxHoldTime;
+            }
         }
         else
         {
             if (cooldownTimer > 0)
                 cooldownTimer -= Time.deltaTime;
         }
-	}
+    }
+    public override void AttackPressed()
+    {
+        if (cooldownTimer <= 0)
+        {
+            timer = 0;
+            attackCharge = true;
+            cooldownTimer = charStats.AttackCooldown;
+            charStats.HandState = EHandState.AttackCharge;
+        }
+    }
+
+    public override void AttackHold() { }
+
+    public override void AttackReleased()
+    {
+        if (attackCharge)
+        {
+            attackCharge = false;
+            charStats.HandState = EHandState.Attacking;
+            cooldownTimer = charStats.AttackCooldown;
+            StartCoroutine(AttackAnimateTime());
+        }
+    }
+
+    protected override void ApplyAttack()
+    {
+        float damage = charStats.AttackDamage * (1 + (timer * damageMultiplier));
+        float gravityAcc = charStats.GravityAcceleration * (timer / maxHoldTime);
+        float range = charStats.Range;
+        int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
+        // Calculate Side
+        Vector2 attackSide = charStats.AimSide;
+        if (attackSide == Vector2.zero)
+            attackSide = charStats.Side;
+        VirtualBullet virtualBullet = Instantiate(virttualBullet);
+        virtualBullet.transform.position = transform.position;
+        virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc, range,playerControl,bulletID);
+        // register bullet
+        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, damage, attackSide, gravityAcc);
+    }
 }

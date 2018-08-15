@@ -107,6 +107,7 @@ public class ServerManager : NetworkBehaviour {
 
     }
 
+
     public void ClientConnected(int clientId, int heroId)
     {
         Debug.Log("id: " + clientId + " , " + heroId);
@@ -121,6 +122,12 @@ public class ServerManager : NetworkBehaviour {
                 ClientNetworkReciever.instance.RpcUpdatePlayers();
             }
         }
+    }
+
+    public int GetBulletID(int PlayerID)
+    {
+        int ID = 0;
+        return ID;
     }
 }
 

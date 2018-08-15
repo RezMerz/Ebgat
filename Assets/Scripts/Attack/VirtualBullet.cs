@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-
-public class Bullet : MonoBehaviour
+public class VirtualBullet : MonoBehaviour
 {
+
+    public Buff buff;
     public bool useGravity;
 
     private int ID;
+    private float damage;
     private float range;
     private float speed;
     private float gravitySpeedBase;
     private float gravityAcceleration;
     private BulletPhysic physic;
+    private PlayerControl playerControl;
     private float distance;
     private Vector2 distanceVector;
     private Vector2 direction;
@@ -30,20 +32,23 @@ public class Bullet : MonoBehaviour
     {
         if (shot)
         {
-            Move();
+            MoveServerSide();
         }
     }
 
-    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range, int id)
+    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc, float range,PlayerControl pl,int id)
     {
         shot = true;
+        physic.SetData(layer);
         this.direction = direction;
+        this.damage = damage;
         this.range = range;
         gravityAcceleration = gravityAcc;
+        playerControl = pl;
         ID = id;
     }
 
-    private void Move()
+    private void MoveServerSide()
     {
         if (distance < range)
         {
@@ -72,7 +77,18 @@ public class Bullet : MonoBehaviour
 
     private void HitFunction(RaycastHit2D hitObject)
     {
-        if (hitObject.collider != null)
+        if (hitObject.collider.tag.Equals("Player"))
+        {
+            var enemy = hitObject.collider.gameObject;
+            string name = "";
+            if (buff != null)
+            {
+                name = buff.name;
+            }
+            enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
+            Destroy();
+        }
+        else
         {
             Destroy();
         }
@@ -80,9 +96,9 @@ public class Bullet : MonoBehaviour
 
     private void Destroy()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        /// send destroyed massage
+        Destroy(gameObject);
+        playerControl.worldState.BulletHit(playerControl.playerId, ID);
+        
     }
-
-
-
 }
