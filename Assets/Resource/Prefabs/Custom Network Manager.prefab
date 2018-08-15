@@ -131,6 +131,8 @@ MonoBehaviour:
   - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
   - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
   playerConnection: {fileID: 0}
+  playerConnections: []
+  maxPlayerCount: 0
 --- !u!114 &114845460874400582
 MonoBehaviour:
   m_ObjectHideFlags: 1
