@@ -17,7 +17,7 @@ public class WorldState
         bulletHits = new List<string>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject obj in objs)
-            heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().clientNetworkSender.PlayerID));
+            heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){

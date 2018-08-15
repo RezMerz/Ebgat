@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     public ServerNetworkSender serverNetworkSender { get; private set; }
     public ClientNetworkSender clientNetworkSender { get; private set; }
     public ClientNetworkReciever clientNetworkReciever { get; private set; }
-    public ServerNetwork serverNetwork { get; private set; }
+    public ServerNetwork serverNetworkReciever { get; private set; }
     public WorldState worldState;
     public GameObject bulletPrefab;
     public CharacterPhysic physic { get; private set; }
@@ -29,6 +29,8 @@ public class PlayerControl : MonoBehaviour
 
     private BuffManager buffManager;
     private AbilityManager abilityManager;
+
+    public int playerId { get; set; }
     // Use this for initialization
     void Awake()
     {
@@ -36,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         clientNetworkSender = GetComponent<ClientNetworkSender>();
         clientNetworkReciever = ClientNetworkReciever.instance;
         serverNetworkSender = ServerNetworkSender.instance;
-        serverNetwork = GetComponent<ServerNetwork>();
+        serverNetworkReciever = GetComponent<ServerNetwork>();
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
@@ -60,6 +62,16 @@ public class PlayerControl : MonoBehaviour
         //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
         counter++;
         ReadData();
+    }
+
+    public void SetNetworkComponents(ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId){
+        this.clientNetworkSender = clientNetworkSender;
+        this.serverNetworkReciever = serverNetworkReciever;
+        this.playerId = playerId;
+    }
+
+    public void SetReady(){
+        
     }
 
     private void ReadData()
@@ -86,7 +98,7 @@ public class PlayerControl : MonoBehaviour
             }
             if(currentStateNumber - lastStateChecked >= 3)
             {
-                serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
+                serverNetworkReciever.CmdSendWorldStateToClient(playerId);
             }
             currentStateNumber++;
         }
@@ -128,7 +140,7 @@ public class PlayerControl : MonoBehaviour
             print("Dead");
             if (clientNetworkSender.isServer)
             {
-                serverNetwork.CmdKillPlayer();
+                serverNetworkReciever.CmdKillPlayer();
             }
         }
     }

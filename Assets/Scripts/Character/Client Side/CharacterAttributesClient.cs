@@ -4,9 +4,8 @@ using UnityEngine;
 using System.Globalization;
 
 public class CharacterAttributesClient : MonoBehaviour {
-        private PlayerControl playerControl;
-    int a;
-    int ID;
+    
+    private PlayerControl playerControl;
 
     public EHeadState HeadState
     {
@@ -187,7 +186,6 @@ public class CharacterAttributesClient : MonoBehaviour {
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
-        ID = playerControl.clientNetworkSender.PlayerID;
         Initialize();
     }
 

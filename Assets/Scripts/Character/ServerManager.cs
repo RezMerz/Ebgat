@@ -72,7 +72,7 @@ public class ServerManager : NetworkBehaviour {
         WorldState tempWorldState = new WorldState();
         foreach (PlayerControl p in playerControls)
         {
-            tempWorldState.RegisterHeroPhysics(p.clientNetworkSender.PlayerID, p.physic.virtualPosition, Vector2.zero);
+            tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
             p.charStats.RegisterAllStates();
         }
         ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
@@ -96,14 +96,10 @@ public class ServerManager : NetworkBehaviour {
     {
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
-            Debug.Log(i);
             if (networkManager.playerConnections[i].clientId == clientId)
             {
                 Debug.Log("fack");
-                GameObject p = Instantiate(networkManager.players[heroId], networkManager.playerConnections[i].transform);
-                networkManager.playerConnections[i].player = p;
-                NetworkConnection connnnnn = networkManager.connectionTable[clientId] as NetworkConnection;
-                NetworkServer.SpawnWithClientAuthority(p, connnnnn);
+                networkManager.playerConnections[i].RpcInstansiatePlayer(heroId);
                 ServerManager.instance.UpdatePlayers();
                 ClientNetworkReciever.instance.RpcUpdatePlayers();
                 break;

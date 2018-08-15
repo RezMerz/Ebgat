@@ -7,14 +7,12 @@ using UnityEngine.Networking;
 public class ClientNetworkSender : NetworkBehaviour
 {
 
-    PlayerControl playerControl;
-    CharacterAttributes charStats;
     ServerNetwork serverNetwork;
+    PlayerConnection playerConnection;
 
     private string data = "";
 
     private static int num = 1;
-    [SyncVar]public int PlayerID;
 
     private void Awake()
     {
@@ -24,14 +22,9 @@ public class ClientNetworkSender : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        if (isServer)
-        {
-            PlayerID = num++;
-        }
-        playerControl = GetComponent<PlayerControl>();
-        charStats = playerControl.charStats;
-        serverNetwork = playerControl.serverNetwork;
-        if (playerControl.IsLocalPlayer())
+        playerConnection = GetComponent<PlayerConnection>();
+        serverNetwork = GetComponent<ServerNetwork>();
+        /*if (playerControl.IsLocalPlayer())
         {
             charStats.teamName = "Team 1";
             charStats.enemyTeamName = "Team 2";
@@ -50,12 +43,13 @@ public class ClientNetworkSender : NetworkBehaviour
 
             playerControl.color = Color.white;
         }
+        */
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerControl.IsLocalPlayer())
+        if (!playerConnection.isLocalPlayer)
             return;
         if (data.Equals(""))
             return;
@@ -64,7 +58,7 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data, PlayerID);
+        serverNetwork.CmdRecievecommands(data, playerConnection.clientId);
         data = "";
     }
 

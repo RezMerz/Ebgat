@@ -45,7 +45,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
-        if (localPlayerControl.clientNetworkSender.PlayerID != RequesterID)
+        if (localPlayerControl.playerId != RequesterID)
             return;
         if (worldstate.Length == 0)
             return;
@@ -104,9 +104,9 @@ public class ClientNetworkReciever : NetworkBehaviour {
         for (int i = 0; i < objs.Length; i++)
         {
             PlayerControl p = objs[i].GetComponent<PlayerControl>();
-            if (p.clientNetworkSender.PlayerID == 0)
+            if (p.playerId == 0)
                 return;
-            playerControlArray[p.clientNetworkSender.PlayerID - 1] = p;
+            playerControlArray[p.playerId - 1] = p;
             if (p.IsLocalPlayer())
                 localPlayerControl = p;
         }

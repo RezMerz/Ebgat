@@ -11,16 +11,8 @@ public class ServerNetwork : NetworkBehaviour
     public PlayerControl playerControl;// { get; set;}
     string data = "";
 
-    private void Awake()
-    {
-        playerControl = GetComponent<PlayerControl>();
-
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
+    public void SetPlayerControl(PlayerControl playerControl){
+        this.playerControl = playerControl;
     }
 
     [Command]

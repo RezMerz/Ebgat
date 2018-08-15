@@ -91,14 +91,14 @@ public class CharacterPhysic : Physic {
         }
 
         virtualPosition += Vector2.up * distance;
-        playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
+        playerControl.worldState.RegisterHeroPhysics(playerControl.playerId, virtualPosition, distance);
         if(PhysicAction != null)
         {
             PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         }
         PhysicAction = null;
         distance = Vector2.zero;
-        ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
+        ServerManager.instance.PlayerSimulationFinished(playerControl.playerId);
     }
     public void IncludeBridge()
     {

@@ -6,7 +6,6 @@ using System.Globalization;
 public class CharacterAttributes : MonoBehaviour {
 
     private PlayerControl playerControl;
-    int a;
     int ID;
 
 
@@ -205,14 +204,14 @@ public class CharacterAttributes : MonoBehaviour {
 
     private void Update()
     {
-        ID = playerControl.clientNetworkSender.PlayerID;
+        ID = playerControl.playerId;
     }
 
     // Use this for initialization
     void Start ()
     {
         playerControl = GetComponent<PlayerControl>();
-        ID = playerControl.clientNetworkSender.PlayerID;
+        ID = playerControl.playerId;
         Initialize();
 	}
 
@@ -415,7 +414,7 @@ public class CharacterAttributes : MonoBehaviour {
     }
 
     public void RegisterAllStates(){
-        int id = playerControl.clientNetworkSender.PlayerID;
+        int id = playerControl.playerId;
         string data = "";
         RegisterHeadState();
         RegisterBodyState();
