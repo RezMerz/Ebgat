@@ -5,7 +5,7 @@ using UnityEngine;
 public class MalkousAttack : Attack
 {
     public Bullet bulletPrefab;
-    public Bullet virttualBullet;
+    public VirtualBullet virttualBullet;
     public float maxHoldTime;
     public float damageMultiplier;
     public float range;
@@ -68,9 +68,9 @@ public class MalkousAttack : Attack
         Vector2 attackSide = charStats.AimSide;
         if (attackSide == Vector2.zero)
             attackSide = charStats.Side;
-        Bullet bullet = Instantiate(virttualBullet);
+        VirtualBullet bullet = Instantiate(virttualBullet);
         bullet.transform.position = transform.position;
-        bullet.Shoot(damage, attackSide, playerControl, layerMask, gravityAcc, range);
+        bullet.Shoot(damage, attackSide, layerMask, gravityAcc, range);
         // register bullet
     }
 }

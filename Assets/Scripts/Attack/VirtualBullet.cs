@@ -6,22 +6,19 @@ public class VirtualBullet : MonoBehaviour
 {
 
     public Buff buff;
-    public int ID;
+    public bool useGravity;
 
+    private int ID;
     private float damage;
     private float range;
     private float speed;
     private float gravitySpeedBase;
     private float gravityAcceleration;
-    private bool useGravity;
-    private PlayerControl playerControl;
-    private RangedAttack rangedAttack;
     private BulletPhysic physic;
     private float distance;
     private Vector2 distanceVector;
     private Vector2 direction;
     private bool shot;
-    private bool hit;
 
 
     private void Awake()
@@ -38,11 +35,10 @@ public class VirtualBullet : MonoBehaviour
         }
     }
 
-    public void Shoot(float damage, Vector2 direction, PlayerControl pl, int layer, float gravityAcc, float range)
+    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc, float range)
     {
         shot = true;
-        playerControl = pl;
-        physic.SetData(pl, layer);
+        physic.SetData(layer);
         this.direction = direction;
         this.damage = damage;
         this.range = range;
@@ -61,8 +57,12 @@ public class VirtualBullet : MonoBehaviour
                 force = direction.normalized * (distance - range);
                 distance = range;
             }
-            Vector2 gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
-            gravitySpeedBase += gravityAcceleration * Time.deltaTime;
+            Vector2 gravityForce = Vector2.zero;
+            if (useGravity)
+            {
+                gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
+                gravitySpeedBase += gravityAcceleration * Time.deltaTime;
+            }
             physic.AddForce(force + gravityForce);
             physic.BulletAction += HitFunction;
         }
@@ -74,7 +74,6 @@ public class VirtualBullet : MonoBehaviour
 
     private void HitFunction(RaycastHit2D hitObject)
     {
-
         if (hitObject.collider.tag.Equals("Player"))
         {
             var enemy = hitObject.collider.gameObject;
@@ -83,10 +82,7 @@ public class VirtualBullet : MonoBehaviour
             {
                 name = buff.name;
             }
-            if (playerControl.IsServer())
-            {
-                enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
-            }
+            enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
             Destroy();
         }
         else
@@ -97,14 +93,7 @@ public class VirtualBullet : MonoBehaviour
 
     private void Destroy()
     {
-        if (playerControl.IsServer())
-        {
-            Destroy(gameObject);
-            /// send destroyed massage
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().enabled = false;
-        }
+        /// send destroyed massage
+        Destroy(gameObject);
     }
 }
