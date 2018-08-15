@@ -36,13 +36,30 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcInstansiateHero(int heroId){
+    public void RpcInstansiateHero(int heroId, int teamId){
         player = Instantiate(networkManager.players[heroId]);
         playerControl = player.GetComponent<PlayerControl>();
         serverNetworkReciever.SetPlayerControl(playerControl);
         playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
+        SetTeam(teamId);
         StartCoroutine(SetReadyWait(1));
         //serverNetworkReciever.CmdHeroSpawned(clientId);
+    }
+
+    private void SetTeam(int teamId){
+        string teamName = "", enemyTeamName = "";
+        if(teamId == 1){
+            teamName = "Team " + 1;
+            enemyTeamName = "Team " + 2;
+        }
+        else if(teamId == 2){
+            teamName = "Team " + 2;
+            enemyTeamName = "Team " + 1;
+        }
+        else{
+            Debug.Log("wrong team id");
+        }
+        playerControl.SetTeam(teamName, enemyTeamName);
     }
 
     [ClientRpc]
