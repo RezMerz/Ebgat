@@ -7,6 +7,7 @@ public class CustomNetworkManager : NetworkManager {
     
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
+    public GameObject serverManager;
     public List<GameObject> players;
     public GameObject playerConnection;
 
