@@ -17,7 +17,7 @@ public class WorldState
         bulletHits = new List<string>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject obj in objs)
-            heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().clientNetworkSender.PlayerID));
+            heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
     }
 
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
@@ -63,11 +63,12 @@ public class WorldState
         return output;
     }
 
-    public void BulletRegister(string playerID, string bulletID){
-        bullets.Add(playerID + "&" + bulletID);
+    public void BulletRegister(int playerID, int bulletID,float damage,Vector2 attackSide,float gravityAcc)
+    {
+        bullets.Add(playerID + "&" + bulletID + "&" +damage + "&" +attackSide + "&" +gravityAcc);
     }
 
-    public void BulletHit(string playerID, string bulletID){
+    public void BulletHit(int playerID, int bulletID){
         bulletHits.Add(playerID + "&" + bulletID);
     }
 }

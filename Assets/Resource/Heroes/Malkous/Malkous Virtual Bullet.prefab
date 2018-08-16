@@ -9,79 +9,77 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1532578427468760}
+  m_RootGameObject: {fileID: 1691014189850432}
   m_IsPrefabAsset: 1
---- !u!1 &1532578427468760
+--- !u!1 &1691014189850432
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4856013362917610}
-  - component: {fileID: 114892015699248388}
-  - component: {fileID: 114901940954993374}
+  - component: {fileID: 4546206193501974}
+  - component: {fileID: 114373126038058328}
+  - component: {fileID: 114999439395002206}
+  - component: {fileID: 58047122701672354}
   m_Layer: 0
-  m_Name: Server Network
+  m_Name: Malkous Virtual Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4856013362917610
+--- !u!4 &4546206193501974
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1532578427468760}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.243847, y: -0.076986015, z: -1.2603654}
+  m_GameObject: {fileID: 1691014189850432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.362163, y: -5.7940755, z: -0.4609375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114892015699248388
+--- !u!58 &58047122701672354
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691014189850432}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &114373126038058328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1532578427468760}
+  m_GameObject: {fileID: 1691014189850432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8509af3900270364a8b4532f967d63b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 96
-    i1: 174
-    i2: 34
-    i3: 220
-    i4: 43
-    i5: 3
-    i6: 4
-    i7: 184
-    i8: 251
-    i9: 32
-    i10: 197
-    i11: 85
-    i12: 174
-    i13: 179
-    i14: 153
-    i15: 159
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
---- !u!114 &114901940954993374
+  buff: {fileID: 0}
+  ID: 0
+--- !u!114 &114999439395002206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1532578427468760}
+  m_GameObject: {fileID: 1691014189850432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eaf3d64edcbb4a14ad7d11cd0e33908, type: 3}
+  m_Script: {fileID: 11500000, guid: 103069a38c38a284bb9760432fc48c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkSendTime: 3
+  weight: 0
+  shape: 0

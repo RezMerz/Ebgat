@@ -17,22 +17,17 @@ public class InputCharacter : MonoBehaviour
     private bool axisYChanged;
     private float axisY;
     private float axisX;
+    private bool start;
 	// Use this for initialization
 	void Start ()
     {
         playerControl = GetComponent<PlayerControl>();
-        charStats = playerControl.charStats;
-        clientNetworkSender = playerControl.clientNetworkSender;
-        attack = playerControl.attack;
-        characterMove = playerControl.characterMove;
-        abilityManager = GetComponent<AbilityManager>();
-
-        jump = playerControl.jump;
+        playerControl.ReadyAction += Initialize;
 	}
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (!playerControl.IsLocalPlayer())
+        if (!start || !playerControl.IsLocalPlayer())
             return;
 
         axisX = Input.GetAxis("Horizontal");
@@ -122,5 +117,16 @@ public class InputCharacter : MonoBehaviour
         }
     }
 
+    private void Initialize()
+    {
+        charStats = playerControl.charStats;
+        clientNetworkSender = playerControl.clientNetworkSender;
+        attack = playerControl.attack;
+        characterMove = playerControl.characterMove;
+        abilityManager = GetComponent<AbilityManager>();
+        jump = playerControl.jump;
+
+        start = true;
+    }
 
 }

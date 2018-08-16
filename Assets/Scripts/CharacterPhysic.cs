@@ -2,51 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class CharacterPhysic : Physic {
+public class CharacterPhysic : Physic
+{
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
     private int gravityLayerMask;
     private CharacterAttributes charstats;
+    private PlayerControl playerControl;
     private bool layerSet;
     private List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
     private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
 
     private bool start;
-    private float startTimer;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        layerSet = true;
+        playerControl = GetComponent<PlayerControl>();
+        playerControl.ReadyAction += Initialize;
+    }
+
+    private void Initialize()
+    {
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
         virtualPosition = transform.position;
-        playerControl = GetComponent<PlayerControl>();
         charstats = GetComponent<CharacterAttributes>();
+        start = true;
     }
     private void FixedUpdate()
     {
+        if (!start)
+            return;
+
         PhysicAction += HitFunction;
-        if (layerSet)
+        if (!layerSet)
         {
             layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
             gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
-            layerSet = false;
+            layerSet = true;
         }
-        if (start)
-        {
-            if (playerControl != null)
-            {
-                if (playerControl.IsServer())
-                {
-                    Calculate();
-                }
-            }
-        }
-        else
-        {
-            startTimer += Time.deltaTime;
-            if (startTimer > 1)
-                start = true;
-        }
+        Calculate();
     }
     protected override void Calculate()
     {
@@ -89,20 +83,16 @@ public class CharacterPhysic : Physic {
                 distance.y = -verticalPoints[0].distance;
             }
         }
-
         virtualPosition += Vector2.up * distance;
-        playerControl.worldState.RegisterHeroPhysics(playerControl.clientNetworkSender.PlayerID, virtualPosition, distance);
-        if(PhysicAction != null)
-        {
-            PhysicAction(verticalPoints, horizontalPoints, originalDistance);
-        }
+        playerControl.worldState.RegisterHeroPhysics(playerControl.playerId, virtualPosition, distance);
+        PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
         distance = Vector2.zero;
-        ServerManager.instance.PlayerSimulationFinished(playerControl.clientNetworkSender.PlayerID);
+        ServerManager.instance.PlayerSimulationFinished(playerControl.playerId);
     }
     public void IncludeBridge()
     {
-        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge",charstats.enemyTeamName);
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
         charstats.ResetCayoteTime();
     }
     public void ExcludeBridge()
@@ -112,10 +102,10 @@ public class CharacterPhysic : Physic {
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if(vHits.Count> 0)
+        if (vHits.Count > 0)
         {
             var hit = vHits[0].collider;
-            if(hit.tag == "Player")
+            if (hit.tag == "Player")
             {
                 switch (hitType)
                 {
@@ -125,7 +115,7 @@ public class CharacterPhysic : Physic {
                         hit.gameObject.GetComponent<CharacterPhysic>().AddForce(Vector2.up * (direction.y));
                         break;
                 }
-                    
+
             }
         }
         if (hHits.Count > 0)
@@ -146,4 +136,4 @@ public class CharacterPhysic : Physic {
 
     }
 }
-public enum HitType {None,Push,Throw}
+public enum HitType { None, Push, Throw }

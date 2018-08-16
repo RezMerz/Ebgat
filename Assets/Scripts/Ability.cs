@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public abstract class Ability : NetworkBehaviour
+public abstract class Ability : MonoBehaviour
 {
     public float coolDownTime;
     public float castTime;

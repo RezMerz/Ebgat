@@ -7,14 +7,12 @@ using UnityEngine.Networking;
 public class ClientNetworkSender : NetworkBehaviour
 {
 
-    PlayerControl playerControl;
-    CharacterAttributes charStats;
-    ServerNetwork serverNetwork;
+    ServerNetwork serverNetworkReciever;
+    PlayerConnection playerConnection;
 
     private string data = "";
 
     private static int num = 1;
-    [SyncVar]public int PlayerID;
 
     private void Awake()
     {
@@ -24,47 +22,28 @@ public class ClientNetworkSender : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        if (isServer)
-        {
-            PlayerID = num++;
-        }
-        playerControl = GetComponent<PlayerControl>();
-        charStats = playerControl.charStats;
-        serverNetwork = playerControl.serverNetwork;
-        if (playerControl.IsLocalPlayer())
-        {
-            charStats.teamName = "Team 1";
-            charStats.enemyTeamName = "Team 2";
-            gameObject.layer = LayerMask.NameToLayer("Team 1");
-
-            //change color for localm player
-            playerControl.color = Color.green;
-            //GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-
-            charStats.teamName = "Team 2";
-            charStats.enemyTeamName = "Team 1";
-            gameObject.layer = LayerMask.NameToLayer("Team 2");
-
-            playerControl.color = Color.white;
-        }
+        playerConnection = GetComponent<PlayerConnection>();
+        playerConnection.SetClientNetworkSender(this);
+        serverNetworkReciever = GetComponent<ServerNetwork>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerControl.IsLocalPlayer())
+        if (!playerConnection.isLocalPlayer)
             return;
         if (data.Equals(""))
             return;
         SendCommands();
     }
 
+    public void RequestWorldState(int playerId){
+        serverNetworkReciever.CmdSendWorldStateToClient(playerId);
+    }
+
     private void SendCommands()
     {
-        serverNetwork.CmdRecievecommands(data, PlayerID);
+        serverNetworkReciever.CmdRecievecommands(data, playerConnection.clientId);
         data = "";
     }
 

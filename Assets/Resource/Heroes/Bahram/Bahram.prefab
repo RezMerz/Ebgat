@@ -28,11 +28,8 @@ GameObject:
   - component: {fileID: 114299629821839328}
   - component: {fileID: 114289126813422942}
   - component: {fileID: 114794003109569974}
-  - component: {fileID: 114991887859232998}
-  - component: {fileID: 114740440015595030}
   - component: {fileID: 114422898562219348}
   - component: {fileID: 95622444841042292}
-  - component: {fileID: 114772161494328486}
   - component: {fileID: 114451276411895824}
   - component: {fileID: 114432285978368132}
   - component: {fileID: 114516334755813448}
@@ -381,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
     type: 2}
+  playerConnection: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114299629821839328
 MonoBehaviour:
@@ -410,7 +408,7 @@ MonoBehaviour:
   hitPointsBase: 40
   hitPoints: 0
   attackDamageBase: 15
-  attackAnimationTimeBase: 0
+  attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.5
   moveSpeedBase: 10
   moveAccelerationBase: 0.1
@@ -512,30 +510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffListRefrence:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
---- !u!114 &114740440015595030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb25eb8c6c67425bb48fa178d43a061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerID: 0
---- !u!114 &114772161494328486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd120a957f9a4a09a9231f1b4fe4a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerControl: {fileID: 0}
 --- !u!114 &114794003109569974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,38 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98253be33f29374428602f2e070498f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114991887859232998
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 167
-    i1: 21
-    i2: 106
-    i3: 70
-    i4: 248
-    i5: 193
-    i6: 117
-    i7: 148
-    i8: 121
-    i9: 61
-    i10: 143
-    i11: 106
-    i12: 236
-    i13: 181
-    i14: 126
-    i15: 78
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!212 &212044895692025378
 SpriteRenderer:
   m_ObjectHideFlags: 1

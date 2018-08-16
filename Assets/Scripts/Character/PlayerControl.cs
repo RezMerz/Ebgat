@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
+
 public class PlayerControl : MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
@@ -12,10 +14,11 @@ public class PlayerControl : MonoBehaviour
     public ServerNetworkSender serverNetworkSender { get; private set; }
     public ClientNetworkSender clientNetworkSender { get; private set; }
     public ClientNetworkReciever clientNetworkReciever { get; private set; }
-    public ServerNetwork serverNetwork { get; private set; }
+    public ServerNetwork serverNetworkReciever { get; private set; }
     public WorldState worldState;
     public GameObject bulletPrefab;
     public CharacterPhysic physic { get; private set; }
+    public PlayerConnection playerConnection;// { get; set; }
 
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
@@ -28,14 +31,15 @@ public class PlayerControl : MonoBehaviour
 
     private BuffManager buffManager;
     private AbilityManager abilityManager;
+
+    public Action ReadyAction;
+    public int playerId { get; private set; }
     // Use this for initialization
     void Awake()
     {
         physic = GetComponent<CharacterPhysic>();
-        clientNetworkSender = GetComponent<ClientNetworkSender>();
         clientNetworkReciever = ClientNetworkReciever.instance;
         serverNetworkSender = ServerNetworkSender.instance;
-        serverNetwork = GetComponent<ServerNetwork>();
         charStats = GetComponent<CharacterAttributes>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
@@ -47,6 +51,9 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
+        if(playerConnection.isServer){
+            ServerManager.instance.UpdatePlayers();
+        }
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
@@ -55,8 +62,26 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
         counter++;
         ReadData();
+    }
+
+    public void SetNetworkComponents(PlayerConnection playerConnection, ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId){
+        this.playerConnection = playerConnection;
+        this.clientNetworkSender = clientNetworkSender;
+        this.serverNetworkReciever = serverNetworkReciever;
+        this.playerId = playerId;
+    }
+
+    public void SetTeam(string teamName, string enemyTeamName){
+        charStats.teamName = teamName;
+        charStats.enemyTeamName = enemyTeamName;
+        gameObject.layer = LayerMask.NameToLayer(teamName);
+    }
+
+    public void SetReady(){
+        ReadyAction();
     }
 
     private void ReadData()
@@ -83,7 +108,7 @@ public class PlayerControl : MonoBehaviour
             }
             if(currentStateNumber - lastStateChecked >= 3)
             {
-                serverNetwork.CmdSendWorldStateToClient(clientNetworkSender.PlayerID);
+                clientNetworkSender.RequestWorldState(playerId);
             }
             currentStateNumber++;
         }
@@ -92,13 +117,13 @@ public class PlayerControl : MonoBehaviour
 
     public bool IsLocalPlayer()
     {
-        return clientNetworkSender.isLocalPlayer;
+        return playerConnection.isLocalPlayer;
 
     }
 
     public bool IsServer()
     {
-        return clientNetworkSender.isServer;
+        return playerConnection.isServer;
     }
     // Some Damage has been done
     public void TakeAttack(float damage, string buffName)
@@ -125,7 +150,7 @@ public class PlayerControl : MonoBehaviour
             print("Dead");
             if (clientNetworkSender.isServer)
             {
-                serverNetwork.CmdKillPlayer();
+                serverNetworkReciever.CmdKillPlayer();
             }
         }
     }
@@ -213,6 +238,7 @@ public class PlayerControl : MonoBehaviour
     public void GetData(string data)
     {
 
+        try{
         bool first = true;
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
@@ -230,6 +256,13 @@ public class PlayerControl : MonoBehaviour
                     Deserilize(deString[0].ToCharArray()[0], deString[1]);
                 }
             }
+            }
+        }
+        catch(MissingReferenceException e){
+            Debug.Log(data);
+        }
+        catch(UnassignedReferenceException e){
+            Debug.Log(data);
         }
     }
 

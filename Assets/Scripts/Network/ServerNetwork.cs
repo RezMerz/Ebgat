@@ -11,16 +11,8 @@ public class ServerNetwork : NetworkBehaviour
     public PlayerControl playerControl;// { get; set;}
     string data = "";
 
-    private void Awake()
-    {
-        playerControl = GetComponent<PlayerControl>();
-
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-
+    public void SetPlayerControl(PlayerControl playerControl){
+        this.playerControl = playerControl;
     }
 
     [Command]
@@ -64,4 +56,13 @@ public class ServerNetwork : NetworkBehaviour
     }
 
 
+    [Command]
+    public void CmdClientConnected(int clientId, int heroId){
+        ServerManager.instance.ClientConnected(clientId, heroId);
+    }
+
+    [Command]
+    public void CmdHeroSpawned(int clientid){
+        ServerManager.instance.HeroSpawned(clientid);
+    }
 }

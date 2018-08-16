@@ -5,25 +5,70 @@ using UnityEngine.Networking;
 
 public class PlayerConnection : NetworkBehaviour {
 
-    public List<GameObject> players;
+    [SyncVar] public int clientId;
+
+    private CustomNetworkManager networkManager;
+    private ServerManager serverManager;
+    private ClientNetworkSender clientNetworkSender;
+    private ServerNetwork serverNetworkReciever;
+    private PlayerControl playerControl;
+
+    [SerializeField]
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
-        if (!isLocalPlayer)
-            return;
-        CmdSpawnMyUnit();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        serverManager = ServerManager.instance;
+        serverNetworkReciever = GetComponent<ServerNetwork>();
+        if(isLocalPlayer){
+            serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
+        }
 	}
 
+    private void Update()
+    {
+        //Debug.Log(isLocalPlayer);
+    }
 
-    [Command]
-    public void CmdSpawnMyUnit(){
-        int random = Random.Range(0, players.Count);
-        GameObject player = Instantiate(players[random]);
-        NetworkServer.SpawnWithClientAuthority(player, gameObject);
+    public void SetClientNetworkSender(ClientNetworkSender clientNetworkSender){
+        this.clientNetworkSender = clientNetworkSender;
+    }
+
+    [ClientRpc]
+    public void RpcInstansiateHero(int heroId, int teamId){
+        player = Instantiate(networkManager.players[heroId]);
+        playerControl = player.GetComponent<PlayerControl>();
+        serverNetworkReciever.SetPlayerControl(playerControl);
+        playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
+        SetTeam(teamId);
+        StartCoroutine(SetReadyWait(1));
+        //serverNetworkReciever.CmdHeroSpawned(clientId);
+    }
+
+    private void SetTeam(int teamId){
+        string teamName = "", enemyTeamName = "";
+        if(teamId == 1){
+            teamName = "Team " + 1;
+            enemyTeamName = "Team " + 2;
+        }
+        else if(teamId == 2){
+            teamName = "Team " + 2;
+            enemyTeamName = "Team " + 1;
+        }
+        else{
+            Debug.Log("wrong team id");
+        }
+        playerControl.SetTeam(teamName, enemyTeamName);
+    }
+
+    [ClientRpc]
+    public void RpcSetReady(){
+        playerControl.SetReady();
+    }
+
+    private IEnumerator SetReadyWait(int time){
+        yield return new WaitForSeconds(time);
+        playerControl.SetReady();
     }
 }

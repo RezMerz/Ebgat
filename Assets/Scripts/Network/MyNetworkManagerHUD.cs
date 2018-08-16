@@ -23,6 +23,8 @@ namespace UnityEngine.Networking
 
         CustomNetworkDiscovery networkDiscovery;
 
+        string maxPlayerCount;
+
         // Runtime variable
         bool m_ShowServer;
 
@@ -95,11 +97,14 @@ namespace UnityEngine.Networking
                 {
                     if (UnityEngine.Application.platform != RuntimePlatform.WebGLPlayer)
                     {
-                        if (GUI.Button(new Rect(xpos, ypos, 200, 20), "LAN Host(H)"))
+                        if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Host(H)"))
                         {
                             networkDiscovery.StartAsServer();
-                            manager.StartHost();
+                            manager.StartHost(Convert.ToInt32(maxPlayerCount));
                         }
+                        GUI.Label(new Rect(xpos + 115, ypos, 100, 20), "Player Count:");
+                        maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
+
                         ypos += spacing;
                     }
 
@@ -126,12 +131,14 @@ namespace UnityEngine.Networking
                     if (sliderValue > 0.5f)
                     {
                         sliderValue = 1f;
-                        manager.playerNumber = 1;
+                        if(manager.playerNumber != 1)
+                            manager.playerNumber = 1;
                     }
                     if (sliderValue <= 0.5f)
                     {
                         sliderValue = 0f;
-                        manager.playerNumber = 0;
+                        if (manager.playerNumber != 0)
+                            manager.playerNumber = 0;
                     }
                     
 

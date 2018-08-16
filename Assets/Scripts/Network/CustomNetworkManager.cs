@@ -7,38 +7,51 @@ public class CustomNetworkManager : NetworkManager {
     
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
+    public GameObject serverManager;
     public List<GameObject> players;
+    public GameObject playerConnection;
 
     private bool flag = true;
     bool start = true;
+
     public int playerNumber { get; set; }
 
+    private int playerID = 0;
+    public Hashtable connectionTable;
+    public List<PlayerConnection> playerConnections;
 
+    public int maxPlayerCount;
+
+    private void Start()
+    {
+        connectionTable = new Hashtable();
+        playerConnections = new List<PlayerConnection>();
+    }
 
     private void Update()
     {
-        /*if(Input.GetKeyDown(KeyCode.Space)){
-            start = false;
-            Debug.Log("hello");
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 30;
-        }
-        Debug.Log(Application.targetFrameRate);*/
         if(NetworkServer.active && flag){
             flag = false;
             GameObject server = Instantiate(serverNetwork);
             GameObject clientNetwork = Instantiate(clientNetworkReciever);
+            GameObject srvmanager = Instantiate(serverManager);
             NetworkServer.Spawn(clientNetwork);
             NetworkServer.Spawn(server);
+            NetworkServer.Spawn(srvmanager);
         } 
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        GameObject player = Instantiate(players[playerNumber]);
-        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        ServerManager.instance.UpdatePlayers();
-        ClientNetworkReciever.instance.RpcUpdatePlayers();
+        //Debug.Log(conn);
+        connectionTable.Add(++playerID, conn);
+        GameObject playercon = Instantiate(playerConnection);
+        PlayerConnection p = playercon.GetComponent<PlayerConnection>();
+        p.clientId = playerID;
+        playerConnections.Add(p);
+        //Debug.Log(playerConnections.Count);
+        NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
+
     }
 
     public override void OnServerReady(NetworkConnection conn)
@@ -47,8 +60,8 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
-
-
-
-    //[Command]
+    public void StartHost(int maxPlayerCount){
+        this.maxPlayerCount = maxPlayerCount;
+        base.StartHost();
+    }
 }
