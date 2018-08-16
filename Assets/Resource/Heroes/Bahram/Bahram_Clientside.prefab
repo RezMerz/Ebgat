@@ -21,20 +21,13 @@ GameObject:
   - component: {fileID: 4435843421954212}
   - component: {fileID: 212044895692025378}
   - component: {fileID: 61299342488998378}
-  - component: {fileID: 114593228069086336}
-  - component: {fileID: 114334893189355080}
-  - component: {fileID: 114257958083322680}
-  - component: {fileID: 114299629821839328}
   - component: {fileID: 114289126813422942}
   - component: {fileID: 114794003109569974}
-  - component: {fileID: 114422898562219348}
-  - component: {fileID: 95622444841042292}
   - component: {fileID: 114451276411895824}
-  - component: {fileID: 114432285978368132}
-  - component: {fileID: 114516334755813448}
   - component: {fileID: 114610447254143576}
-  - component: {fileID: 82397943080947130}
   - component: {fileID: 114128794276802862}
+  - component: {fileID: 95622444841042292}
+  - component: {fileID: 82397943080947130}
   m_Layer: 0
   m_Name: Bahram_Clientside
   m_TagString: Player
@@ -383,17 +376,6 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
---- !u!114 &114257958083322680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f290b75de419f5d41874a07b74a222ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114289126813422942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -409,69 +391,6 @@ MonoBehaviour:
     type: 2}
   playerConnection: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &114299629821839328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a555d536dbeb094418913ff6195ae556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114334893189355080
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26049256be4328b4f9ec8a6af47510f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teamName: 
-  enemyTeamName: 
-  canDoubleJump: 1
-  hitPointsBase: 40
-  hitPoints: 0
-  attackDamageBase: 15
-  attackAnimationTimeBase: 0.1
-  attackCooldownBase: 0.5
-  moveSpeedBase: 10
-  moveAccelerationBase: 0.1
-  moveSpeedMaxBase: 15
-  jumpSpeedBase: 15
-  jumpAccelerationBase: 50
-  jumpSpeedMaxBase: 27
-  gravitySpeedBase: 0.1
-  gravityAccelerationBase: 50
-  gravitySpeedMaxBase: 30
-  baseCayoteTime: 0.1
---- !u!114 &114422898562219348
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9e7ce19f52e8e4f8d6927d93e96dec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
---- !u!114 &114432285978368132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d490fc08ad2b9f64c97247fe7501536b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114451276411895824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,30 +409,6 @@ MonoBehaviour:
   speed: 50
   range: 7
   damage: 0
---- !u!114 &114516334755813448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c9dfe42df472d6418fa4ee7a3438f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 0
-  hitType: 2
---- !u!114 &114593228069086336
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114610447254143576
 MonoBehaviour:
   m_ObjectHideFlags: 1
