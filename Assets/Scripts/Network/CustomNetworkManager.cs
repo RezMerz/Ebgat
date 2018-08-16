@@ -8,7 +8,8 @@ public class CustomNetworkManager : NetworkManager {
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
     public GameObject serverManager;
-    public List<GameObject> players;
+    public List<GameObject> serverSidePlayers;
+    public List<GameObject> clientSidePlayers;
     public GameObject playerConnection;
 
     private bool flag = true;
