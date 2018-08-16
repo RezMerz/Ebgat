@@ -71,6 +71,10 @@ public class WorldState
     public void BulletHit(int playerID, int bulletID){
         bulletHits.Add(playerID + "&" + bulletID);
     }
+
+    public void print(){
+        Debug.Log("printoooooo");
+    }
 }
 
 public class ObjectData{

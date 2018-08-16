@@ -37,7 +37,10 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcInstansiateHero(int heroId, int teamId){
-        player = Instantiate(networkManager.players[heroId]);
+        if(isServer)
+            player = Instantiate(networkManager.serverSidePlayers[heroId]);
+        else
+            player = Instantiate(networkManager.clientSidePlayers[heroId]);
         playerControl = player.GetComponent<PlayerControl>();
         serverNetworkReciever.SetPlayerControl(playerControl);
         playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);

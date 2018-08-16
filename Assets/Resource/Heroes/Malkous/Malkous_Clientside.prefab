@@ -55,8 +55,8 @@ GameObject:
   - component: {fileID: 212646341278126836}
   - component: {fileID: 61504289847547406}
   - component: {fileID: 114916447596799302}
-  - component: {fileID: 114827838697450900}
   - component: {fileID: 114879632060584976}
+  - component: {fileID: 114006569559281598}
   - component: {fileID: 114812814168656082}
   - component: {fileID: 114756250026874534}
   - component: {fileID: 114667824745434310}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 114098260815372376}
   - component: {fileID: 82839251275574280}
   m_Layer: 0
-  m_Name: Malkous
+  m_Name: Malkous_Clientside
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,6 +451,35 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114006569559281598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamName: 
+  enemyTeamName: 
+  canDoubleJump: 0
+  hitPointsBase: 40
+  hitPoints: 0
+  attackDamageBase: 15
+  attackAnimationTimeBase: 0
+  attackCooldownBase: 0.5
+  moveSpeedBase: 15
+  moveAccelerationBase: 0
+  moveSpeedMaxBase: 20
+  jumpSpeedBase: 15
+  jumpAccelerationBase: 100
+  jumpSpeedMaxBase: 27
+  gravitySpeedBase: 0.1
+  gravityAccelerationBase: 50
+  gravitySpeedMaxBase: 30
+  baseCayoteTime: 0.1
 --- !u!114 &114098260815372376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,25 +582,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f290b75de419f5d41874a07b74a222ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114827838697450900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &114879632060584976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341430771966434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26049256be4328b4f9ec8a6af47510f6, type: 3}
   m_Name: 

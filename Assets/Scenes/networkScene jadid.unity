@@ -13133,6 +13133,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: serverSidePlayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: clientSidePlayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4198334688639446, guid: f8b2f6d04d5c34ec5a774ecdeafdd148, type: 2}
       propertyPath: m_LocalPosition.x
       value: 15.243847
@@ -13169,6 +13179,30 @@ Prefab:
       propertyPath: m_Name
       value: Custom Network Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: serverSidePlayers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93,
+        type: 2}
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: clientSidePlayers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1341430771966434, guid: c3360d9ad1a264bcaa2b490da85ceba2,
+        type: 2}
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: serverSidePlayers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e,
+        type: 2}
+    - target: {fileID: 114749759989598268, guid: f8b2f6d04d5c34ec5a774ecdeafdd148,
+        type: 2}
+      propertyPath: clientSidePlayers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1053505828903372, guid: a2ac7b833b38d401fa6c7fe6baa4615b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b2f6d04d5c34ec5a774ecdeafdd148, type: 2}
   m_IsPrefabAsset: 0
