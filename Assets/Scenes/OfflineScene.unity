@@ -419,8 +419,8 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: 
-  m_OnlineScene: networkScene jadid
+  m_OfflineScene: OfflineScene
+  m_OnlineScene: networkScene Hp Bar
   m_SpawnPrefabs:
   - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
   - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}

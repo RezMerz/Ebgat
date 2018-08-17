@@ -34,6 +34,7 @@ public class CustomNetworkManager : NetworkManager {
     {
         if(NetworkServer.active && flag){
             flag = false;
+            //Debug.Log();
             GameObject server = Instantiate(serverNetwork);
             GameObject clientNetwork = Instantiate(clientNetworkReciever);
             GameObject srvmanager = Instantiate(serverManager);
