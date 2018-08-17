@@ -69,7 +69,7 @@ public class MalkousAttack : Attack
         Vector2 attackSide = charStats.AimSide;
         if (attackSide == Vector2.zero)
             attackSide = charStats.Side;
-        VirtualBullet virtualBullet = Instantiate(virttualBullet);
+        VirtualBullet virtualBullet = Instantiate(virttualBullet,transform.position + (Vector3)charStats.Side * 2 + Vector3.up * 0.5f,Quaternion.identity);
         virtualBullet.transform.position = transform.position;
         virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc,playerControl,bulletID);
         // register bullet

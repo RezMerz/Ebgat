@@ -503,8 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43b15e64de82e14eb7882ca9f402673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3,
-    type: 2}
+  bullet: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
 --- !u!114 &114352001818264730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,15 +591,15 @@ MonoBehaviour:
   teamName: 
   enemyTeamName: 
   canDoubleJump: 0
-  hitPointsBase: 40
+  hitPointsBase: 100
   attackDamageBase: 15
-  attackAnimationTimeBase: 0
+  attackAnimationTimeBase: 0.2
   attackCooldownBase: 0.5
-  moveSpeedBase: 15
+  moveSpeedBase: 10
   moveAccelerationBase: 0
-  moveSpeedMaxBase: 20
+  moveSpeedMaxBase: 14
   jumpSpeedBase: 15
-  jumpAccelerationBase: 100
+  jumpAccelerationBase: 50
   jumpSpeedMaxBase: 27
   gravitySpeedBase: 0.1
   gravityAccelerationBase: 50
@@ -697,7 +696,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 55105ff7993d7154ba9394eef7ae81e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
