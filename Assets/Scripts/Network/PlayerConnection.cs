@@ -74,4 +74,9 @@ public class PlayerConnection : NetworkBehaviour {
         yield return new WaitForSeconds(time);
         playerControl.SetReady();
     }
+
+    [ClientRpc]
+    public void RpcKillHero(){
+        Destroy(playerControl.gameObject);
+    }
 }
