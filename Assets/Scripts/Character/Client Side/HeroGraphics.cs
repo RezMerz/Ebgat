@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HeroGraphics : MonoBehaviour {
     private SpriteRenderer sprite;
     private Animator animator;
     private PlayerControl playerControl;
     private AudioSource audioSource;
+    private Slider hpSlider;
+    private GameObject hpSliderParent;
+
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -108,7 +111,7 @@ public class HeroGraphics : MonoBehaviour {
     {
         ResetAnimationParameters();
         if (value == "1")
-            animator.SetBool("OnGround", true);
+            animator.SetTrigger("OnGround");
         else if (value == "2")
             animator.SetTrigger("Fall");
         else if (value == "3")
@@ -124,10 +127,30 @@ public class HeroGraphics : MonoBehaviour {
             print("Wrong Feet State Code");
           
     }
+    public void HpChange(string value)
+    {
+        hpSlider.value = int.Parse(value) / 100;
+    }
+
+    public void CreateHpBar()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        GameObject parentInstance = canvas.GetComponent<CanvasManager>().sliderParentInstance;
+        hpSliderParent = Instantiate(parentInstance);
+        hpSliderParent.transform.SetParent(canvas.transform, false);
+        hpSliderParent.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        hpSlider = hpSliderParent.transform.GetChild(0).GetComponent<Slider>();
+        hpSlider.value = 1;
+    }
+    public void ChangePosition(Vector2 pos)
+    {
+        transform.position = pos;
+        hpSliderParent.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+    }
 
     private void ResetAnimationParameters()
     {
-        animator.SetBool("OnGround", false);
+       
     }
 
     public void SetSide(string value)

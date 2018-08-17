@@ -15,6 +15,8 @@ public class HeroData {
         data = "";
         this.playerID = playerID;
         heroPhysics = new HeroPhysicsClientSide(Vector2.down, Vector2.down);
+        bullets = new List<string>();
+        bulletHits = new List<string>();
     }
 
     public void RegisterCharstat(char keycode, string value){
@@ -39,7 +41,7 @@ public class HeroData {
     }
 
     public string GetData(){
-        return playerID + "$" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data;// + "@" + GetBulletData() + "@" + GetBulletHit();
+        return playerID + "@" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data + "@" + GetBulletData() + "@" + GetBulletHit();
     }
 
     private string GetBulletData(){

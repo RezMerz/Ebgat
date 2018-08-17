@@ -58,6 +58,7 @@ public class PlayerControl : MonoBehaviour
         input = GetComponent<InputCharacter>();
         bulletmanager = GetComponent<BulletManager>();
         deathPoint = new Vector2(16, -48);
+        heroGraphics.CreateHpBar();
     }
 
     void Start()
@@ -70,6 +71,7 @@ public class PlayerControl : MonoBehaviour
         {
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
         }
+       
     }
 
     private void FixedUpdate()
@@ -272,7 +274,8 @@ public class PlayerControl : MonoBehaviour
                 if (first)
                 {
                     first = false;
-                    transform.position = Toolkit.DeserializeVector(deString[0]);
+                    heroGraphics.ChangePosition(Toolkit.DeserializeVector(deString[0]));
+                   
                 }
                 else
                 {
@@ -303,6 +306,7 @@ public class PlayerControl : MonoBehaviour
             case 'c': heroGraphics.HandState(value); break;
             case 'd': heroGraphics.FeetState(value); break;
             case 'e': heroGraphics.SetSide(value); break;
+            case 'g': heroGraphics.HpChange(value); break;
         }
     }
 
