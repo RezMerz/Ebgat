@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NetworkManager
   - PlayerConnection
+  - Block
   layers:
   - Default
   - TransparentFX

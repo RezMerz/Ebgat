@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
+  attackForce: 0.5
 --- !u!114 &114432285978368132
 MonoBehaviour:
   m_ObjectHideFlags: 1
