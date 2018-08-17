@@ -45,8 +45,10 @@ public class ServerManager : NetworkBehaviour {
     private void FixedUpdate()
     {
         for (int i = 0; i < deadPlayers.Count; i++){
-            deadPlayers[i].respawnTimeLeft -= Time.fixedTime;
+            deadPlayers[i].respawnTimeLeft -= Time.fixedDeltaTime;
+            Debug.Log(deadPlayers[i].respawnTimeLeft);
             if(deadPlayers[i].respawnTimeLeft <= 0){
+                //Debug.Log();
                 RespawnHero(deadPlayers[i]);
                 deadPlayers.RemoveAt(i);
                 i--;
@@ -176,6 +178,7 @@ public class ServerManager : NetworkBehaviour {
                 playerInfoList[i].respawnTimeLeft = respawnTime;
                 deadPlayers.Add(playerInfoList[i]);
                 SendKillCommand(playerId);
+                break;
 
             }
         }
@@ -189,6 +192,7 @@ public class ServerManager : NetworkBehaviour {
             {
                 Debug.Log("playerinfo found");
                 networkManager.playerConnections[i].RpcKillHero();
+                break;
             }
         }
     }

@@ -8,13 +8,9 @@ public class WorldState
 {
     public ServerNetworkSender serverNetworkSender;
     List<HeroData> heroesData;
-    List<string> bullets;
-    List<string> bulletHits;
    
     public WorldState(){
         heroesData = new List<HeroData>();
-        bullets = new List<string>();
-        bulletHits = new List<string>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject obj in objs)
             heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
@@ -65,11 +61,11 @@ public class WorldState
 
     public void BulletRegister(int playerID, int bulletID,float damage,Vector2 attackSide,float gravityAcc)
     {
-        bullets.Add(playerID + "&" + bulletID + "&" +damage + "&" +attackSide + "&" +gravityAcc);
+        
     }
 
     public void BulletHit(int playerID, int bulletID){
-        bulletHits.Add(playerID + "&" + bulletID);
+        
     }
 
     public void print(){
