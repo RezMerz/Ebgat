@@ -169,7 +169,7 @@ namespace UnityEngine.Networking
                     }
 
                     ypos += spacing * 2;
-                    if(GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10 + ypos, buttonWidth, buttonHeight), "Exit")){
+                    if(GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 6.2f / 10, buttonWidth, buttonHeight), "Exit")){
                         Debug.Log("quiting");
                         Application.Quit();
                     }
