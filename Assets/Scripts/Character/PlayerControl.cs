@@ -146,13 +146,26 @@ public class PlayerControl : MonoBehaviour
 
     public bool IsLocalPlayer()
     {
-        return playerConnection.isLocalPlayer;
-
+        try
+        {
+            return playerConnection.isLocalPlayer;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public bool IsServer()
     {
-        return playerConnection.isServer;
+        try
+        {
+            return playerConnection.isServer;
+        }
+        catch
+        {
+            return false;
+        }
     }
     // Some Damage has been done
     public void TakeAttack(float damage, string buffName)
