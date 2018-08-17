@@ -343,8 +343,11 @@ public class PlayerControl : MonoBehaviour
     {
         input.start = false;
         transform.position = deathPoint;
-        physic.virtualPosition = transform.position;
         GetComponent<SpriteRenderer>().enabled = false;
+        if (IsServer())
+        {
+            physic.virtualPosition = transform.position;
+        }
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
@@ -353,14 +356,14 @@ public class PlayerControl : MonoBehaviour
 
     public void Respawn()
     {
-        if (IsServer())
-        {
-            charStats.ResetHP();
-        }
         input.start = true;
         GetComponent<SpriteRenderer>().enabled = true;
         transform.position = spawnPoint;
-        physic.virtualPosition = transform.position;
+        if (IsServer())
+        {
+            physic.virtualPosition = transform.position;
+            charStats.ResetHP();
+        }
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().FollowTarget();
