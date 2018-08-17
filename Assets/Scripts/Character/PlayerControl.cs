@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
     private InputCharacter input;
     public Vector2 deathPoint { get; set; }
 
-
+    public static string teamName { get; set; }
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
     private int lastStateChecked;
@@ -58,7 +58,6 @@ public class PlayerControl : MonoBehaviour
         input = GetComponent<InputCharacter>();
         bulletmanager = GetComponent<BulletManager>();
         deathPoint = new Vector2(16, -48);
-        heroGraphics.CreateHpBar();
     }
 
     void Start()
@@ -91,6 +90,9 @@ public class PlayerControl : MonoBehaviour
 
     public void SetTeam(string teamName, string enemyTeamName)
     {
+        if (IsLocalPlayer())
+            PlayerControl.teamName = teamName;
+
         if (playerConnection.isServer)
         {
             charStats.teamName = teamName;
@@ -106,6 +108,7 @@ public class PlayerControl : MonoBehaviour
 
     public void SetReady()
     {
+        heroGraphics.CreateHpBar();
         ReadyAction();
     }
 

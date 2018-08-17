@@ -9,7 +9,6 @@ public class HeroGraphics : MonoBehaviour {
     private AudioSource audioSource;
     private Slider hpSlider;
     private GameObject hpSliderParent;
-
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -141,6 +140,31 @@ public class HeroGraphics : MonoBehaviour {
         hpSliderParent.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         hpSlider = hpSliderParent.transform.GetChild(0).GetComponent<Slider>();
         hpSlider.value = 1;
+        // Change the Color
+        if (playerControl.IsServer())
+        {
+            if (playerControl.charStats.teamName == PlayerControl.teamName)
+            {
+                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
+            }
+            else
+            {
+                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
+            }
+        }
+        else
+        {
+
+
+            if (playerControl.charStatsClient.teamName == PlayerControl.teamName)
+            {
+                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
+            }
+            else
+            {
+                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
+            }
+        }
     }
     public void ChangePosition(Vector2 pos)
     {
