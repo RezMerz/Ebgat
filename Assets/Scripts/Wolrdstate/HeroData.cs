@@ -42,18 +42,20 @@ public class HeroData {
         return playerID + "$" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data;// + "@" + GetBulletData() + "@" + GetBulletHit();
     }
 
-    /*private string GetBulletData(){
+    private string GetBulletData(){
         string data = "";
         for (int i = 0; i < bullets.Count; i++){
-            data += 
+            data += bullets[i] + "$";
         }
+        return data;
     }
 
     private string GetBulletHit(){
         string data = "";
         for (int i = 0; i < bulletHits.Count; i++)
         {
-
+            data += bulletHits[i] + "$";
         }
-    }*/
+        return data;
+    }
 }
