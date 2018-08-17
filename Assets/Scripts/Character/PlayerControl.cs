@@ -296,6 +296,7 @@ public class PlayerControl : MonoBehaviour
     // gets the code and value of datas
     private void Deserilize(char code, string value)
     {
+        print(code);
         switch (code)
         {
             case 'A': heroGraphics.AbilityState(value); break;
