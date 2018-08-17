@@ -74,6 +74,6 @@ public class MalkousAttack : Attack
         virtualBullet.transform.position = transform.position;
         virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc, range,playerControl,bulletID);
         // register bullet
-        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, damage, attackSide, gravityAcc);
+        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc);
     }
 }
