@@ -7,6 +7,7 @@ TagManager:
   - NetworkManager
   - PlayerConnection
   - Block
+  - Bridge
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Team 1
   - Team 2
   - Bridge
-  - 
+  - Bullet
   - 
   - 
   - 
