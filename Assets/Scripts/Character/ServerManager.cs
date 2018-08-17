@@ -46,7 +46,6 @@ public class ServerManager : NetworkBehaviour {
     {
         for (int i = 0; i < deadPlayers.Count; i++){
             deadPlayers[i].respawnTimeLeft -= Time.fixedDeltaTime;
-            Debug.Log(deadPlayers[i].respawnTimeLeft);
             if(deadPlayers[i].respawnTimeLeft <= 0){
                 //Debug.Log();
                 RespawnHero(deadPlayers[i]);
@@ -107,13 +106,14 @@ public class ServerManager : NetworkBehaviour {
 
 
 
-    public void SpawnHero(int clientId, int heroId, int teamId)
+    public void SpawnHero(int clientId, int heroId, int teamId, Vector2 SpawnPoint)
     {
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId);
+                networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId, Toolkit.VectorSerialize(SpawnPoint));
+                break;
             }
         }
 
@@ -130,7 +130,7 @@ public class ServerManager : NetworkBehaviour {
         {
             for (int i = 0; i < maxClientCount; i++)
             {
-                SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId);
+                SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
                 playerInfoList[i].teamId = teamId;
                 if (teamId == 1)
                     teamId = 2;
@@ -168,12 +168,10 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void KillHero(int playerId){
-        Debug.Log("kill hero " + playerId);
         for (int i = 0; i < playerInfoList.Count; i++)
         {
             if (playerInfoList[i].clientId == playerId)
             {
-                Debug.Log("found playerinfo");
                 playerInfoList[i].isAlive = false;
                 playerInfoList[i].respawnTimeLeft = respawnTime;
                 deadPlayers.Add(playerInfoList[i]);
@@ -185,12 +183,10 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void SendKillCommand(int playerId){
-        Debug.Log("sending kill command to " + playerId);
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
             if (networkManager.playerConnections[i].clientId == playerId)
             {
-                Debug.Log("playerinfo found");
                 networkManager.playerConnections[i].RpcKillHero();
                 break;
             }
@@ -199,7 +195,6 @@ public class ServerManager : NetworkBehaviour {
 
     private void RespawnHero(PlayerInfo playerInfo){
         playerInfo.isAlive = true;
-        Debug.Log("Respawning hero");
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
             if (networkManager.playerConnections[i].clientId == playerInfo.clientId)

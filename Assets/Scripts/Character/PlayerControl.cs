@@ -22,7 +22,6 @@ public class PlayerControl : MonoBehaviour
     public PlayerConnection playerConnection;// { get; set; }
 
     private InputCharacter input;
-    public Vector2 spawnPoint { get; set; }
     public Vector2 deathPoint { get; set; }
 
 
@@ -358,7 +357,7 @@ public class PlayerControl : MonoBehaviour
     {
         input.start = true;
         GetComponent<SpriteRenderer>().enabled = true;
-        transform.position = spawnPoint;
+        transform.position = playerConnection.spawnPoint;
         if (IsServer())
         {
             physic.virtualPosition = transform.position;

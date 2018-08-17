@@ -13,6 +13,8 @@ public class PlayerConnection : NetworkBehaviour {
     private ServerNetwork serverNetworkReciever;
     private PlayerControl playerControl;
 
+    public Vector2 spawnPoint { get; set; }
+
     [SerializeField]
     private GameObject player;
 
@@ -36,9 +38,10 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcInstansiateHero(int heroId, int teamId){
+    public void RpcInstansiateHero(int heroId, int teamId, string spawnPoint){
+        this.spawnPoint = Toolkit.DeserializeVector(spawnPoint);
         if(isServer)
-            player = Instantiate(networkManager.serverSidePlayers[heroId]);
+            player = Instantiate(networkManager.serverSidePlayers[heroId], this.spawnPoint, Quaternion.Euler(0,0,0));
         else
             player = Instantiate(networkManager.clientSidePlayers[heroId]);
         playerControl = player.GetComponent<PlayerControl>();
@@ -77,13 +80,11 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcKillHero(){
-        Debug.Log("RPC kill hero");
         playerControl.Die();
     }
 
     [ClientRpc]
     public void RpcRespawnHero(){
-        Debug.Log("respawn Rpc");
         playerControl.Respawn();
     }
 }
