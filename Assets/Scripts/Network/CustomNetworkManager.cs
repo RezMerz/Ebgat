@@ -57,19 +57,23 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
-    public override void OnClientDisconnect(NetworkConnection conn)
+    /*public override void OnClientDisconnect(NetworkConnection conn)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }
+    }*/
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         StopHost();
+        GetComponent<CustomNetworkDiscovery>().Initialize();
+        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
     }
 
     public override void OnStopHost()
     {
         base.OnStopHost();
+        GetComponent<CustomNetworkDiscovery>().Initialize();
+        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
         Start();
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
@@ -78,5 +82,11 @@ public class CustomNetworkManager : NetworkManager {
     {
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        if(ServerManager.instance.currentClientCount < ServerManager.instance.maxClientCount)
+            base.OnClientConnect(conn);
     }
 }
