@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour {
     [SerializeField]
-    private Bullet bullet;
+    private GameObject bulletPrefab;
     private Hashtable shotBullets = new Hashtable();
     private int layerMask;
     private PlayerControl playerControl;
@@ -28,15 +28,16 @@ public class BulletManager : MonoBehaviour {
 
     public void Shoot(Vector2 direction,float gravityAcc, int id)
     {
-        var bullet = Instantiate(this.bullet, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         shotBullets.Add(id, bullet);
-        bullet.Shoot(direction,layerMask, gravityAcc);
+        bulletPrefab.GetComponent<Bullet>().Shoot(direction,layerMask, gravityAcc);
     }
     public void DestroyBullet(int id)
     {
         if (shotBullets.Contains(id))
         {
             GameObject bullet = shotBullets[id] as GameObject;
+            Debug.Log(bullet);
             shotBullets.Remove(id);
             Destroy(bullet);
         }

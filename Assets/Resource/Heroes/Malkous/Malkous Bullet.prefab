@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114999439395002206}
   - component: {fileID: 58047122701672354}
   - component: {fileID: 212234415813061486}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Malkous Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useGravity: 1
-  speed: 40
+  speed: 30
   range: 100
 --- !u!114 &114999439395002206
 MonoBehaviour:
