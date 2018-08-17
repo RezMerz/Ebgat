@@ -7,6 +7,7 @@ using System;
 public class PlayerControl : MonoBehaviour
 {
     public CharacterAttributes charStats { get; private set; }
+    public CharacterAttributesClient charStatsClient { get; set; }
     public CharacterMove characterMove { get; private set; }
     public PlayerJump jump { get; private set; }
     public Attack attack { get; private set; }
@@ -41,6 +42,7 @@ public class PlayerControl : MonoBehaviour
         clientNetworkReciever = ClientNetworkReciever.instance;
         serverNetworkSender = ServerNetworkSender.instance;
         charStats = GetComponent<CharacterAttributes>();
+        charStatsClient = GetComponent<CharacterAttributesClient>();
         heroGraphics = GetComponent<HeroGraphics>();
         characterMove = GetComponent<CharacterMove>();
         jump = GetComponent<PlayerJump>();
@@ -76,8 +78,16 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void SetTeam(string teamName, string enemyTeamName){
-        charStats.teamName = teamName;
-        charStats.enemyTeamName = enemyTeamName;
+        if (playerConnection.isServer)
+        {
+            charStats.teamName = teamName;
+            charStats.enemyTeamName = enemyTeamName;
+        }
+        else
+        {
+            charStatsClient.teamName = teamName;
+            charStatsClient.enemyTeamName = enemyTeamName;
+        }
         gameObject.layer = LayerMask.NameToLayer(teamName);
     }
 
