@@ -63,7 +63,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {;
+    {
         //worldState.print();
         //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
         counter++;
@@ -153,7 +153,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void TakeDamage(float damage)
     {
-        heroGraphics.TakeDamage();
+        //heroGraphics.TakeDamage();
         print("Took Damage");
         charStats.hitPoints -= damage;
         if (charStats.hitPoints <= 0)
@@ -324,6 +324,10 @@ public class PlayerControl : MonoBehaviour
         lastStateChecked = id;
     }
 
+
+    public void Die(){
+        Destroy(gameObject);
+    }
 }
 
 

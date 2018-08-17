@@ -77,6 +77,7 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcKillHero(){
+        Debug.Log("RPC kill hero");
         Destroy(playerControl.gameObject);
     }
 }
