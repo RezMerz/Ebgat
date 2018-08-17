@@ -24,7 +24,7 @@ public class ServerManager : NetworkBehaviour {
 
     public float respawnTime = 5f;
 
-    private void Awake()
+    public void Awake()
     {
         instance = this;
         currentWorldState = new WorldState();
