@@ -55,11 +55,12 @@ public class ClientNetworkReciever : NetworkBehaviour {
         {
             if (heroData[j].Length == 0)
                 continue;
-            string[] data = heroData[j].Split('$');
-            int id = Convert.ToInt32(data[0]);
+            string[] rawData = heroData[j].Split('@');
+            string[] data = rawData[1].Split('$');
+            int id = Convert.ToInt32(rawData[0]);
             if (id == 0 || id > playerControls.Count)
                 continue;
-            playerControls[id - 1].UpdateClient(frameID, heroData[j].Substring(data[0].Length + 1));
+            playerControls[id - 1].UpdateClient(frameID, rawData[1]);
         }
     }
 
