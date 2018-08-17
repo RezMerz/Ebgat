@@ -159,9 +159,9 @@ public class PlayerControl : MonoBehaviour
         if (charStats.hitPoints <= 0)
         {
             print("Dead");
-            if (clientNetworkSender.isServer)
+            if (playerConnection.isServer)
             {
-                serverNetworkReciever.CmdKillPlayer();
+                ServerManager.instance.KillHero(playerConnection.clientId);
             }
         }
     }
