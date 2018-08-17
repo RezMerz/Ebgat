@@ -33,7 +33,7 @@ public class HeroData {
     }
 
     public void RegisterBullet(int bulletID, Vector2 attackSide, float gravityAcc){
-        bullets.Add(bulletID + "&" + attackSide + "&" + gravityAcc);
+        bullets.Add(bulletID + "&" + Toolkit.VectorSerialize(attackSide) + "&" + gravityAcc);
     }
 
     public void RegiterHit(int bulletID){

@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/networkScene Hp Bar.unity
     guid: 05636822ed41a164b9263efea38c0f2f
+  - enabled: 1
+    path: Assets/Scenes/OfflineScene.unity
+    guid: d290195ec7a4e416aa8492becece783f
   m_configObjects: {}

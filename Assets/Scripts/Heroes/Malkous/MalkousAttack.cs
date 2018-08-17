@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MalkousAttack : Attack
 {
-    public Bullet bulletPrefab;
     public VirtualBullet virttualBullet;
     public float maxHoldTime;
     public float damageMultiplier;
@@ -72,7 +71,7 @@ public class MalkousAttack : Attack
             attackSide = charStats.Side;
         VirtualBullet virtualBullet = Instantiate(virttualBullet);
         virtualBullet.transform.position = transform.position;
-        virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc, range,playerControl,bulletID);
+        virtualBullet.Shoot(damage, attackSide, layerMask, gravityAcc,playerControl,bulletID);
         // register bullet
         playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc);
     }
