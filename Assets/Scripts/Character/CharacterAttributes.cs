@@ -274,7 +274,7 @@ public class CharacterAttributes : MonoBehaviour {
 
     public void ResetHP()
     {
-        hitPoints = hitPointsBase;
+        HitPoints = hitPointsBase;
     }
 
     public void SetAttribute(char attributeCode, string value){
