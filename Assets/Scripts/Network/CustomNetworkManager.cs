@@ -13,12 +13,12 @@ public class CustomNetworkManager : NetworkManager {
     public List<Transform> heroSpawnPositions;
     public GameObject playerConnection;
 
-    private bool flag = true;
-    bool start = true;
+    private bool flag;
+    bool start;
 
     public int playerNumber { get; set; }
 
-    private int playerID = 0;
+    private int playerID;
     public Hashtable connectionTable;
     public List<PlayerConnection> playerConnections;
 
@@ -28,6 +28,9 @@ public class CustomNetworkManager : NetworkManager {
     {
         connectionTable = new Hashtable();
         playerConnections = new List<PlayerConnection>();
+        playerID = 0;
+        start = true;
+        flag = true;
     }
 
     private void Update()
@@ -62,6 +65,13 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         StopHost();
+    }
+
+    public override void OnStopHost()
+    {
+        base.OnStopHost();
+        Start();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public void StartHost(int maxPlayerCount)

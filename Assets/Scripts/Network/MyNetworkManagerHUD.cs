@@ -77,16 +77,16 @@ namespace UnityEngine.Networking
                 {
                     if (Input.GetKeyDown(KeyCode.S))
                     {
-                        manager.StartServer();
+                        //manager.StartServer();
                     }
                     if (Input.GetKeyDown(KeyCode.H))
                     {
-                        manager.StartHost();
+                        //manager.StartHost();
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.C))
                 {
-                    manager.StartClient();
+                    //manager.StartClient();
                 }
             }
             if (NetworkServer.active && manager.IsClientConnected())
@@ -119,9 +119,10 @@ namespace UnityEngine.Networking
                 {
                     if (UnityEngine.Application.platform != RuntimePlatform.WebGLPlayer)
                     {
-                        if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host(H)"))
+                        if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
-                            networkDiscovery.StartAsServer();
+                            if(networkDiscovery.isClient)
+                                networkDiscovery.StartAsServer();
                             manager.StartHost(playerCount);
                         }
                         //maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
@@ -132,7 +133,7 @@ namespace UnityEngine.Networking
                         // ypos += spacing;
                     }
 
-                    if (GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Client(C)"))
+                    if (GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Client"))
                     {
                         networkDiscovery.StartAsClient();
                     }
