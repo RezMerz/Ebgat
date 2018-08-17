@@ -17,7 +17,7 @@ public class InputCharacter : MonoBehaviour
     private bool axisYChanged;
     private float axisY;
     private float axisX;
-    private bool start;
+    public bool start { get;set; }
 	// Use this for initialization
 	void Start ()
     {
@@ -66,11 +66,11 @@ public class InputCharacter : MonoBehaviour
         //Attack
         if (Input.GetButtonDown("Fire"))
         {
-            attack.AttackPressed();
+            clientNetworkSender.AttackPressed();
         }
         else if(Input.GetButtonUp("Fire"))
         {
-            attack.AttackReleased();
+            clientNetworkSender.AttackReleased();
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {

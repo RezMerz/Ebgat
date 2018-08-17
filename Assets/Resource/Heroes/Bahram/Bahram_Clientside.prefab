@@ -23,11 +23,11 @@ GameObject:
   - component: {fileID: 61299342488998378}
   - component: {fileID: 114289126813422942}
   - component: {fileID: 114794003109569974}
-  - component: {fileID: 114451276411895824}
   - component: {fileID: 114610447254143576}
   - component: {fileID: 114128794276802862}
   - component: {fileID: 95622444841042292}
   - component: {fileID: 82397943080947130}
+  - component: {fileID: 114075672439317394}
   m_Layer: 0
   m_Name: Bahram_Clientside
   m_TagString: Player
@@ -347,6 +347,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114075672439317394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &114128794276802862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,24 +403,6 @@ MonoBehaviour:
     type: 2}
   playerConnection: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &114451276411895824
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053505828903372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22cdb9174cd3625429080612f44862b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDownTime: 0.1
-  castTime: 0
-  animationTime: 0
-  buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
-  speed: 50
-  range: 7
-  damage: 0
 --- !u!114 &114610447254143576
 MonoBehaviour:
   m_ObjectHideFlags: 1

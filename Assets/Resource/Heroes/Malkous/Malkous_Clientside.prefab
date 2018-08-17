@@ -57,10 +57,11 @@ GameObject:
   - component: {fileID: 114006569559281598}
   - component: {fileID: 114667824745434310}
   - component: {fileID: 114721468437727338}
-  - component: {fileID: 95267049145148780}
   - component: {fileID: 114352001818264730}
   - component: {fileID: 114108135820462582}
+  - component: {fileID: 95267049145148780}
   - component: {fileID: 82839251275574280}
+  - component: {fileID: 114688218718620592}
   m_Layer: 0
   m_Name: Malkous_Clientside
   m_TagString: Player
@@ -514,6 +515,18 @@ MonoBehaviour:
     type: 2}
   playerConnection: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114688218718620592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &114721468437727338
 MonoBehaviour:
   m_ObjectHideFlags: 1
