@@ -169,8 +169,8 @@ public class PlayerControl : MonoBehaviour
     {
         //heroGraphics.TakeDamage();
         print("Took Damage");
-        charStats.hitPoints -= damage;
-        if (charStats.hitPoints <= 0)
+        charStats.HitPoints -= damage;
+        if (charStats.HitPoints <= 0)
         {
             print("Dead");
             if (playerConnection.isServer)
