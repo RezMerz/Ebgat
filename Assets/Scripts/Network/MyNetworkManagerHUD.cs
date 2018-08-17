@@ -11,9 +11,20 @@ namespace UnityEngine.Networking
     public class MyNetworkManagerHUD : MonoBehaviour
     {
         private CustomNetworkManager manager;
-        [SerializeField] public bool showGUI = true;
-        [SerializeField] public int offsetX;
-        [SerializeField] public int offsetY;
+        [SerializeField]
+        public bool showGUI = true;
+        [SerializeField]
+        public int offsetX;
+        [SerializeField]
+        public int offsetY;
+
+        private int buttonHeight;
+        private int buttonWidth;
+        private int textureSize;
+
+        private bool malkousSelect;
+        private bool bahramSelect = true;
+
 
         String heroName = "hero name";
 
@@ -23,12 +34,16 @@ namespace UnityEngine.Networking
 
         CustomNetworkDiscovery networkDiscovery;
 
-        string maxPlayerCount;
+        string maxPlayerCount = "1";
+
+        private int playerCount = 1;
+        public int maxPlayer;
 
         // Runtime variable
         bool m_ShowServer;
 
-        public void OnHostFound(string fromAddress, string data){
+        public void OnHostFound(string fromAddress, string data)
+        {
             //networkDiscovery.StopBroadcast();
             String ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
             Debug.Log(ip);
@@ -40,6 +55,10 @@ namespace UnityEngine.Networking
         {
             manager = GetComponent<CustomNetworkManager>();
             networkDiscovery = GetComponent<CustomNetworkDiscovery>();
+            buttonHeight = Screen.height * 1 / 10;
+            buttonWidth = Screen.width * 1 / 5;
+            textureSize = Screen.width * 1 / 10;
+
         }
 
         void Start()
@@ -84,8 +103,11 @@ namespace UnityEngine.Networking
             if (!showGUI)
                 return;
 
-            int xpos = 10 + offsetX;
-            int ypos = 40 + offsetY;
+            GUI.skin.label.fontSize = (int) (Screen.width) /100 + 6;
+            GUI.skin.button.fontSize = (int)(Screen.width) / 100 + 6;
+
+            int xpos = 20;
+            int ypos = 5;
             const int spacing = 24;
 
             bool noConnection = (manager.client == null || manager.client.connection == null ||
@@ -97,52 +119,66 @@ namespace UnityEngine.Networking
                 {
                     if (UnityEngine.Application.platform != RuntimePlatform.WebGLPlayer)
                     {
-                        if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Host(H)"))
+                        if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host(H)"))
                         {
                             networkDiscovery.StartAsServer();
-                            manager.StartHost(Convert.ToInt32(maxPlayerCount));
+                            manager.StartHost(playerCount);
                         }
-                        GUI.Label(new Rect(xpos + 115, ypos, 100, 20), "Player Count:");
-                        maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
+                        //maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
 
-                        ypos += spacing;
+                        GUI.Label(new Rect(Screen.width * 11 / 40, 0.605f * Screen.height, 0.11f * Screen.width, buttonHeight), "Player Count: " + playerCount);
+                        playerCount =(int) GUI.HorizontalSlider(new Rect(Screen.width *0.395f,0.62f * Screen.height , 0.08f * Screen.width, buttonHeight), playerCount, 1f,maxPlayer);
+
+                        // ypos += spacing;
                     }
 
-                    if (GUI.Button(new Rect(xpos, ypos, 105, 20), "LAN Client(C)"))
+                    if (GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Client(C)"))
                     {
                         networkDiscovery.StartAsClient();
                     }
 
 
-                    ypos += spacing;
+                   // ypos += spacing;
 
-                    GUI.Label(new Rect(xpos + 60, ypos, 105, 20), "Choose Hero");
-                    ypos += spacing;
+                    GUI.Label(new Rect(0.45f * Screen.width, 0.2f * Screen.height, 200, 50), "Choose Hero");
+                    //ypos += spacing;
 
-                    GUI.Label(new Rect(xpos, ypos - 10, 105, 20), "Malkous");
-                    GUI.Label(new Rect(xpos + 150, ypos - 10, 105, 20), "Bahram");
-                    ypos += spacing;
-
-                    GUI.DrawTexture(new Rect(xpos + 5, ypos - 15, 40, 40), malkousTexture);
-                    GUI.DrawTexture(new Rect(xpos + 150, ypos - 15, 40, 40), bahramTexture);
-
-                    sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 1f);
-
-                    if (sliderValue > 0.5f)
-                    {
-                        sliderValue = 1f;
-                        if(manager.playerNumber != 1)
-                            manager.playerNumber = 1;
-                    }
-                    if (sliderValue <= 0.5f)
-                    {
-                        sliderValue = 0f;
-                        if (manager.playerNumber != 0)
-                            manager.playerNumber = 0;
-                    }
                     
 
-                    ypos += spacing;
+                    GUI.Label(new Rect(0.375f * Screen.width,0.42f * Screen.height, 105, 50), "Malkous");
+                    GUI.Label(new Rect(0.575f * Screen.width, 0.42f * Screen.height, 105, 50), "Bahram");
+                    //ypos += spacing;
+
+                    malkousSelect = GUI.Toggle(new Rect(7f / 20f * Screen.width, 5f / 20f * Screen.height, textureSize, textureSize),malkousSelect, malkousTexture);
+                    if (malkousSelect)
+                    {
+                        bahramSelect = false;
+                        manager.playerNumber = 0;
+                    }
+                    bahramSelect = GUI.Toggle(new Rect(11f / 20f * Screen.width, 5f / 20f * Screen.height, textureSize,textureSize),bahramSelect, bahramTexture);
+                    if (bahramSelect)
+                    {
+                        malkousSelect = false;
+                        manager.playerNumber = 1;
+                    }
+
+                    //sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 1f);
+
+                    //if (sliderValue > 0.5f)
+                    //{
+                    //    sliderValue = 1f;
+                    //    if (manager.playerNumber != 1)
+                    //        manager.playerNumber = 1;
+                    //}
+                    //if (sliderValue <= 0.5f)
+                    //{
+                    //    sliderValue = 0f;
+                    //    if (manager.playerNumber != 0)
+                    //        manager.playerNumber = 0;
+                    //}
+
+
+                   // ypos += spacing;
 
                     /*if (UnityEngine.Application.platform == RuntimePlatform.WebGLPlayer)
                     {
