@@ -34,7 +34,6 @@ public class CustomNetworkManager : NetworkManager {
     {
         if(NetworkServer.active && flag){
             flag = false;
-            Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
             GameObject server = Instantiate(serverNetwork);
             GameObject clientNetwork = Instantiate(clientNetworkReciever);
             GameObject srvmanager = Instantiate(serverManager);
@@ -57,12 +56,12 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnClientDisconnect(NetworkConnection conn)
     {
-        Debug.Log("Disconected form server");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        Debug.Log("Client disconnected");
+        StopHost();
     }
 
     public void StartHost(int maxPlayerCount)
