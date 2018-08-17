@@ -22,13 +22,16 @@ public class PlayerControl : MonoBehaviour
     public PlayerConnection playerConnection;// { get; set; }
 
     private InputCharacter input;
+    public Vector2 spawnPoint { get; set; }
+    public Vector2 deathPoint { get; set; }
+
 
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
-    private int lastStateChecked ;
-    private int currentStateNumber ;
+    private int lastStateChecked;
+    private int currentStateNumber;
     private int biggestIdNumber;
-    private int  framCount;
+    private int framCount;
     private bool start;
     private bool firstRecieved;
 
@@ -52,11 +55,13 @@ public class PlayerControl : MonoBehaviour
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
         input = GetComponent<InputCharacter>();
+        deathPoint = new Vector2(16, -48);
     }
 
     void Start()
     {
-        if(playerConnection.isServer){
+        if (playerConnection.isServer)
+        {
             ServerManager.instance.UpdatePlayers();
         }
         if (IsLocalPlayer())
@@ -73,14 +78,16 @@ public class PlayerControl : MonoBehaviour
         ReadData();
     }
 
-    public void SetNetworkComponents(PlayerConnection playerConnection, ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId){
+    public void SetNetworkComponents(PlayerConnection playerConnection, ClientNetworkSender clientNetworkSender, ServerNetwork serverNetworkReciever, int playerId)
+    {
         this.playerConnection = playerConnection;
         this.clientNetworkSender = clientNetworkSender;
         this.serverNetworkReciever = serverNetworkReciever;
         this.playerId = playerId;
     }
 
-    public void SetTeam(string teamName, string enemyTeamName){
+    public void SetTeam(string teamName, string enemyTeamName)
+    {
         if (playerConnection.isServer)
         {
             charStats.teamName = teamName;
@@ -94,7 +101,8 @@ public class PlayerControl : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer(teamName);
     }
 
-    public void SetReady(){
+    public void SetReady()
+    {
         ReadyAction();
     }
 
@@ -120,7 +128,7 @@ public class PlayerControl : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            if(currentStateNumber - lastStateChecked >= 3)
+            if (currentStateNumber - lastStateChecked >= 3)
             {
                 clientNetworkSender.RequestWorldState(playerId);
             }
@@ -252,30 +260,33 @@ public class PlayerControl : MonoBehaviour
     public void GetData(string data)
     {
 
-        try{
-        bool first = true;
-        string[] dataSplit = data.Split('$');
-        foreach (string dataS in dataSplit)
+        try
         {
-            string[] deString = dataS.Split('&');
-            if (first)
+            bool first = true;
+            string[] dataSplit = data.Split('$');
+            foreach (string dataS in dataSplit)
             {
-                first = false;
-                transform.position = Toolkit.DeserializeVector(deString[0]);
-            }
-            else
-            {
-                if (deString.Length > 1)
+                string[] deString = dataS.Split('&');
+                if (first)
                 {
-                    Deserilize(deString[0].ToCharArray()[0], deString[1]);
+                    first = false;
+                    transform.position = Toolkit.DeserializeVector(deString[0]);
+                }
+                else
+                {
+                    if (deString.Length > 1)
+                    {
+                        Deserilize(deString[0].ToCharArray()[0], deString[1]);
+                    }
                 }
             }
-            }
         }
-        catch(MissingReferenceException e){
+        catch (MissingReferenceException e)
+        {
             Debug.Log(data);
         }
-        catch(UnassignedReferenceException e){
+        catch (UnassignedReferenceException e)
+        {
             Debug.Log(data);
         }
     }
@@ -297,7 +308,7 @@ public class PlayerControl : MonoBehaviour
     int counter;
     public void AddTOHashTable(int id, string state)
     {
-        if (!start &&(!firstRecieved || currentStateNumber <= id))
+        if (!start && (!firstRecieved || currentStateNumber <= id))
         {
             counter = id;
             currentStateNumber = id;
@@ -306,18 +317,18 @@ public class PlayerControl : MonoBehaviour
             firstRecieved = true;
         }
         playerStatesHash.Add(id, state);
-        if(id > biggestIdNumber)
+        if (id > biggestIdNumber)
         {
             biggestIdNumber = id;
         }
     }
 
-    public void UpdateClient(int id,string state)
+    public void UpdateClient(int id, string state)
     {
         start = false;
-        currentStateNumber = id+1;
+        currentStateNumber = id + 1;
         GetData(state);
-        for(int i = lastStateChecked+1;i <= id; i++)
+        for (int i = lastStateChecked + 1; i <= id; i++)
         {
             if (playerStatesHash.Contains(i))
             {
@@ -331,11 +342,29 @@ public class PlayerControl : MonoBehaviour
     public void Die()
     {
         input.start = false;
-        Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
+        transform.position = deathPoint;
+        physic.virtualPosition = transform.position;
+        GetComponent<SpriteRenderer>().enabled = false;
+        if (IsLocalPlayer())
+        {
+            Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
+        }
     }
 
-    public void Respawn(){
-        
+    public void Respawn()
+    {
+        if (IsServer())
+        {
+            charStats.ResetHP();
+        }
+        input.start = true;
+        GetComponent<SpriteRenderer>().enabled = true;
+        transform.position = spawnPoint;
+        physic.virtualPosition = transform.position;
+        if (IsLocalPlayer())
+        {
+            Camera.main.GetComponent<SmoothCamera2D>().FollowTarget();
+        }
     }
 }
 

@@ -271,6 +271,11 @@ public class CharacterAttributes : MonoBehaviour {
         jumpSpeed = jumpSpeedBase;
     }
 
+    public void ResetHP()
+    {
+        hitPoints = hitPointsBase;
+    }
+
     public void SetAttribute(char attributeCode, string value){
         switch(attributeCode){
             case 'a': SetHeadState(value); break;

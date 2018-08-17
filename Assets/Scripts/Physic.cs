@@ -11,7 +11,7 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 size;
     protected Vector2 distance;
 
-    public Vector2 virtualPosition { get; protected set;}
+    public Vector2 virtualPosition { get; set;}
 
     public void AddForce(Vector2 force)
     {
