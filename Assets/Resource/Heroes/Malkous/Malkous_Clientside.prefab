@@ -57,9 +57,9 @@ GameObject:
   - component: {fileID: 114006569559281598}
   - component: {fileID: 114667824745434310}
   - component: {fileID: 114721468437727338}
-  - component: {fileID: 95267049145148780}
   - component: {fileID: 114352001818264730}
   - component: {fileID: 114108135820462582}
+  - component: {fileID: 95267049145148780}
   - component: {fileID: 82839251275574280}
   m_Layer: 0
   m_Name: Malkous_Clientside

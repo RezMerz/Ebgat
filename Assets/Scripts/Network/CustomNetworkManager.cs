@@ -55,13 +55,8 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
-    public override void OnServerReady(NetworkConnection conn)
+    public void StartHost(int maxPlayerCount)
     {
-        base.OnServerReady(conn);
-
-    }
-
-    public void StartHost(int maxPlayerCount){
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
     }
