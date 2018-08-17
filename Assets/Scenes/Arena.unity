@@ -6971,7 +6971,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372915728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.1, y: -1.3, z: -10}
+  m_LocalPosition: {x: 12.2, y: -2.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6990,6 +6990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   target: {fileID: 0}
+  horizontalBorder: {x: 6.8, y: 17.6}
+  verticalBorder: {x: -4, y: 1.3}
   zoomoutSize: 18
   zoominSize: 15
 --- !u!1 &373484227
