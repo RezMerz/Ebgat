@@ -34,12 +34,11 @@ public class ClientNetworkReciever : NetworkBehaviour {
             {
                 if (heroData[j].Length == 0)
                     continue;
-                string[] rawData = heroData[j].Split('@');
-                string[] data = rawData[1].Split('$');
-                int id = Convert.ToInt32(rawData[0]);
+                string[] data = heroData[j].Split('$');
+                int id = Convert.ToInt32(data[0]);
                 if (id == 0 || id > playerControls.Count)
                     continue;
-                playerControls[id - 1].AddTOHashTable(frameBaseId + i, rawData[1]);
+                playerControls[id - 1].AddTOHashTable(frameBaseId + i, heroData[j].Substring(data[0].Length + 1));
             }
         }
     }

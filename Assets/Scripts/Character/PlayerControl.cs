@@ -21,6 +21,8 @@ public class PlayerControl : MonoBehaviour
     public CharacterPhysic physic { get; private set; }
     public PlayerConnection playerConnection;// { get; set; }
 
+    public BulletManager bulletmanager { get; set; }
+
     private InputCharacter input;
     public Vector2 deathPoint { get; set; }
 
@@ -54,6 +56,7 @@ public class PlayerControl : MonoBehaviour
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
         input = GetComponent<InputCharacter>();
+        bulletmanager = GetComponent<BulletManager>();
         deathPoint = new Vector2(16, -48);
         heroGraphics.CreateHpBar();
     }
@@ -75,7 +78,6 @@ public class PlayerControl : MonoBehaviour
     {
         //worldState.print();
         //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
-        counter++;
         ReadData();
     }
 
@@ -308,13 +310,10 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
-    int counter;
     public void AddTOHashTable(int id, string state)
     {
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
-            counter = id;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
@@ -341,7 +340,6 @@ public class PlayerControl : MonoBehaviour
         }
         lastStateChecked = id;
     }
-
 
     public void Die()
     {
@@ -372,6 +370,15 @@ public class PlayerControl : MonoBehaviour
         {
             Camera.main.GetComponent<SmoothCamera2D>().FollowTarget();
         }
+    }
+
+    public void Shoot(string data)
+    {
+
+    }
+    public void DestroyBullet(string data)
+    {
+
     }
 }
 

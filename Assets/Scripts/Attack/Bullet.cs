@@ -34,13 +34,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range, int id)
+    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range)
     {
         shot = true;
         this.direction = direction;
         this.range = range;
         gravityAcceleration = gravityAcc;
-        ID = id;
     }
 
     private void Move()
