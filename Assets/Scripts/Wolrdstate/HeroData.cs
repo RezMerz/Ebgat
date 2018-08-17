@@ -39,7 +39,7 @@ public class HeroData {
     }
 
     public string GetData(){
-        return playerID + "$" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data;// + "@" + GetBulletData() + "@" + GetBulletHit();
+        return playerID + "@" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data + "@" + GetBulletData() + "@" + GetBulletHit();
     }
 
     private string GetBulletData(){
