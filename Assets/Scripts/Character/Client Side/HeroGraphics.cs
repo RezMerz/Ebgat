@@ -129,7 +129,6 @@ public class HeroGraphics : MonoBehaviour {
     }
     public void HpChange(string value)
     {
-        print(value);
         hpSlider.value = int.Parse(value) / 100;
     }
 

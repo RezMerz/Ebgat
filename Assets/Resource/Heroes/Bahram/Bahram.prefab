@@ -405,8 +405,7 @@ MonoBehaviour:
   teamName: 
   enemyTeamName: 
   canDoubleJump: 1
-  hitPointsBase: 40
-  hitPoints: 0
+  hitPointsBase: 100
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.5
