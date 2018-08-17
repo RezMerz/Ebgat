@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
     private bool start;
     private bool firstRecieved;
 
+
     private BuffManager buffManager;
     private AbilityManager abilityManager;
 
@@ -376,11 +377,24 @@ public class PlayerControl : MonoBehaviour
 
     public void Shoot(string data)
     {
-
+        string[] dataSplit = data.Split('$');
+        foreach (string dataS in dataSplit)
+        {
+            string[] deString = dataS.Split('&');
+            int id = Convert.ToInt32(deString[0]);
+            Vector2 attackSide = Toolkit.DeserializeVector(deString[1]);
+            float gravityAcc = float.Parse(deString[2]);
+            bulletmanager.Shoot(attackSide, gravityAcc, id);
+        }
     }
     public void DestroyBullet(string data)
     {
-
+        string[] dataSplit = data.Split('$');
+        foreach (string dataS in dataSplit)
+        {
+            int id = Convert.ToInt32(dataS);
+            bulletmanager.DestroyBullet(id);
+        }
     }
 }
 

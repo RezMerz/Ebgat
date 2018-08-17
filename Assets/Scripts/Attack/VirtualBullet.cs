@@ -6,12 +6,12 @@ public class VirtualBullet : MonoBehaviour
 {
 
     public Buff buff;
+    public float speed;
     public bool useGravity;
 
     private int ID;
     private float damage;
     private float range;
-    private float speed;
     private float gravitySpeedBase;
     private float gravityAcceleration;
     private BulletPhysic physic;

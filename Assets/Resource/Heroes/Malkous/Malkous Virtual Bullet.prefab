@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4546206193501974}
-  - component: {fileID: 114373126038058328}
   - component: {fileID: 114999439395002206}
   - component: {fileID: 58047122701672354}
+  - component: {fileID: 114959743718954288}
   m_Layer: 0
   m_Name: Malkous Virtual Bullet
   m_TagString: Untagged
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114373126038058328
+--- !u!114 &114959743718954288
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,11 +65,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691014189850432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8509af3900270364a8b4532f967d63b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 95217242742bc66428285bea1c95b8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buff: {fileID: 0}
-  ID: 0
+  speed: 40
+  useGravity: 1
 --- !u!114 &114999439395002206
 MonoBehaviour:
   m_ObjectHideFlags: 1
