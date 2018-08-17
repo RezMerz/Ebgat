@@ -164,6 +164,12 @@ namespace UnityEngine.Networking
                         manager.playerNumber = 1;
                     }
 
+                    ypos += spacing * 2;
+                    if(GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10 + ypos, buttonWidth, buttonHeight), "Exit")){
+                        Debug.Log("quiting");
+                        Application.Quit();
+                    }
+
                     //sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 1f);
 
                     //if (sliderValue > 0.5f)
@@ -247,6 +253,7 @@ namespace UnityEngine.Networking
                 if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Stop (X)"))
                 {
                     manager.StopHost();
+                    networkDiscovery.StopBroadcast();
                 }
                 ypos += spacing;
             }

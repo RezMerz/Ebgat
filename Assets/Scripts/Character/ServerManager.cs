@@ -128,6 +128,7 @@ public class ServerManager : NetworkBehaviour {
         int teamId = 1;
         if (currentClientCount == maxClientCount)
         {
+            networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
             for (int i = 0; i < maxClientCount; i++)
             {
                 SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
