@@ -121,9 +121,9 @@ namespace UnityEngine.Networking
                     {
                         if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
-                            //if (networkDiscovery.isClient || networkDiscovery.isServer)
-                                //networkDiscovery.StopBroadcast();
-                            networkDiscovery.Initialize();
+                            if (networkDiscovery.isClient || networkDiscovery.isServer)
+                                networkDiscovery.StopBroadcast();
+                            //networkDiscovery.Initialize();
                             networkDiscovery.StartAsServer();
                             manager.StartHost(playerCount);
                         }
@@ -257,7 +257,6 @@ namespace UnityEngine.Networking
                 if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Stop (X)"))
                 {
                     manager.StopHost();
-                    networkDiscovery.StopBroadcast();
                 }
                 ypos += spacing;
             }
