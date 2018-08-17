@@ -91,6 +91,15 @@ public class HeroGraphics : MonoBehaviour {
             }
         }
     }
+
+
+    public void HeadState(string value)
+    {
+        if (value == "1")
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+        else if (value =="2")
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
+    }
     public void ChangePosition(Vector2 pos)
     {
         transform.position = pos;
