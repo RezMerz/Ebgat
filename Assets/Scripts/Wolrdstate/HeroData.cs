@@ -32,12 +32,12 @@ public class HeroData {
         heroPhysics = new HeroPhysicsClientSide(destination, force);
     }
 
-    public void RegisterBullet(int playerID, int bulletID, float damage, Vector2 attackSide, float gravityAcc){
-        bullets.Add(playerID + "&" + bulletID + "&" + damage + "&" + attackSide + "&" + gravityAcc);
+    public void RegisterBullet(int bulletID, Vector2 attackSide, float gravityAcc){
+        bullets.Add(bulletID + "&" + attackSide + "&" + gravityAcc);
     }
 
-    public void ResiterHit(int playerID, int bulletID){
-        bulletHits.Add(playerID + "&" + bulletID);
+    public void RegiterHit(int bulletID){
+        bulletHits.Add(bulletID + "");
     }
 
     public string GetData(){
