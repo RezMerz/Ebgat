@@ -195,7 +195,14 @@ public class ServerManager : NetworkBehaviour {
 
     private void RespawnHero(PlayerInfo playerInfo){
         playerInfo.isAlive = true;
-        SpawnHero(playerInfo.clientId, playerInfo.heroId, playerInfo.teamId);
+        Debug.Log("Respawning hero");
+        for (int i = 0; i < networkManager.playerConnections.Count; i++)
+        {
+            if (networkManager.playerConnections[i].clientId == playerInfo.clientId)
+            {
+                networkManager.playerConnections[i].RpcRespawnHero();
+            }
+        }
     }
 }
 

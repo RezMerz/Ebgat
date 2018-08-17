@@ -328,6 +328,10 @@ public class PlayerControl : MonoBehaviour
     public void Die(){
         Destroy(gameObject);
     }
+
+    public void Respawn(){
+        
+    }
 }
 
 

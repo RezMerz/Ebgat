@@ -80,4 +80,10 @@ public class PlayerConnection : NetworkBehaviour {
         Debug.Log("RPC kill hero");
         playerControl.Die();
     }
+
+    [ClientRpc]
+    public void RpcRespawnHero(){
+        Debug.Log("respawn Rpc");
+        playerControl.Respawn();
+    }
 }
