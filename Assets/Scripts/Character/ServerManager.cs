@@ -123,7 +123,6 @@ public class ServerManager : NetworkBehaviour {
                     teamId = 2;
                 else
                     teamId = 1;
-                break;
             }
             UpdatePlayers();
             ClientNetworkReciever.instance.RpcUpdatePlayers();
