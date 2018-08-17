@@ -318,6 +318,7 @@ public class PlayerControl : MonoBehaviour
         switch (code)
         {
             case 'A': heroGraphics.AbilityState(value); break;
+            case 'a': heroGraphics.HeadState(value); break;
             case 'b': heroGraphics.BodyState(value); break;
             case 'c': heroGraphics.HandState(value); break;
             case 'd': heroGraphics.FeetState(value); break;

@@ -91,6 +91,15 @@ public class HeroGraphics : MonoBehaviour {
             }
         }
     }
+
+
+    public void HeadState(string value)
+    {
+        if (value == "1")
+            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+        else if (value == "2")
+            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
+    }
     public void ChangePosition(Vector2 pos)
     {
         transform.position = pos;
