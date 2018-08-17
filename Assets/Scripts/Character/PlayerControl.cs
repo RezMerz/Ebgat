@@ -78,7 +78,6 @@ public class PlayerControl : MonoBehaviour
     {
         //worldState.print();
         //Debug.Log(playerConnection + "   " + playerConnection.clientId + "   " + gameObject.GetInstanceID());
-        counter++;
         ReadData();
     }
 
