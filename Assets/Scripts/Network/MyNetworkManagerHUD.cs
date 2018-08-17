@@ -129,7 +129,7 @@ namespace UnityEngine.Networking
                         }
                         //maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
 
-                        GUI.Label(new Rect(Screen.width * 11 / 40, 0.605f * Screen.height, 0.11f * Screen.width, buttonHeight), "Player Count: " + playerCount);
+                        GUI.Label(new Rect(Screen.width * 11 / 40, 0.605f * Screen.height, 0.11f * Screen.width, buttonHeight), "Players Count: " + playerCount);
                         playerCount =(int) GUI.HorizontalSlider(new Rect(Screen.width *0.395f,0.62f * Screen.height , 0.08f * Screen.width, buttonHeight), playerCount, 1f,maxPlayer);
 
                         // ypos += spacing;
