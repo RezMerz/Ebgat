@@ -56,7 +56,9 @@ public class BahramGraphics : HeroGraphics{
             animator.SetTrigger("Jump");
         }
         else if (value == "4")
-            print(EFeetState.NoGravity);
+        {
+            //print(EFeetState.NoGravity);
+        }
         else if (value == "5")
             animator.SetTrigger("DoubleJump");
         else

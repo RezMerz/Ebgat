@@ -121,8 +121,9 @@ namespace UnityEngine.Networking
                     {
                         if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
-                            if (networkDiscovery.isClient)
+                            if (networkDiscovery.isClient || networkDiscovery.isServer)
                                 networkDiscovery.StopBroadcast();
+                            //networkDiscovery.Initialize();
                             networkDiscovery.StartAsServer();
                             manager.StartHost(playerCount);
                         }
@@ -136,6 +137,9 @@ namespace UnityEngine.Networking
 
                     if (GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Client"))
                     {
+                        //if (networkDiscovery.isServer || networkDiscovery.isClient)
+                            //networkDiscovery.StopBroadcast();
+                        networkDiscovery.Initialize();
                         networkDiscovery.StartAsClient();
                     }
 
@@ -162,6 +166,12 @@ namespace UnityEngine.Networking
                     {
                         malkousSelect = false;
                         manager.playerNumber = 1;
+                    }
+
+                    ypos += spacing * 2;
+                    if(GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 6.2f / 10, buttonWidth, buttonHeight), "Exit")){
+                        Debug.Log("quiting");
+                        Application.Quit();
                     }
 
                     //sliderValue = GUI.HorizontalSlider(new Rect(xpos + 65, ypos, 60, 20), sliderValue, 0f, 1f);

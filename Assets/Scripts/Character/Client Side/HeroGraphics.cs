@@ -52,8 +52,10 @@ public class HeroGraphics : MonoBehaviour {
     
     public void HpChange(string value)
     {
-        TakeDamage();
-        hpSlider.value = float.Parse(value) / 100;
+        float hp = float.Parse(value);
+        if(hp<100)
+            TakeDamage();
+        hpSlider.value = hp / 100;
     }
 
     public void CreateHpBar()
@@ -90,6 +92,15 @@ public class HeroGraphics : MonoBehaviour {
                 hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
             }
         }
+    }
+
+
+    public void HeadState(string value)
+    {
+        if (value == "1")
+            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+        else if (value == "2")
+            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
     }
     public void ChangePosition(Vector2 pos)
     {
