@@ -37,6 +37,7 @@ public class MalkousAttack : Attack
     }
     public override void AttackPressed()
     {
+        if(charStats.HeadState != EHeadState.Stunned)
         if (cooldownTimer <= 0)
         {
             timer = 0;
