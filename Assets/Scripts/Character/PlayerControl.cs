@@ -169,8 +169,8 @@ public class PlayerControl : MonoBehaviour
     {
         //heroGraphics.TakeDamage();
         print("Took Damage");
-        charStats.hitPoints -= damage;
-        if (charStats.hitPoints <= 0)
+        charStats.HitPoints -= damage;
+        if (charStats.HitPoints <= 0)
         {
             print("Dead");
             if (playerConnection.isServer)
@@ -298,7 +298,6 @@ public class PlayerControl : MonoBehaviour
     // gets the code and value of datas
     private void Deserilize(char code, string value)
     {
-        print(code);
         switch (code)
         {
             case 'A': heroGraphics.AbilityState(value); break;

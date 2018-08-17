@@ -64,8 +64,9 @@ public class CharacterAttributes : MonoBehaviour {
     public float Armor{
         get { return armor; }
         set {if(value != armor) { armor = value; playerControl.worldState.RegisterCharStat(ID, 'f', value + ""); }}
-    } //f      
-    public float hitPoints;
+    } //f 
+     
+    private float hitPoints;
     public float HitPoints {
         get { return hitPoints; }
         set { if (value != hitPoints) { hitPoints = value; print(hitPoints); playerControl.worldState.RegisterCharStat(ID, 'g', value + ""); } }
