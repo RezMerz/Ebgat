@@ -333,6 +333,10 @@ public class PlayerControl : MonoBehaviour
         input.start = false;
         Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
     }
+
+    public void Respawn(){
+        
+    }
 }
 
 
