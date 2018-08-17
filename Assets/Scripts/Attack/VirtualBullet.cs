@@ -8,10 +8,10 @@ public class VirtualBullet : MonoBehaviour
     public Buff buff;
     public float speed;
     public bool useGravity;
+    public float range;
 
     private int ID;
     private float damage;
-    private float range;
     private float gravitySpeedBase;
     private float gravityAcceleration;
     private BulletPhysic physic;
@@ -36,8 +36,9 @@ public class VirtualBullet : MonoBehaviour
         }
     }
 
-    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc, float range,PlayerControl pl,int id)
+    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc,PlayerControl pl,int id)
     {
+        Debug.Log("shot");
         shot = true;
         physic.SetData(layer);
         this.direction = direction;
@@ -52,6 +53,7 @@ public class VirtualBullet : MonoBehaviour
     {
         if (distance < range)
         {
+            Debug.Log("move");
             Vector2 force = direction.normalized * speed * Time.deltaTime;
             distanceVector += force;
             distance = distanceVector.magnitude;
@@ -77,6 +79,7 @@ public class VirtualBullet : MonoBehaviour
 
     private void HitFunction(RaycastHit2D hitObject)
     {
+        Debug.Log(hitObject.collider);
         if (hitObject.collider.tag.Equals("Player"))
         {
             var enemy = hitObject.collider.gameObject;
@@ -96,6 +99,7 @@ public class VirtualBullet : MonoBehaviour
 
     private void Destroy()
     {
+
         /// send destroyed massage
         Destroy(gameObject);
         playerControl.worldState.BulletHit(playerControl.playerId, ID);

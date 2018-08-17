@@ -71,6 +71,7 @@ MonoBehaviour:
   buff: {fileID: 0}
   speed: 40
   useGravity: 1
+  range: 100
 --- !u!114 &114999439395002206
 MonoBehaviour:
   m_ObjectHideFlags: 1
