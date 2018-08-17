@@ -3988,7 +3988,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4030,6 +4030,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   target: {fileID: 0}
+  zoomoutSize: 25
+  zoominSize: 15
+  targetZoomSize: 0
 --- !u!1001 &373792098
 Prefab:
   m_ObjectHideFlags: 0

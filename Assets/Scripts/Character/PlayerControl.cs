@@ -21,6 +21,8 @@ public class PlayerControl : MonoBehaviour
     public CharacterPhysic physic { get; private set; }
     public PlayerConnection playerConnection;// { get; set; }
 
+    private InputCharacter input;
+
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
     private int lastStateChecked ;
@@ -49,6 +51,7 @@ public class PlayerControl : MonoBehaviour
         attack = GetComponent<Attack>();
         buffManager = GetComponent<BuffManager>();
         abilityManager = GetComponent<AbilityManager>();
+        input = GetComponent<InputCharacter>();
     }
 
     void Start()
@@ -325,8 +328,10 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    public void Die(){
-        Destroy(gameObject);
+    public void Die()
+    {
+        input.start = false;
+        Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
     }
 }
 

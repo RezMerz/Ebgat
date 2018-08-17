@@ -17,7 +17,7 @@ public class InputCharacter : MonoBehaviour
     private bool axisYChanged;
     private float axisY;
     private float axisX;
-    private bool start;
+    public bool start { get;set; }
 	// Use this for initialization
 	void Start ()
     {
