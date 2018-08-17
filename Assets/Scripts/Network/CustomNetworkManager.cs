@@ -54,6 +54,16 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        Debug.Log("Disconected form server");
+    }
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        Debug.Log("Client disconnected");
+    }
+
     public void StartHost(int maxPlayerCount)
     {
         this.maxPlayerCount = maxPlayerCount;
