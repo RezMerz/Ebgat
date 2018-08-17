@@ -7,10 +7,10 @@ using UnityEngine.Networking;
 public class Bullet : MonoBehaviour
 {
     public bool useGravity;
+    public float speed;
+    public float range;
 
     private int ID;
-    private float range;
-    private float speed;
     private float gravitySpeedBase;
     private float gravityAcceleration;
     private BulletPhysic physic;
@@ -34,11 +34,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range)
+    public void Shoot(Vector2 direction, int layer, float gravityAcc)
     {
         shot = true;
+        physic.SetData(layer);
         this.direction = direction;
-        this.range = range;
         gravityAcceleration = gravityAcc;
     }
 
