@@ -30,7 +30,7 @@ public class BulletManager : MonoBehaviour {
     {
         var bullet = Instantiate(this.bullet, transform.position, Quaternion.identity);
         shotBullets.Add(id, bullet);
-        bullet.Shoot(direction,layerMask, gravityAcc,);
+        bullet.Shoot(direction,layerMask, gravityAcc);
     }
     public void DestroyBullet(int id)
     {

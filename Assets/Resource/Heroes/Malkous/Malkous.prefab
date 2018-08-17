@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 114108135820462582}
   - component: {fileID: 114098260815372376}
   - component: {fileID: 82839251275574280}
+  - component: {fileID: 114564812086386430}
   m_Layer: 0
   m_Name: Malkous
   m_TagString: Player
@@ -464,8 +465,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3,
     type: 2}
-  virttualBullet: {fileID: 0}
-  maxHoldTime: 0
+  virttualBullet: {fileID: 114959743718954288, guid: 5644204ab404d3e4882e04645e872fed,
+    type: 2}
+  maxHoldTime: 2
   damageMultiplier: 1
 --- !u!114 &114108135820462582
 MonoBehaviour:
@@ -505,6 +507,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 0
   hitType: 2
+--- !u!114 &114564812086386430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43b15e64de82e14eb7882ca9f402673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
 --- !u!114 &114667824745434310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -580,7 +594,6 @@ MonoBehaviour:
   enemyTeamName: 
   canDoubleJump: 0
   hitPointsBase: 40
-  hitPoints: 0
   attackDamageBase: 15
   attackAnimationTimeBase: 0
   attackCooldownBase: 0.5
