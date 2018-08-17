@@ -84,9 +84,9 @@ public class CustomNetworkManager : NetworkManager {
         base.StartHost();
     }
 
-    public override void OnClientConnect(NetworkConnection conn)
+    /*public override void OnClientConnect(NetworkConnection conn)
     {
         if(ServerManager.instance.currentClientCount < ServerManager.instance.maxClientCount)
             base.OnClientConnect(conn);
-    }
+    }*/
 }
