@@ -380,6 +380,8 @@ public class PlayerControl : MonoBehaviour
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
         {
+            if (dataS.Equals(""))
+                continue;
             string[] deString = dataS.Split('&');
             int id = Convert.ToInt32(deString[0]);
             Vector2 attackSide = Toolkit.DeserializeVector(deString[1]);
@@ -392,6 +394,8 @@ public class PlayerControl : MonoBehaviour
         string[] dataSplit = data.Split('$');
         foreach (string dataS in dataSplit)
         {
+            if (dataS.Equals(""))
+                continue;
             int id = Convert.ToInt32(dataS);
             bulletmanager.DestroyBullet(id);
         }
