@@ -172,7 +172,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (buffName != "")
         {
-            print(buffName);
             buffManager.ActivateBuff(buffName);
         }
         TakeDamage(damage);
@@ -185,11 +184,9 @@ public class PlayerControl : MonoBehaviour
     private void TakeDamage(float damage)
     {
         //heroGraphics.TakeDamage();
-        print("Took Damage");
         charStats.HitPoints -= damage;
         if (charStats.HitPoints <= 0)
         {
-            print("Dead");
             if (playerConnection.isServer)
             {
                 ServerManager.instance.KillHero(playerConnection.clientId);
@@ -231,7 +228,6 @@ public class PlayerControl : MonoBehaviour
 
     public void Ability1Pressed()
     {
-        print("Ability 1");
         abilityManager.Ability1Pressed();
     }
 
