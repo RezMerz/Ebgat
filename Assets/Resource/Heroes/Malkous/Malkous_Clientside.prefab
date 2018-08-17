@@ -56,12 +56,12 @@ GameObject:
   - component: {fileID: 61504289847547406}
   - component: {fileID: 114006569559281598}
   - component: {fileID: 114667824745434310}
-  - component: {fileID: 114721468437727338}
   - component: {fileID: 114352001818264730}
   - component: {fileID: 114108135820462582}
   - component: {fileID: 95267049145148780}
   - component: {fileID: 82839251275574280}
   - component: {fileID: 114688218718620592}
+  - component: {fileID: 114890960111783770}
   m_Layer: 0
   m_Name: Malkous_Clientside
   m_TagString: Player
@@ -205,7 +205,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a831cc97f0461fc4c9244f3d7336c7fc, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -336,7 +336,7 @@ Animator:
   m_GameObject: {fileID: 1341430771966434}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 93963f1f92c66404fb9439a042d15ac9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4df25adc5ecb5d641ab3827a75f8d4ea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
---- !u!114 &114721468437727338
+--- !u!114 &114890960111783770
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341430771966434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98253be33f29374428602f2e070498f2, type: 3}
+  m_Script: {fileID: 11500000, guid: e8378ae328f4b28428adc8378b54d415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212187683706714660
@@ -581,7 +581,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!212 &212646341278126836
@@ -627,7 +627,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!212 &212745303249736910
@@ -673,7 +673,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!212 &212959272303692872
