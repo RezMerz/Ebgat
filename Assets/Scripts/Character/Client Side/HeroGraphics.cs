@@ -16,6 +16,12 @@ public class HeroGraphics : MonoBehaviour {
         StartCoroutine(DamageColorTimer(0.1f));
     }
 
+    IEnumerator DamageColorTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        sprite.color = Color.white;
+    }
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -46,6 +52,7 @@ public class HeroGraphics : MonoBehaviour {
     
     public void HpChange(string value)
     {
+        TakeDamage();
         hpSlider.value = float.Parse(value) / 100;
     }
 
@@ -99,9 +106,5 @@ public class HeroGraphics : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
-    IEnumerator DamageColorTimer(float time)
-    {
-        yield return new WaitForSeconds(time);
-        sprite.color = playerControl.color;
-    }
+
 }
