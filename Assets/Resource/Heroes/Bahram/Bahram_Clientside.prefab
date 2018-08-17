@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114128794276802862}
   - component: {fileID: 95622444841042292}
   - component: {fileID: 82397943080947130}
+  - component: {fileID: 114075672439317394}
   m_Layer: 0
   m_Name: Bahram_Clientside
   m_TagString: Player
@@ -346,6 +347,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114075672439317394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &114128794276802862
 MonoBehaviour:
   m_ObjectHideFlags: 1
