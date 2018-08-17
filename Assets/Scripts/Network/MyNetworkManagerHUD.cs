@@ -121,8 +121,9 @@ namespace UnityEngine.Networking
                     {
                         if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
-                            if(networkDiscovery.isClient)
-                                networkDiscovery.StartAsServer();
+                            if (networkDiscovery.isClient)
+                                networkDiscovery.StopBroadcast();
+                            networkDiscovery.StartAsServer();
                             manager.StartHost(playerCount);
                         }
                         //maxPlayerCount = GUI.TextField(new Rect(xpos + 200, ypos, 50, 20), maxPlayerCount);
