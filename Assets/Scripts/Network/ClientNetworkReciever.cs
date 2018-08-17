@@ -40,8 +40,10 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 if (id == 0 || id > playerControls.Count)
                     continue;
                 playerControls[id - 1].AddTOHashTable(frameBaseId + i, rawData[1]);
-                playerControls[id - 1].Shoot(rawData[2]);
-                playerControls[id - 1].DestroyBullet(rawData[3]);
+                if(!rawData[2].Equals(""))
+                    playerControls[id - 1].Shoot(rawData[2]);
+                if(!rawData[3].Equals(""))
+                    playerControls[id - 1].DestroyBullet(rawData[3]);
             }
         }
     }
