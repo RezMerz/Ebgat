@@ -15,6 +15,7 @@ public class InputCharacter : MonoBehaviour
     private AbilityManager abilityManager;
     private bool axisXChanged;
     private bool axisYChanged;
+    private bool newAxisChanged;
     private float axisY;
     private float axisX;
     public bool start { get;set; }
@@ -32,7 +33,6 @@ public class InputCharacter : MonoBehaviour
 
         axisX = Input.GetAxis("Horizontal");
         axisY = Input.GetAxis("Vertical");
-
         // Move left and Right
         if ((!axisXChanged && axisX > 0.3 || axisX < -0.3))
         {
@@ -108,12 +108,12 @@ public class InputCharacter : MonoBehaviour
         if (axisY < -0.1f)
         {
             clientNetworkSender.DropDownPressed();
-            axisYChanged = true;
+            newAxisChanged = true;
         }
-        else if (axisYChanged && axisY == 0)
+        else if (newAxisChanged && axisY == 0)
         {
             clientNetworkSender.DropDownReleased();
-            axisYChanged = false;
+            newAxisChanged = false;
         }
     }
 
