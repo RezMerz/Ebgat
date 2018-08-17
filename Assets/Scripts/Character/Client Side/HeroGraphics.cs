@@ -98,7 +98,7 @@ public class HeroGraphics : MonoBehaviour {
         if (value == "1")
             transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
         else if (value == "2")
-            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false; = true;
+            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
     }
     public void ChangePosition(Vector2 pos)
     {
