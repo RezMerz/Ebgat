@@ -136,6 +136,8 @@ namespace UnityEngine.Networking
 
                     if (GUI.Button(new Rect(Screen.width * 13 / 40 + buttonWidth, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Client"))
                     {
+                        if (networkDiscovery.isServer)
+                            networkDiscovery.StopBroadcast();
                         networkDiscovery.StartAsClient();
                     }
 
