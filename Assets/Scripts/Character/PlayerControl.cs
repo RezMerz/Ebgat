@@ -241,7 +241,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void Ability2Pressed()
     {
-
+        abilityManager.Ability2Pressed();
     }
 
     public void Ability2Hold()

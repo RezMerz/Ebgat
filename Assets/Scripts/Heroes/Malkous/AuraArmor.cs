@@ -13,6 +13,7 @@ public class AuraArmor : Ability{
         {
             coolDownLock = true;
             abilityUse = true;
+            StartCoroutine(CoolDownTimer(coolDownTime));
         }
     }
 

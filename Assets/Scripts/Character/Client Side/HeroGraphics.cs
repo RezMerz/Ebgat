@@ -9,7 +9,8 @@ public class HeroGraphics : MonoBehaviour {
     protected AudioSource audioSource;
     private Slider hpSlider;
     private GameObject hpSliderParent;
-
+    protected Animator land;
+    protected Animator abilityEffect;
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -24,7 +25,16 @@ public class HeroGraphics : MonoBehaviour {
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "Effect")
+            {
+                land = transform.GetChild(i).GetComponent<Animator>();
+            }
+            else if(transform.GetChild(i).tag == "AbilityEffect")
+                abilityEffect = transform.GetChild(i).GetComponent<Animator>();
+        }
+            audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerControl = GetComponent<PlayerControl>();
@@ -56,6 +66,11 @@ public class HeroGraphics : MonoBehaviour {
         if(hp<100)
             TakeDamage();
         hpSlider.value = hp / 100;
+    }
+
+    public void BulletShoot(GameObject bullet, Vector2 direction)
+    {
+
     }
 
     public void CreateHpBar()

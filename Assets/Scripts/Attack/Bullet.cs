@@ -18,10 +18,11 @@ public class Bullet : MonoBehaviour
     private Vector2 distanceVector;
     private Vector2 direction;
     private bool shot;
-
+    private Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         physic = GetComponent<BulletPhysic>();
 
     }
@@ -74,9 +75,11 @@ public class Bullet : MonoBehaviour
     {
         if (hitObject.collider != null)
         {
-            Destroy();
+            animator.SetTrigger("Hit");
+            
         }
     }
+    
 
     private void Destroy()
     {

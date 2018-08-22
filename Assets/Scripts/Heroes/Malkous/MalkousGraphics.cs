@@ -16,7 +16,9 @@ public class MalkousGraphics : HeroGraphics {
     {
         if (value == "1")
         {
+            animator.SetTrigger("Ulti");
             animator.SetBool("Ability1", true);
+            abilityEffect.SetTrigger("Ulti");
         }
         else if (value == "2")
         {
@@ -24,10 +26,12 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
-            // Ability 2 Start
+            
+            animator.SetTrigger("Ulti");
         }
         else if (value == "4")
         {
+            
             // Ability 2 Finish
         }
     }

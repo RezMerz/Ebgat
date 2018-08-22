@@ -8,6 +8,8 @@ TagManager:
   - PlayerConnection
   - Block
   - Bridge
+  - Effect
+  - AbilityEffect
   layers:
   - Default
   - TransparentFX

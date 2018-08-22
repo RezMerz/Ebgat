@@ -49,7 +49,13 @@ public class BulletManager : MonoBehaviour {
         {
             Bullet bullet = shotBullets[id] as Bullet;
             shotBullets.Remove(id);
-            Destroy(bullet.gameObject);
+            StartCoroutine(BulletDestroy());
         }
+    }
+
+    private IEnumerator BulletDestroy()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Destroy(bullet.gameObject);
     }
 }

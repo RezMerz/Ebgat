@@ -32,7 +32,8 @@ public class AbilityManager : MonoBehaviour {
     }
     public void Ability2Pressed()
     {
-
+        if (charStats.HeadState != EHeadState.Stunned)
+            ability2.AbilityKeyPrssed();
     }
 
     public void Ability2Hold()
