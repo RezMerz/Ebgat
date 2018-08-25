@@ -30,9 +30,10 @@ public class CharacterMove : MonoBehaviour
     {
         if (playerControl.IsServer())
         {
-            if(charStats.HandState != EHandState.Idle)
+            if(charStats.HandState == EHandState.Attacking || charStats.HandState == EHandState.Casting )
             {
                 charStats.ResetMoveSpeed();
+                return;
             }
             if (charStats.BodyState == EBodyState.Moving)
                 if (charStats.HeadState == EHeadState.Stunned)
