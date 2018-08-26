@@ -44,8 +44,7 @@ public class Malkousan : Ability {
         Collider2D[] hitObjects = Physics2D.OverlapBoxAll(transform.position, size, 0, layer);
         foreach (Collider2D hit in hitObjects)
         {
-            print("hit");
-            //hit.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+            hit.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
         }
         
     }
