@@ -9,10 +9,14 @@ public class AbilityManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         charStats = GetComponent<CharacterAttributes>();
-       if (GetComponents<Ability>().Length>=1)
-            ability1 =  GetComponents<Ability>()[0];
-       if (GetComponents<Ability>().Length >= 2)
-            ability2 = GetComponents<Ability>()[1];
+        Ability[] abilities = GetComponents<Ability>();
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            if (abilities[i].abilityNumber == 1)
+                ability1 = abilities[i];
+            else if (abilities[i].abilityNumber == 2)
+                ability2 = abilities[i];
+        }
 	}
 
     public void Ability1Pressed()

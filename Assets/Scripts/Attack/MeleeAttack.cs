@@ -40,6 +40,7 @@ public class MeleeAttack : Attack
     protected override void ApplyAttack()
     {
         RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
+        print(charStats.AttackDamage);
         foreach (RaycastHit2D target in targets)
         {
             if (target.collider.tag.Equals("Player"))

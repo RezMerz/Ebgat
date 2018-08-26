@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 114610447254143576}
   - component: {fileID: 82397943080947130}
   - component: {fileID: 114489874745135552}
+  - component: {fileID: 114408555347372122}
   m_Layer: 0
   m_Name: Bahram
   m_TagString: Player
@@ -528,6 +529,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &114408555347372122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ed2526fa5f9d242ac3e235e2d97caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDownTime: 5
+  castTime: 0
+  animationTime: 0
+  buff: {fileID: 114648076683127938, guid: 209b23f7c34a9dd45a2dada2af167cc9, type: 2}
+  abilityNumber: 2
 --- !u!114 &114422898562219348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -567,6 +584,7 @@ MonoBehaviour:
   castTime: 0
   animationTime: 0
   buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
+  abilityNumber: 1
   speed: 50
   range: 7
   damage: 0
@@ -618,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffListRefrence:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
+  - {fileID: 114648076683127938, guid: 209b23f7c34a9dd45a2dada2af167cc9, type: 2}
 --- !u!212 &212044895692025378
 SpriteRenderer:
   m_ObjectHideFlags: 1

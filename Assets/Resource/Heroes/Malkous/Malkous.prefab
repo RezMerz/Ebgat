@@ -518,7 +518,7 @@ MonoBehaviour:
   castTime: 0
   animationTime: 0
   buff: {fileID: 0}
-  buff: {fileID: 0}
+  abilityNumber: 1
   radius: 0
 --- !u!114 &114098260815372376
 MonoBehaviour:
@@ -577,6 +577,7 @@ MonoBehaviour:
   castTime: 0
   animationTime: 0
   buff: {fileID: 0}
+  abilityNumber: 2
 --- !u!114 &114228986464155946
 MonoBehaviour:
   m_ObjectHideFlags: 1
