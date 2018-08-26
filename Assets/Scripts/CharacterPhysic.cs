@@ -126,6 +126,7 @@ public class CharacterPhysic : Physic
             {
                 if(direction.y < 0)
                 {
+                    charstats.ResetGravitySpeed();
                     AddPersistentForce(Vector2.up * charstats.JumpSpeed, 4);
                 }
                 switch (hitType)
