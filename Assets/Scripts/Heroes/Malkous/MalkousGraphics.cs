@@ -14,25 +14,24 @@ public class MalkousGraphics : HeroGraphics {
 
     public override void AbilityState(string value)
     {
+        print(value);
         if (value == "1")
         {
-            animator.SetTrigger("Ulti");
-            animator.SetBool("Ability1", true);
-            abilityEffect.SetTrigger("Ulti");
+
         }
         else if (value == "2")
         {
-            animator.SetBool("Ability1", false);
+
         }
         else if (value == "3")
         {
-            
-            animator.SetTrigger("Ulti");
+            animator.SetBool("Ulti", true);
+            abilityEffect.SetBool("Ulti", true);
         }
         else if (value == "4")
         {
-            
-            // Ability 2 Finish
+            animator.SetBool("Ulti", false);
+            abilityEffect.SetBool("Ulti", false);
         }
     }
     public override void BodyState(string value)

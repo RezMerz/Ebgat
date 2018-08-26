@@ -578,6 +578,10 @@ MonoBehaviour:
   animationTime: 0
   buff: {fileID: 0}
   abilityNumber: 2
+  time: 3
+  interval: 0.3
+  damage: 10
+  size: {x: 3, y: 3}
 --- !u!114 &114228986464155946
 MonoBehaviour:
   m_ObjectHideFlags: 1
