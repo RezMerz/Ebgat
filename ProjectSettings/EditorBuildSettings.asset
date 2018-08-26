@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/networkScene jadid.unity
     guid: 56a9aebcb3384e34d93f0b2c041f3675
   - enabled: 0
@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Final/LobbySceneHost.unity
     guid: 62f9c15b08e4c495b88ec542f1a0f0d6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/networkScene Hp Bar.unity
     guid: 05636822ed41a164b9263efea38c0f2f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/OfflineScene.unity
     guid: d290195ec7a4e416aa8492becece783f
   - enabled: 1
