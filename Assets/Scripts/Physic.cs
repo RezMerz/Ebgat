@@ -27,22 +27,23 @@ abstract public class Physic : MonoBehaviour
     {
         for (int i = 0;i < persitentForces.Count; i++) 
         {
-            var pForce = persitentForces[i];
-            pForce.vectorSum += pForce.force * Time.deltaTime;
-            if(pForce.vectorSum.magnitude > pForce.distance)
+            persitentForces[i].vectorSum += persitentForces[i].force * Time.deltaTime;
+            if(persitentForces[i].vectorSum.magnitude > persitentForces[i].distance)
             {
-                AddForce(pForce.force.normalized * (pForce.vectorSum.magnitude - pForce.distance));
-                persitentForces.Remove(pForce);
+                Debug.Log("foce end");
+                AddForce(persitentForces[i].force.normalized * (persitentForces[i].vectorSum.magnitude - persitentForces[i].distance));
+                persitentForces.Remove(persitentForces[i]);
+
             }
             else
             {
-                AddForce(pForce.force * Time.deltaTime);
+                AddForce(persitentForces[i].force * Time.deltaTime);
             }
         }
     }
     protected abstract void Calculate();
 }
-public struct PersitentForce
+public class PersitentForce
 {
     public Vector2 force;
     public Vector2 vectorSum;

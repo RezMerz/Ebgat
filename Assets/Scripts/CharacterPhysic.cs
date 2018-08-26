@@ -122,19 +122,20 @@ public class CharacterPhysic : Physic
         if (vHits.Count > 0)
         {
             var hit = vHits[0].collider;
-            if (hit.tag == "Player")
+            if (hit.tag == "Player" || hit.tag == "jump")
             {
                 if(direction.y < 0)
                 {
+                    Debug.Log("on the head");
                     charstats.ResetGravitySpeed();
-                    AddPersistentForce(Vector2.up * charstats.JumpSpeed, 4);
+                    AddPersistentForce(Vector2.up * charstats.JumpSpeed, 5);
                 }
                 switch (hitType)
                 {
                     case HitType.Push:
                         break;
                     case HitType.Throw:
-                        hit.gameObject.GetComponent<CharacterPhysic>().AddForce(Vector2.up * (direction.y));
+                      //  hit.gameObject.GetComponent<CharacterPhysic>().AddForce(Vector2.up * (direction.y));
                         break;
                 }
 
