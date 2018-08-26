@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AtashBahram : Ability {
     private BuffManager buffManager;
+
+    void Start()
+    {
+        buffManager = GetComponent<BuffManager>();
+    }
     public override void AbilityKeyPrssed()
     {
         if (!coolDownLock)
@@ -11,7 +16,8 @@ public class AtashBahram : Ability {
             coolDownLock = true;
             StartCoroutine(CoolDownTimer(coolDownTime));
             buffManager.DebuffAllCharacter();
-            buffManager.ActivateBuff("AtashBahramBuff");
+            charStats.AbilityState = EAbility.Ability2Start;
+            buffManager.ActivateBuff(buff.name);
         }
     }
 

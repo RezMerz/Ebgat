@@ -11,7 +11,7 @@ public abstract class Ability : MonoBehaviour
     public float animationTime;
     protected bool coolDownLock;
     public Buff buff;
-
+    public int abilityNumber;
     protected CharacterAttributes charStats;
     public bool abilityUseServerside { get; set; }
     public bool abilityUseClientside { get; set; }

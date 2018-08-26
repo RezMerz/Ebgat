@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AuraArmor : Ability{
-    public Buff buff;
     public int radius;
     private bool abilityUse;
 
