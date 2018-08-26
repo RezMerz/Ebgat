@@ -577,12 +577,12 @@ MonoBehaviour:
   coolDownTime: 0
   castTime: 0
   animationTime: 0
-  buff: {fileID: 0}
+  buff: {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   abilityNumber: 2
   time: 3
   interval: 0.3
   damage: 10
-  size: {x: 3, y: 3}
+  size: {x: 15, y: 8}
 --- !u!114 &114228986464155946
 MonoBehaviour:
   m_ObjectHideFlags: 1
