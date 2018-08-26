@@ -47,7 +47,10 @@ public class BahramGraphics : HeroGraphics{
     public override void FeetState(string value)
     {
         if (value == "1")
+        {
+            land.SetTrigger("Land");
             animator.SetTrigger("OnGround");
+        }
         else if (value == "2")
             animator.SetTrigger("Fall");
         else if (value == "3")
