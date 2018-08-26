@@ -14,7 +14,8 @@ public class Malkousan : Ability {
 
     void Start()
     {
-        layer = LayerMask.GetMask(charStats.enemyTeamName);
+        layer = LayerMask.GetMask(charStats.enemyTeamName, "Dummy");
+        print(layer);
     }
 	// Use this for initialization
     public override void AbilityKeyPrssed()
@@ -41,8 +42,11 @@ public class Malkousan : Ability {
     private void DamageEnemies()
     {
         Collider2D[] hitObjects = Physics2D.OverlapBoxAll(transform.position, size, 0, layer);
-        foreach(Collider2D hit in hitObjects)
-            hit.GetComponent<PlayerControl>().TakeAttack(damage,buff.name);
+        foreach (Collider2D hit in hitObjects)
+        {
+            print("hit");
+            //hit.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+        }
         
     }
     private IEnumerator UltiTime()
@@ -55,6 +59,7 @@ public class Malkousan : Ability {
     {
         charStats.AbilityState = EAbility.Ability2Finish;
         abilityUse = false;
+        StopCoroutine(intervalCo);
     }
 
     public override void AbilityKeyHold()
