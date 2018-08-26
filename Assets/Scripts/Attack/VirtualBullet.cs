@@ -7,9 +7,8 @@ public class VirtualBullet : MonoBehaviour
 
     public Buff buff;
     public float speed;
-    public bool useGravity;
-    public float range;
 
+    private float range;
     private int ID;
     private float damage;
     private float gravitySpeedBase;
@@ -36,7 +35,7 @@ public class VirtualBullet : MonoBehaviour
         }
     }
 
-    public void Shoot(float damage, Vector2 direction,int layer, float gravityAcc,PlayerControl pl,int id)
+    public void Shoot(float damage, Vector2 direction, int layer, float gravityAcc, PlayerControl pl, int id,float range)
     {
         shot = true;
         physic.SetData(layer);
@@ -50,29 +49,17 @@ public class VirtualBullet : MonoBehaviour
 
     private void MoveServerSide()
     {
-        if (distance < range)
+        Vector2 force = direction.normalized * speed * Time.deltaTime;
+        distanceVector += force;
+        distance = distanceVector.magnitude;
+        Vector2 gravityForce = Vector2.zero;
+        if (distance > range)
         {
-            Vector2 force = direction.normalized * speed * Time.deltaTime;
-            distanceVector += force;
-            distance = distanceVector.magnitude;
-            if (distance > range)
-            {
-                force = direction.normalized * (distance - range);
-                distance = range;
-            }
-            Vector2 gravityForce = Vector2.zero;
-            if (useGravity)
-            {
-                gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
-                gravitySpeedBase += gravityAcceleration * Time.deltaTime;
-            }
-            physic.AddForce(force + gravityForce);
-            physic.BulletAction += HitFunction;
+            gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
+            gravitySpeedBase += gravityAcceleration * Time.deltaTime;
         }
-        else
-        {
-            Destroy();
-        }
+        physic.AddForce(force + gravityForce);
+        physic.BulletAction += HitFunction;
     }
 
     private void HitFunction(RaycastHit2D hitObject)
@@ -100,6 +87,6 @@ public class VirtualBullet : MonoBehaviour
         /// send destroyed massage
         Destroy(gameObject);
         playerControl.worldState.BulletHit(playerControl.playerId, ID);
-        
+
     }
 }

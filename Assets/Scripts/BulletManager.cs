@@ -26,7 +26,7 @@ public class BulletManager : MonoBehaviour {
         }
     }
 
-    public void Shoot(Vector2 direction,float gravityAcc, int id)
+    public void Shoot(Vector2 direction,float gravityAcc, int id,float range)
     {
         Vector2 side;
         if (playerControl.IsServer())
@@ -37,11 +37,9 @@ public class BulletManager : MonoBehaviour {
         {
             side = playerControl.charStatsClient.Side;
         }
-
-
         Bullet bullet = Instantiate(this.bullet, transform.position + (Vector3)side * 2 + Vector3.up * 0.5f, Quaternion.identity);
         shotBullets.Add(id, bullet);
-        bullet.Shoot(direction,layerMask, gravityAcc);
+        bullet.Shoot(direction,layerMask, gravityAcc,range);
     }
     public void DestroyBullet(int id)
     {
@@ -49,13 +47,13 @@ public class BulletManager : MonoBehaviour {
         {
             Bullet bullet = shotBullets[id] as Bullet;
             shotBullets.Remove(id);
-            StartCoroutine(BulletDestroy());
+            StartCoroutine(BulletDestroy(bullet));
         }
     }
 
-    private IEnumerator BulletDestroy()
+    private IEnumerator BulletDestroy(Bullet bullet)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(bullet.gameObject);
     }
 }

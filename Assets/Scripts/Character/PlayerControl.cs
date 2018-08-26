@@ -396,7 +396,8 @@ public class PlayerControl : MonoBehaviour
             int id = Convert.ToInt32(deString[0]);
             Vector2 attackSide = Toolkit.DeserializeVector(deString[1]);
             float gravityAcc = float.Parse(deString[2]);
-            bulletmanager.Shoot(attackSide, gravityAcc, id);
+            float range = float.Parse(deString[3]);
+            bulletmanager.Shoot(attackSide, gravityAcc, id,range);
         }
     }
     public void DestroyBullet(string data)

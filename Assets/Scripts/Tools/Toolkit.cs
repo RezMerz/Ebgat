@@ -60,7 +60,7 @@ public class Toolkit : MonoBehaviour {
             RaycastHit2D hitPoint = Physics2D.Raycast(rayOrigin - multiplier * (i + k), direction, distance, layerNumber, 0, 0);
             if (hitPoint.collider != null)
             {
-                if (!hitPoint.collider.tag.Equals("Bridge")|| HitSide(hitPoint) == Vector2.up)
+                if (!hitPoint.collider.tag.Equals("Bridge")|| HitUpCheck(hitPoint))
                 {
                     hit = true;
                     hitObjects.Add(hitPoint);
@@ -79,23 +79,37 @@ public class Toolkit : MonoBehaviour {
     public static Vector2 HitSide(RaycastHit2D hit)
     {
         Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
+        Vector2 side = Vector2.zero;
+        Vector2 direction = hit.point - (Vector2)hit.transform.position;
+        float angle = Vector2.SignedAngle(direction, Vector2.up);
+        if(angle >= -45 && angle <= 45)
+        {
+            side = Vector2.up;
+        }
+        else if (angle > 45 &&  angle<= 135)
+        {
+            side =  Vector2.right;
+        }
+        else if ((angle > 135 && angle <= 180) || (angle >= -180 && angle <= -135 ))
+        {
+            side =  Vector2.down;
+        }
+        else if (angle > -135 && angle <-45 )
+        {
+            side =  Vector2.left;
+        }
+        return side;
+    }
+
+    public static bool HitUpCheck(RaycastHit2D hit)
+    {
+        Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
         if(hit.point.y == hit.transform.position.y + size.y / 2)
         {
-            return Vector2.up;
+            return true;
         }
-        if (hit.point.y == hit.transform.position.y - size.y / 2)
-        {
-            return Vector2.down;
-        }
-        if (hit.point.x == hit.transform.position.x + size.x / 2)
-        {
-            return Vector2.right;
-        }
-        if (hit.point.x == hit.transform.position.x - size.x / 2)
-        {
-            return Vector2.left;
-        }
-        return Vector2.zero;
+        return false;
+
     }
 
     public static string VectorSerialize(Vector2 vector){
