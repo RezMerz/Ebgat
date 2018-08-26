@@ -59,13 +59,13 @@ public class WorldState
         return output;
     }
 
-    public void BulletRegister(int playerID, int bulletID,Vector2 attackSide,float gravityAcc)
+    public void BulletRegister(int playerID, int bulletID,Vector2 attackSide,float gravityAcc,float range)
     {
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (playerID == heroesData[i].playerID)
             {
-                heroesData[i].RegisterBullet(bulletID, attackSide, gravityAcc);
+                heroesData[i].RegisterBullet(bulletID, attackSide, gravityAcc,range);
                 return;
             }
         }

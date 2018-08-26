@@ -32,8 +32,8 @@ public class HeroData {
         heroPhysics = new HeroPhysicsClientSide(destination, force);
     }
 
-    public void RegisterBullet(int bulletID, Vector2 attackSide, float gravityAcc){
-        bullets.Add(bulletID + "&" + Toolkit.VectorSerialize(attackSide) + "&" + gravityAcc);
+    public void RegisterBullet(int bulletID, Vector2 attackSide, float gravityAcc,float range){
+        bullets.Add(bulletID + "&" + Toolkit.VectorSerialize(attackSide) + "&" + gravityAcc + "&" + range );
     }
 
     public void RegiterHit(int bulletID){

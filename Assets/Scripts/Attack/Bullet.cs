@@ -6,10 +6,9 @@ using UnityEngine.Networking;
 
 public class Bullet : MonoBehaviour
 {
-    public bool useGravity;
     public float speed;
-    public float range;
 
+    private float range;
     private int ID;
     private float gravitySpeedBase;
     private float gravityAcceleration;
@@ -36,47 +35,55 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 direction, int layer, float gravityAcc)
+    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range)
     {
         shot = true;
         physic.SetData(layer);
         this.direction = direction;
+        this.range = range;
         gravityAcceleration = gravityAcc;
     }
 
     private void Move()
     {
-        if (distance < range)
+        Vector2 force = direction.normalized * speed * Time.deltaTime;
+        distanceVector += force;
+        distance = distanceVector.magnitude;
+        Vector2 gravityForce = Vector2.zero;
+        if (distance > range)
         {
-            Vector2 force = direction.normalized * speed * Time.deltaTime;
-            distanceVector += force;
-            distance = distanceVector.magnitude;
-            if (distance > range)
-            {
-                force = direction.normalized * (distance - range);
-                distance = range;
-            }
-            Vector2 gravityForce = Vector2.zero;
-            if (useGravity)
-            {
-                gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
-                gravitySpeedBase += gravityAcceleration * Time.deltaTime;
-            }
-            physic.AddForce(force + gravityForce);
-            physic.BulletAction += HitFunction;
+            gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
+            gravitySpeedBase += gravityAcceleration * Time.deltaTime;
         }
-        else
-        {
-            Destroy();
-        }
+        physic.AddForce(force + gravityForce);
+        physic.BulletAction += HitFunction;
     }
 
     private void HitFunction(RaycastHit2D hitObject)
     {
+
         if (hitObject.collider != null)
         {
+            shot = false;
+            Vector2 hitsSide = Toolkit.HitSide(hitObject);
+            if(hitsSide == Vector2.right)
+            {
+                transform.rotation = Quaternion.Euler(0,0,-90);
+            }
+            else if (hitsSide == Vector2.left)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else if (hitsSide == Vector2.down)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            else if(hitsSide == Vector2.up)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
             animator.SetTrigger("Hit");
-            
         }
     }
     
