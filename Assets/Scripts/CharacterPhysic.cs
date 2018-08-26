@@ -33,6 +33,7 @@ public class CharacterPhysic : Physic
         if (!start)
             return;
 
+        CheckPersitentForces();
         PhysicAction += HitFunction;
         if (!layerSet)
         {
@@ -102,11 +103,31 @@ public class CharacterPhysic : Physic
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
+        if (direction.y > 0)
+        {
+            if (charstats.FeetState != EFeetState.DoubleJumping && charstats.FeetState != EFeetState.Jumping)
+            {
+                charstats.FeetState = EFeetState.Jumping;
+            }
+        }
+        else
+        {
+            if (charstats.FeetState != EFeetState.Onground && charstats.FeetState != EFeetState.Falling)
+            {
+                charstats.FeetState = EFeetState.Falling;
+                charstats.ResetGravitySpeed();
+            }
+        }
+
         if (vHits.Count > 0)
         {
             var hit = vHits[0].collider;
             if (hit.tag == "Player")
             {
+                if(direction.y < 0)
+                {
+                    AddPersistentForce(Vector2.up * charstats.JumpSpeed, 4);
+                }
                 switch (hitType)
                 {
                     case HitType.Push:

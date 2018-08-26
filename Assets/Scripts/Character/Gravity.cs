@@ -61,6 +61,7 @@ public class Gravity : MonoBehaviour {
 
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
+        Debug.Log(charStats.FeetState);
         if (vHits.Count > 0 && direction.y <= 0)
         {
             timer = 0;

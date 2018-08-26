@@ -12,6 +12,8 @@ public class PlayerJump : MonoBehaviour
     private bool isHolding;
     private bool doubleJumped;
 
+    private bool jumped;
+
 
     // Use this for initialization
     void Start()
@@ -25,12 +27,13 @@ public class PlayerJump : MonoBehaviour
     {
         if (playerControl.IsServer())
         {
-            if (charStats.FeetState == EFeetState.Jumping || charStats.FeetState == EFeetState.DoubleJumping)
+            if (jumped)
             {
                 if (charStats.HeadState == EHeadState.Stunned)
                 {
-                    charStats.FeetState = EFeetState.Falling;
-                    charStats.ResetGravitySpeed();
+                    jumped = false;
+                    //charStats.FeetState = EFeetState.Falling;
+                   // charStats.ResetGravitySpeed();
                 }
                 else
                 {
@@ -47,7 +50,9 @@ public class PlayerJump : MonoBehaviour
         if (charStats.FeetState == EFeetState.Onground && charStats.HeadState != EHeadState.Stunned)
         {
             charStats.ResetJumpSpeed();
-            charStats.FeetState = EFeetState.Jumping;
+            //charStats.FeetState = EFeetState.Jumping;
+
+            jumped = true;
             isHolding = true;
             JumpServerside();
             if (charStats.canDoubleJump)
@@ -91,8 +96,10 @@ public class PlayerJump : MonoBehaviour
     {
         if (vHits.Count > 0 || direction.y < 0)
         {
-            charStats.FeetState = EFeetState.Falling;
-            charStats.ResetGravitySpeed();
+            //charStats.FeetState = EFeetState.Falling;
+            charStats.ResetJumpSpeed();
+            jumped = false;
+            //charStats.ResetGravitySpeed();
         }
     }
 
