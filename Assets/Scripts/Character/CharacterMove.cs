@@ -14,6 +14,8 @@ public class CharacterMove : MonoBehaviour
     private Vector2 side;
     private int moveSide;
 
+    private bool movedPressed;
+
     void Awake()
     {
 
@@ -30,10 +32,15 @@ public class CharacterMove : MonoBehaviour
     {
         if (playerControl.IsServer())
         {
-            if(charStats.HandState == EHandState.Attacking || charStats.HandState == EHandState.Casting )
+            if (movedPressed)
             {
+                charStats.BodyState = EBodyState.Moving;
+            }
+            if(charStats.HandState != EHandState.Idle)
+            {
+                charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();
-                return;
+                //return;
             }
             if (charStats.BodyState == EBodyState.Moving)
                 if (charStats.HeadState == EHeadState.Stunned)
@@ -53,10 +60,12 @@ public class CharacterMove : MonoBehaviour
     }
     public void MovePressed(int i)
     {
+        movedPressed = true;
         if (charStats.HeadState != EHeadState.Stunned)
         {
             charStats.AimSide = new Vector2(i, charStats.AimSide.y);
             charStats.BodyState = EBodyState.Moving;
+            charStats.Side = Vector2.right * i;
         }
         moveSide = i;
     }
@@ -69,6 +78,7 @@ public class CharacterMove : MonoBehaviour
     }
     public void MoveReleasedServerside(Vector3 position)
     {
+        movedPressed = false;
         charStats.AimSide = new Vector2(0, charStats.AimSide.y);
         charStats.BodyState = EBodyState.Standing;
     }
