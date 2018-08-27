@@ -97,13 +97,13 @@ public class CharacterPhysic : Physic
     {
         gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
         charstats.ResetCayoteTime();
-        RemoveTaggedForces(1);
+       // RemoveTaggedForces(1);
     }
     public void ExcludeBridge()
     {
         gravityLayerMask = layerMask;
         charstats.CayoteTime = 0;
-        AddPersistentForce(Vector2.down * 20, 1000, 1);
+        //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
@@ -115,7 +115,7 @@ public class CharacterPhysic : Physic
             charstats.RestJumpMaxSpeed();
             charstats.ResetGravitySpeed();
             RemoveTaggedForces(0);
-            RemoveTaggedForces(1);
+            //RemoveTaggedForces(1);
             Collider2D hit = vHits[0].collider;
             JumpCheck(hit, direction);
             if (hit.tag.Equals("Player"))
