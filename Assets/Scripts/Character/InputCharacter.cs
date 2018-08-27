@@ -105,7 +105,7 @@ public class InputCharacter : MonoBehaviour
             clientNetworkSender.Ability2Pressed();
         }
         //Drop Down
-        if (axisY < -0.1f)
+        if (!newAxisChanged&& axisY < -0.1f)
         {
             clientNetworkSender.DropDownPressed();
             newAxisChanged = true;

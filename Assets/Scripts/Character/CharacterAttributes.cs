@@ -271,6 +271,10 @@ public class CharacterAttributes : MonoBehaviour {
     {
         jumpSpeed = jumpSpeedBase;
     }
+    public void RestJumpMaxSpeed()
+    {
+        JumpSpeedMax = jumpSpeedMaxBase;
+    }
 
     public void ResetHP()
     {

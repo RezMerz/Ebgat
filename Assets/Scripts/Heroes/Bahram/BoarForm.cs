@@ -71,7 +71,7 @@ public class BoarForm : Ability {
     {
         charStats.AbilityState = EAbility.Ability1Finish;
         charStats.HandState = EHandState.Idle;
-        charStats.FeetState = EFeetState.Onground;
+        //charStats.FeetState = EFeetState.Onground;
         abilityUseServerside = false;
     }
     public override void AbilityKeyPrssed()

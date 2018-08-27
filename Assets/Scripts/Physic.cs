@@ -12,23 +12,35 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 distance;
     protected List<PersitentForce> persitentForces = new List<PersitentForce>();
 
-    public Vector2 virtualPosition { get; set;}
+    public Vector2 virtualPosition { get; set; }
 
     public void AddForce(Vector2 force)
     {
         distance += force;
     }
-    public void AddPersistentForce(Vector2 force,float distance)
+    public void AddPersistentForce(Vector2 force, float distance, int removeTag)
     {
-        persitentForces.Add(new PersitentForce(force, distance));
+        persitentForces.Add(new PersitentForce(force, distance, removeTag));
+    }
+
+    public void RemoveTaggedForces(int tag)
+    {
+        for (int i = 0; i < persitentForces.Count; i++)
+        {
+            var force = persitentForces[i];
+            if (force.removeTag == tag)
+            {
+                persitentForces.Remove(force);
+            }
+        }
     }
 
     protected void CheckPersitentForces()
     {
-        for (int i = 0;i < persitentForces.Count; i++) 
+        for (int i = 0; i < persitentForces.Count; i++)
         {
             persitentForces[i].vectorSum += persitentForces[i].force * Time.deltaTime;
-            if(persitentForces[i].vectorSum.magnitude > persitentForces[i].distance)
+            if (persitentForces[i].vectorSum.magnitude > persitentForces[i].distance)
             {
                 Debug.Log("foce end");
                 AddForce(persitentForces[i].force.normalized * (persitentForces[i].vectorSum.magnitude - persitentForces[i].distance));
@@ -48,11 +60,14 @@ public class PersitentForce
     public Vector2 force;
     public Vector2 vectorSum;
     public float distance;
-    public PersitentForce(Vector2 force ,float distance)
+    public int removeTag;
+    public PersitentForce(Vector2 force, float distance, int removeTag)
     {
         this.force = force;
         this.distance = distance;
+        this.removeTag = removeTag;
         vectorSum = Vector2.zero;
     }
+
 }
 
