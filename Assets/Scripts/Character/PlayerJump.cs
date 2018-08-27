@@ -18,7 +18,6 @@ public class PlayerJump : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        doubleJumped = true;
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         physic = GetComponent<CharacterPhysic>();
@@ -29,16 +28,17 @@ public class PlayerJump : MonoBehaviour
         {
             if (jumped)
             {
-                if (charStats.HeadState == EHeadState.Stunned)
-                {
-                    jumped = false;
-                    //charStats.FeetState = EFeetState.Falling;
-                   // charStats.ResetGravitySpeed();
-                }
-                else
-                {
-                    JumpServerside();
-                }
+                physic.PhysicAction += HitFunction;
+                JumpServerside();
+                //if (charStats.HeadState == EHeadState.Stunned)
+                //{
+                //    // jumped = false;
+                //    //charStats.FeetState = EFeetState.Falling;
+                //    // charStats.ResetGravitySpeed();
+                //}
+                //else
+                //{
+                //}
             }
         }
     }
@@ -49,23 +49,21 @@ public class PlayerJump : MonoBehaviour
         // Jump only if on 
         if (charStats.FeetState == EFeetState.Onground && charStats.HeadState != EHeadState.Stunned)
         {
-            charStats.ResetJumpSpeed();
-            //charStats.FeetState = EFeetState.Jumping;
-
             jumped = true;
             isHolding = true;
             JumpServerside();
-            if (charStats.canDoubleJump)
-            {
-                doubleJumped = false;
-            }
+            doubleJumped = false;
         }
         // Double Jump
-        else if (!doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping))
+        else if (charStats.canDoubleJump && !doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping) && charStats.HeadState != EHeadState.Stunned)
         {
             doubleJumped = true;
+            jumped = true;
             charStats.ResetJumpSpeed();
-            charStats.ResetGravitySpeed();
+            charStats.JumpSpeedMax += charStats.GravitySpeed;
+            charStats.JumpSpeed += charStats.GravitySpeed;
+            physic.RemoveTaggedForces(0);
+            //charStats.ResetGravitySpeed();
             charStats.FeetState = EFeetState.DoubleJumping;
         }
     }
@@ -94,12 +92,16 @@ public class PlayerJump : MonoBehaviour
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if (vHits.Count > 0 || direction.y < 0)
+        if (vHits.Count > 0)
         {
-            //charStats.FeetState = EFeetState.Falling;
-            charStats.ResetJumpSpeed();
+
             jumped = false;
-            //charStats.ResetGravitySpeed();
+            if(direction.y <0)
+            {
+                doubleJumped = false;
+            }
+           // charStats.ResetJumpSpeed();
+            
         }
     }
 
