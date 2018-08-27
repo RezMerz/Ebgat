@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 82839251275574280}
   - component: {fileID: 114890960111783770}
   - component: {fileID: 114063726377082134}
+  - component: {fileID: 114019153843204608}
   m_Layer: 0
   m_Name: Malkous_Clientside
   m_TagString: Player
@@ -524,6 +525,18 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
+--- !u!114 &114019153843204608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!114 &114063726377082134
 MonoBehaviour:
   m_ObjectHideFlags: 1
