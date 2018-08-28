@@ -10,6 +10,8 @@ TagManager:
   - Bridge
   - Effect
   - AbilityEffect
+  - jump
+  - Sword
   layers:
   - Default
   - TransparentFX
