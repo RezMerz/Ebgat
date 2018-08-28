@@ -562,7 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9e7ce19f52e8e4f8d6927d93e96dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 114713850836239020, guid: 4a11c003c5eb3ea499e86062dd8b9e86, type: 2}
+  weaponObject: {fileID: 1444934213204626, guid: 4a11c003c5eb3ea499e86062dd8b9e86,
+    type: 2}
   attackForce: 0.5
 --- !u!114 &114432285978368132
 MonoBehaviour:
