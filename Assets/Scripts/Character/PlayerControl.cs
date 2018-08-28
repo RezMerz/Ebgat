@@ -66,11 +66,13 @@ public class PlayerControl : MonoBehaviour
         if (playerConnection.isServer)
         {
             ServerManager.instance.UpdatePlayers();
+            StartCoroutine(EnergyCycle());
         }
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
         }
+
        
     }
 
@@ -176,6 +178,36 @@ public class PlayerControl : MonoBehaviour
         }
         TakeDamage(damage);
 
+    }
+
+
+
+    private IEnumerator EnergyCycle()
+    {
+        yield return new WaitForSeconds(0.1f);
+        FillEnergy();
+        StartCoroutine(EnergyCycle());
+    }
+
+    private void FillEnergy()
+    {
+        if (charStats.Energy < charStats.energyBase)
+        {
+            if (charStats.Energy < charStats.energyBase / 3)
+            {
+                charStats.Energy += (int)(charStats.energyRegenRate * 1);
+            }
+            else if (charStats.Energy < charStats.energyBase * 2 / 3)
+            {
+                charStats.Energy += (int)(charStats.energyRegenRate * 1.5);
+            }
+            else
+            {
+                charStats.Energy += (int)(charStats.energyRegenRate * 2);
+            }
+        }
+        else if (charStats.Energy > charStats.energyBase)
+            charStats.Energy = charStats.energyBase;
     }
     public void TakeStun(float time)
     {
@@ -320,6 +352,7 @@ public class PlayerControl : MonoBehaviour
             case 'd': heroGraphics.FeetState(value); break;
             case 'e': heroGraphics.SetSide(value); break;
             case 'g': heroGraphics.HpChange(value); break;
+            case 'x':if(playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
         }
     }
 

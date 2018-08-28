@@ -685,7 +685,7 @@ MonoBehaviour:
   hitPointsBase: 100
   attackDamageBase: 15
   attackAnimationTimeBase: 0.2
-  attackCooldownBase: 0.1
+  attackCooldownBase: 0.3
   moveSpeedBase: 10
   moveAccelerationBase: 0
   moveSpeedMaxBase: 14
@@ -696,6 +696,8 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
+  energyBase: 200
+  eneryRegenRate: 5
 --- !u!114 &114916447596799302
 MonoBehaviour:
   m_ObjectHideFlags: 1

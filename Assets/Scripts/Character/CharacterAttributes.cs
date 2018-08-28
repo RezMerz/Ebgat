@@ -13,7 +13,13 @@ public class CharacterAttributes : MonoBehaviour {
     public EAbility AbilityState
     {
         get { return abilityState; }
-        set { abilityState = value; RegisterAbilityState(); }
+        set { abilityState = value;
+            if (value == EAbility.Ability1Start)
+                Energy -= ability1EnergyConsume;
+            else if (value == EAbility.Ability2Start)
+                Energy -= ability2EnergyConsume;
+            RegisterAbilityState(); 
+        }
     }
 
     private EHeadState headState; //a
@@ -36,14 +42,29 @@ public class CharacterAttributes : MonoBehaviour {
     public EHandState HandState
     {
         get { return handState; }
-        set { if (value != handState) { handState = value; RegisterHandState(); } }
+        set { if (value != handState)
+         { 
+            handState = value;
+            if (value == EHandState.Attacking)
+                Energy -= attackEnergyConsume;
+            RegisterHandState(); 
+         } 
+        }
     }
 
     private EFeetState feetState; //d
     public EFeetState FeetState
     {
         get { return feetState; }
-        set { if (value != feetState) { feetState = value; RegisterFeetState(); } }
+        set { 
+            if (value != feetState)
+            {
+              feetState = value;
+              if (value == EFeetState.Jumping || value == EFeetState.DoubleJumping)
+                  Energy -= jumpEnergyConsume;
+              RegisterFeetState(); 
+            } 
+        }
     }
 
 
@@ -158,6 +179,10 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != jumpSpeedMax) { jumpSpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'r', value + ""); } }
     } //r
 
+
+
+
+
     //gravity attributes
     [SerializeField]
     private float gravitySpeedBase;
@@ -199,6 +224,24 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != aimSide) { aimSide = value; playerControl.worldState.RegisterCharStat(ID, 'w', Toolkit.VectorSerialize(value)); } }
     } //w
 
+    /// Energy Attributes
+
+    
+    public int energyBase;
+
+    private int energy;
+    public int Energy
+    {
+        get { return energy; }
+        set { if (value != energy) { energy = value; playerControl.worldState.RegisterCharStat(ID, 'x', value + ""); } }
+    } //x
+
+
+    public int energyRegenRate;
+    public int attackEnergyConsume;
+    public int jumpEnergyConsume;
+    public int ability1EnergyConsume;
+    public int ability2EnergyConsume;
 
     // size attributes
     public Vector2 size { get; set; }
@@ -251,6 +294,9 @@ public class CharacterAttributes : MonoBehaviour {
 
         gameObject.layer = LayerMask.NameToLayer(teamName);
         side = Vector2.right;
+
+        // Energy
+        energy = energyBase;
     }
 
     public void ResetGravitySpeed()
@@ -306,6 +352,7 @@ public class CharacterAttributes : MonoBehaviour {
             case 'u': gravityAcceleration = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'v': gravitySpeedMax = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'w': aimSide = Toolkit.DeserializeVector(value); break;
+            case 'x': energy = int.Parse(value); break;
             case 'A': SetAbilityState(value); break;
         }
     }
@@ -452,6 +499,7 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'u' + "&" + GravityAcceleration + "$";
         data += 'v' + "&" + GravitySpeedMax + "$";
         data += 'w' + "&" + Toolkit.VectorSerialize(AimSide) + "$";
+        data += 'x' + "&" + energy + "&";
         playerControl.worldState.AppendCharstats(id, data);
     }
 }

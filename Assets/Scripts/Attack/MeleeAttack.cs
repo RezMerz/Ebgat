@@ -36,12 +36,21 @@ public class MeleeAttack : Attack
     public override void AttackPressed()
     {
         if (charStats.HeadState != EHeadState.Stunned)
+        {
             if (cooldownTimer <= 0)
             {
-                cooldownTimer = charStats.AttackCooldown;
-                charStats.HandState = EHandState.Attacking;
-                StartCoroutine(AttackAnimateTime());
+                if (charStats.Energy >= charStats.attackEnergyConsume)
+                {
+                    cooldownTimer = charStats.AttackCooldown;
+                    charStats.HandState = EHandState.Attacking;
+                    StartCoroutine(AttackAnimateTime());
+                }
+                else
+                {
+                    print("Low Energy");
+                }
             }
+        }
     }
     private IEnumerator ParryTime()
     {
@@ -60,7 +69,7 @@ public class MeleeAttack : Attack
             if (target.collider.tag.Equals("Sword"))
             {
                 parry = true;
-                target.collider.gameObject.GetComponent<CharacterPhysic>().AddPersistentForce(charStats.Side * (attackForce*60),2,2);
+                target.collider.gameObject.GetComponent<CharacterPhysic>().AddPersistentForce(charStats.Side * (attackForce * 60), 2, 2);
                 playerControl.physic.AddPersistentForce(charStats.Side * (-attackForce * 60), 2, 2);
             }
         }
