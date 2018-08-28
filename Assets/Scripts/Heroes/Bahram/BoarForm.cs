@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoarForm : Ability {
+   // public float castTime;
     public float speed;
     public float range;
     public float damage;
     private float distanceMoved;
-    private Vector2 originTransform;
     private int layer;
-    private PlayerControl playerControl;
     private float distance;
+    private Vector2 originTransform;
+    private PlayerControl playerControl;
     private CharacterPhysic physic;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         physic = GetComponent<CharacterPhysic>();
         coolDownLock = false;
         layer = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
@@ -21,7 +23,7 @@ public class BoarForm : Ability {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private void FixedUpdate () {
         if (abilityUseServerside)
         {
             BoarMoveServerside();
@@ -35,12 +37,12 @@ public class BoarForm : Ability {
     private void BoarMoveHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
 
-        if (vHits.Count > 0 && vHits[0].collider.tag == "Player")
+        if (vHits.Count > 0 && vHits[0].collider.tag.Equals( "Player"))
         {
             HumanForm();
             vHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
         }
-        else if (hHits.Count > 0 && hHits[0].collider.tag == "Player")
+        else if (hHits.Count > 0 && hHits[0].collider.tag.Equals( "Player"))
         {
             HumanForm();
             hHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
