@@ -30,17 +30,24 @@ public class MeleeAttack : Attack
     public override void AttackPressed()
     {
         if(charStats.HeadState != EHeadState.Stunned)
-        if (cooldownTimer <= 0)
+        if (cooldownTimer <= 0 )
         {
-            cooldownTimer = charStats.AttackCooldown;
-            charStats.HandState = EHandState.Attacking;
-            StartCoroutine(AttackAnimateTime());
+            if (charStats.Energy >= charStats.attackEnergyConsume)
+            {
+                cooldownTimer = charStats.AttackCooldown;
+                charStats.HandState = EHandState.Attacking;
+                StartCoroutine(AttackAnimateTime());
+            }
+            else
+            {
+                print("Low Energy");
+            }
         }
     }
     protected override void ApplyAttack()
     {
+        
         RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
-        print(charStats.AttackDamage);
         foreach (RaycastHit2D target in targets)
         {
             if (target.collider.tag.Equals("Player"))

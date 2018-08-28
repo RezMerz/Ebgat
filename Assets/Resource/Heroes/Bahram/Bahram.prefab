@@ -517,6 +517,12 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
+  energyBase: 1000
+  energyRegenRate: 5
+  attackEnergyConsume: 100
+  jumpEnergyConsume: 50
+  ability1EnergyConsume: 0
+  ability2EnergyConsume: 0
 --- !u!114 &114361602242757618
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,9 +8,12 @@ public class HeroGraphics : MonoBehaviour {
     private PlayerControl playerControl;
     protected AudioSource audioSource;
     private Slider hpSlider;
+    private Slider energySlider;
     private GameObject hpSliderParent;
     protected Animator land;
     protected Animator abilityEffect;
+    private int maxEnergy = 1000;
+    private int maxHp = 100;
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -38,6 +41,12 @@ public class HeroGraphics : MonoBehaviour {
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerControl = GetComponent<PlayerControl>();
+        GameObject canvas = GameObject.Find("Canvas");
+        foreach(Slider slider in canvas.GetComponentsInChildren<Slider>())
+        {
+            if (slider.name == "Energy Slider")
+                energySlider = slider;
+        }
     }
 
 
@@ -65,7 +74,13 @@ public class HeroGraphics : MonoBehaviour {
         float hp = float.Parse(value);
         if(hp<100)
             TakeDamage();
-        hpSlider.value = hp / 100;
+        hpSlider.value = hp / maxHp;
+    }
+
+    public void EnergyChange(string value)
+    {
+        float energy = float.Parse(value);
+        energySlider.value = energy / maxEnergy;
     }
 
     public void BulletShoot(GameObject bullet, Vector2 direction)

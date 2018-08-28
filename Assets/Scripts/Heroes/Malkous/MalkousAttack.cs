@@ -42,10 +42,17 @@ public class MalkousAttack : Attack
         if(charStats.HeadState != EHeadState.Stunned)
         if (cooldownTimer <= 0)
         {
-            timer = 0;
-            attackCharge = true;
-            cooldownTimer = charStats.AttackCooldown;
-            charStats.HandState = EHandState.AttackCharge;
+            if (charStats.Energy >= charStats.attackEnergyConsume)
+            {
+                timer = 0;
+                attackCharge = true;
+                cooldownTimer = charStats.AttackCooldown;
+                charStats.HandState = EHandState.AttackCharge;
+            }
+            else
+            {
+                print(" Low Energy");
+            }
         }
     }
 
