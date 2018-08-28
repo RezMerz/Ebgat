@@ -49,10 +49,17 @@ public class PlayerJump : MonoBehaviour
         // Jump only if on 
         if (charStats.FeetState == EFeetState.Onground && charStats.HeadState != EHeadState.Stunned)
         {
-            jumped = true;
-            isHolding = true;
-            JumpServerside();
-            doubleJumped = false;
+            if (charStats.Energy >= charStats.jumpEnergyConsume)
+            {
+                jumped = true;
+                isHolding = true;
+                JumpServerside();
+                doubleJumped = false;
+            }
+            else
+            {
+                print("Low Energy");
+            }
         }
         // Double Jump
         else if (charStats.canDoubleJump && !doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping) && charStats.HeadState != EHeadState.Stunned)
