@@ -68,6 +68,7 @@ public class MeleeAttack : Attack
         {
             if (target.collider.tag.Equals("Sword"))
             {
+                Debug.Log("parry");
                 parry = true;
                 target.collider.gameObject.GetComponentInParent<CharacterPhysic>().AddPersistentForce(charStats.Side * (attackForce * 60), 2, 2);
                 playerControl.physic.AddPersistentForce(charStats.Side * (-attackForce * 60), 2, 2);
