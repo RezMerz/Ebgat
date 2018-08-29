@@ -73,9 +73,9 @@ public class ServerManager : NetworkBehaviour {
     public void PlayerSimulationFinished(int ID){
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
-            ServerNetworkSender.instance.RegisterWorldState(GetFullState());
+            ServerNetworkSender.instance.RegisterWorldState(currentWorldState);
             finishedPLayercounter = 0;
-            //currentWorldState = new WorldState();
+            currentWorldState = new WorldState();
             UpdatePlayers();
 
         }
