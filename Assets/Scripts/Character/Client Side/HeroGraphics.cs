@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class HeroGraphics : MonoBehaviour {
+    public GameObject landInstance;
     private SpriteRenderer sprite;
     protected Animator animator;
     private PlayerControl playerControl;
@@ -10,10 +11,11 @@ public class HeroGraphics : MonoBehaviour {
     private Slider hpSlider;
     private Slider energySlider;
     private GameObject hpSliderParent;
-    protected Animator land;
     protected Animator abilityEffect;
     private int maxEnergy = 1000;
     private int maxHp = 100;
+    protected CharacterAttributes charStats;
+    
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -28,13 +30,10 @@ public class HeroGraphics : MonoBehaviour {
 
     void Start()
     {
+        charStats = GetComponent<CharacterAttributes>();
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).tag == "Effect")
-            {
-                land = transform.GetChild(i).GetComponent<Animator>();
-            }
-            else if(transform.GetChild(i).tag == "AbilityEffect")
+            if(transform.GetChild(i).tag == "AbilityEffect")
                 abilityEffect = transform.GetChild(i).GetComponent<Animator>();
         }
             audioSource = GetComponent<AudioSource>();
@@ -49,7 +48,11 @@ public class HeroGraphics : MonoBehaviour {
         }
     }
 
-
+    protected IEnumerator DestoryObjectAfterTime(float t, GameObject obj)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(obj);
+    }
     public virtual void HandState(string value)
     {
 

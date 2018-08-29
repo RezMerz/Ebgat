@@ -61,7 +61,7 @@ public class CharacterMove : MonoBehaviour
     public void MovePressed(int i)
     {
         movedPressed = true;
-        if (charStats.HeadState != EHeadState.Stunned)
+        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
         {
             charStats.AimSide = new Vector2(i, charStats.AimSide.y);
             charStats.BodyState = EBodyState.Moving;
