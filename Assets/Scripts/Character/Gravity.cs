@@ -49,9 +49,15 @@ public class Gravity : MonoBehaviour {
     }
     private void SpeedCheck()
     {
+        Debug.Log(charStats.FeetState);
         if(charStats.FeetState == EFeetState.Onground)
         {
             charStats.ResetGravitySpeed();
+        }
+        else if (charStats.FeetState == EFeetState.OnWall)
+        {
+            physic.RemoveTaggedForces(0);
+            charStats.GravityOnWall();
         }
         else
         {

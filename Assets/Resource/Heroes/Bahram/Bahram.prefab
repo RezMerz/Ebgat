@@ -517,6 +517,7 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
+  onWallGravitySpeed: 5
   energyBase: 1000
   energyRegenRate: 5
   attackEnergyConsume: 100
