@@ -73,17 +73,24 @@ public class ServerManager : NetworkBehaviour {
     public void PlayerSimulationFinished(int ID){
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
-            ServerNetworkSender.instance.RegisterWorldState(currentWorldState);
+            ServerNetworkSender.instance.RegisterWorldState(GetFullState());
             finishedPLayercounter = 0;
-            currentWorldState = new WorldState();
+            //currentWorldState = new WorldState();
             UpdatePlayers();
 
         }
     }
 
-    public void RequestworldFullState(int playerID){
-        reservelist.Add(playerID);
-
+    //temp
+    public WorldState GetFullState(){
+        WorldState tempWorldState = new WorldState();
+        foreach (PlayerControl p in playerControls)
+        {
+            tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
+            p.worldState = tempWorldState;
+            p.charStats.RegisterAllStates();
+        }
+        return tempWorldState;
     }
     
     public void SendWorldStateToClient(int playerID){
@@ -95,16 +102,6 @@ public class ServerManager : NetworkBehaviour {
         }
         ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
     }
-
-    public void SendFullWorldStates(){
-        foreach(int id in reservelist){
-            SendWorldStateToClient(id);
-        }
-        reservelist.Clear();
-    }
-
-
-
 
     public void SpawnHero(int clientId, int heroId, int teamId, Vector2 SpawnPoint)
     {

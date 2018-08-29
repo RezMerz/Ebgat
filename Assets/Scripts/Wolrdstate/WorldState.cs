@@ -7,18 +7,19 @@ using System.Globalization;
 public class WorldState 
 {
     public ServerNetworkSender serverNetworkSender;
-    List<HeroData> heroesData;
+    private List<HeroData> heroesData;
    
     public WorldState(){
         heroesData = new List<HeroData>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject obj in objs)
+        {
             heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
+        }
     }
 
-    public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force){
-        
-
+    public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force)
+    {
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (ID == heroesData[i].playerID)
@@ -83,7 +84,7 @@ public class WorldState
     }
 
     public void print(){
-        Debug.Log("printoooooo");
+        //Debug.Log(heroesData[0].GetData());
     }
 }
 

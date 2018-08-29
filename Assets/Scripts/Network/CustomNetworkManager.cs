@@ -24,6 +24,8 @@ public class CustomNetworkManager : NetworkManager {
 
     public int maxPlayerCount;
 
+    private NetworkConnection networkConnection;
+
     private void Start()
     {
         connectionTable = new Hashtable();
@@ -54,6 +56,7 @@ public class CustomNetworkManager : NetworkManager {
         p.clientId = playerID;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
+        networkConnection = conn;
 
     }
 
@@ -89,4 +92,14 @@ public class CustomNetworkManager : NetworkManager {
         if(ServerManager.instance.currentClientCount < ServerManager.instance.maxClientCount)
             base.OnClientConnect(conn);
     }*/
+
+    private void RegisterNetworkClient(){
+        NetworkClient networkClient = new NetworkClient(networkConnection);
+        networkClient.RegisterHandler(MsgType.AddPlayer, OnConnected);
+    }
+
+    void OnConnected(NetworkMessage netMsg)
+    {
+        Debug.Log("Client connected");
+    }
 }

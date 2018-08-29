@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HEllo : MonoBehaviour {
+public class PlayerControlClientSide : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,4 @@ public class HEllo : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void FixedUpdate(){
-        Debug.Log(Time.deltaTime);
-    }
 }

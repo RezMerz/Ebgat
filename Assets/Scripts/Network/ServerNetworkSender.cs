@@ -47,7 +47,6 @@ public class ServerNetworkSender : NetworkBehaviour {
         if (s.Length == 0)
             return;
         worldStates[currentTime] = s;
-        ServerManager.instance.SendFullWorldStates();
         currentTime++;
         if(currentTime == networkSendTime){
             clientNetworkReciever.RpcRecieveWorldData(worldStates, ServerManager.instance.CurrentStateID);
