@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour {
     [SerializeField]
-    private Bullet bullet;
+    private GameObject bulletObject;
     private Hashtable shotBullets = new Hashtable();
     private int layerMask;
     private PlayerControl playerControl;
@@ -37,23 +37,24 @@ public class BulletManager : MonoBehaviour {
         {
             side = playerControl.charStatsClient.Side;
         }
-        Bullet bullet = Instantiate(this.bullet, transform.position + (Vector3)side * 2 + Vector3.up * 0.5f, Quaternion.identity);
-        shotBullets.Add(id, bullet);
-        bullet.Shoot(direction,layerMask, gravityAcc,range);
+        GameObject bulletObject = Instantiate(this.bulletObject, transform.position + (Vector3)side * 2 + Vector3.up * 0.5f, Quaternion.identity);
+        bulletObject.layer = gameObject.layer;
+        shotBullets.Add(id, bulletObject);
+        bulletObject.GetComponent<Bullet>().Shoot(direction,layerMask, gravityAcc,range);
     }
     public void DestroyBullet(int id)
     {
         if (shotBullets.Contains(id))
         {
-            Bullet bullet = shotBullets[id] as Bullet;
+            GameObject bullet = shotBullets[id] as GameObject;
             shotBullets.Remove(id);
             StartCoroutine(BulletDestroy(bullet));
         }
     }
 
-    private IEnumerator BulletDestroy(Bullet bullet)
+    private IEnumerator BulletDestroy(GameObject bullet)
     {
         yield return new WaitForSeconds(0.5f);
-        Destroy(bullet.gameObject);
+        Destroy(bullet);
     }
 }
