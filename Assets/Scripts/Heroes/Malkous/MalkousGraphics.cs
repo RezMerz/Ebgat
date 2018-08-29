@@ -38,11 +38,18 @@ public class MalkousGraphics : HeroGraphics {
     {
         if (value == "1")
         {
+            animator.SetBool("Dash", false);
             animator.SetBool("Walking", false);
         }
         else if (value == "2")
         {
+            animator.SetBool("Dash", false);
             animator.SetBool("Walking", true);
+        }
+        else if(value == "3")
+        {
+            animator.SetBool("Walking", false);
+            animator.SetBool("Dash",true);
         }
         else
             print("Body State Wrong Code");

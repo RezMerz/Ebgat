@@ -128,4 +128,9 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 17 + ",\n";
     }
+
+    public void DashPressed()
+    {
+        data += 18 + ",\n";
+    }
 }

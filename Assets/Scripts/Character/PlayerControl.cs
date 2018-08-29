@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     public CharacterAttributesClient charStatsClient { get; set; }
     public CharacterMove characterMove { get; private set; }
     public PlayerJump jump { get; private set; }
+    public CharacterDash dash { get; private set; }
     public Attack attack { get; private set; }
     public HeroGraphics heroGraphics { get; private set; }
     public ServerNetworkSender serverNetworkSender { get; private set; }
@@ -58,6 +59,7 @@ public class PlayerControl : MonoBehaviour
         abilityManager = GetComponent<AbilityManager>();
         input = GetComponent<InputCharacter>();
         bulletmanager = GetComponent<BulletManager>();
+        dash = GetComponent<CharacterDash>();
         deathPoint = new Vector2(16, -48);
     }
 
@@ -256,6 +258,11 @@ public class PlayerControl : MonoBehaviour
     public void JumpReleased()
     {
         jump.JumpReleased();
+    }
+
+    public void DashPressed()
+    {
+        dash.DashPressed();
     }
 
     public void Ability1Pressed()

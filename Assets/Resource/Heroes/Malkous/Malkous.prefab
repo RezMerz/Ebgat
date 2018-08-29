@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 114024330261959768}
   - component: {fileID: 114228986464155946}
   - component: {fileID: 114158786255817076}
+  - component: {fileID: 114936411307088194}
   m_Layer: 0
   m_Name: Malkous
   m_TagString: Player
@@ -649,9 +650,10 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
-  energyBase: 200
+  onWallGravitySpeed: 0
+  energyBase: 1000
   energyRegenRate: 0
-  attackEnergyConsume: 0
+  attackEnergyConsume: 100
   jumpEnergyConsume: 0
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
@@ -666,6 +668,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c498ddd10425b44b76935b73eca1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114936411307088194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92fee7ba79843b4fb2977e557c9122b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
+  range: 3
+  coolDownTime: 1
 --- !u!212 &212115423133356480
 SpriteRenderer:
   m_ObjectHideFlags: 1

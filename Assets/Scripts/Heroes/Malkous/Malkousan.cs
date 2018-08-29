@@ -15,7 +15,6 @@ public class Malkousan : Ability {
     void Start()
     {
         layer = LayerMask.GetMask(charStats.enemyTeamName, "Dummy");
-        print(layer);
     }
 	// Use this for initialization
     public override void AbilityKeyPrssed()
