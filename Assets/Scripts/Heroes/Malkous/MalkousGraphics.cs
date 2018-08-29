@@ -50,7 +50,12 @@ public class MalkousGraphics : HeroGraphics {
     public override void FeetState(string value)
     {
         if (value == "1")
+        {
+            GameObject land = Instantiate(landInstance);
+            StartCoroutine(DestoryObjectAfterTime(1, land));
+            land.transform.position = transform.position + Vector3.down * charStats.size.y /2;
             animator.SetTrigger("OnGround");
+        }
         else if (value == "2")
             animator.SetTrigger("Fall");
         else if (value == "3")
