@@ -55,7 +55,7 @@ public class BahramGraphics : HeroGraphics{
         {
             GameObject land = Instantiate(landInstance);
             StartCoroutine(DestoryObjectAfterTime(1, land));
-            land.transform.position = transform.position + Vector3.down * charStats.size.y /2;
+            land.transform.position = transform.position + Vector3.down * 3 /2;
             animator.SetTrigger("OnGround");
         }
         else if (value == "2")
