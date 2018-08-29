@@ -12,6 +12,7 @@ TagManager:
   - AbilityEffect
   - jump
   - Sword
+  - Bullet
   layers:
   - Default
   - TransparentFX

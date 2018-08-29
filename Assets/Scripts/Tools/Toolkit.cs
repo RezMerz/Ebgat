@@ -78,7 +78,7 @@ public class Toolkit : MonoBehaviour {
 
     public static Vector2 HitSide(RaycastHit2D hit)
     {
-        Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
+       // Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
         Vector2 side = Vector2.zero;
         Vector2 direction = hit.point - (Vector2)hit.transform.position;
         float angle = Vector2.SignedAngle(direction, Vector2.up);

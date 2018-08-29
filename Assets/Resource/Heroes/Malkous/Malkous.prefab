@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2df5b6dbc3185a4cafa7e3de8b0a591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virttualBullet: {fileID: 114959743718954288, guid: 5644204ab404d3e4882e04645e872fed,
+  virttualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
     type: 2}
   maxHoldTime: 2
   damageMultiplier: 0.5
