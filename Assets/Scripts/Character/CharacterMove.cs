@@ -108,6 +108,10 @@ public class CharacterMove : MonoBehaviour
         if (direction.x * moveSide > 0 && hHits.Count > 0)
         {
             charStats.ResetMoveSpeed();
+            if(charStats.FeetState == EFeetState.Falling)
+            {
+                //charStats.FeetState = EFeetState.OnWall;
+            }
         }
     }
 

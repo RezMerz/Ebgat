@@ -156,6 +156,8 @@ public class CharacterAttributesClient : MonoBehaviour {
     private float gravitySpeedMaxBase;
     [SerializeField]
     private float baseCayoteTime;
+    [SerializeField]
+    private float onWallGravitySpeed;
 
     private float cayoteTime;
     public float CayoteTime{
