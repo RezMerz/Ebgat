@@ -115,6 +115,12 @@ public class InputCharacter : MonoBehaviour
             clientNetworkSender.DropDownReleased();
             newAxisChanged = false;
         }
+
+        if(Input.GetButtonDown("Dash"))
+        {
+            print("Dash");
+            clientNetworkSender.DashPressed();
+        }
     }
 
     private void Initialize()

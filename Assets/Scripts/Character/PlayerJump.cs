@@ -10,9 +10,10 @@ public class PlayerJump : MonoBehaviour
     private CharacterPhysic physic;
 
     private bool isHolding;
-    private bool doubleJumped;
 
     private bool jumped;
+    private bool doubleJumped;
+    private bool wallJumped;
 
 
     // Use this for initialization
@@ -26,9 +27,13 @@ public class PlayerJump : MonoBehaviour
     {
         if (playerControl.IsServer())
         {
-            if (jumped)
+            physic.PhysicAction += HitFunction;
+            if (charStats.FeetState == EFeetState.OnWall)
             {
-                physic.PhysicAction += HitFunction;
+                jumped = false;
+            }
+            else if (jumped)
+            {
                 JumpServerside();
                 //if (charStats.HeadState == EHeadState.Stunned)
                 //{
@@ -39,6 +44,10 @@ public class PlayerJump : MonoBehaviour
                 //else
                 //{
                 //}
+            }
+            else if (wallJumped)
+            {
+
             }
         }
     }
@@ -72,6 +81,22 @@ public class PlayerJump : MonoBehaviour
             physic.RemoveTaggedForces(0);
             //charStats.ResetGravitySpeed();
             charStats.FeetState = EFeetState.DoubleJumping;
+        }
+        else if(charStats.FeetState == EFeetState.OnWall)
+        {
+            charStats.ResetJumpSpeed();
+            physic.RemoveTaggedForces(0);
+            wallJumped = true;
+            charStats.FeetState = EFeetState.WallJumping;
+            physic.AddPersistentForce((charStats.JumpSpeed * 1.5f + charStats.GravitySpeed) * Vector2.up, 0, 0);
+            if(charStats.Side.x == 1)
+            {
+                physic.AddPersistentForce(Vector2.left * (charStats.MoveSpeed * 2), 4, 3);
+            }
+            else
+            {
+                physic.AddPersistentForce(Vector2.right * (charStats.MoveSpeed * 2), 4, 4);
+            }
         }
     }
     // Holding the Jump

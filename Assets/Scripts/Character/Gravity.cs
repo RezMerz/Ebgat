@@ -53,6 +53,11 @@ public class Gravity : MonoBehaviour {
         {
             charStats.ResetGravitySpeed();
         }
+        else if (charStats.FeetState == EFeetState.OnWall)
+        {
+            physic.RemoveTaggedForces(0);
+            charStats.GravityOnWall();
+        }
         else
         {
             charStats.GravitySpeed += charStats.GravityAcceleration * Time.deltaTime;

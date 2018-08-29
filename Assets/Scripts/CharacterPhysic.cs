@@ -7,12 +7,13 @@ public class CharacterPhysic : Physic
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
     private int gravityLayerMask;
-    private CharacterAttributes charstats;
+    private CharacterAttributes charStats;
     private PlayerControl playerControl;
     private bool layerSet;
     private List<RaycastHit2D> verticalPoints = new List<RaycastHit2D>();
     private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
     private Vector2 offset;
+    private float timer;
 
     private bool start;
     // Use this for initialization
@@ -27,7 +28,7 @@ public class CharacterPhysic : Physic
         size = transform.localScale * GetComponent<BoxCollider2D>().size;
         offset = transform.localScale * GetComponent<BoxCollider2D>().offset;
         virtualPosition = transform.position;
-        charstats = GetComponent<CharacterAttributes>();
+        charStats = GetComponent<CharacterAttributes>();
         start = true;
     }
     private void FixedUpdate()
@@ -39,8 +40,8 @@ public class CharacterPhysic : Physic
         PhysicAction += HitFunction;
         if (!layerSet)
         {
-            layerMask = LayerMask.GetMask("Blocks", charstats.enemyTeamName);
-            gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
+            layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+            gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
             layerSet = true;
         }
         Calculate();
@@ -55,7 +56,7 @@ public class CharacterPhysic : Physic
         Vector2 originalDistance = distance;
         if (distance.x > 0)
         {
-            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charstats.Side.x, 1), Vector2.right, distance.x, layerMask, out horizontalPoints);
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charStats.Side.x, 1), Vector2.right, distance.x, layerMask, out horizontalPoints);
             if (hHit)
             {
                 distance.x = horizontalPoints[0].distance;
@@ -63,7 +64,7 @@ public class CharacterPhysic : Physic
         }
         else if (distance.x < 0)
         {
-            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charstats.Side.x, 1), Vector2.left, -distance.x, layerMask, out horizontalPoints);
+            hHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charStats.Side.x, 1), Vector2.left, -distance.x, layerMask, out horizontalPoints);
             if (hHit)
             {
                 distance.x = -horizontalPoints[0].distance;
@@ -72,7 +73,7 @@ public class CharacterPhysic : Physic
         virtualPosition += Vector2.right * distance;
         if (distance.y > 0)
         {
-            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charstats.Side.x, 1), Vector2.up, distance.y, layerMask, out verticalPoints);
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charStats.Side.x, 1), Vector2.up, distance.y, layerMask, out verticalPoints);
             if (vHit)
             {
                 distance.y = verticalPoints[0].distance;
@@ -80,7 +81,7 @@ public class CharacterPhysic : Physic
         }
         else if (distance.y < 0)
         {
-            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charstats.Side.x, 1), Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
+            vHit = Toolkit.CheckMoveFloat(virtualPosition, size, offset * new Vector2(charStats.Side.x, 1), Vector2.down, -distance.y, gravityLayerMask, out verticalPoints);
             if (vHit)
             {
                 distance.y = -verticalPoints[0].distance;
@@ -95,14 +96,14 @@ public class CharacterPhysic : Physic
     }
     public void IncludeBridge()
     {
-        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charstats.enemyTeamName);
-        charstats.ResetCayoteTime();
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
+        charStats.ResetCayoteTime();
        // RemoveTaggedForces(1);
     }
     public void ExcludeBridge()
     {
         gravityLayerMask = layerMask;
-        charstats.CayoteTime = 0;
+        charStats.CayoteTime = 0;
         //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
@@ -111,9 +112,9 @@ public class CharacterPhysic : Physic
 
         if (vHits.Count > 0)
         {
-            charstats.ResetJumpSpeed();
-            charstats.RestJumpMaxSpeed();
-            charstats.ResetGravitySpeed();
+            charStats.ResetJumpSpeed();
+            charStats.RestJumpMaxSpeed();
+            charStats.ResetGravitySpeed();
             RemoveTaggedForces(0);
             //RemoveTaggedForces(1);
             Collider2D hit = vHits[0].collider;
@@ -130,6 +131,7 @@ public class CharacterPhysic : Physic
         }
         if (hHits.Count > 0)
         {
+            OnWallCheck(direction);
             var hit = hHits[0].collider;
             if (hit.tag.Equals("Player"))
             {
@@ -147,24 +149,45 @@ public class CharacterPhysic : Physic
     {
         if ((hit.tag.Equals("Player") || hit.tag.Equals("jump")) && direction.y < 0)
         {
-            AddPersistentForce(Vector2.up *(charstats.JumpSpeed - (direction.y*30)) , 1000, 0);
+            AddPersistentForce(Vector2.up *(charStats.JumpSpeed - (direction.y*30)) , 1000, 0);
         }
     }
     private void StateCheck(Vector2 direction)
     {
         if (direction.y > 0)
         {
-            if (charstats.FeetState != EFeetState.DoubleJumping && charstats.FeetState != EFeetState.Jumping)
+            if ( charStats.FeetState != EFeetState.WallJumping &&charStats.FeetState != EFeetState.DoubleJumping && charStats.FeetState != EFeetState.Jumping)
             {
-                charstats.FeetState = EFeetState.Jumping;
+                charStats.FeetState = EFeetState.Jumping;
             }
         }
         else
         {
-            if (charstats.FeetState != EFeetState.Onground && charstats.FeetState != EFeetState.Falling)
+            if (charStats.FeetState != EFeetState.Onground && charStats.FeetState != EFeetState.Falling)
             {
-                charstats.FeetState = EFeetState.Falling;
+                if(charStats.FeetState == EFeetState.OnWall)
+                {
+                    timer += Time.deltaTime;
+                    if(timer >= 2*  charStats.CayoteTime + Time.deltaTime)
+                    {
+                        charStats.FeetState = EFeetState.Falling;
+                    }
+                }
+                else
+                {
+                    charStats.FeetState = EFeetState.Falling;
+                }
             }
+        }
+    }
+    private void OnWallCheck(Vector2 direction)
+    {
+        if ((charStats.FeetState == EFeetState.Falling /* || charStats.FeetState == EFeetState.WallJumping */) && charStats.Side.x * direction.x > 0)
+        {
+            Debug.Log(charStats.FeetState);
+            timer = 0;
+            charStats.FeetState = EFeetState.OnWall;
+            RemoveTaggedForces(3);
         }
     }
 

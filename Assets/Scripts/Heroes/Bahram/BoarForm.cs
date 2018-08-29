@@ -28,10 +28,6 @@ public class BoarForm : Ability {
         {
             BoarMoveServerside();
         }
-        else if(abilityUseClientside)
-        {
-            
-        }
         
 	}
     private void BoarMoveHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
