@@ -10,7 +10,6 @@ public class CharacterMove : MonoBehaviour
     private PlayerControl playerControl;
     private CharacterAttributes charStats;
     private CharacterPhysic Physic;
-    private Animator animator;
     private Vector2 side;
     private int moveSide;
 
@@ -24,7 +23,6 @@ public class CharacterMove : MonoBehaviour
     {
 
         Physic = GetComponent<CharacterPhysic>();
-        animator = GetComponentInChildren<Animator>();
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
     }
