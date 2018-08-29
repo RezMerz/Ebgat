@@ -56,6 +56,7 @@ public class MalkousGraphics : HeroGraphics {
     }
     public override void FeetState(string value)
     {
+        animator.SetBool("OnWall", false);
         if (value == "1")
         {
             GameObject land = Instantiate(landInstance);
@@ -69,6 +70,10 @@ public class MalkousGraphics : HeroGraphics {
         {
             audioSource.Play();
             animator.SetTrigger("Jump");
+        }
+        else if (value == "6")
+        {
+            animator.SetBool("OnWall", true);
         }
         else if (value == "4")
             print(EFeetState.NoGravity);

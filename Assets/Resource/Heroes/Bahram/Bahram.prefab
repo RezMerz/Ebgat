@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 82397943080947130}
   - component: {fileID: 114489874745135552}
   - component: {fileID: 114408555347372122}
+  - component: {fileID: 114068610890322924}
   m_Layer: 0
   m_Name: Bahram
   m_TagString: Player
@@ -403,6 +404,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114068610890322924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7664c56956253094f8d5648226e17047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
+  range: 8
+  coolDownTime: 1
 --- !u!114 &114257958083322680
 MonoBehaviour:
   m_ObjectHideFlags: 1
