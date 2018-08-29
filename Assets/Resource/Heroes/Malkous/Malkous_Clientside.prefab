@@ -476,6 +476,7 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
+  onWallGravitySpeed: 0
 --- !u!114 &114019153843204608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,7 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43b15e64de82e14eb7882ca9f402673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114373126038058328, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
+  bulletObject: {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3,
+    type: 2}
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
