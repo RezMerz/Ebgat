@@ -65,9 +65,17 @@ public class CharacterMove : MonoBehaviour
         {
             charStats.AimSide = new Vector2(i, charStats.AimSide.y);
             charStats.BodyState = EBodyState.Moving;
-            charStats.Side = Vector2.right * i;
+           // charStats.Side = Vector2.right * i;
+            moveSide = i;
+            if(moveSide == 1)
+            {
+                Physic.RemoveTaggedForces(4);
+            }
+            else
+            {
+                Physic.RemoveTaggedForces(3);
+            }
         }
-        moveSide = i;
     }
     public void MoveServerside()
     {

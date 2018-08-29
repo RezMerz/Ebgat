@@ -27,13 +27,13 @@ public class PlayerJump : MonoBehaviour
     {
         if (playerControl.IsServer())
         {
+            physic.PhysicAction += HitFunction;
             if (charStats.FeetState == EFeetState.OnWall)
             {
                 jumped = false;
             }
             else if (jumped)
             {
-                physic.PhysicAction += HitFunction;
                 JumpServerside();
                 //if (charStats.HeadState == EHeadState.Stunned)
                 //{
@@ -85,10 +85,18 @@ public class PlayerJump : MonoBehaviour
         else if(charStats.FeetState == EFeetState.OnWall)
         {
             charStats.ResetJumpSpeed();
+            physic.RemoveTaggedForces(0);
             wallJumped = true;
             charStats.FeetState = EFeetState.WallJumping;
-            physic.AddPersistentForce((charStats.JumpSpeed*2 + charStats.GravitySpeed) * Vector2.up, 1000, 0);
-            physic.AddPersistentForce(Vector2.left * (charStats.Side.x * charStats.MoveSpeed * 2), 5, 3);
+            physic.AddPersistentForce((charStats.JumpSpeed * 1.5f + charStats.GravitySpeed) * Vector2.up, 0, 0);
+            if(charStats.Side.x == 1)
+            {
+                physic.AddPersistentForce(Vector2.left * (charStats.MoveSpeed * 2), 4, 3);
+            }
+            else
+            {
+                physic.AddPersistentForce(Vector2.right * (charStats.MoveSpeed * 2), 4, 4);
+            }
         }
     }
     // Holding the Jump

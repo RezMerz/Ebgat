@@ -156,7 +156,7 @@ public class CharacterPhysic : Physic
     {
         if (direction.y > 0)
         {
-            if (charStats.FeetState != EFeetState.DoubleJumping && charStats.FeetState != EFeetState.Jumping)
+            if ( charStats.FeetState != EFeetState.WallJumping &&charStats.FeetState != EFeetState.DoubleJumping && charStats.FeetState != EFeetState.Jumping)
             {
                 charStats.FeetState = EFeetState.Jumping;
             }
@@ -168,7 +168,7 @@ public class CharacterPhysic : Physic
                 if(charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if(timer >= charStats.CayoteTime + Time.deltaTime)
+                    if(timer >= 2*  charStats.CayoteTime + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }
@@ -182,8 +182,9 @@ public class CharacterPhysic : Physic
     }
     private void OnWallCheck(Vector2 direction)
     {
-        if (charStats.FeetState == EFeetState.Falling && charStats.Side.x * direction.x > 0)
+        if ((charStats.FeetState == EFeetState.Falling /* || charStats.FeetState == EFeetState.WallJumping */) && charStats.Side.x * direction.x > 0)
         {
+            Debug.Log(charStats.FeetState);
             timer = 0;
             charStats.FeetState = EFeetState.OnWall;
             RemoveTaggedForces(3);
