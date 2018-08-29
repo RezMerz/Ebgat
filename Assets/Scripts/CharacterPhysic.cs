@@ -44,6 +44,7 @@ public class CharacterPhysic : Physic
             gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
             layerSet = true;
         }
+
         Calculate();
     }
     protected override void Calculate()
@@ -184,7 +185,6 @@ public class CharacterPhysic : Physic
     {
         if ((charStats.FeetState == EFeetState.Falling /* || charStats.FeetState == EFeetState.WallJumping */) && charStats.Side.x * direction.x > 0)
         {
-            Debug.Log(charStats.FeetState);
             timer = 0;
             charStats.FeetState = EFeetState.OnWall;
             RemoveTaggedForces(3);
