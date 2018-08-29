@@ -93,8 +93,13 @@ public class CustomNetworkManager : NetworkManager {
             base.OnClientConnect(conn);
     }*/
 
-    private void Dummy(){
+    private void RegisterNetworkClient(){
         NetworkClient networkClient = new NetworkClient(networkConnection);
-        NetworkMessageDelegate networkMessageDelegate = new 
+        networkClient.RegisterHandler(MsgType.AddPlayer, OnConnected);
+    }
+
+    void OnConnected(NetworkMessage netMsg)
+    {
+        Debug.Log("Client connected");
     }
 }

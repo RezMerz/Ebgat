@@ -41,23 +41,24 @@ public class HeroData {
     }
 
     public string GetData(){
+        //Debug.Log(mynum + "    " + data);
         return playerID + "@" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data + "@" + GetBulletData() + "@" + GetBulletHit();
     }
 
     private string GetBulletData(){
-        string data = "";
+        string tempData = "";
         for (int i = 0; i < bullets.Count; i++){
-            data += bullets[i] + "$";
+            tempData += bullets[i] + "$";
         }
-        return data;
+        return tempData;
     }
 
     private string GetBulletHit(){
-        string data = "";
+        string tempData = "";
         for (int i = 0; i < bulletHits.Count; i++)
         {
-            data += bulletHits[i] + "$";
+            tempData += bulletHits[i] + "$";
         }
-        return data;
+        return tempData;
     }
 }
