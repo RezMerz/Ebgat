@@ -122,22 +122,24 @@ public class ServerManager : NetworkBehaviour {
         Debug.Log("id: " + clientId + " , " + heroId);
         playerInfoList.Add(new PlayerInfo(clientId, heroId, true));
         currentClientCount++;
+
+    }
+
+    public void StartGame()
+    {
         int teamId = 1;
-        if (currentClientCount == maxClientCount)
+        networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+        for (int i = 0; i < currentClientCount; i++)
         {
-            networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
-            for (int i = 0; i < maxClientCount; i++)
-            {
-                SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
-                playerInfoList[i].teamId = teamId;
-                if (teamId == 1)
-                    teamId = 2;
-                else
-                    teamId = 1;
-            }
-            UpdatePlayers();
-            ClientNetworkReciever.instance.RpcUpdatePlayers();
+            SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
+            playerInfoList[i].teamId = teamId;
+            if (teamId == 1)
+                teamId = 2;
+            else
+                teamId = 1;
         }
+        UpdatePlayers();
+        ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
     public void HeroSpawned(int cliendId){
