@@ -43,6 +43,7 @@ public class MeleeAttack : Attack
                 {
                     cooldownTimer = charStats.AttackCooldown;
                     charStats.HandState = EHandState.Attacking;
+                    StartCoroutine(ParryTime());
                     StartCoroutine(AttackAnimateTime());
                 }
                 else
@@ -61,7 +62,7 @@ public class MeleeAttack : Attack
 
     protected override void ApplyAttack()
     {
-        StartCoroutine(ParryTime());
+       // StartCoroutine(ParryTime());
         RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
         bool parry = false;
         foreach (RaycastHit2D target in targets)
