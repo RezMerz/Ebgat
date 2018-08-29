@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
     private int framCount;
     private bool start;
     private bool firstRecieved;
+    private bool waitingForRequest;
 
 
     private BuffManager buffManager;
@@ -139,9 +140,10 @@ public class PlayerControl : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            if (currentStateNumber - lastStateChecked >= 3)
+            if (currentStateNumber - lastStateChecked >= 3 && !waitingForRequest)
             {
-               // clientNetworkSender.RequestWorldState(playerId);
+                waitingForRequest = true;
+               clientNetworkSender.RequestWorldState(playerId);
             }
             currentStateNumber++;
         }
@@ -381,6 +383,7 @@ public class PlayerControl : MonoBehaviour
 
     public void UpdateClient(int id, string state)
     {
+        waitingForRequest = false;
         start = false;
         currentStateNumber = id + 1;
         GetData(state);
