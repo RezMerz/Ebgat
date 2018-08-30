@@ -35,7 +35,7 @@ public class CharacterMove : MonoBehaviour
                 if(charStats.BodyState != EBodyState.Dashing)
                     charStats.BodyState = EBodyState.Moving;
             }
-            if(charStats.HandState != EHandState.Idle)
+            if(charStats.HandState != EHandState.Idle )
             {
                 charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();

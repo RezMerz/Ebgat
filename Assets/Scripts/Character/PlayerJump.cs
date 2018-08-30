@@ -91,7 +91,7 @@ public class PlayerJump : MonoBehaviour
             wallJumped = true;
             charStats.FeetState = EFeetState.WallJumping;
             physic.AddPersistentForce((charStats.JumpSpeed * 1.5f + charStats.GravitySpeed) * Vector2.up, 0, 0);
-            if(charStats.Side.x == 1)
+            if(charStats.wallside == 1)
             {
                 physic.AddPersistentForce(Vector2.left * (charStats.MoveSpeed * 2), 4, 3);
             }

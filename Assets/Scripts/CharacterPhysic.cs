@@ -188,11 +188,13 @@ public class CharacterPhysic : Physic
     }
     private void OnWallCheck(Vector2 direction)
     {
-        if ((charStats.FeetState == EFeetState.Falling /* || charStats.FeetState == EFeetState.WallJumping */) && charStats.Side.x * direction.x > 0)
+        if ((charStats.FeetState == EFeetState.Falling  || charStats.FeetState == EFeetState.OnWall ) && charStats.Side.x * direction.x > 0)
         {
             timer = 0;
             charStats.FeetState = EFeetState.OnWall;
+            charStats.wallside = (int)charStats.Side.x;
             RemoveTaggedForces(3);
+            RemoveTaggedForces(4);
         }
     }
 

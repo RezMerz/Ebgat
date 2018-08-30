@@ -42,7 +42,6 @@ abstract public class Physic : MonoBehaviour
             persitentForces[i].vectorSum += persitentForces[i].force * Time.deltaTime;
             if (persitentForces[i].distance != 0 && persitentForces[i].vectorSum.magnitude > persitentForces[i].distance)
             {
-                Debug.Log("foce end");
                 AddForce(persitentForces[i].force.normalized * (persitentForces[i].vectorSum.magnitude - persitentForces[i].distance));
                 persitentForces.Remove(persitentForces[i]);
 

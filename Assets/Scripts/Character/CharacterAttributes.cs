@@ -73,10 +73,13 @@ public class CharacterAttributes : MonoBehaviour {
     public bool canDoubleJump;
 
     private Vector2 side;
+    
     public Vector2 Side {
         get { return side; }
         set { if (value != side) { side = value; playerControl.worldState.RegisterCharStat(ID, 'e', Toolkit.VectorSerialize(value)); } } 
     } //e
+
+    public int wallside;
 
     //health attributes
     [SerializeField]
