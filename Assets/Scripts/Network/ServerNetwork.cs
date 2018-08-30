@@ -41,6 +41,8 @@ public class ServerNetwork : NetworkBehaviour
                 case "16": playerControl.DropDownPressed(); break;
                 case "17": playerControl.DropDownReleased(); break;
                 case "18": playerControl.DashPressed(); break;
+                case "19": playerControl.deltaYAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
+                case "20": playerControl.deltaXAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
             }
         }
     }

@@ -18,6 +18,7 @@ public class InputCharacter : MonoBehaviour
     private bool newAxisChanged;
     private float axisY;
     private float axisX;
+    private bool aiming;
     public bool start { get;set; }
 	// Use this for initialization
 	void Start ()
@@ -121,6 +122,42 @@ public class InputCharacter : MonoBehaviour
             print("Dash");
             clientNetworkSender.DashPressed();
         }
+        if (Input.GetButtonDown("Aim"))
+        {
+            print("Aim");
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            print("Release Aim");
+            // Release aim
+        }
+        if (Input.GetAxis("Aim") > 0.3 && !aiming)
+        {
+            aiming = true;
+            print("Aim");
+            // Aim
+        }
+        else if (Input.GetAxis("Aim") < 0.2 && aiming)
+        {
+            aiming = false;
+            print("Release Aim");
+            // Release Aim
+        }
+
+        if (Input.GetAxis("Fire") > 0.3)
+        {
+            clientNetworkSender.AttackPressed();
+        }
+
+        if (aiming)
+        {
+            if (Input.GetAxis("Mouse Y") != 0)
+                clientNetworkSender.deltaY(Input.GetAxis("Mouse Y"));
+            if (Input.GetAxis("Mouse X") != 0)
+                clientNetworkSender.deltaX(Input.GetAxis("Mouse X"));
+            
+        }
+
     }
 
     private void Initialize()

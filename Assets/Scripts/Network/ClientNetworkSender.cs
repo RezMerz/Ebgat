@@ -133,4 +133,14 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 18 + ",\n";
     }
+
+    public void deltaY(float yChange)
+    {
+        data += 19 + "," + yChange + ",\n";
+    }
+
+    public void deltaX(float xChange)
+    {
+        data += 20 + "," + xChange + ",\n";
+    }
 }

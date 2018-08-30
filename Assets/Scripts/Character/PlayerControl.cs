@@ -314,6 +314,16 @@ public class PlayerControl : MonoBehaviour
         physic.IncludeBridge();
     }//17
 
+    public void deltaYAim(float deltaY)
+    {
+        print(deltaY);
+    }
+
+    public void deltaXAim(float deltaX)
+    {
+
+    }
+
     public void GetData(string data)
     {
 
