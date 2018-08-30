@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterDash : MonoBehaviour {
     protected CharacterPhysic physic;
     protected float distance;
-
+    protected PlayerControl playerControl;
     protected CharacterAttributes charStats;
     public float speed;
     public float range;
@@ -15,6 +15,7 @@ public class CharacterDash : MonoBehaviour {
 	void Start () {
         physic = GetComponent<CharacterPhysic>();
         charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
 	}
 
 
@@ -23,10 +24,16 @@ public class CharacterDash : MonoBehaviour {
        
        if(!coolDownLock)
        {
-           print("Dash Pressed");
-           coolDownLock = true;
-           StartCoroutine(CoolDownReset());
-           charStats.BodyState = EBodyState.Dashing;
+           if (charStats.Energy >= charStats.dashEnergyConsume)
+           {
+               coolDownLock = true;
+               StartCoroutine(CoolDownReset());
+               charStats.BodyState = EBodyState.Dashing;
+           }
+           else
+           {
+               print("Low Energy");
+           }
        }
     }
 

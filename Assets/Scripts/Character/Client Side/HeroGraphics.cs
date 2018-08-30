@@ -75,7 +75,7 @@ public class HeroGraphics : MonoBehaviour {
     public void HpChange(string value)
     {
         float hp = float.Parse(value);
-        if(hp<100)
+        if(hp<maxHp)
             TakeDamage();
         hpSlider.value = hp / maxHp;
     }

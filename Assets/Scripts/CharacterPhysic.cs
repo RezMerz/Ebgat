@@ -107,6 +107,11 @@ public class CharacterPhysic : Physic
         charStats.CayoteTime = 0;
         //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
+
+    public void DashLayerSet()
+    {
+        
+    }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
         StateCheck(direction);
