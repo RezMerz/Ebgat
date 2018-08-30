@@ -76,7 +76,7 @@ public class Toolkit : MonoBehaviour {
         float threshold = 0.01f;
         //bool onWall = false;
         Vector2 rayOriginFirst = (originPosition + offset) + (vecSize * direction / 2) + Vector2.up * vecSize.y/2; 
-        Vector2 rayOriginSeconed = (originPosition + offset) + (vecSize * direction / 2) + Vector2.down * vecSize.y/2;
+        Vector2 rayOriginSeconed = (originPosition + offset) + (vecSize * direction / 2);
         bool hitPointFirst = Physics2D.Raycast(rayOriginFirst, direction, distance, layerNumber, 0, 0);
         bool hitPointSecond = Physics2D.Raycast(rayOriginSeconed, direction, distance, layerNumber, 0, 0);
         return (hitPointFirst && hitPointSecond);

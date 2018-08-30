@@ -119,7 +119,7 @@ public class InputCharacter : MonoBehaviour
 
         if(Input.GetButtonDown("Dash"))
         {
-            print("Dash");
+            //print("Dash");
             clientNetworkSender.DashPressed();
         }
         if (Input.GetButtonDown("Aim"))

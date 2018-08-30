@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BahramDash : CharacterDash {
+public class BahramDash : CharacterDash
+{
 
-	// Use this for initialization
+    // Use this for initialization
     void Update()
     {
-        if (charStats.BodyState == EBodyState.Dashing)
-            DashMove();
+        if (started)
+        {
+           // Debug.Log(charStats.BodyState);
+            if (charStats.BodyState == EBodyState.Dashing)
+            {
+
+                DashMove();
+            }
+        }
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
     private void DashMove()
     {
         float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
@@ -23,6 +31,8 @@ public class BahramDash : CharacterDash {
         }
         else
         {
+            physic.DashLayerReset();
+            Debug.Log("dashend");
             charStats.BodyState = EBodyState.Standing;
             distance = 0;
         }

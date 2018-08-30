@@ -105,14 +105,20 @@ public class CharacterPhysic : Physic
     }
     public void ExcludeBridge()
     {
-        gravityLayerMask = layerMask;
+        gravityLayerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
         charStats.CayoteTime = 0;
         //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
 
     public void DashLayerSet()
     {
-        
+        layerMask = LayerMask.GetMask("Blocks");
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge");
+    }
+    public void DashLayerReset()
+    {
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
