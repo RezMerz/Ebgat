@@ -66,18 +66,18 @@ public class CharacterMove : MonoBehaviour
             charStats.BodyState = EBodyState.Moving;
            // charStats.Side = Vector2.right * i;
             moveSide = i;
-            if(moveSide == 1)
-            {
-                Physic.RemoveTaggedForces(4);
-            }
-            else
-            {
-                Physic.RemoveTaggedForces(3);
-            }
         }
     }
     public void MoveServerside()
     {
+        if (moveSide == 1)
+        {
+            Physic.RemoveTaggedForces(4);
+        }
+        else
+        {
+            Physic.RemoveTaggedForces(3);
+        }
         SpeedCheck(moveSide);
         Vector2 force = Vector2.right * moveSide * charStats.MoveSpeed * Time.deltaTime;
         Physic.AddForce(force);
@@ -115,10 +115,6 @@ public class CharacterMove : MonoBehaviour
         if (direction.x * moveSide > 0 && hHits.Count > 0)
         {
             charStats.ResetMoveSpeed();
-            if(charStats.FeetState == EFeetState.Falling)
-            {
-                //charStats.FeetState = EFeetState.OnWall;
-            }
         }
     }
 
