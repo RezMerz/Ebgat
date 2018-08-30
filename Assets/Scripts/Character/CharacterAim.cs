@@ -25,6 +25,7 @@ public class CharacterAim : MonoBehaviour {
     {
         position += new Vector2(0, deltaY * 10);
         Vector2 arrow = position - (Vector2)transform.position;
+        arrow = arrow.normalized;
         
     }
 
