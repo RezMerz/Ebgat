@@ -32,7 +32,6 @@ public class BahramDash : CharacterDash
         else
         {
             physic.DashLayerReset();
-            Debug.Log("dashend");
             charStats.BodyState = EBodyState.Standing;
             distance = 0;
         }

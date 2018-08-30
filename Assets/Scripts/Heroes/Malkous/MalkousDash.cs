@@ -8,8 +8,10 @@ public class MalkousDash : CharacterDash {
 	
 	// Update is called once per frame
 	void Update () {
-        if (charStats.BodyState == EBodyState.Dashing)
+        if (started && charStats.BodyState == EBodyState.Dashing)
+        {
             DashMove();
+        }
 	}
 
     private void DashMove()
@@ -23,6 +25,7 @@ public class MalkousDash : CharacterDash {
         }
         else
         {
+            physic.DashLayerReset();
             charStats.BodyState = EBodyState.Standing;
             distance = 0;
         }
