@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  range: 7
+  range: 8
   coolDownTime: 0.5
 --- !u!212 &212115423133356480
 SpriteRenderer:

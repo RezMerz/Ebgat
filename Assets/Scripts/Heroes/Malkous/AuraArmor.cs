@@ -23,7 +23,7 @@ public class AuraArmor : Ability{
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, radius, LayerMask.GetMask(charStats.teamName));
             foreach(Collider2D obj in hitObjects)
             {
-                obj.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
+                //obj.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
             }
         }
     }
