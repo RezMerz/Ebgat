@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   range: 8
-  coolDownTime: 1
+  coolDownTime: 0.5
 --- !u!114 &114257958083322680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,6 +490,7 @@ MonoBehaviour:
   jumpEnergyConsume: 50
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
+  dashEnergyConsume: 100
 --- !u!114 &114361602242757618
 MonoBehaviour:
   m_ObjectHideFlags: 1

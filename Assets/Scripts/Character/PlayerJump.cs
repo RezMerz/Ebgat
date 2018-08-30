@@ -60,6 +60,7 @@ public class PlayerJump : MonoBehaviour
         {
             if (charStats.Energy >= charStats.jumpEnergyConsume)
             {
+                charStats.Energy -= charStats.jumpEnergyConsume;
                 jumped = true;
                 isHolding = true;
                 JumpServerside();
@@ -73,6 +74,7 @@ public class PlayerJump : MonoBehaviour
         // Double Jump
         else if (charStats.canDoubleJump && !doubleJumped && (charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.Jumping) && charStats.HeadState != EHeadState.Stunned)
         {
+            charStats.Energy -= charStats.jumpEnergyConsume;
             doubleJumped = true;
             jumped = true;
             charStats.ResetJumpSpeed();

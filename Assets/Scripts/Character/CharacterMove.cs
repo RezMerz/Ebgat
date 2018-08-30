@@ -32,7 +32,8 @@ public class CharacterMove : MonoBehaviour
         {
             if (movedPressed)
             {
-                charStats.BodyState = EBodyState.Moving;
+                if(charStats.BodyState != EBodyState.Dashing)
+                    charStats.BodyState = EBodyState.Moving;
             }
             if(charStats.HandState != EHandState.Idle)
             {

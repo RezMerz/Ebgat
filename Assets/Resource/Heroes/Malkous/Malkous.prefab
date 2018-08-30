@@ -653,11 +653,12 @@ MonoBehaviour:
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
   energyBase: 1000
-  energyRegenRate: 0
+  energyRegenRate: 5
   attackEnergyConsume: 100
-  jumpEnergyConsume: 0
+  jumpEnergyConsume: 50
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
+  dashEnergyConsume: 100
 --- !u!114 &114916447596799302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -682,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   range: 7
-  coolDownTime: 1
+  coolDownTime: 0.5
 --- !u!212 &212115423133356480
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -35,7 +35,9 @@ public class CharacterAttributes : MonoBehaviour {
     public EBodyState BodyState
     {
         get { return bodyState; }
-        set { if (value != bodyState) { bodyState = value; RegisterBodyState(); } }
+        set { if (value != bodyState) { 
+            if (value == EBodyState.Dashing) Energy -= dashEnergyConsume; 
+            bodyState = value; RegisterBodyState(); } }
     }
     
     private EHandState handState; //c
@@ -242,6 +244,7 @@ public class CharacterAttributes : MonoBehaviour {
     public int jumpEnergyConsume;
     public int ability1EnergyConsume;
     public int ability2EnergyConsume;
+    public int dashEnergyConsume;
 
     // size attributes
     public Vector2 size { get; set; }
