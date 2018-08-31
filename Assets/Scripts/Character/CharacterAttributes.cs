@@ -61,6 +61,7 @@ public class CharacterAttributes : MonoBehaviour {
         set { 
             if (value != feetState)
             {
+              
               feetState = value;
               RegisterFeetState(); 
             } 
