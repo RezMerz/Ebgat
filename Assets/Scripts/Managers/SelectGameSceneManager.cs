@@ -48,16 +48,17 @@ public class SelectGameSceneManager : MonoBehaviour {
         }
         GameObject button = Instantiate(buttonSample, textHolder.transform);
         button.transform.position = initPosition;
-        button.GetComponentInChildren<Text>().text = data;
+        button.GetComponentInChildren<Text>().text = data + "'s Game";
         ButtonManager btnManager = button.GetComponent<ButtonManager>();
         btnManager.SetData(OnHostClicked, id++, ip);
         buttonManagers.Add(btnManager);
         initPosition.x -= 40;
     }
 
-    public void OnHostClicked(int ip){
+    public void OnHostClicked(string ip){
         GameManager.instance.playerName = playerName.text;
         GameManager.instance.currentScene = CurrentScene.LobbyClient;
+        GameManager.instance.hostIp = ip;
         UnityEngine.SceneManagement.SceneManager.LoadScene("LobbyScene");
     }
 }
