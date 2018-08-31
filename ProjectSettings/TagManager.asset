@@ -13,6 +13,7 @@ TagManager:
   - jump
   - Sword
   - Bullet
+  - Network Manager
   layers:
   - Default
   - TransparentFX

@@ -43,7 +43,7 @@ namespace UnityEngine.Networking
         public void OnHostFound(string fromAddress, string data)
         {
             //networkDiscovery.StopBroadcast();
-            String ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
+            string ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
             Debug.Log(ip);
             manager.networkAddress = ip;
             manager.StartClient();
