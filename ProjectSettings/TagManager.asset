@@ -13,7 +13,11 @@ TagManager:
   - jump
   - Sword
   - Bullet
+<<<<<<< HEAD
+  - Network Manager
+=======
   - AimUI
+>>>>>>> 5db68c8e0a1e95d948183009bd896cc14d7fdf07
   layers:
   - Default
   - TransparentFX
