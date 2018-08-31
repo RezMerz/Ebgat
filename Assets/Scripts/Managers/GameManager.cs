@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
 	}
 
     void StartLobbyHost(){
-        networkDiscovery = GameObject.FindWithTag("Network Manager").GetComponent<CustomNetworkDiscovery>();
+        networkDiscovery = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkDiscovery>();
         networkDiscovery.StartAsServer();
     }
 }

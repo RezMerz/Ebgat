@@ -37,6 +37,7 @@ public class SelectGameSceneManager : MonoBehaviour {
     }
 
     public void HostFound(string fromAddress, string data){
+        Debug.Log("host found");
         string ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
         bool duplicate = false;
         for (int i = 0; i < buttonManagers.Count; i++){
