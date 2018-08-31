@@ -13,6 +13,7 @@ TagManager:
   - jump
   - Sword
   - Bullet
+  - AimUI
   layers:
   - Default
   - TransparentFX

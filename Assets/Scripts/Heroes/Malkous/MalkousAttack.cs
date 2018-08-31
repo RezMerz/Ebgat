@@ -45,9 +45,10 @@ public class MalkousAttack : Attack
             if (charStats.Energy >= charStats.attackEnergyConsume)
             {
                 timer = 0;
-                attackCharge = true;
+                charStats.HandState = EHandState.Attacking;
+                StartCoroutine(AttackAnimateTime());
                 cooldownTimer = charStats.AttackCooldown;
-                charStats.HandState = EHandState.AttackCharge;
+                cooldownTimer = charStats.AttackCooldown;
             }
             else
             {
@@ -60,13 +61,7 @@ public class MalkousAttack : Attack
 
     public override void AttackReleased()
     {
-        if (attackCharge)
-        {
-            attackCharge = false;
-            charStats.HandState = EHandState.Attacking;
-            cooldownTimer = charStats.AttackCooldown;
-            StartCoroutine(AttackAnimateTime());
-        }
+
     }
 
     protected override void ApplyAttack()
@@ -77,7 +72,8 @@ public class MalkousAttack : Attack
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
         // Calculate Side
         Vector2 attackSide = charStats.AimSide;
-        if (attackSide == Vector2.zero)
+        print(charStats.AimSide);
+        if (attackSide == new Vector2(0,0))
             attackSide = charStats.Side;
         GameObject virtualBullet = Instantiate(virttualBullet,transform.position + (Vector3)charStats.Side * 2 + Vector3.up * 0.5f,Quaternion.identity);
         virtualBullet.layer = gameObject.layer;

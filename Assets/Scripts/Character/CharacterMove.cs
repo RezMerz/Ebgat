@@ -62,7 +62,7 @@ public class CharacterMove : MonoBehaviour
         movedPressed = true;
         if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
         {
-            charStats.AimSide = new Vector2(i, charStats.AimSide.y);
+            charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
            // charStats.Side = Vector2.right * i;
             moveSide = i;
@@ -86,7 +86,7 @@ public class CharacterMove : MonoBehaviour
     public void MoveReleasedServerside(Vector3 position)
     {
         movedPressed = false;
-        charStats.AimSide = new Vector2(0, charStats.AimSide.y);
+       // charStats.AimSide = new Vector2(0, charStats.AimSide.y);
         charStats.BodyState = EBodyState.Standing;
     }
     private void SpeedCheck(int i)

@@ -143,4 +143,14 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 20 + "," + xChange + ",\n";
     }
+
+    public void AimPressed()
+    {
+        data += 21 + ",\n";
+    }
+
+    public void AimReleased()
+    {
+        data += 22 + ",\n"; 
+    }
 }
