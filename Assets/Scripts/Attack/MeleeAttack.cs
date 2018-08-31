@@ -12,6 +12,15 @@ public class MeleeAttack : Attack
     private string buffName;
     private MeleeWaepon weapon;
     private GameObject sword;
+
+    //Combo
+    public float[] attackAnimationTimes;
+    public int maxAttackNumber { get; private set; }
+    [SerializeField]
+    private float comboTime;
+    private Coroutine comboTimeCoroutine;
+    private Coroutine parryTimeCoroutine;
+    private Coroutine animationTimeCoroutine;
     private new void Start()
     {
         base.Start();
@@ -31,6 +40,8 @@ public class MeleeAttack : Attack
         {
             buffName = "";
         }
+
+        maxAttackNumber = attackAnimationTimes.Length;
     }
 
     public override void AttackPressed()
@@ -43,8 +54,12 @@ public class MeleeAttack : Attack
                 {
                     cooldownTimer = charStats.AttackCooldown;
                     charStats.HandState = EHandState.Attacking;
-                    StartCoroutine(ParryTime());
-                    StartCoroutine(AttackAnimateTime());
+                    if (comboTimeCoroutine != null)
+                    {
+                        StopCoroutine(comboTimeCoroutine);
+                    }
+                    parryTimeCoroutine = StartCoroutine(ParryTime());
+                    animationTimeCoroutine = StartCoroutine(AttackAnimateTime(attackAnimationTimes[charStats.AttackNumber]));
                 }
                 else
                 {
@@ -62,7 +77,7 @@ public class MeleeAttack : Attack
 
     protected override void ApplyAttack()
     {
-       // StartCoroutine(ParryTime());
+        // StartCoroutine(ParryTime());
         RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
         bool parry = false;
         foreach (RaycastHit2D target in targets)
@@ -90,6 +105,40 @@ public class MeleeAttack : Attack
                 }
             }
         }
+        charStats.AttackNumber = (charStats.AttackNumber + 1) % maxAttackNumber;
+        if (charStats.AttackNumber != 0)
+        {
+            comboTimeCoroutine = StartCoroutine(ComboTime());
+        }
         // print(charStats.AttackDamage);
+    }
+
+    public IEnumerator ComboTime()
+    {
+        yield return new WaitForSeconds(comboTime);
+        charStats.AttackNumber = 0;
+    }
+
+    public override void IntruptAttack()
+    {
+        if(animationTimeCoroutine != null)
+        {
+            StopCoroutine(animationTimeCoroutine);
+        }
+        if(parryTimeCoroutine != null)
+        {
+            StopCoroutine(parryTimeCoroutine);
+            sword.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        if(comboTimeCoroutine != null)
+        {
+            StopCoroutine(comboTimeCoroutine);
+        }
+        charStats.HandState = EHandState.Idle;
+    }
+    
+    public void StartComboCorutine()
+    {
+        StartCoroutine(ComboTime());
     }
 }

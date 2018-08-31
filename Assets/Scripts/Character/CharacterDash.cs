@@ -8,6 +8,7 @@ public class CharacterDash : MonoBehaviour
     protected float distance;
     protected PlayerControl playerControl;
     protected CharacterAttributes charStats;
+    protected Attack attack;
     public float speed;
     public float range;
     public float coolDownTime;
@@ -16,7 +17,7 @@ public class CharacterDash : MonoBehaviour
     protected bool started;
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         playerControl = GetComponent<PlayerControl>();
         playerControl.ReadyAction += Initialized;
@@ -26,6 +27,7 @@ public class CharacterDash : MonoBehaviour
 
         charStats = GetComponent<CharacterAttributes>();
         physic = GetComponent<CharacterPhysic>();
+        attack = GetComponent<Attack>();
         started = true;
     }
 
@@ -35,13 +37,17 @@ public class CharacterDash : MonoBehaviour
 
         if (!coolDownLock)
         {
-            if (charStats.Energy >= charStats.dashEnergyConsume)
+            if (charStats.Energy >= charStats.dashEnergyConsume && charStats.FeetState != EFeetState.OnWall)
             {
+                if(charStats.HandState == EHandState.Attacking)
+                {
+                   attack.IntruptAttack();
+                }
                 coolDownLock = true;
                 StartCoroutine(CoolDownReset());
                 charStats.BodyState = EBodyState.Dashing;
                 physic.DashLayerSet();
-                Debug.Log("dashStart");
+                gameObject.layer = LayerMask.NameToLayer("Dashing");
             }
             else
             {

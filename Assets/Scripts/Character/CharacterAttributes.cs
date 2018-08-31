@@ -109,6 +109,9 @@ public class CharacterAttributes : MonoBehaviour {
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
+    [SerializeField]
+    private int attackNumber;
+
     private float range;
     public float Range{
         get { return range; }
@@ -131,6 +134,12 @@ public class CharacterAttributes : MonoBehaviour {
         get { return attackCooldown; }
         set { if (value != attackCooldown) { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value + ""); } }
     } //l
+
+    public int AttackNumber
+    {
+        get { return attackNumber; }
+        set { if(value != attackNumber) { attackNumber = value ;playerControl.worldState.RegisterCharStat(ID, 'y', value + ""); } }
+    }
 
     //movement attributes
     [SerializeField]

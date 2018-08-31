@@ -24,9 +24,9 @@ public abstract class Attack : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
     }
 
-    protected IEnumerator AttackAnimateTime()
+    protected IEnumerator AttackAnimateTime(float attackAnimationTime)
     {
-        yield return new WaitForSeconds(charStats.AttackAnimationTime);
+        yield return new WaitForSeconds(attackAnimationTime);
         ApplyAttack();
         charStats.HandState = EHandState.Idle;
     }
@@ -38,6 +38,8 @@ public abstract class Attack : MonoBehaviour
     public virtual void AttackHold() { }
 
     public virtual void AttackReleased() { }
+
+    public virtual void IntruptAttack() { }
 
     public virtual void AttackClientside(Vector2 direction, int attackID)
     {

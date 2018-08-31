@@ -65,7 +65,7 @@ public class MalkousAttack : Attack
             attackCharge = false;
             charStats.HandState = EHandState.Attacking;
             cooldownTimer = charStats.AttackCooldown;
-            StartCoroutine(AttackAnimateTime());
+            StartCoroutine(AttackAnimateTime(charStats.AttackAnimationTime));
         }
     }
 

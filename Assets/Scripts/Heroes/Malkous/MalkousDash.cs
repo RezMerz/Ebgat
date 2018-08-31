@@ -26,6 +26,7 @@ public class MalkousDash : CharacterDash {
         else
         {
             physic.DashLayerReset();
+            gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
             charStats.BodyState = EBodyState.Standing;
             distance = 0;
         }

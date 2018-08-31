@@ -39,7 +39,6 @@ public class CharacterMove : MonoBehaviour
             {
                 charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();
-                Debug.Log(charStats.HandState);
                 //return;
             }
             if (charStats.BodyState == EBodyState.Moving)
