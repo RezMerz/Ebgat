@@ -331,6 +331,11 @@ public class PlayerControl : MonoBehaviour
         aim.AimReleased();
     }
 
+    public void AimController(Vector2 aimAxis)
+    {
+        aim.ControllerAim(aimAxis);
+    }
+
     public void GetData(string data)
     {
 

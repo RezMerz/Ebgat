@@ -391,6 +391,7 @@ public class CharacterAttributes : MonoBehaviour {
             case "1": BodyState = EBodyState.Standing; break;
             case "2": bodyState = EBodyState.Moving; break;
             case "3": bodyState = EBodyState.Dashing; break;
+            case "4": bodyState = EBodyState.Aiming; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -401,7 +402,6 @@ public class CharacterAttributes : MonoBehaviour {
             case "2": HandState = EHandState.Attacking; break;
             case "3": HandState = EHandState.Casting; break;
             case "4": HandState = EHandState.Channeling; break;
-            case "5": HandState = EHandState.Aiming; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -449,6 +449,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EBodyState.Standing: playerControl.worldState.RegisterCharStat(ID, 'b', "1"); break;
             case EBodyState.Moving: playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
             case EBodyState.Dashing: playerControl.worldState.RegisterCharStat(ID, 'b', "3"); break;
+            case EBodyState.Aiming: playerControl.worldState.RegisterCharStat(ID, 'b', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -460,7 +461,6 @@ public class CharacterAttributes : MonoBehaviour {
             case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
             case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
             case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
-            case EHandState.Aiming: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -532,8 +532,8 @@ public class CharacterAttributes : MonoBehaviour {
 
 
 public enum EHeadState { Conscious = 1, Stunned = 2 };
-public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 6 };
-public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4, Aiming = 5 };
+public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 3, Aiming = 4 };
+public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4};
 public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5,OnWall = 6,WallJumping = 8};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 
