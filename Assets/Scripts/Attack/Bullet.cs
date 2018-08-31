@@ -61,7 +61,6 @@ public class Bullet : MonoBehaviour
             angleX = 180;
             angle = -angle;
         }
-        Debug.Log(angle);
         transform.rotation = Quaternion.Euler(angleX,0,angle);
         physic.AddForce(force + gravityForce);
         physic.BulletAction += HitFunction;

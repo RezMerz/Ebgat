@@ -32,7 +32,7 @@ public class CharacterMove : MonoBehaviour
         {
             if (movedPressed)
             {
-                if (charStats.BodyState != EBodyState.Dashing)
+                if (charStats.BodyState != EBodyState.Dashing && charStats.HandState != EHandState.Aiming)
                     charStats.BodyState = EBodyState.Moving;
             }
             if (charStats.HandState != EHandState.Idle)
@@ -61,7 +61,7 @@ public class CharacterMove : MonoBehaviour
     {
         movedPressed = true;
         moveSide = i;
-        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
+        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing && charStats.HandState != EHandState.Aiming)
         {
             charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
