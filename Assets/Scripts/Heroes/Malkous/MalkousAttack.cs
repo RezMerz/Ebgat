@@ -71,7 +71,6 @@ public class MalkousAttack : Attack
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
         // Calculate Side
         Vector2 attackSide = charStats.AimSide;
-        print(charStats.AimSide);
         if (attackSide == new Vector2(0,0))
             attackSide = charStats.Side;
         GameObject virtualBullet = Instantiate(virttualBullet,transform.position + (Vector3)charStats.Side * 2 + Vector3.up * 0.5f,Quaternion.identity);

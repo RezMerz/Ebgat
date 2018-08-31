@@ -27,6 +27,7 @@ public class CharacterAim : MonoBehaviour {
 
     public void AimPressed()
     {
+        charStats.HandState = EHandState.Aiming;
         Cursor.visible = false;
         angle = 0;
         position = new Vector2(1, 0);
@@ -36,6 +37,7 @@ public class CharacterAim : MonoBehaviour {
 
     public void AimReleased()
     {
+        charStats.HandState = EHandState.Idle;
         Cursor.visible = true;
         arrow.SetActive(false);
         charStats.AimSide = charStats.Side;
