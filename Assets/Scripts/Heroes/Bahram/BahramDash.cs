@@ -2,27 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BahramDash : CharacterDash {
+public class BahramDash : CharacterDash
+{
+    private MeleeAttack meleeAttack;
 
-	// Use this for initialization
+
+    private new void Start()
+    {
+        base.Start();
+        meleeAttack = GetComponent<MeleeAttack>();
+    }
+
+    // Use this for initialization
     void Update()
     {
-        if (charStats.BodyState == EBodyState.Dashing)
-            DashMove();
+        if (started)
+        {
+            // Debug.Log(charStats.BodyState);
+            if (charStats.BodyState == EBodyState.Dashing)
+            {
+
+                DashMove();
+            }
+        }
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
     private void DashMove()
     {
         float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
         if (currentDistance + distance <= range)
         {
-            physic.AddForce(charStats.Side * speed * Time.deltaTime);
+            physic.AddForce((charStats.Side.x * Vector2.right) * speed * Time.deltaTime);
             physic.PhysicAction += BahramDashHitFunction;
             distance += Toolkit.FloatCut(speed * Time.deltaTime);
         }
         else
         {
+            physic.DashLayerReset();
+            charStats.AttackNumber = meleeAttack.maxAttackNumber - 1;
+            meleeAttack.IntruptAttack();
+            meleeAttack.StartComboCorutine();
+            gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
             charStats.BodyState = EBodyState.Standing;
             distance = 0;
         }

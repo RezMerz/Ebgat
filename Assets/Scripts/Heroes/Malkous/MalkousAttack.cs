@@ -61,7 +61,6 @@ public class MalkousAttack : Attack
 
     public override void AttackReleased()
     {
-
     }
 
     protected override void ApplyAttack()

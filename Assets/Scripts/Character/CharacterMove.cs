@@ -32,10 +32,10 @@ public class CharacterMove : MonoBehaviour
         {
             if (movedPressed)
             {
-                if(charStats.BodyState != EBodyState.Dashing)
+                if (charStats.BodyState != EBodyState.Dashing)
                     charStats.BodyState = EBodyState.Moving;
             }
-            if(charStats.HandState != EHandState.Idle )
+            if (charStats.HandState != EHandState.Idle)
             {
                 charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();
@@ -60,12 +60,12 @@ public class CharacterMove : MonoBehaviour
     public void MovePressed(int i)
     {
         movedPressed = true;
+        moveSide = i;
         if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
         {
             charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
-           // charStats.Side = Vector2.right * i;
-            moveSide = i;
+            // charStats.Side = Vector2.right * i;
         }
     }
     public void MoveServerside()
@@ -86,8 +86,10 @@ public class CharacterMove : MonoBehaviour
     public void MoveReleasedServerside(Vector3 position)
     {
         movedPressed = false;
-       // charStats.AimSide = new Vector2(0, charStats.AimSide.y);
-        charStats.BodyState = EBodyState.Standing;
+        if (charStats.BodyState == EBodyState.Moving)
+        {
+            charStats.BodyState = EBodyState.Standing;
+        }
     }
     private void SpeedCheck(int i)
     {
