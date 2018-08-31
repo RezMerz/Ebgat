@@ -15,7 +15,6 @@ public class CustomNetworkDiscovery : NetworkDiscovery {
 
     public override void OnReceivedBroadcast(string fromAddress, string data)
     {
-        Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         //base.OnReceivedBroadcast(fromAddress, data);
         if(action != null){
             action(fromAddress, data);

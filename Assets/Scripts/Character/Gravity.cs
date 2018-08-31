@@ -68,6 +68,7 @@ public class Gravity : MonoBehaviour {
     {
         if (vHits.Count > 0 && direction.y <= 0)
         {
+            Debug.Log(vHits[0].collider);
             timer = 0;
             charStats.FeetState = EFeetState.Onground;
         }

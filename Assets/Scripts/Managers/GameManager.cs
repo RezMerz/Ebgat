@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
     public string playerName;
 
     CustomNetworkDiscovery networkDiscovery;
+    LobbyNetworkManager networkManager;
+
+    public string hostIp { get; set; }
 
 	// Use this for initialization
 	void Awake () {
@@ -20,7 +23,9 @@ public class GameManager : MonoBehaviour {
         }
         else{
             if (instance.currentScene == CurrentScene.LobbyHost)
-                StartLobbyHost();
+                instance.StartLobbyHost();
+            else if (instance.currentScene == CurrentScene.LobbyClient)
+                StartLobbyClient();
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
@@ -34,7 +39,17 @@ public class GameManager : MonoBehaviour {
 
     void StartLobbyHost(){
         networkDiscovery = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkDiscovery>();
+        networkDiscovery.broadcastData = playerName;
         networkDiscovery.StartAsServer();
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
+        networkManager.StartServer();
+    }
+
+    void StartLobbyClient(){
+        Debug.Log(hostIp);
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
+        networkManager.networkAddress = instance.hostIp;
+        networkManager.StartClient();
     }
 }
 
