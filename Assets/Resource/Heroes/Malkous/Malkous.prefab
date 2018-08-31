@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341430771966434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.412863, y: -2.7833228, z: 0}
+  m_LocalPosition: {x: -4.063611, y: 2.3617692, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4716526750088998}
@@ -252,10 +252,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.43, y: -0.22}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.42, y: 0.496}
     oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
@@ -711,12 +711,12 @@ MonoBehaviour:
   wallside: 0
   hitPointsBase: 100
   attackDamageBase: 15
-  attackAnimationTimeBase: 0.2
+  attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
   attackNumber: 0
   moveSpeedBase: 10
-  moveAccelerationBase: 0
-  moveSpeedMaxBase: 14
+  moveAccelerationBase: 0.1
+  moveSpeedMaxBase: 15
   jumpSpeedBase: 15
   jumpAccelerationBase: 50
   jumpSpeedMaxBase: 27
