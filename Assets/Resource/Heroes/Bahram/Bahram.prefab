@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053505828903372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -14.23, y: -1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4728944773432002}
@@ -469,10 +469,12 @@ MonoBehaviour:
   teamName: 
   enemyTeamName: 
   canDoubleJump: 1
+  wallside: 0
   hitPointsBase: 100
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
+  attackNumber: 0
   moveSpeedBase: 10
   moveAccelerationBase: 0.1
   moveSpeedMaxBase: 15
@@ -533,6 +535,11 @@ MonoBehaviour:
   weaponObject: {fileID: 1444934213204626, guid: 4a11c003c5eb3ea499e86062dd8b9e86,
     type: 2}
   attackForce: 0.5
+  attackAnimationTimes:
+  - 0.1
+  - 0.1
+  - 0.3
+  comboTime: 1
 --- !u!114 &114432285978368132
 MonoBehaviour:
   m_ObjectHideFlags: 1

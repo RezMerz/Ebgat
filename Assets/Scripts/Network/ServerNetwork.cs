@@ -29,7 +29,7 @@ public class ServerNetwork : NetworkBehaviour
                 case "3": playerControl.MoveFinished(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
                 case "4": playerControl.JumpPressed(); break;
                 case "6": playerControl.JumpReleased(); break;
-                case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
+             //   case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
                 case "8": playerControl.AttackPressed(); break;
                 case "9": playerControl.AttackReleased(); break;
                 case "10": playerControl.Ability1Pressed(); break;
@@ -41,6 +41,10 @@ public class ServerNetwork : NetworkBehaviour
                 case "16": playerControl.DropDownPressed(); break;
                 case "17": playerControl.DropDownReleased(); break;
                 case "18": playerControl.DashPressed(); break;
+                case "19": playerControl.deltaYAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
+                case "20": playerControl.deltaXAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
+                case "21": playerControl.AimPressed(); break;
+                case "22": playerControl.AimReleased(); break;
             }
         }
     }

@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     public Vector2 deathPoint { get; set; }
 
     public static string teamName { get; set; }
+    public CharacterAim aim { get; set; }
     public Color color;
     private Hashtable playerStatesHash = new Hashtable();
     private int lastStateChecked;
@@ -61,6 +62,7 @@ public class PlayerControl : MonoBehaviour
         input = GetComponent<InputCharacter>();
         bulletmanager = GetComponent<BulletManager>();
         dash = GetComponent<CharacterDash>();
+        aim = GetComponent<CharacterAim>();
         deathPoint = new Vector2(16, -48);
     }
 
@@ -240,11 +242,6 @@ public class PlayerControl : MonoBehaviour
         characterMove.MovePressed(-1);
     }
 
-    public void SetVerticalDirection(int i)
-    {
-        charStats.AimSide = new Vector2(charStats.AimSide.x, i);
-        charStats.Side = new Vector2(charStats.Side.x, i);
-    }
 
     public void MoveFinished(Vector3 position)
     {
@@ -313,6 +310,26 @@ public class PlayerControl : MonoBehaviour
     {
         physic.IncludeBridge();
     }//17
+
+    public void deltaYAim(float deltaY)
+    {
+        aim.yChange(deltaY);
+    }
+
+    public void deltaXAim(float deltaX)
+    {
+        aim.XChange(deltaX);
+    }
+
+    public void AimPressed()
+    {
+        aim.AimPressed();
+    }
+
+    public void AimReleased()
+    {
+        aim.AimReleased();
+    }
 
     public void GetData(string data)
     {

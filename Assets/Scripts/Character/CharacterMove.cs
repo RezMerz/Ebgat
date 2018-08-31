@@ -32,10 +32,10 @@ public class CharacterMove : MonoBehaviour
         {
             if (movedPressed)
             {
-                if(charStats.BodyState != EBodyState.Dashing)
+                if (charStats.BodyState != EBodyState.Dashing && charStats.HandState != EHandState.Aiming)
                     charStats.BodyState = EBodyState.Moving;
             }
-            if(charStats.HandState != EHandState.Idle )
+            if (charStats.HandState != EHandState.Idle)
             {
                 charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();
@@ -60,24 +60,24 @@ public class CharacterMove : MonoBehaviour
     public void MovePressed(int i)
     {
         movedPressed = true;
-        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
+        moveSide = i;
+        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing && charStats.HandState != EHandState.Aiming)
         {
-            charStats.AimSide = new Vector2(i, charStats.AimSide.y);
+            charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
-           // charStats.Side = Vector2.right * i;
-            moveSide = i;
-            if(moveSide == 1)
-            {
-                Physic.RemoveTaggedForces(4);
-            }
-            else
-            {
-                Physic.RemoveTaggedForces(3);
-            }
+            // charStats.Side = Vector2.right * i;
         }
     }
     public void MoveServerside()
     {
+        if (moveSide == 1)
+        {
+            Physic.RemoveTaggedForces(4);
+        }
+        else
+        {
+            Physic.RemoveTaggedForces(3);
+        }
         SpeedCheck(moveSide);
         Vector2 force = Vector2.right * moveSide * charStats.MoveSpeed * Time.deltaTime;
         Physic.AddForce(force);
@@ -86,8 +86,10 @@ public class CharacterMove : MonoBehaviour
     public void MoveReleasedServerside(Vector3 position)
     {
         movedPressed = false;
-        charStats.AimSide = new Vector2(0, charStats.AimSide.y);
-        charStats.BodyState = EBodyState.Standing;
+        if (charStats.BodyState == EBodyState.Moving)
+        {
+            charStats.BodyState = EBodyState.Standing;
+        }
     }
     private void SpeedCheck(int i)
     {
@@ -115,10 +117,6 @@ public class CharacterMove : MonoBehaviour
         if (direction.x * moveSide > 0 && hHits.Count > 0)
         {
             charStats.ResetMoveSpeed();
-            if(charStats.FeetState == EFeetState.Falling)
-            {
-                //charStats.FeetState = EFeetState.OnWall;
-            }
         }
     }
 

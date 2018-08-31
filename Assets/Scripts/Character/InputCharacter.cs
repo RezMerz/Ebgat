@@ -18,6 +18,7 @@ public class InputCharacter : MonoBehaviour
     private bool newAxisChanged;
     private float axisY;
     private float axisX;
+    private bool aiming;
     public bool start { get;set; }
 	// Use this for initialization
 	void Start ()
@@ -49,7 +50,7 @@ public class InputCharacter : MonoBehaviour
         }
 
         // Move Down and Top
-        if ((!axisYChanged && axisY > 0.3 || axisY < -0.3))
+    /*    if ((!axisYChanged && axisY > 0.3 || axisY < -0.3))
         {
             axisYChanged = true;
             if(axisY > 0.1)
@@ -61,7 +62,7 @@ public class InputCharacter : MonoBehaviour
         {
             axisYChanged = false;
             clientNetworkSender.SetVerticalDirection(0);
-        }
+        } */
 
         //Attack
         if (Input.GetButtonDown("Fire"))
@@ -118,9 +119,48 @@ public class InputCharacter : MonoBehaviour
 
         if(Input.GetButtonDown("Dash"))
         {
-            print("Dash");
+            //print("Dash");
             clientNetworkSender.DashPressed();
         }
+        if (Input.GetButtonDown("Aim"))
+        {
+            aiming = true;
+            clientNetworkSender.AimPressed();
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            aiming = false;
+            clientNetworkSender.AimReleased();
+        }
+        if (Input.GetAxis("Aim") > 0.3 && !aiming)
+        {
+           
+            aiming = true;
+            clientNetworkSender.AimPressed();
+
+        }
+        else if (Input.GetAxis("Aim") < 0.2 && aiming)
+        {
+            aiming = false;
+            clientNetworkSender.AimReleased();
+        }
+
+        if (Input.GetAxis("Fire") > 0.3)
+        {
+            clientNetworkSender.AttackPressed();
+        }
+        if (aiming)
+        {
+            if (Input.GetAxis("Mouse Y") != 0)
+                clientNetworkSender.deltaY(Input.GetAxis("Mouse Y"));
+            if (Input.GetAxis("Mouse X") != 0)
+                clientNetworkSender.deltaX(Input.GetAxis("Mouse X"));
+            if (Input.GetAxis("Horizontal") != 0)
+                clientNetworkSender.deltaX(Input.GetAxis("Horizontal"));
+            if (Input.GetAxis("Vertical") != 0)
+                clientNetworkSender.deltaY(Input.GetAxis("Vertical"));
+        }
+
     }
 
     private void Initialize()

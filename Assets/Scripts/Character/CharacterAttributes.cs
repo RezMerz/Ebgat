@@ -109,6 +109,9 @@ public class CharacterAttributes : MonoBehaviour {
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
+    [SerializeField]
+    private int attackNumber;
+
     private float range;
     public float Range{
         get { return range; }
@@ -131,6 +134,12 @@ public class CharacterAttributes : MonoBehaviour {
         get { return attackCooldown; }
         set { if (value != attackCooldown) { attackCooldown = value; playerControl.worldState.RegisterCharStat(ID, 'l', value + ""); } }
     } //l
+
+    public int AttackNumber
+    {
+        get { return attackNumber; }
+        set { if(value != attackNumber) { attackNumber = value ;playerControl.worldState.RegisterCharStat(ID, 'y', value + ""); } }
+    }
 
     //movement attributes
     [SerializeField]
@@ -391,7 +400,7 @@ public class CharacterAttributes : MonoBehaviour {
             case "2": HandState = EHandState.Attacking; break;
             case "3": HandState = EHandState.Casting; break;
             case "4": HandState = EHandState.Channeling; break;
-            case "5": HandState = EHandState.AttackCharge; break;
+            case "5": HandState = EHandState.Aiming; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -450,7 +459,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
             case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
             case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
-            case EHandState.AttackCharge: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
+            case EHandState.Aiming: playerControl.worldState.RegisterCharStat(ID, 'c', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -523,7 +532,7 @@ public class CharacterAttributes : MonoBehaviour {
 
 public enum EHeadState { Conscious = 1, Stunned = 2 };
 public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 6 };
-public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4, AttackCharge = 5 };
+public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4, Aiming = 5 };
 public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5,OnWall = 6,WallJumping = 8};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 

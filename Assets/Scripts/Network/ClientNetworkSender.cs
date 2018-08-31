@@ -133,4 +133,24 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 18 + ",\n";
     }
+
+    public void deltaY(float yChange)
+    {
+        data += 19 + "," + yChange + ",\n";
+    }
+
+    public void deltaX(float xChange)
+    {
+        data += 20 + "," + xChange + ",\n";
+    }
+
+    public void AimPressed()
+    {
+        data += 21 + ",\n";
+    }
+
+    public void AimReleased()
+    {
+        data += 22 + ",\n"; 
+    }
 }

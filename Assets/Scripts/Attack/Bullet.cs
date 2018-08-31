@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         physic = GetComponent<BulletPhysic>();
-
     }
 
     // Update is called once per frame
@@ -55,6 +54,14 @@ public class Bullet : MonoBehaviour
             gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
             gravitySpeedBase += gravityAcceleration * Time.deltaTime;
         }
+        float angle = Vector2.SignedAngle(Vector2.right,(force + gravityForce).normalized);
+        float angleX = 0;
+        if(angle > 90 || angle < -90)
+        {
+            angleX = 180;
+            angle = -angle;
+        }
+        transform.rotation = Quaternion.Euler(angleX,0,angle);
         physic.AddForce(force + gravityForce);
         physic.BulletAction += HitFunction;
     }

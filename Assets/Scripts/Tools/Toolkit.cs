@@ -71,6 +71,16 @@ public class Toolkit : MonoBehaviour {
         hitPoints = hitObjects;
         return hit;
     }
+    public static bool OnWallCheck(Vector2 originPosition, Vector2 vecSize, Vector2 offset, Vector2 direction, float distance, int layerNumber)
+    {
+        float threshold = 0.2f;
+        //bool onWall = false;
+        Vector2 rayOriginFirst = (originPosition + offset) + (vecSize * direction / 2) + Vector2.up * (vecSize.y/2 - threshold); 
+        Vector2 rayOriginSeconed = (originPosition + offset) + (vecSize * direction / 2) + Vector2.down * (vecSize.y/2 + threshold);
+        bool hitPointFirst = Physics2D.Raycast(rayOriginFirst, direction, distance, layerNumber, 0, 0);
+        bool hitPointSecond = Physics2D.Raycast(rayOriginSeconed, direction, distance, layerNumber, 0, 0);
+        return (hitPointFirst && hitPointSecond);
+    }
     public static float FloatCut(float f)
     {
         return (int)(f * 100f) / 100f;
@@ -78,7 +88,6 @@ public class Toolkit : MonoBehaviour {
 
     public static Vector2 HitSide(RaycastHit2D hit)
     {
-       // Vector2 size = hit.collider.gameObject.GetComponent<BoxCollider2D>().size * hit.transform.localScale;
         Vector2 side = Vector2.zero;
         Vector2 direction = hit.point - (Vector2)hit.transform.position;
         float angle = Vector2.SignedAngle(direction, Vector2.up);

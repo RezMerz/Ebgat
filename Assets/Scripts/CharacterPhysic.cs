@@ -7,6 +7,7 @@ public class CharacterPhysic : Physic
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
     private int gravityLayerMask;
+    private int wallLayerMask;
     private CharacterAttributes charStats;
     private PlayerControl playerControl;
     private bool layerSet;
@@ -42,6 +43,7 @@ public class CharacterPhysic : Physic
         {
             layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
             gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
+            wallLayerMask = LayerMask.GetMask("Blocks");
             layerSet = true;
         }
 
@@ -103,14 +105,20 @@ public class CharacterPhysic : Physic
     }
     public void ExcludeBridge()
     {
-        gravityLayerMask = layerMask;
+        gravityLayerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
         charStats.CayoteTime = 0;
         //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
 
     public void DashLayerSet()
     {
-        
+        layerMask = LayerMask.GetMask("Blocks");
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge");
+    }
+    public void DashLayerReset()
+    {
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
@@ -174,7 +182,7 @@ public class CharacterPhysic : Physic
                 if(charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if(timer >= 2*  charStats.CayoteTime + Time.deltaTime)
+                    if(timer >=  charStats.CayoteTime + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }
@@ -190,11 +198,14 @@ public class CharacterPhysic : Physic
     {
         if ((charStats.FeetState == EFeetState.Falling  || charStats.FeetState == EFeetState.OnWall ) && charStats.Side.x * direction.x > 0)
         {
-            timer = 0;
-            charStats.FeetState = EFeetState.OnWall;
-            charStats.wallside = (int)charStats.Side.x;
-            RemoveTaggedForces(3);
-            RemoveTaggedForces(4);
+            if(Toolkit.OnWallCheck(virtualPosition,size, offset * new Vector2(charStats.Side.x, 1),charStats.Side,Mathf.Abs(direction.x), wallLayerMask))
+            {
+                timer = 0;
+                charStats.FeetState = EFeetState.OnWall;
+                charStats.wallside = (int)charStats.Side.x;
+                RemoveTaggedForces(3);
+                RemoveTaggedForces(4);
+            }
         }
     }
 
