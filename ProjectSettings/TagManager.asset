@@ -14,6 +14,7 @@ TagManager:
   - Sword
   - Bullet
   - AimUI
+  - Test Tag
   layers:
   - Default
   - TransparentFX
