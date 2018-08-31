@@ -536,9 +536,9 @@ MonoBehaviour:
     type: 2}
   attackForce: 0.5
   attackAnimationTimes:
-  - 1
-  - 1
-  - 1
+  - 0.1
+  - 0.1
+  - 0.3
   comboTime: 1
 --- !u!114 &114432285978368132
 MonoBehaviour:

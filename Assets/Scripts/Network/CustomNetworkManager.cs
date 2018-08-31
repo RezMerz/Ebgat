@@ -28,6 +28,7 @@ public class CustomNetworkManager : NetworkManager {
 
     private void Start()
     {
+        Debug.Log(gameObject.name, gameObject);
         connectionTable = new Hashtable();
         playerConnections = new List<PlayerConnection>();
         playerID = 0;
@@ -74,6 +75,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnStopHost()
     {
+        Debug.Log("Stoping host");
         base.OnStopHost();
         GetComponent<CustomNetworkDiscovery>().Initialize();
         GetComponent<CustomNetworkDiscovery>().StopBroadcast();
