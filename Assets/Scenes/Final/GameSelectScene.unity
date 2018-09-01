@@ -1645,8 +1645,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1332478647}
   - component: {fileID: 1332478646}
-  - component: {fileID: 1332478648}
   - component: {fileID: 1332478649}
+  - component: {fileID: 1332478648}
   m_Layer: 0
   m_Name: Game Scene Manager
   m_TagString: Untagged

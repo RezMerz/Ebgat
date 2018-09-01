@@ -22,6 +22,7 @@ public class LobbyNetworkManager : NetworkManager {
         isSlotFull = new bool[6];
         if (NetworkServer.active && isServer)
         {
+            Debug.Log("ghere");
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
             lobbyManager = lobbyManagerObj.GetComponent<LobbyManager>();
             NetworkServer.Spawn(lobbyManagerObj);
@@ -121,17 +122,16 @@ public class LobbyNetworkManager : NetworkManager {
     public void StartGame(){
         Debug.Log(isServer);
         if(isServer){
-            lobbyManager.RpcStartGame();
-            //StartCoroutine(ShutDownServer(2));
+            
+            GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
+            Destroy(GetComponent<NetworkDiscovery>());
+            StartCoroutine(SendRpc(0));
         }
     }
 
-    IEnumerator ShutDownServer(int time){
-        
+    IEnumerator SendRpc(int time){
         yield return new WaitForSeconds(time);
-        Debug.Log("shuting down server");
-        Destroy(gameObject);
-        StopHost();
+        lobbyManager.RpcStartGame();
     }
 
     class ClientData
