@@ -43,6 +43,7 @@ public class CrushOfConqueror : Ability
                     layerMask = LayerMask.GetMask(charStats.enemyTeamName);
                 }
                 charStats.HandState = EHandState.Casting;
+                charStats.AbilityState = EAbility.Ability1Start;
                 castTimeCoroutine = StartCoroutine(CastTime(castTime / charStats.SpeedRate));
             }
             else
@@ -104,6 +105,9 @@ public class CrushOfConqueror : Ability
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
             }
         }
+        StartCoroutine(CoolDownTimer(coolDownTime));
+        charStats.HandState = EHandState.Idle;
+        charStats.AbilityState = EAbility.Ability1Finish;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
@@ -113,6 +117,7 @@ public class CrushOfConqueror : Ability
             if(vHits.Count > 0)
             {
                 LandCrush();
+
             }
         }
     }
