@@ -39,10 +39,12 @@ public class GameManager : MonoBehaviour {
 
     void StartLobbyHost(){
         networkDiscovery = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkDiscovery>();
+        if (playerName.Length == 0)
+            playerName = "Player";
         networkDiscovery.broadcastData = playerName;
         networkDiscovery.StartAsServer();
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
-        networkManager.StartServer();
+        networkManager.StartHost();
     }
 
     void StartLobbyClient(){

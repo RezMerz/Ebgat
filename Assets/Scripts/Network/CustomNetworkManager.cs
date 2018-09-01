@@ -28,7 +28,6 @@ public class CustomNetworkManager : NetworkManager {
 
     private void Start()
     {
-        Debug.Log(gameObject.name, gameObject);
         connectionTable = new Hashtable();
         playerConnections = new List<PlayerConnection>();
         playerID = 0;
