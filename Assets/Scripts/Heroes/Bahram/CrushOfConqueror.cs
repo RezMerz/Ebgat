@@ -15,6 +15,8 @@ public class CrushOfConqueror : Ability
     private float landingWidth;
     [SerializeField]
     private float pushDownWidth;
+    [SerializeField]
+    private float pushForce;
 
     private CharacterPhysic physic;
     private Vector2 pushDownSize;
@@ -38,12 +40,14 @@ public class CrushOfConqueror : Ability
         {
             if (energyUsage <= charStats.Energy)
             {
-                if (layerMask != 0)
+                if (layerMask == 0)
                 {
                     layerMask = LayerMask.GetMask(charStats.enemyTeamName);
                 }
+                Debug.Log(layerMask);
                 charStats.HandState = EHandState.Casting;
                 charStats.AbilityState = EAbility.Ability1Start;
+                coolDownLock = true;
                 castTimeCoroutine = StartCoroutine(CastTime(castTime / charStats.SpeedRate));
             }
             else
@@ -103,11 +107,23 @@ public class CrushOfConqueror : Ability
             {
                 GameObject enemy = hit.collider.gameObject;
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+
+                if(enemy.transform.position.x > transform.position.x)
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.right * pushForce);
+                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.right * pushForce * 30,5,10);
+                }
+                else
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
+                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.left * pushForce * 30, 5, 10);
+                }
             }
         }
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
+        physic.DashLayerReset();
         active = false;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
