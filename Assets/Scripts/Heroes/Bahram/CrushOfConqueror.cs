@@ -15,6 +15,8 @@ public class CrushOfConqueror : Ability
     private float landingWidth;
     [SerializeField]
     private float pushDownWidth;
+    [SerializeField]
+    private float pushForce;
 
     private CharacterPhysic physic;
     private Vector2 pushDownSize;
@@ -105,6 +107,17 @@ public class CrushOfConqueror : Ability
             {
                 GameObject enemy = hit.collider.gameObject;
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+
+                if(enemy.transform.position.x > transform.position.x)
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.right * pushForce);
+                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.right * pushForce * 30,5,10);
+                }
+                else
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
+                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.left * pushForce * 30, 5, 10);
+                }
             }
         }
         StartCoroutine(CoolDownTimer(coolDownTime));
