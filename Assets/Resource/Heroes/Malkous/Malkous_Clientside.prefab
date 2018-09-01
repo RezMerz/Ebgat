@@ -501,8 +501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
+  - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
