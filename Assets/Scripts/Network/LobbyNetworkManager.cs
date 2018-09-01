@@ -22,6 +22,7 @@ public class LobbyNetworkManager : NetworkManager {
         if (NetworkServer.active && isServer)
         {
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
+            lobbyManager = lobbyManagerObj.GetComponent<LobbyManager>();
             NetworkServer.Spawn(lobbyManagerObj);
         }
 
@@ -113,6 +114,13 @@ public class LobbyNetworkManager : NetworkManager {
                 }
             }
 
+        }
+    }
+
+    public void StartGame(){
+        if(isServer){
+            GetComponent<NetworkDiscovery>().StopBroadcast();
+            lobbyManager.RpcStartGame();
         }
     }
 

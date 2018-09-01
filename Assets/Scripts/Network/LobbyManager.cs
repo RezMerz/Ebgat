@@ -47,4 +47,9 @@ public class LobbyManager : NetworkBehaviour {
                 playerNames[i].text = lobbyData[i];
         }
     }
+
+    [ClientRpc]
+    public void RpcStartGame(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Arena");
+    }
 }
