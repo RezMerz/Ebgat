@@ -110,7 +110,7 @@ public class CharacterAttributes : MonoBehaviour {
     private float attackAnimationTimeBase;
     [SerializeField]
     private float attackCooldownBase;
-    [SerializeField]
+    
     private int attackNumber;
 
     private float range;
@@ -140,7 +140,7 @@ public class CharacterAttributes : MonoBehaviour {
     {
         get { return attackNumber; }
         set { if(value != attackNumber) { attackNumber = value ;playerControl.worldState.RegisterCharStat(ID, 'y', value + ""); } }
-    }
+    } //y
 
     //movement attributes
     [SerializeField]
@@ -538,6 +538,7 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'v' + "&" + GravitySpeedMax + "$";
         data += 'w' + "&" + Toolkit.VectorSerialize(AimSide) + "$";
         data += 'x' + "&" + energy + "&";
+        data += 'y' + '&' + attackNumber + '&';
         playerControl.worldState.AppendCharstats(id, data);
     }
 }

@@ -384,6 +384,7 @@ public class PlayerControl : MonoBehaviour
             case 'e': heroGraphics.SetSide(value); break;
             case 'g': heroGraphics.HpChange(value); break;
             case 'x':if(playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
+            case 'y': heroGraphics.AttackNumber(value); break;
         }
     }
 

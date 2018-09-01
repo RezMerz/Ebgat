@@ -3,11 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BahramGraphics : HeroGraphics{
+
+    private int attackNumber = 1;
     public override void HandState(string value)
     {
         if (value == "2")
+        {
+            animator.SetInteger("Attack Number", attackNumber);
             animator.SetTrigger("Attack");
+        }
 
+    }
+
+    private void AttackEffect1()
+    {
+
+    }
+
+    private void AttackEffect2()
+    {
+
+    }
+    public override void AttackNumber(string value)
+    {
+        attackNumber = int.Parse(value) +1 ;
+        print(attackNumber);
     }
 
     public override void AbilityState(string value)

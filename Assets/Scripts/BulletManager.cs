@@ -35,7 +35,7 @@ public class BulletManager : MonoBehaviour {
         }
         else
         {
-            side = playerControl.charStatsClient.Side;
+            side = playerControl.charStatsClient.side;
         }
         GameObject bulletObject = Instantiate(bulletObjects[number], transform.position + (Vector3)startPos, Quaternion.identity);
         bulletObject.layer = gameObject.layer;
