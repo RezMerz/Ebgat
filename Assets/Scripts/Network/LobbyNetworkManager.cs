@@ -21,6 +21,7 @@ public class LobbyNetworkManager : NetworkManager {
         clientsData = new List<ClientData>();
         if (NetworkServer.active && isServer)
         {
+            Debug.Log("what the shiiiiit");
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
             NetworkServer.Spawn(lobbyManagerObj);
         }
