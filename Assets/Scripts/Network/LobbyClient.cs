@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 
 public class LobbyClient : NetworkBehaviour {
 
-    public int id, slot;
+    [SyncVar] public int id;
+    public int slot;
     bool first = true;
     string playerName;
     LobbyNetworkManager networkManager;
@@ -13,6 +14,7 @@ public class LobbyClient : NetworkBehaviour {
     private void Update()
     {
         if(first && isLocalPlayer){
+            Debug.Log("heheheheheh");
             first = false;
             playerName = GameManager.instance.playerName;
             CmdSetClientDataOnServer(id, playerName);

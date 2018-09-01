@@ -21,7 +21,6 @@ public class LobbyNetworkManager : NetworkManager {
         clientsData = new List<ClientData>();
         if (NetworkServer.active && isServer)
         {
-            Debug.Log("what the shiiiiit");
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
             NetworkServer.Spawn(lobbyManagerObj);
         }
@@ -62,6 +61,7 @@ public class LobbyNetworkManager : NetworkManager {
     }
 
     public void SetClientDataOnServer(int id, string name){
+        Debug.Log(id + "   "  + name);
         for (int i = 0; i < clientsData.Count; i++){
             if(clientsData[i].id == id){
                 clientsData[i].name = name;
