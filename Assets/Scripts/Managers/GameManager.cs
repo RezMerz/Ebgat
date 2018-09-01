@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartLobbyClient(){
-        Debug.Log(hostIp);
+        Debug.Log(instance.hostIp);
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
         networkManager.networkAddress = instance.hostIp;
         networkManager.StartClient();

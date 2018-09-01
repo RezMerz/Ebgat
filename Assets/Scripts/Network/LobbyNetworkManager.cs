@@ -18,8 +18,7 @@ public class LobbyNetworkManager : NetworkManager {
         id = 0;
         slot = 0;
         clientsData = new List<ClientData>();
-        GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
-        NetworkServer.Spawn(lobbyManagerObj);
+
     }
 
     private void Update()
@@ -47,6 +46,12 @@ public class LobbyNetworkManager : NetworkManager {
         lobbyClient.slot = ++slot;
         clientsData.Add(new ClientData(id, slot));
         NetworkServer.AddPlayerForConnection(conn, lobbyClientObj, playerControllerId);
+    }
+
+    public override void OnStartHost()
+    {
+        GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
+        NetworkServer.Spawn(lobbyManagerObj);
     }
 
     public void SetClientDataOnServer(int id, string name){

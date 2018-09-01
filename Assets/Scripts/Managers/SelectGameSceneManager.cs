@@ -50,7 +50,6 @@ public class SelectGameSceneManager : MonoBehaviour {
         button.transform.position = initPosition;
         Debug.Log(data.Length);
         string hostName = data + " Game";
-        Debug.Log(hostName);
         button.GetComponentInChildren<Text>().text = hostName;
         ButtonManager btnManager = button.GetComponent<ButtonManager>();
         btnManager.SetData(OnHostClicked, id++, ip);
