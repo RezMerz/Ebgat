@@ -60,6 +60,7 @@ public class PlayerJump : MonoBehaviour
         {
             if (charStats.Energy >= charStats.jumpEnergyConsume)
             {
+                physic.RemoveTaggedForces(0);
                 charStats.Energy -= charStats.jumpEnergyConsume;
                 jumped = true;
                 isHolding = true;
@@ -90,14 +91,15 @@ public class PlayerJump : MonoBehaviour
             physic.RemoveTaggedForces(0);
             wallJumped = true;
             charStats.FeetState = EFeetState.WallJumping;
+            charStats.GravityOnWall();
             physic.AddPersistentForce((charStats.JumpSpeed * 1.5f + charStats.GravitySpeed) * Vector2.up, 0, 0);
             if(charStats.wallside == 1)
             {
-                physic.AddPersistentForce(Vector2.left * (charStats.MoveSpeed * 2), 4, 3);
+                physic.AddPersistentForce(Vector2.left * (charStats.MoveSpeed * 2 * charStats.SpeedRate), 4, 3);
             }
             else
             {
-                physic.AddPersistentForce(Vector2.right * (charStats.MoveSpeed * 2), 4, 4);
+                physic.AddPersistentForce(Vector2.right * (charStats.MoveSpeed * 2* charStats.SpeedRate), 4, 4);
             }
         }
     }

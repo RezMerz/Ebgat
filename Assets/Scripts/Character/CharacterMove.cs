@@ -80,7 +80,7 @@ public class CharacterMove : MonoBehaviour
         }
         SpeedCheck(moveSide);
         Vector2 force = Vector2.right * moveSide * charStats.MoveSpeed * Time.deltaTime;
-        Physic.AddForce(force);
+        Physic.AddForce(force * charStats.SpeedRate);
         Physic.PhysicAction += HitFunction;
     }
     public void MoveReleasedServerside(Vector3 position)
@@ -105,7 +105,7 @@ public class CharacterMove : MonoBehaviour
         }
         if (charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground)
         {
-            charStats.MoveSpeed += charStats.MoveAcceleration;
+            charStats.MoveSpeed += (charStats.MoveAcceleration * charStats.SpeedRate);
             if (charStats.MoveSpeed > charStats.MoveSpeedMax)
             {
                 charStats.MoveSpeed = charStats.MoveSpeedMax;

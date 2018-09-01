@@ -6,9 +6,11 @@ using UnityEngine.Networking;
 
 public abstract class Ability : MonoBehaviour
 {
-    public float coolDownTime;
     public float castTime;
-    public float animationTime;
+    public float coolDownTime;
+    public int energyUsage;
+
+
     protected bool coolDownLock;
     public Buff buff;
     public int abilityNumber;
@@ -16,7 +18,9 @@ public abstract class Ability : MonoBehaviour
     public bool abilityUseServerside { get; set; }
     public bool abilityUseClientside { get; set; }
 
-    void Awake()
+    protected Coroutine castTimeCoroutine;
+
+    protected void Awake()
     {
         abilityUseServerside = false;
         charStats = GetComponent<CharacterAttributes>();
@@ -34,4 +38,12 @@ public abstract class Ability : MonoBehaviour
         coolDownLock = false;
     }
 
+    protected IEnumerator CastTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        AbilityCast();
+    }
+
+    protected virtual void AbilityCast() { }
+    protected virtual void IntruptCast() { }
 }
