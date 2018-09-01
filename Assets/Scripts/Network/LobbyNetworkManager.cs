@@ -10,15 +10,15 @@ public class LobbyNetworkManager : NetworkManager {
 
     List<ClientData> clientsData;
     private int id;
-    private int slot;
     private LobbyManager lobbyManager;
     private bool isServer = false;
+    private bool[] isSlotFull;
 
     public void Start()
     {
         id = 0;
-        slot = 0;
         clientsData = new List<ClientData>();
+        isSlotFull = new bool[6];
         if (NetworkServer.active && isServer)
         {
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
@@ -49,7 +49,15 @@ public class LobbyNetworkManager : NetworkManager {
         GameObject lobbyClientObj = Instantiate(lobbyClientPrefab);
         LobbyClient lobbyClient = lobbyClientObj.GetComponent<LobbyClient>();
         lobbyClient.id = ++id;
-        lobbyClient.slot = ++slot;
+        int slot = 0;
+        for (int i = 0; i < isSlotFull.Length; i++){
+            if(!isSlotFull[i]){
+                isSlotFull[i] = true;
+                slot = i + 1;
+                break;
+            }
+        }
+        lobbyClient.slot = slot;
         clientsData.Add(new ClientData(id, slot));
         NetworkServer.AddPlayerForConnection(conn, lobbyClientObj, playerControllerId);
     }
@@ -75,6 +83,37 @@ public class LobbyNetworkManager : NetworkManager {
             output += clientsData[i].slot + "&" + clientsData[i].name + "$";
         }
         return output;
+    }
+
+    public void ChangeTeam(int id){
+        for (int i = 0; i < clientsData.Count; i++){
+            if(clientsData[i].id == id){
+                if(clientsData[i].slot < 4){
+                    for (int j = 3; j < isSlotFull.Length; j++){
+                        if(!isSlotFull[j]){
+                            isSlotFull[j] = true;
+                            isSlotFull[clientsData[i].slot - 1] = false;
+                            clientsData[i].slot = j + 1;
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (!isSlotFull[j])
+                        {
+                            isSlotFull[j] = true;
+                            isSlotFull[clientsData[i].slot - 1] = false;
+                            clientsData[i].slot = j + 1;
+                            return;
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
     class ClientData

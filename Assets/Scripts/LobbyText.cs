@@ -6,4 +6,9 @@ using UnityEngine.UI;
 public class LobbyText : MonoBehaviour {
 
     public Text[] texts;
+
+
+    public void OnChangeTeamClick(){
+        GameManager.instance.ChangeTeamclicked();
+    }
 }

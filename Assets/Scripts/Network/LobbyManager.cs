@@ -35,7 +35,6 @@ public class LobbyManager : NetworkBehaviour {
         playerNames = GameObject.FindWithTag("LobbyText").GetComponent<LobbyText>().texts;
         string[] segment = rawData.Split('$');
         for (int i = 0; i < segment.Length - 1; i++){
-            Debug.Log(segment[i]);
             string[] data = segment[i].Split('&');
             int slot = System.Convert.ToInt32(data[0]);
             lobbyData[slot - 1] = data[1];
