@@ -526,9 +526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0833c1bcaf3724d87f949e865b3456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 0
   castTime: 0
-  animationTime: 0
+  coolDownTime: 0
+  energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 1
   radius: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2df5b6dbc3185a4cafa7e3de8b0a591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceShardTime: 1
+  iceShardTime: 2
   virtualBullets:
   - VirtualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
       type: 2}
@@ -596,9 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218feecb2f1efbe48b746f95dccf0772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 0
   castTime: 0
-  animationTime: 0
+  coolDownTime: 0
+  energyUsage: 0
   buff: {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   abilityNumber: 2
   time: 3
@@ -735,6 +735,7 @@ MonoBehaviour:
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
   energyBase: 1000
+  speedRate: 0
   energyRegenRate: 5
   attackEnergyConsume: 100
   jumpEnergyConsume: 50
