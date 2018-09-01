@@ -108,6 +108,7 @@ public class CrushOfConqueror : Ability
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
+        active = false;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
