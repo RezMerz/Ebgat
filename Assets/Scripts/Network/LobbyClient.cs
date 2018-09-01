@@ -14,16 +14,25 @@ public class LobbyClient : NetworkBehaviour {
     private void Update()
     {
         if(first && isLocalPlayer){
-            Debug.Log("heheheheheh");
             first = false;
             playerName = GameManager.instance.playerName;
             CmdSetClientDataOnServer(id, playerName);
+            GameManager.instance.myLobbyClient = this;
         }
+    }
+
+    public void ChangeTeamClicked(){
+        CmdChangeMyTeam(id);
     }
 
     [Command]
     public void CmdSetClientDataOnServer(int id, string name){
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
         networkManager.SetClientDataOnServer(id, name);
+    }
+
+    [Command]
+    public void CmdChangeMyTeam(int clientId){
+        networkManager.ChangeTeam(clientId);
     }
 }

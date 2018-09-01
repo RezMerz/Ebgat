@@ -48,7 +48,6 @@ public class SelectGameSceneManager : MonoBehaviour {
         }
         GameObject button = Instantiate(buttonSample, textHolder.transform);
         button.transform.position = initPosition;
-        Debug.Log(data.Length);
         string hostName = data + " Game";
         button.GetComponentInChildren<Text>().text = hostName;
         ButtonManager btnManager = button.GetComponent<ButtonManager>();
