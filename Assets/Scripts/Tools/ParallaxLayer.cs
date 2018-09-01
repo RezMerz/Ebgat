@@ -4,10 +4,10 @@ using System.Collections;
 public class ParallaxLayer : MonoBehaviour {
 
     public float parallaxFactor;
-    public void Move(float delta)
+    public void Move(Vector2 delta)
     {
         Vector3 newPos = transform.localPosition;
-        newPos.x -= delta * parallaxFactor;
+        newPos -= new Vector3(delta.x * parallaxFactor,delta.y * parallaxFactor);
         transform.localPosition = newPos;
     }
 }

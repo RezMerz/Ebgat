@@ -3,12 +3,15 @@ using System.Collections;
 
 public class ParallaxCamera : MonoBehaviour {
 
-    public delegate void ParallaxCameraDelegate(float deltaMovement);
+    public delegate void ParallaxCameraDelegate(Vector2 deltaMovement);
     public ParallaxCameraDelegate onCameraTranslate;
     private float oldPosition;
+    private float oldPositionY;
     void Start()
     {
         oldPosition = transform.position.x;
+        print(oldPosition);
+        oldPositionY = transform.position.y;
     }
     void Update()
     {
@@ -16,10 +19,20 @@ public class ParallaxCamera : MonoBehaviour {
         {
             if (onCameraTranslate != null)
             {
-                float delta = oldPosition - transform.position.x;
+                Vector2 delta = new Vector2(oldPosition - transform.position.x,0);
                 onCameraTranslate(delta);
             }
             oldPosition = transform.position.x;
+        }
+        if (transform.position.y != oldPositionY)
+        {
+            if (onCameraTranslate != null)
+            {
+                Vector2 delta = new Vector2(0,oldPositionY - transform.position.y);
+                
+                onCameraTranslate(delta);
+            }
+            oldPositionY = transform.position.y;
         }
     }
 }

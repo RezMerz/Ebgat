@@ -45,6 +45,7 @@ public class ServerNetwork : NetworkBehaviour
                 case "20": playerControl.deltaXAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
                 case "21": playerControl.AimPressed(); break;
                 case "22": playerControl.AimReleased(); break;
+                case "23": playerControl.AimController(new Vector2(float.Parse(parts[1]),float.Parse(parts[2]))); break;
             }
         }
     }

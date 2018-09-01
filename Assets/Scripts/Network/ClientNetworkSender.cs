@@ -153,4 +153,9 @@ public class ClientNetworkSender : NetworkBehaviour
     {
         data += 22 + ",\n"; 
     }
+
+    public void AimAxis(Vector2 aimAxis)
+    {
+        data += 23 +"," + aimAxis.x + "," + aimAxis.y +",\n";
+    }
 }

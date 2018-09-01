@@ -36,10 +36,10 @@ public class MalkousGraphics : HeroGraphics {
     }
     public override void BodyState(string value)
     {
+        animator.SetBool("Walking", false);
         if (value == "1")
         {
             animator.SetBool("Dash", false);
-            animator.SetBool("Walking", false);
         }
         else if (value == "2")
         {
@@ -48,7 +48,6 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if(value == "3")
         {
-            animator.SetBool("Walking", false);
             animator.SetBool("Dash",true);
         }
         else
@@ -77,8 +76,8 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "4")
             print(EFeetState.NoGravity);
-        else
-            print("Wrong Feet State Code");
+      //  else
+        //    print("Wrong Feet State Code");
 
     }
 }

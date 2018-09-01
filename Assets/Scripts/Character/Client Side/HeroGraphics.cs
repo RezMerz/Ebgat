@@ -48,6 +48,11 @@ public class HeroGraphics : MonoBehaviour {
         }
     }
 
+    public virtual void AttackNumber(string value)
+    {
+
+    }
+
     protected IEnumerator DestoryObjectAfterTime(float t, GameObject obj)
     {
         yield return new WaitForSeconds(t);

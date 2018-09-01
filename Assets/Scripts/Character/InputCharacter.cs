@@ -20,11 +20,18 @@ public class InputCharacter : MonoBehaviour
     private float axisX;
     private bool aiming;
     public bool start { get;set; }
+
+    private bool controllerConnected;
 	// Use this for initialization
 	void Start ()
     {
         playerControl = GetComponent<PlayerControl>();
         playerControl.ReadyAction += Initialize;
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            if (Input.GetJoystickNames()[0].Length > 0)
+                controllerConnected = true;
+        }
 	}
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -106,7 +113,7 @@ public class InputCharacter : MonoBehaviour
             clientNetworkSender.Ability2Pressed();
         }
         //Drop Down
-        if (!newAxisChanged&& axisY < -0.1f)
+        if (!newAxisChanged&& axisY < -0.1f && !aiming)
         {
             clientNetworkSender.DropDownPressed();
             newAxisChanged = true;
@@ -151,14 +158,18 @@ public class InputCharacter : MonoBehaviour
         }
         if (aiming)
         {
-            if (Input.GetAxis("Mouse Y") != 0)
-                clientNetworkSender.deltaY(Input.GetAxis("Mouse Y"));
-            if (Input.GetAxis("Mouse X") != 0)
-                clientNetworkSender.deltaX(Input.GetAxis("Mouse X"));
-            if (Input.GetAxis("Horizontal") != 0)
-                clientNetworkSender.deltaX(Input.GetAxis("Horizontal"));
-            if (Input.GetAxis("Vertical") != 0)
-                clientNetworkSender.deltaY(Input.GetAxis("Vertical"));
+            if (controllerConnected)
+            {
+                    clientNetworkSender.AimAxis(new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")));
+            }
+            else
+            {
+                if (Input.GetAxis("Mouse Y") != 0)
+                    clientNetworkSender.deltaY(Input.GetAxis("Mouse Y"));
+                if (Input.GetAxis("Mouse X") != 0)
+                    clientNetworkSender.deltaX(Input.GetAxis("Mouse X"));
+            }
+          
         }
 
     }
