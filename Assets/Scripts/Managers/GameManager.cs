@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour {
         {
             instance = this;
             currentScene = CurrentScene.Menu;
+            /*if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene")){
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameSelectScene");
+            }*/
+                
         }
         else{
             if (instance.currentScene == CurrentScene.LobbyHost)
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnStartClicked(){
+        Debug.Log("on start cliiiiiiiiicked");
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
         networkManager.StartGame();
     }
 
@@ -55,7 +61,7 @@ public class GameManager : MonoBehaviour {
         if (playerName.Length == 0)
             playerName = "Player";
         networkDiscovery.broadcastData = playerName;
-        networkDiscovery.StartAsServer();
+        //networkDiscovery.StartAsServer();
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
         networkManager.StartHost();
     }

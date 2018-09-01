@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class LobbyNetworkManager : NetworkManager {
-    
+
     public GameObject lobbyClientPrefab;
     public GameObject lobbyManagerPrefab;
 
@@ -13,6 +13,7 @@ public class LobbyNetworkManager : NetworkManager {
     private LobbyManager lobbyManager;
     private bool isServer = false;
     private bool[] isSlotFull;
+
 
     public void Start()
     {
@@ -118,10 +119,19 @@ public class LobbyNetworkManager : NetworkManager {
     }
 
     public void StartGame(){
+        Debug.Log(isServer);
         if(isServer){
-            GetComponent<NetworkDiscovery>().StopBroadcast();
             lobbyManager.RpcStartGame();
+            //StartCoroutine(ShutDownServer(2));
         }
+    }
+
+    IEnumerator ShutDownServer(int time){
+        
+        yield return new WaitForSeconds(time);
+        Debug.Log("shuting down server");
+        Destroy(gameObject);
+        StopHost();
     }
 
     class ClientData
