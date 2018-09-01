@@ -252,6 +252,16 @@ public class CharacterAttributes : MonoBehaviour {
     } //x
 
 
+    [SerializeField]
+    private float speedRate;
+
+    public float SpeedRate
+    {
+        get { return speedRate; }
+        set { if (value != speedRate) { speedRate = value ; playerControl.worldState.RegisterCharStat(ID, 'z', value + ""); } }
+    }//z
+
+
     public int energyRegenRate;
     public int attackEnergyConsume;
     public int jumpEnergyConsume;
@@ -313,6 +323,9 @@ public class CharacterAttributes : MonoBehaviour {
 
         // Energy
         energy = energyBase;
+
+        //SpeedRate
+        speedRate = 1;
     }
 
     public void ResetGravitySpeed()

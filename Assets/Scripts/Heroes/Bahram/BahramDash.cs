@@ -30,12 +30,12 @@ public class BahramDash : CharacterDash
     // Update is called once per frame
     private void DashMove()
     {
-        float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
+        float currentDistance = Time.deltaTime * speed * charStats.SpeedRate;
         if (currentDistance + distance <= range)
         {
             physic.AddForce((charStats.Side.x * Vector2.right) * speed * Time.deltaTime);
             physic.PhysicAction += BahramDashHitFunction;
-            distance += Toolkit.FloatCut(speed * Time.deltaTime);
+            distance += currentDistance;
         }
         else
         {
