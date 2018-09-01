@@ -38,8 +38,16 @@ public class GameManager : MonoBehaviour {
         
 	}
 
-    public void ChangeTeamclicked(){
+    public void OnChangeTeamClicked(){
         myLobbyClient.ChangeTeamClicked();
+    }
+
+    public void OnLeaveClicked(){
+        
+    }
+
+    public void OnStartClicked(){
+        networkManager.StartGame();
     }
 
     void StartLobbyHost(){

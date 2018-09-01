@@ -9,6 +9,14 @@ public class LobbyText : MonoBehaviour {
 
 
     public void OnChangeTeamClick(){
-        GameManager.instance.ChangeTeamclicked();
+        GameManager.instance.OnChangeTeamClicked();
+    }
+
+    public void OnStartClicked(){
+        GameManager.instance.OnStartClicked();
+    }
+
+    public void OnLeaveClicked(){
+        
     }
 }
