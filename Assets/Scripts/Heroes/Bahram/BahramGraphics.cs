@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BahramGraphics : HeroGraphics{
-
+    public GameObject IronFistInstance;
     private int attackNumber = 1;
     public override void HandState(string value)
     {
@@ -39,6 +39,8 @@ public class BahramGraphics : HeroGraphics{
         else if (value == "2")
         {
             animator.SetBool("Ability1", false);
+            GameObject ironFistEffect = Instantiate(IronFistInstance, transform.position, Quaternion.Euler(0, 0, 0));
+            StartCoroutine(DestoryObjectAfterTime(1.5f, ironFistEffect));
         }
         else if (value == "3")
         {

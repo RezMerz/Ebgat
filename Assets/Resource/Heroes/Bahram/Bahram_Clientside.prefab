@@ -420,22 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: 
   enemyTeamName: 
-  canDoubleJump: 0
-  hitPointsBase: 100
-  hitPoints: 0
-  attackDamageBase: 15
-  attackAnimationTimeBase: 0.1
-  attackCooldownBase: 0.5
-  moveSpeedBase: 10
-  moveAccelerationBase: 0.1
-  moveSpeedMaxBase: 15
-  jumpSpeedBase: 15
-  jumpAccelerationBase: 50
-  jumpSpeedMaxBase: 27
-  gravitySpeedBase: 0.1
-  gravityAccelerationBase: 50
-  gravitySpeedMaxBase: 30
-  baseCayoteTime: 0.1
+  side: {x: 0, y: 0}
 --- !u!114 &114289126813422942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,6 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
+    type: 2}
+  IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
 --- !u!114 &114610447254143576
 MonoBehaviour:
