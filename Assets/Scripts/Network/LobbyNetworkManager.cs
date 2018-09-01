@@ -12,12 +12,18 @@ public class LobbyNetworkManager : NetworkManager {
     private int id;
     private int slot;
     private LobbyManager lobbyManager;
+    private bool isServer = false;
 
     public void Start()
     {
         id = 0;
         slot = 0;
         clientsData = new List<ClientData>();
+        if (NetworkServer.active && isServer)
+        {
+            GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
+            NetworkServer.Spawn(lobbyManagerObj);
+        }
 
     }
 
@@ -50,8 +56,8 @@ public class LobbyNetworkManager : NetworkManager {
 
     public override void OnStartHost()
     {
-        GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
-        NetworkServer.Spawn(lobbyManagerObj);
+        base.OnStartHost();
+        isServer = true;
     }
 
     public void SetClientDataOnServer(int id, string name){
