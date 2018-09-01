@@ -73,7 +73,7 @@ public class Toolkit : MonoBehaviour {
     }
     public static bool OnWallCheck(Vector2 originPosition, Vector2 vecSize, Vector2 offset, Vector2 direction, float distance, int layerNumber)
     {
-        float threshold = 0.2f;
+        float threshold = 0.4f;
         //bool onWall = false;
         Vector2 rayOriginFirst = (originPosition + offset) + (vecSize * direction / 2) + Vector2.up * (vecSize.y/2 - threshold); 
         Vector2 rayOriginSeconed = (originPosition + offset) + (vecSize * direction / 2) + Vector2.down * (vecSize.y/2 + threshold);

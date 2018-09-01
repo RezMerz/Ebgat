@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour {
     [SerializeField]
-    private GameObject bulletObject;
+    private GameObject[] bulletObjects;
     private Hashtable shotBullets = new Hashtable();
     private int layerMask;
     private PlayerControl playerControl;
@@ -26,7 +26,7 @@ public class BulletManager : MonoBehaviour {
         }
     }
 
-    public void Shoot(Vector2 direction,float gravityAcc, int id,float range)
+    public void Shoot(Vector2 direction,float gravityAcc, int id,float range,int number,Vector2 startPos)
     {
         Vector2 side;
         if (playerControl.IsServer())
@@ -37,7 +37,7 @@ public class BulletManager : MonoBehaviour {
         {
             side = playerControl.charStatsClient.Side;
         }
-        GameObject bulletObject = Instantiate(this.bulletObject, transform.position + (Vector3)side * 2 + Vector3.up * 0.5f, Quaternion.identity);
+        GameObject bulletObject = Instantiate(bulletObjects[number], transform.position + (Vector3)startPos, Quaternion.identity);
         bulletObject.layer = gameObject.layer;
         shotBullets.Add(id, bulletObject);
         bulletObject.GetComponent<Bullet>().Shoot(direction,layerMask, gravityAcc,range);

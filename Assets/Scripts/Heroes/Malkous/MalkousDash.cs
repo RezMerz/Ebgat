@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class MalkousDash : CharacterDash {
 
+    private MalkousAttack malkousAttack;
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        malkousAttack = GetComponent<MalkousAttack>();
+    }
+    // Update is called once per frame
+    void Update () {
         if (started && charStats.BodyState == EBodyState.Dashing)
         {
             DashMove();
@@ -16,18 +21,19 @@ public class MalkousDash : CharacterDash {
 
     private void DashMove()
     {
-        float currentDistance = Toolkit.FloatCut(Time.deltaTime * speed);
+        float currentDistance = Time.deltaTime * speed * charStats.SpeedRate;
         if (currentDistance + distance <= range)
         {
             physic.AddForce(charStats.Side * speed * Time.deltaTime);
             physic.PhysicAction += MalkousDashHitFunction;
-            distance += Toolkit.FloatCut(speed * Time.deltaTime);
+            distance += currentDistance;
         }
         else
         {
             physic.DashLayerReset();
             gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
             charStats.BodyState = EBodyState.Standing;
+            malkousAttack.StartIceShard();
             distance = 0;
         }
     }

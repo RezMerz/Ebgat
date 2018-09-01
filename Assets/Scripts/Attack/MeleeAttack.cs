@@ -59,7 +59,7 @@ public class MeleeAttack : Attack
                         StopCoroutine(comboTimeCoroutine);
                     }
                     parryTimeCoroutine = StartCoroutine(ParryTime());
-                    animationTimeCoroutine = StartCoroutine(AttackAnimateTime(attackAnimationTimes[charStats.AttackNumber]));
+                    animationTimeCoroutine = StartCoroutine(AttackAnimateTime(attackAnimationTimes[charStats.AttackNumber] / charStats.SpeedRate));
                 }
                 else
                 {
@@ -71,7 +71,7 @@ public class MeleeAttack : Attack
     private IEnumerator ParryTime()
     {
         sword.GetComponent<BoxCollider2D>().enabled = true;
-        yield return new WaitForSeconds(charStats.AttackAnimationTime * 2f);
+        yield return new WaitForSeconds(charStats.AttackAnimationTime * 2f / charStats.SpeedRate);
         sword.GetComponent<BoxCollider2D>().enabled = false;
     }
 

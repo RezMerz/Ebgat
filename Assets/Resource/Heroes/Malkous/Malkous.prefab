@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1514717226644988
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341430771966434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.063611, y: 2.3617692, z: 0}
+  m_LocalPosition: {x: -26.525322, y: -25.054323, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4716526750088998}
@@ -543,12 +543,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2df5b6dbc3185a4cafa7e3de8b0a591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virttualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
-    type: 2}
-  maxHoldTime: 2
-  damageMultiplier: 0.5
-  minRange: 10
-  maxRange: 20
+  iceShardTime: 1
+  virtualBullets:
+  - VirtualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
+      type: 2}
+    range: 15
+    attackAnimationTime: 0.1
+    damage: 25
+    startingPos: {x: 2.25, y: 0.5}
+  - VirtualBullet: {fileID: 1691014189850432, guid: 2c0f6bfd71fbdcf4ab2e1985f39f5d7a,
+      type: 2}
+    range: 10
+    attackAnimationTime: 0.2
+    damage: 40
+    startingPos: {x: 2.25, y: 0.5}
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,8 +616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43b15e64de82e14eb7882ca9f402673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObject: {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3,
-    type: 2}
+  bulletObjects:
+  - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
+  - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
 --- !u!114 &114352001818264730
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -161,9 +161,19 @@ public class CharacterPhysic : Physic
     }
     private void JumpCheck(Collider2D hit, Vector2 direction)
     {
-        if ((hit.tag.Equals("Player") || hit.tag.Equals("jump")) && direction.y < 0)
+        Vector2 force;
+        if (direction.y < 0)
         {
-            AddPersistentForce(Vector2.up *(charStats.JumpSpeed - (direction.y*30)) , 1000, 0);
+            if (hit.tag.Equals("Player"))
+            {
+                force = Vector2.up * (charStats.JumpSpeed - direction.y * 20);
+                AddPersistentForce(force,0, 0);
+            }
+            else if (hit.tag.Equals("jump"))
+            {
+                force = Vector2.up * (charStats.JumpSpeed - direction.y * 30);
+                AddPersistentForce(force,0, 0);
+            }
         }
     }
     private void StateCheck(Vector2 direction)
