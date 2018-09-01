@@ -38,12 +38,14 @@ public class CrushOfConqueror : Ability
         {
             if (energyUsage <= charStats.Energy)
             {
-                if (layerMask != 0)
+                if (layerMask == 0)
                 {
                     layerMask = LayerMask.GetMask(charStats.enemyTeamName);
                 }
+                Debug.Log(layerMask);
                 charStats.HandState = EHandState.Casting;
                 charStats.AbilityState = EAbility.Ability1Start;
+                coolDownLock = true;
                 castTimeCoroutine = StartCoroutine(CastTime(castTime / charStats.SpeedRate));
             }
             else
@@ -108,6 +110,7 @@ public class CrushOfConqueror : Ability
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
+        physic.DashLayerReset();
         active = false;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
