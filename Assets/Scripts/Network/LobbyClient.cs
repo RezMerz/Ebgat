@@ -15,7 +15,7 @@ public class LobbyClient : NetworkBehaviour {
         if(first && isLocalPlayer){
             first = false;
             playerName = GameManager.instance.playerName;
-            //CmdSetClientDataOnServer(id, playerName);
+            CmdSetClientDataOnServer(id, playerName);
         }
     }
 
