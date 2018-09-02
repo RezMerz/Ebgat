@@ -88,7 +88,7 @@ public class ServerManager : NetworkBehaviour {
         {
             tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
             p.worldState = tempWorldState;
-            p.charStats.RegisterAllStates();
+            p.charStats.RegisterAllStates(tempWorldState);
         }
         return tempWorldState;
     }
@@ -98,7 +98,7 @@ public class ServerManager : NetworkBehaviour {
         foreach (PlayerControl p in playerControls)
         {
             tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
-            p.charStats.RegisterAllStates();
+            p.charStats.RegisterAllStates(tempWorldState);
         }
         ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
     }

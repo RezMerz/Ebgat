@@ -511,7 +511,7 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
-    public void RegisterAllStates(){
+    public void RegisterAllStates(WorldState worldState){
         print("Register All States");
         int id = playerControl.playerId;
         string data = "";
@@ -539,7 +539,7 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'w' + "&" + Toolkit.VectorSerialize(AimSide) + "$";
         data += 'x' + "&" + energy + "&";
         data += 'y' + '&' + attackNumber + '&';
-        playerControl.worldState.AppendCharstats(id, data);
+        worldState.AppendCharstats(id, data);
     }
 }
 
