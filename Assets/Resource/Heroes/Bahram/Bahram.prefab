@@ -83,9 +83,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4545689650538170}
+  - component: {fileID: 61044636090824004}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053505828903372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.23, y: -1.33, z: 0}
+  m_LocalPosition: {x: -8.1510105, y: -10.878032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4728944773432002}
@@ -156,13 +157,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1767546196472498}
-  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: 0.82, y: 0.317, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4435843421954212}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4728944773432002
 Transform:
   m_ObjectHideFlags: 1
@@ -176,6 +177,31 @@ Transform:
   m_Father: {fileID: 4435843421954212}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61044636090824004
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767546196472498}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!61 &61299342488998378
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -468,7 +494,7 @@ MonoBehaviour:
   Speed: 50
   landingWidth: 4
   pushDownWidth: 3
-  pushForce: 0
+  pushForce: 1
 --- !u!114 &114257958083322680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +564,7 @@ MonoBehaviour:
   onWallGravitySpeed: 5
   energyBase: 1000
   speedRate: 0
-  energyRegenRate: 5
+  energyRegenRate: 10
   attackEnergyConsume: 100
   jumpEnergyConsume: 50
   ability1EnergyConsume: 0
@@ -567,14 +593,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9e7ce19f52e8e4f8d6927d93e96dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponObject: {fileID: 1444934213204626, guid: 4a11c003c5eb3ea499e86062dd8b9e86,
-    type: 2}
-  attackForce: 0.5
-  attackAnimationTimes:
-  - 0.1
-  - 0.1
-  - 0.3
-  comboTime: 1
+  swordCombos:
+  - damage: 25
+    attackAnimationTime: 0.1
+    size: {x: 7.3, y: 1.5}
+    offset: {x: 1, y: 0.8}
+    force: 0.6
+    buff: {fileID: 0}
+  - damage: 25
+    attackAnimationTime: 0.1
+    size: {x: 7.5, y: 1.7}
+    offset: {x: 1, y: -0.5}
+    force: 0.6
+    buff: {fileID: 0}
+  - damage: 40
+    attackAnimationTime: 0.3
+    size: {x: 7, y: 7}
+    offset: {x: 1, y: 2.1}
+    force: 1
+    buff: {fileID: 0}
+  comboTime: 0.5
 --- !u!114 &114432285978368132
 MonoBehaviour:
   m_ObjectHideFlags: 1

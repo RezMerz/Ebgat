@@ -44,7 +44,6 @@ public class CrushOfConqueror : Ability
                 {
                     layerMask = LayerMask.GetMask(charStats.enemyTeamName);
                 }
-                Debug.Log(layerMask);
                 charStats.HandState = EHandState.Casting;
                 charStats.AbilityState = EAbility.Ability1Start;
                 coolDownLock = true;
