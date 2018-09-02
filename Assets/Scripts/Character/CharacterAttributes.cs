@@ -85,6 +85,15 @@ public class CharacterAttributes : MonoBehaviour {
     //health attributes
     [SerializeField]
     private float hitPointsBase;
+    public float hpBase
+    {
+        get { return hitPointsBase; }
+    }
+
+    public int EnergyBase
+    {
+        get { return energyBase; }
+    }
     private float armor;
     public float Armor{
         get { return armor; }

@@ -12,8 +12,8 @@ public class HeroGraphics : MonoBehaviour {
     private Slider energySlider;
     private GameObject hpSliderParent;
     protected Animator abilityEffect;
-    private int maxEnergy = 1000;
-    private int maxHp = 100;
+    private int maxEnergy;
+    private float maxHp;
     protected CharacterAim aim;
     protected CharacterAttributesClient charStats;
     
@@ -49,6 +49,7 @@ public class HeroGraphics : MonoBehaviour {
                 energySlider = slider;
         }
 
+       
         aim = GetComponent<CharacterAim>();
     }
 
@@ -84,15 +85,17 @@ public class HeroGraphics : MonoBehaviour {
     public void HpChange(string value)
     {
         float hp = float.Parse(value);
-        if(hp<maxHp)
+        if(charStats.hp > hp)
             TakeDamage();
-        hpSlider.value = hp / maxHp;
+        charStats.hp = hp;
+        hpSlider.value = hp;
     }
 
     public void EnergyChange(string value)
     {
         float energy = float.Parse(value);
-        energySlider.value = energy / maxEnergy;
+        charStats.energy = (int)energy;
+        energySlider.value = energy;
     }
 
     public void BulletShoot(GameObject bullet, Vector2 direction)
@@ -134,6 +137,14 @@ public class HeroGraphics : MonoBehaviour {
                 hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
             }
         }
+
+        maxHp = charStats.hpBase;
+        hpSlider.maxValue = maxHp;
+        hpSlider.value = maxHp;
+        maxEnergy = charStats.energyBase;
+        energySlider.maxValue = maxEnergy;
+        energySlider.value = maxEnergy;
+
     }
 
 

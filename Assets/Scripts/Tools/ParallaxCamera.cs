@@ -10,7 +10,6 @@ public class ParallaxCamera : MonoBehaviour {
     void Start()
     {
         oldPosition = transform.position.x;
-        print(oldPosition);
         oldPositionY = transform.position.y;
     }
     void Update()

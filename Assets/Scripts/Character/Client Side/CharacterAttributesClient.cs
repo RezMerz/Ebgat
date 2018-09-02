@@ -17,14 +17,22 @@ public class CharacterAttributesClient : MonoBehaviour {
 
     public EFeetState feetState { get; set; }
     public float aimRotation { get; set; }
+
+    public float hp { get; set; }
+    public int energy { get; set; }
+
+    public float hpBase { get; set; }
+    public int energyBase { get; set; }
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
         playerControl.ReadyAction += SetReady;
+        hpBase = playerControl.charStats.hpBase;
+        energyBase = playerControl.charStats.EnergyBase;
     }
 
     public void SetReady(){
-      
+        Initialize();
     }
     private void Initialize()
     {
@@ -33,7 +41,12 @@ public class CharacterAttributesClient : MonoBehaviour {
         headState = EHeadState.Conscious;
         bodyState = EBodyState.Standing;
         handState = EHandState.Idle;
+
+        hpBase = playerControl.charStats.hpBase;
+        energyBase = playerControl.charStats.EnergyBase;
         //Hp
+        hp = hpBase;
+        energy = energyBase;
       
     }
 
@@ -75,6 +88,9 @@ public class CharacterAttributesClient : MonoBehaviour {
             case "2": feetState = EFeetState.Falling; break;
             case "3": feetState = EFeetState.Jumping; break;
             case "4": feetState = EFeetState.NoGravity; break;
+            case "5": feetState = EFeetState.DoubleJumping; break;
+            case "6": feetState = EFeetState.OnWall;break;
+            case "8": feetState = EFeetState.WallJumping;break;
             case "9": feetState = EFeetState.Root; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
