@@ -39,14 +39,15 @@ public class BahramDash : CharacterDash
         }
         else
         {
-            physic.DashLayerReset();
-            charStats.AttackNumber = meleeAttack.maxAttackNumber - 1;
-            meleeAttack.IntruptAttack();
-            meleeAttack.StartComboCorutine();
-            gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
-            charStats.BodyState = EBodyState.Standing;
-            distance = 0;
+            DashEnd();
         }
+    }
+
+    protected override void StartFunction()
+    {
+        charStats.AttackNumber = meleeAttack.maxAttackNumber - 1;
+        meleeAttack.IntruptAttack();
+        meleeAttack.StartComboCorutine();
     }
 
     private void BahramDashHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)

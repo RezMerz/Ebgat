@@ -39,10 +39,13 @@ public class CharacterDash : MonoBehaviour
         {
             if (charStats.Energy >= charStats.dashEnergyConsume && charStats.FeetState != EFeetState.OnWall)
             {
+
+                
                 if(charStats.HandState == EHandState.Attacking)
                 {
                    attack.IntruptAttack();
                 }
+                //StartFunction();
                 coolDownLock = true;
                 StartCoroutine(CoolDownReset());
                 charStats.BodyState = EBodyState.Dashing;
@@ -55,6 +58,16 @@ public class CharacterDash : MonoBehaviour
             }
         }
     }
+
+    public void DashEnd()
+    {
+        physic.DashLayerReset();
+        gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
+        charStats.BodyState = EBodyState.Standing;
+        distance = 0;
+        StartFunction();
+    }
+    protected virtual void StartFunction() {}
 
     private IEnumerator CoolDownReset()
     {
