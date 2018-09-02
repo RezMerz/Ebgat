@@ -55,7 +55,7 @@ public class LobbyManager : NetworkBehaviour {
         {
             Debug.Log("Stoping host in one second");
             StartCoroutine(StopHostCo(3));
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+
         }
         else if (isLocalPlayer)
         {
@@ -68,5 +68,6 @@ public class LobbyManager : NetworkBehaviour {
     IEnumerator StopHostCo(int time){
         yield return new WaitForSeconds(time);
         networkManager.StopHost();
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
     }
 }
