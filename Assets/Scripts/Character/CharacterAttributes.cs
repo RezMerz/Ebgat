@@ -27,7 +27,7 @@ public class CharacterAttributes : MonoBehaviour {
     {
         get { return headState;}
 
-        set { if (value != headState) { headState = value; RegisterHeadState(); } }
+        set { if (value != headState) { headState = value; RegisterHeadState(playerControl.worldState); } }
         
     }
 
@@ -37,7 +37,7 @@ public class CharacterAttributes : MonoBehaviour {
         get { return bodyState; }
         set { if (value != bodyState) { 
             if (value == EBodyState.Dashing) Energy -= dashEnergyConsume; 
-            bodyState = value; RegisterBodyState(); } }
+                bodyState = value; RegisterBodyState(playerControl.worldState); } }
     }
     
     private EHandState handState; //c
@@ -49,7 +49,7 @@ public class CharacterAttributes : MonoBehaviour {
             handState = value;
             if (value == EHandState.Attacking)
                 Energy -= attackEnergyConsume;
-            RegisterHandState(); 
+                RegisterHandState(playerControl.worldState); 
          } 
         }
     }
@@ -63,7 +63,7 @@ public class CharacterAttributes : MonoBehaviour {
             {
               
               feetState = value;
-              RegisterFeetState(); 
+                RegisterFeetState(playerControl.worldState); 
             } 
         }
     }
@@ -448,46 +448,46 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
 
-    private void RegisterHeadState(){
+    private void RegisterHeadState(WorldState worldState){
         switch(HeadState){
-            case EHeadState.Conscious: playerControl.worldState.RegisterCharStat(ID, 'a', "1"); break;
-            case EHeadState.Stunned: playerControl.worldState.RegisterCharStat(ID, 'a', "2"); break;
+            case EHeadState.Conscious: worldState.RegisterCharStat(ID, 'a', "1"); break;
+            case EHeadState.Stunned: worldState.RegisterCharStat(ID, 'a', "2"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
-    private void RegisterBodyState()
+    private void RegisterBodyState(WorldState worldState)
     {
         switch (BodyState)
         {
-            case EBodyState.Standing: playerControl.worldState.RegisterCharStat(ID, 'b', "1"); break;
-            case EBodyState.Moving: playerControl.worldState.RegisterCharStat(ID, 'b', "2"); break;
-            case EBodyState.Dashing: playerControl.worldState.RegisterCharStat(ID, 'b', "3"); break;
-            case EBodyState.Aiming: playerControl.worldState.RegisterCharStat(ID, 'b', "4"); break;
+            case EBodyState.Standing: worldState.RegisterCharStat(ID, 'b', "1"); break;
+            case EBodyState.Moving: worldState.RegisterCharStat(ID, 'b', "2"); break;
+            case EBodyState.Dashing: worldState.RegisterCharStat(ID, 'b', "3"); break;
+            case EBodyState.Aiming: worldState.RegisterCharStat(ID, 'b', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
-    private void RegisterHandState()
+    private void RegisterHandState(WorldState worldState)
     {
         switch (HandState)
         {
-            case EHandState.Idle: playerControl.worldState.RegisterCharStat(ID, 'c', "1"); break;
-            case EHandState.Attacking: playerControl.worldState.RegisterCharStat(ID, 'c', "2"); break;
-            case EHandState.Casting: playerControl.worldState.RegisterCharStat(ID, 'c', "3"); break;
-            case EHandState.Channeling: playerControl.worldState.RegisterCharStat(ID, 'c', "4"); break;
+            case EHandState.Idle: worldState.RegisterCharStat(ID, 'c', "1"); break;
+            case EHandState.Attacking: worldState.RegisterCharStat(ID, 'c', "2"); break;
+            case EHandState.Casting: worldState.RegisterCharStat(ID, 'c', "3"); break;
+            case EHandState.Channeling: worldState.RegisterCharStat(ID, 'c', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
-    private void RegisterFeetState()
+    private void RegisterFeetState(WorldState worldState)
     {
         switch (FeetState)
         {
-            case EFeetState.Onground: playerControl.worldState.RegisterCharStat(ID, 'd', "1"); break;
-            case EFeetState.Falling: playerControl.worldState.RegisterCharStat(ID, 'd', "2"); break;
-            case EFeetState.Jumping: playerControl.worldState.RegisterCharStat(ID, 'd', "3"); break;
-            case EFeetState.NoGravity: playerControl.worldState.RegisterCharStat(ID, 'd', "4"); break;
-            case EFeetState.DoubleJumping: playerControl.worldState.RegisterCharStat(ID, 'd', "5"); break;
-            case EFeetState.OnWall:playerControl.worldState.RegisterCharStat(ID, 'd', "6");break;
-            case EFeetState.WallJumping: playerControl.worldState.RegisterCharStat(ID, 'd', "8"); break;
+            case EFeetState.Onground: worldState.RegisterCharStat(ID, 'd', "1"); break;
+            case EFeetState.Falling: worldState.RegisterCharStat(ID, 'd', "2"); break;
+            case EFeetState.Jumping: worldState.RegisterCharStat(ID, 'd', "3"); break;
+            case EFeetState.NoGravity: worldState.RegisterCharStat(ID, 'd', "4"); break;
+            case EFeetState.DoubleJumping: worldState.RegisterCharStat(ID, 'd', "5"); break;
+            case EFeetState.OnWall: worldState.RegisterCharStat(ID, 'd', "6");break;
+            case EFeetState.WallJumping: worldState.RegisterCharStat(ID, 'd', "8"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -515,10 +515,10 @@ public class CharacterAttributes : MonoBehaviour {
         print("Register All States");
         int id = playerControl.playerId;
         string data = "";
-        RegisterHeadState();
-        RegisterBodyState();
-        RegisterHandState();
-        RegisterFeetState();
+        RegisterHeadState(worldState);
+        RegisterBodyState(worldState);
+        RegisterHandState(worldState);
+        RegisterFeetState(worldState);
         data += 'e' + "&" + Toolkit.VectorSerialize(Side) + "$";
         data += 'f' + "&" + Armor + "$";
         data += 'g' + "&" + HitPoints + "$";
