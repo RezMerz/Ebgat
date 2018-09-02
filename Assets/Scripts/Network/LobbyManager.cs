@@ -52,8 +52,13 @@ public class LobbyManager : NetworkBehaviour {
     public void RpcStartGame(){
         if (isServer)
         {
-            //networkManager.StopHost();
+            networkManager.StopHost();
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
         }
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+        if (isLocalPlayer)
+        {
+            networkManager.StopClient();
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+        }
     }
 }
