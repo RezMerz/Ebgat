@@ -50,10 +50,11 @@ public class LobbyManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartGame(){
+        Debug.Log("rpcpcpcpcpcpc");
         if (isServer)
         {
             Debug.Log("Stoping host in one second");
-            StartCoroutine(StopHostCo(1));
+            StartCoroutine(StopHostCo(3));
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
         }
         else if (isLocalPlayer)
