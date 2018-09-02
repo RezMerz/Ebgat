@@ -40,14 +40,21 @@ public class CrushOfConqueror : Ability
         {
             if (energyUsage <= charStats.Energy)
             {
-                if (layerMask == 0)
+                if(charStats.FeetState != EFeetState.OnWall)
                 {
-                    layerMask = LayerMask.GetMask(charStats.enemyTeamName);
+                    if(charStats.HandState == EHandState.Attacking)
+                    {
+                        GetComponent<MeleeAttack>().IntruptAttack();
+                    }
+                    if (layerMask == 0)
+                    {
+                        layerMask = LayerMask.GetMask(charStats.enemyTeamName);
+                    }
+                    charStats.HandState = EHandState.Casting;
+                    charStats.AbilityState = EAbility.Ability1Start;
+                    coolDownLock = true;
+                    castTimeCoroutine = StartCoroutine(CastTime(castTime / charStats.SpeedRate));
                 }
-                charStats.HandState = EHandState.Casting;
-                charStats.AbilityState = EAbility.Ability1Start;
-                coolDownLock = true;
-                castTimeCoroutine = StartCoroutine(CastTime(castTime / charStats.SpeedRate));
             }
             else
             {

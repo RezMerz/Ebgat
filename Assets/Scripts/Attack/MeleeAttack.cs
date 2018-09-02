@@ -45,14 +45,14 @@ public class MeleeAttack : Attack
         {
 
 
-            if (cooldownTimer <= 0)
+            if (ready)
             {
-                if (charStats.BodyState == EBodyState.Dashing)
-                {
-                    GetComponent<CharacterDash>().DashEnd();
-                }
                 if (charStats.Energy >= charStats.attackEnergyConsume)
                 {
+                    if (charStats.BodyState == EBodyState.Dashing)
+                    {
+                        GetComponent<CharacterDash>().DashEnd();
+                    }
                     ChangeCombo();
                     cooldownTimer = charStats.AttackCooldown;
                     charStats.HandState = EHandState.Attacking;
@@ -62,6 +62,7 @@ public class MeleeAttack : Attack
                     }
                     parryTimeCoroutine = StartCoroutine(ParryTime());
                     animationTimeCoroutine = StartCoroutine(AttackAnimateTime(swordCombos[charStats.AttackNumber].attackAnimationTime / charStats.SpeedRate));
+                    ready = false;
                 }
                 else
                 {
@@ -79,6 +80,7 @@ public class MeleeAttack : Attack
 
     protected override void ApplyAttack()
     {
+
         offset = (charStats.Side + Vector2.up) * offset;
 
         List<RaycastHit2D> targets = new List<RaycastHit2D>(Physics2D.BoxCastAll(transform.position + (Vector3)offset, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0));
@@ -131,6 +133,8 @@ public class MeleeAttack : Attack
         {
             comboTimeCoroutine = StartCoroutine(ComboTime());
         }
+
+        StartCoroutine(CoolDown());
     }
     private void ChangeCombo()
     {
@@ -179,6 +183,7 @@ public class MeleeAttack : Attack
             StopCoroutine(comboTimeCoroutine);
         }
         charStats.HandState = EHandState.Idle;
+        StartCoroutine(CoolDown());
     }
 
     public void StartComboCorutine()

@@ -547,7 +547,7 @@ MonoBehaviour:
   virtualBullets:
   - VirtualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
       type: 2}
-    range: 15
+    range: 20
     attackAnimationTime: 0.1
     damage: 25
     startingPos: {x: 2.25, y: 0.5}

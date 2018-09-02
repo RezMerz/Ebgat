@@ -20,28 +20,31 @@ public class MalkousAttack : Attack
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
         layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        ready = true;
     }
 
     public override void AttackPressed()
     {
         if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall)
         {
-            if (charStats.BodyState == EBodyState.Dashing)
-            {
-                GetComponent<CharacterDash>().DashEnd();
-            }
-            if (cooldownTimer <= 0)
+            Debug.Log(ready);
+            if (ready)
             {
                 if (charStats.Energy >= charStats.attackEnergyConsume)
                 {
+                    if (charStats.BodyState == EBodyState.Dashing)
+                    {
+                        GetComponent<CharacterDash>().DashEnd();
+                    }
                     charStats.HandState = EHandState.Attacking;
                     animationTimeCoroutine = StartCoroutine(AttackAnimateTime(virtualBullets[charStats.AttackNumber].attackAnimationTime / charStats.SpeedRate));
-                    cooldownTimer = charStats.AttackCooldown;
+                    ready = false;
                 }
                 else
                 {
                     print(" Low Energy");
                 }
+
             }
         }
     }
@@ -57,16 +60,18 @@ public class MalkousAttack : Attack
         Vector2 attackSide = charStats.AimSide;
         if (attackSide == Vector2.zero)
             attackSide = charStats.Side;
-        GameObject virtualBullet = Instantiate(virtualBullets[charStats.AttackNumber].VirtualBullet, transform.position + (Vector3) startPos, Quaternion.identity);
+        GameObject virtualBullet = Instantiate(virtualBullets[charStats.AttackNumber].VirtualBullet, transform.position + (Vector3)startPos, Quaternion.identity);
         virtualBullet.layer = gameObject.layer;
         virtualBullet.GetComponent<VirtualBullet>().Shoot(damage, attackSide, layerMask, gravityAcc, playerControl, bulletID, range);
         // register bullet
-        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range,charStats.AttackNumber,startPos);
+        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos);
 
-        if(charStats.AttackNumber != 0)
+        if (charStats.AttackNumber != 0)
         {
             charStats.AttackNumber = 0;
         }
+
+        StartCoroutine(CoolDown());
     }
 
     private IEnumerator IceShardTime()
@@ -84,7 +89,7 @@ public class MalkousAttack : Attack
 
     public override void IntruptAttack()
     {
-        if(animationTimeCoroutine != null)
+        if (animationTimeCoroutine != null)
         {
             StopCoroutine(animationTimeCoroutine);
         }
@@ -92,6 +97,9 @@ public class MalkousAttack : Attack
         {
             StopCoroutine(iceShardCoroutine);
         }
+
+        StartCoroutine(CoolDown());
+
     }
 }
 
