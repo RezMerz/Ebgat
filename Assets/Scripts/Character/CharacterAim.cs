@@ -34,26 +34,27 @@ public class CharacterAim : MonoBehaviour {
 
     public void AimPressed()
     {
-        if(isServer)
-            charStats.BodyState = EBodyState.Aiming;
+            charStats.BodyState = EBodyState.Aiming;   
+    }
+    public void AimPressedGraphics()
+    {
         Cursor.visible = false;
         angle = 0;
         position = new Vector2(1, 0);
         arrow.SetActive(true);
-        
     }
 
     public void AimReleased()
     {
-        if (isServer)
-        {
             charStats.BodyState = EBodyState.Standing;
             charStats.AimSide = charStats.Side;
-        }
 
+    }
+
+    public void AimReleasedGraphic()
+    {
         Cursor.visible = true;
         arrow.SetActive(false);
-
     }
 
     public void yChange(float deltaY)
@@ -92,17 +93,19 @@ public class CharacterAim : MonoBehaviour {
         else if (position.x > 0)
             charStats.Side = new Vector2(1, 0);
         float rotation = Mathf.Ceil(angle / (360 / n)) * 360 / n;
-        arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
-        if(isServer)
-            charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
+        charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
+        charStats.AimRotation = rotation;
     }
 
     public void AimClinet()
     {
-        if (isServer)
-            return;
+        float rotation = 0;
 
-        float rotation = Mathf.Asin(charStatsClient.aimSide.y);
+        if (isServer)
+            rotation = charStats.AimRotation;
+        else
+            rotation = charStatsClient.aimRotation;
+
         arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 

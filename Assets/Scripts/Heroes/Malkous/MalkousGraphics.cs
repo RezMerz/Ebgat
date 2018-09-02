@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MalkousGraphics : HeroGraphics {
 
-    private CharacterAim aim;
+
     public override void HandState(string value)
     {
         if (value == "2")
@@ -36,7 +36,7 @@ public class MalkousGraphics : HeroGraphics {
     }
     public override void BodyState(string value)
     {
-        aim.AimReleased();
+        aim.AimReleasedGraphic();
         animator.SetBool("Walking", false);
         if (value == "1")
         {
@@ -52,7 +52,7 @@ public class MalkousGraphics : HeroGraphics {
             animator.SetBool("Dash", true);
         }
         else if (value == "4")
-            aim.AimPressed();
+            aim.AimPressedGraphics();
         else
             print("Body State Wrong Code");
     }

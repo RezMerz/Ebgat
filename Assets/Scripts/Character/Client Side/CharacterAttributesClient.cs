@@ -10,6 +10,8 @@ public class CharacterAttributesClient : MonoBehaviour {
     public string enemyTeamName { get;set;}
     public Vector2 side { get; set; }
     public Vector2 aimSide { get; set; }
+
+    public float aimRotation { get; set; }
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
@@ -49,6 +51,7 @@ public class CharacterAttributesClient : MonoBehaviour {
             case 'w': aimSide = Toolkit.DeserializeVector(value); break;
         //    case 'x': energy = int.Parse(value); break;
         //    case 'A': SetAbilityState(value); break;
+            case 'C': aimRotation = float.Parse(value); break;
         }
     }
 }

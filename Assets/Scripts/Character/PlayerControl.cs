@@ -398,7 +398,7 @@ public class PlayerControl : MonoBehaviour
             case 'g': heroGraphics.HpChange(value); break;
             case 'x': if (playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
             case 'y': heroGraphics.AttackNumber(value); break;
-            case 'w': aim.AimClinet(); break;
+            case 'C': aim.AimClinet(); break;
         }
     }
 
