@@ -22,6 +22,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcRecieveWorldData(string[] worlddata, int packetID){
+        //Debug.Log(worlddata[0].Length);
         if (playerControls.Count != playernumber)
             UpdatePlayer();
         for (int i = 0; i < worlddata.Length; i++)
@@ -51,10 +52,10 @@ public class ClientNetworkReciever : NetworkBehaviour {
     [ClientRpc]
     public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
         Debug.Log(localPlayerControl.playerId + "    " + RequesterID);
-        Debug.Log(Time.frameCount);
+        //Debug.Log(Time.frameCount);
         if (localPlayerControl.playerId != RequesterID)
             return;
-        Debug.Log(Time.frameCount);
+        //Debug.Log(Time.frameCount);
         if (worldstate.Length == 0)
             return;
         string[] heroData = worldstate.Split('#');
