@@ -126,7 +126,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (IsLocalPlayer())
             {
-                Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
+               // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
             }
             if (playerStatesHash.Contains(currentStateNumber))
             {
@@ -154,7 +154,7 @@ public class PlayerControl : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                    clientNetworkSender.RequestWorldState(playerId);
+                   // clientNetworkSender.RequestWorldState(playerId);
                 }
             }
             currentStateNumber++;
