@@ -29,7 +29,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
             if (worlddata[i].Length == 0)
                 continue;
             string[] heroData = worlddata[i].Split('#');
-            int frameBaseId = packetID * 3;
+            int frameBaseId = packetID * 5;
             for (int j = 0; j < heroData.Length; j++)
             {
                 if (heroData[j].Length == 0)
@@ -52,6 +52,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
     public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
         if (localPlayerControl.playerId != RequesterID)
             return;
+        Debug.Log("Recieved absolute state");
         if (worldstate.Length == 0)
             return;
         string[] heroData = worldstate.Split('#');
