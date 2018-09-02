@@ -567,7 +567,7 @@ MonoBehaviour:
   energyRegenRate: 10
   attackEnergyConsume: 100
   jumpEnergyConsume: 50
-  ability1EnergyConsume: 0
+  ability1EnergyConsume: 1
   ability2EnergyConsume: 0
   dashEnergyConsume: 100
 --- !u!114 &114361602242757618
