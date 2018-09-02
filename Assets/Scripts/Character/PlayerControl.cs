@@ -385,8 +385,8 @@ public class PlayerControl : MonoBehaviour
     // gets the code and value of datas
     private void Deserilize(char code, string value)
     {
-        if (!playerConnection.isServer)
-            charStatsClient.SetAttribute(code, value);
+       
+         charStatsClient.SetAttribute(code, value);
         switch (code)
         {
             case 'A': heroGraphics.AbilityState(value); break;

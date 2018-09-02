@@ -14,8 +14,8 @@ public class HeroGraphics : MonoBehaviour {
     protected Animator abilityEffect;
     private int maxEnergy = 1000;
     private int maxHp = 100;
-    protected CharacterAttributes charStats;
     protected CharacterAim aim;
+    protected CharacterAttributesClient charStats;
     
     public void TakeDamage()
     {
@@ -31,7 +31,8 @@ public class HeroGraphics : MonoBehaviour {
 
     void Start()
     {
-        charStats = GetComponent<CharacterAttributes>();
+        
+        charStats = GetComponent<CharacterAttributesClient>();
         for (int i = 0; i < transform.childCount; i++)
         {
             if(transform.GetChild(i).tag == "AbilityEffect")
