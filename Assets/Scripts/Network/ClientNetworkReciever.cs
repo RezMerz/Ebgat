@@ -29,7 +29,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
             if (worlddata[i].Length == 0)
                 continue;
             string[] heroData = worlddata[i].Split('#');
-            int frameBaseId = packetID * 5;
+            int frameBaseId = packetID * 3;
             for (int j = 0; j < heroData.Length; j++)
             {
                 if (heroData[j].Length == 0)
