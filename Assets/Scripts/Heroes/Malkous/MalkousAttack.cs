@@ -24,8 +24,12 @@ public class MalkousAttack : Attack
 
     public override void AttackPressed()
     {
-        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing)
+        if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall)
         {
+            if (charStats.BodyState == EBodyState.Dashing)
+            {
+                GetComponent<CharacterDash>().DashEnd();
+            }
             if (cooldownTimer <= 0)
             {
                 if (charStats.Energy >= charStats.attackEnergyConsume)
