@@ -100,8 +100,7 @@ public class ServerManager : NetworkBehaviour {
             tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
             p.charStats.RegisterAllStates(tempWorldState);
         }
-        Debug.Log("inja gharar bud ye chi befreste");
-        //ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
+        ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
     }
 
     public void SpawnHero(int clientId, int heroId, int teamId, Vector2 SpawnPoint)
