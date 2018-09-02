@@ -50,17 +50,13 @@ public class LobbyManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartGame(){
-        Debug.Log("rpcpcpcpcpcpc");
-        Debug.Log(isLocalPlayer);
         if (isServer)
         {
-            Debug.Log("Stoping host in one second");
-            StartCoroutine(StopHostCo(3));
+            StartCoroutine(StopHostCo(1));
 
         }
         else
         {
-            Debug.Log("Stoping client");
             if (networkManager.isActiveAndEnabled)
             {
                 networkManager.StopClient();
