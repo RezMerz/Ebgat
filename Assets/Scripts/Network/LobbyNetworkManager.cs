@@ -120,7 +120,6 @@ public class LobbyNetworkManager : NetworkManager {
     }
 
     public void StartGame(){
-        Debug.Log(isServer);
         if(isServer){
             
             GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
