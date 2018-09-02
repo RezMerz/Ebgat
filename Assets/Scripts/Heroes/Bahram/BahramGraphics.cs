@@ -5,6 +5,8 @@ using UnityEngine;
 public class BahramGraphics : HeroGraphics{
     public GameObject IronFistInstance;
     private int attackNumber = 1;
+    public AudioClip[] audio_clips;
+
     public override void HandState(string value)
     {
         if (value == "2")

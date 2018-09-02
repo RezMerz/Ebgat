@@ -1761,31 +1761,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102245961868948668
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Iron Fist Finish
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1e38af6cee90113468297b27052f8400, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102265861666135598
 AnimatorState:
   serializedVersion: 5
@@ -1918,31 +1893,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102644955872184434
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Iron Fist Start
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 41a6c801eaa852b4d93d02c4f33b516f, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102799053540820218
 AnimatorState:
   serializedVersion: 5
@@ -2034,12 +1984,6 @@ AnimatorStateMachine:
     m_State: {fileID: 1102799053540820218}
     m_Position: {x: 216, y: 264, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102644955872184434}
-    m_Position: {x: 251, y: 329, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102245961868948668}
-    m_Position: {x: 286, y: 394, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 1102116425874502884}
     m_Position: {x: 321, y: 459, z: 0}
   m_ChildStateMachines:
@@ -2083,10 +2027,10 @@ AnimatorStateMachine:
     m_Position: {x: 732, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102570988188208486}
-    m_Position: {x: 708, y: 216, z: 0}
+    m_Position: {x: 720, y: 192, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102164844454237462}
-    m_Position: {x: 936, y: -36, z: 0}
+    m_Position: {x: 912, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102896230451695582}
     m_Position: {x: 1164, y: 72, z: 0}
