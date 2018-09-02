@@ -402,6 +402,10 @@ public class PlayerControl : MonoBehaviour
 
     public void AddTOHashTable(int id, string state)
     {
+        if (IsLocalPlayer())
+        {
+            Debug.Log(id + "+" + Time.frameCount);
+        }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
             currentStateNumber = id;
