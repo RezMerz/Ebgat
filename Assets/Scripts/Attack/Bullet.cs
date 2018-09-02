@@ -19,6 +19,8 @@ public class Bullet : MonoBehaviour
     private bool shot;
     private Animator animator;
 
+    private bool hitAnimation;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -89,16 +91,26 @@ public class Bullet : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-
+            hitAnimation = true;
             animator.SetTrigger("Hit");
         }
     }
     
 
-    private void Destroy()
+    public void DestroyAnimation()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
+        if (!hitAnimation)
+        {
+            animator.SetTrigger("Hit");
+        }
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+
 
 
 
