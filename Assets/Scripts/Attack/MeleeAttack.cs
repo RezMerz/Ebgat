@@ -111,7 +111,7 @@ public class MeleeAttack : Attack
                     targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
                     targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side,attackForce, 0.1f, 0);
                 }
-                else if (targets[i].collider.tag.Equals("Bullet"))
+                else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
                     targets[i].collider.gameObject.GetComponent<VirtualBullet>().Destroy();
                 }

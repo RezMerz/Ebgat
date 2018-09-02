@@ -101,6 +101,7 @@ public class Bullet : MonoBehaviour
     {
         if (!hitAnimation)
         {
+            shot = false;
             animator.SetTrigger("Hit");
         }
     }
