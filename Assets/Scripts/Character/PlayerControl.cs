@@ -78,7 +78,7 @@ public class PlayerControl : MonoBehaviour
             Camera.main.GetComponent<SmoothCamera2D>().target = this.transform;
         }
 
-       
+
     }
 
     private void FixedUpdate()
@@ -126,14 +126,17 @@ public class PlayerControl : MonoBehaviour
         {
             if (IsLocalPlayer())
             {
-                Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked +"+ "+ Time.frameCount);
+                Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
             }
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
                 {
-                    GetData((string)playerStatesHash[i]);
-                    playerStatesHash.Remove(i);
+                    if (playerStatesHash.Contains(i))
+                    {
+                        GetData((string)playerStatesHash[i]);
+                        playerStatesHash.Remove(i);
+                    }
                 }
                 lastStateChecked = currentStateNumber;
             }
@@ -357,7 +360,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     first = false;
                     heroGraphics.ChangePosition(Toolkit.DeserializeVector(deString[0]));
-                   
+
                 }
                 else
                 {
@@ -392,7 +395,7 @@ public class PlayerControl : MonoBehaviour
             case 'd': heroGraphics.FeetState(value); break;
             case 'e': heroGraphics.SetSide(value); break;
             case 'g': heroGraphics.HpChange(value); break;
-            case 'x':if(playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
+            case 'x': if (playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
             case 'y': heroGraphics.AttackNumber(value); break;
         }
     }
@@ -417,7 +420,7 @@ public class PlayerControl : MonoBehaviour
     {
         waitingForRequest = false;
         start = false;
-        if(id > currentStateNumber)
+        if (id > currentStateNumber)
         {
             currentStateNumber = id + 1;
         }
@@ -477,7 +480,7 @@ public class PlayerControl : MonoBehaviour
             float range = float.Parse(deString[3]);
             int number = int.Parse(deString[4]);
             Vector2 startPos = Toolkit.DeserializeVector(deString[5]);
-            bulletmanager.Shoot(attackSide, gravityAcc, id,range,number,startPos);
+            bulletmanager.Shoot(attackSide, gravityAcc, id, range, number, startPos);
         }
     }
     public void DestroyBullet(string data)
