@@ -100,26 +100,26 @@ public class CharacterPhysic : Physic
     }
     public void IncludeBridge()
     {
-        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
+        gravityLayerMask += LayerMask.GetMask("Bridge");
         charStats.ResetCayoteTime();
        // RemoveTaggedForces(1);
     }
     public void ExcludeBridge()
     {
-        gravityLayerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        gravityLayerMask -= LayerMask.GetMask("Bridge");
         charStats.CayoteTime = 0;
         //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
 
     public void DashLayerSet()
     {
-        layerMask = LayerMask.GetMask("Blocks");
-        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge");
+        layerMask -= LayerMask.GetMask(charStats.enemyTeamName);
+        gravityLayerMask -= LayerMask.GetMask(charStats.enemyTeamName);
     }
     public void DashLayerReset()
     {
-        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
-        gravityLayerMask = LayerMask.GetMask("Blocks", "Bridge", charStats.enemyTeamName);
+        layerMask += LayerMask.GetMask(charStats.enemyTeamName);
+        gravityLayerMask += LayerMask.GetMask(charStats.enemyTeamName);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {

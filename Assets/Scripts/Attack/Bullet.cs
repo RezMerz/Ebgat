@@ -108,7 +108,7 @@ public class Bullet : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 
 

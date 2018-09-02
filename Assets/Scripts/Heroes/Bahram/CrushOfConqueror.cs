@@ -40,9 +40,9 @@ public class CrushOfConqueror : Ability
         {
             if (energyUsage <= charStats.Energy)
             {
-                if(charStats.FeetState != EFeetState.OnWall)
+                if (charStats.FeetState != EFeetState.OnWall)
                 {
-                    if(charStats.HandState == EHandState.Attacking)
+                    if (charStats.HandState == EHandState.Attacking)
                     {
                         GetComponent<MeleeAttack>().IntruptAttack();
                     }
@@ -71,6 +71,7 @@ public class CrushOfConqueror : Ability
     {
         active = true;
         physic.DashLayerSet();
+        physic.ExcludeBridge();
 
     }
 
@@ -106,24 +107,23 @@ public class CrushOfConqueror : Ability
 
     private void LandCrush()
     {
-        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 4), pushDownSize, 0, Vector2.up,characterSize.y/2, layerMask, 0, 0);
+        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 4), pushDownSize, 0, Vector2.up, characterSize.y / 2, layerMask, 0, 0);
         foreach (RaycastHit2D hit in enemies)
         {
             if (hit.collider.tag.Equals("Player"))
             {
                 GameObject enemy = hit.collider.gameObject;
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
-
-                if(enemy.transform.position.x > transform.position.x)
-                {
-                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.right * pushForce);
-                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.right * pushForce * 30,5,10);
-                }
-                else
-                {
-                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
-                    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.left * pushForce * 30, 5, 10);
-                }
+                //if (enemy.transform.position.x > transform.position.x)
+                //{
+                //    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.right * pushForce);
+                //    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.right * pushForce * 30, 5, 10);
+                //}
+                //else
+                //{
+                //    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
+                //    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.left * pushForce * 30, 5, 10);
+                //}
             }
         }
         StartCoroutine(CoolDownTimer(coolDownTime));
@@ -134,13 +134,12 @@ public class CrushOfConqueror : Ability
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        if(direction.y < 0)
+        if (direction.y < 0)
         {
             PushDown(-direction.y);
-            if(vHits.Count > 0)
+            if (vHits.Count > 0)
             {
                 LandCrush();
-
             }
         }
     }

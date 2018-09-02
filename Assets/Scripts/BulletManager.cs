@@ -49,7 +49,7 @@ public class BulletManager : MonoBehaviour {
             GameObject bullet = shotBullets[id] as GameObject;
             shotBullets.Remove(id);
             bullet.GetComponent<Bullet>().DestroyAnimation();
-            //StartCoroutine(BulletDestroy(bullet));
+            StartCoroutine(BulletDestroy(bullet));
         }
     }
 
