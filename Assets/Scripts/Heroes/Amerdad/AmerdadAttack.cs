@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmerdadAttack : MonoBehaviour {
+public class AmerdadAttack : Attack {
 
 	// Use this for initialization
 	void Start () {
