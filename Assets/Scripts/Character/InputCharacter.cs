@@ -139,12 +139,10 @@ public class InputCharacter : MonoBehaviour
             aiming = false;
             clientNetworkSender.AimReleased();
         }
-        if (Input.GetAxis("Aim") > 0.3 && !aiming)
-        {
-           
+        if (Input.GetAxis("Aim") > 0.5 && !aiming)
+        {    
             aiming = true;
             clientNetworkSender.AimPressed();
-
         }
         else if (Input.GetAxis("Aim") < 0.2 && aiming)
         {

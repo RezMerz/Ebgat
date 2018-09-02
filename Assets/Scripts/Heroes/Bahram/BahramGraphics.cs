@@ -45,11 +45,11 @@ public class BahramGraphics : HeroGraphics{
         }
         else if (value == "3")
         {
-            // Ability 2 Start
+            animator.SetBool("Boar", true);
         }
         else if (value == "4")
         {
-            // Ability 2 Finish
+            animator.SetBool("Boar", false);
         }
     }
     public override void BodyState(string value)

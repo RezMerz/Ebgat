@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterAim : MonoBehaviour {
     CharacterAttributes charStats;
+    CharacterAttributesClient charStatsClient;
     PlayerControl playerControl;
     private GameObject arrow;
     private Vector2 _centre;
@@ -11,11 +12,17 @@ public class CharacterAim : MonoBehaviour {
     private float radius = 3;
     private Vector2 position;
     private int n = 8;
+    private bool isServer;
 	// Use this for initialization
     void Start()
     {
+
         playerControl = GetComponent<PlayerControl>();
-        charStats = playerControl.charStats;
+        isServer = playerControl.IsServer();
+        if (isServer)
+            charStats = playerControl.charStats;
+        else
+            charStatsClient = playerControl.charStatsClient;
         for(int i =0;i<transform.childCount;i++)
         {
             if (transform.GetChild(i).tag == "AimUI")
@@ -27,7 +34,8 @@ public class CharacterAim : MonoBehaviour {
 
     public void AimPressed()
     {
-        charStats.BodyState = EBodyState.Aiming;
+        if(isServer)
+            charStats.BodyState = EBodyState.Aiming;
         Cursor.visible = false;
         angle = 0;
         position = new Vector2(1, 0);
@@ -37,10 +45,15 @@ public class CharacterAim : MonoBehaviour {
 
     public void AimReleased()
     {
-        charStats.BodyState = EBodyState.Standing;
+        if (isServer)
+        {
+            charStats.BodyState = EBodyState.Standing;
+            charStats.AimSide = charStats.Side;
+        }
+
         Cursor.visible = true;
         arrow.SetActive(false);
-        charStats.AimSide = charStats.Side;
+
     }
 
     public void yChange(float deltaY)
@@ -59,8 +72,6 @@ public class CharacterAim : MonoBehaviour {
             position += new Vector2(deltaX, 0);
         else if (deltaX < 0 && position.x > -radius)
             position += new Vector2(deltaX, 0);
-
-     
         ChangeRotation();
     }
 
@@ -81,8 +92,9 @@ public class CharacterAim : MonoBehaviour {
         else if (position.x > 0)
             charStats.Side = new Vector2(1, 0);
         float rotation = Mathf.Ceil(angle / (360 / n)) * 360 / n;
-       arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
-       charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
+        arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        if(isServer)
+            charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
     }
 
     
