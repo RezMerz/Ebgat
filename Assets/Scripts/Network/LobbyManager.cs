@@ -53,7 +53,7 @@ public class LobbyManager : NetworkBehaviour {
         if (isServer)
         {
             networkManager.StopHost();
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
         }
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
     }
 }
