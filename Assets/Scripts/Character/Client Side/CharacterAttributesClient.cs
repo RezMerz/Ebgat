@@ -6,9 +6,12 @@ using System.Globalization;
 public class CharacterAttributesClient : MonoBehaviour {
     
     private PlayerControl playerControl;
-    public string teamName, enemyTeamName;
-    public Vector2 side;
-    
+    public string teamName{get;set;}
+    public string enemyTeamName { get;set;}
+    public Vector2 side { get; set; }
+    public Vector2 aimSide { get; set; }
+
+    public float aimRotation { get; set; }
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
@@ -45,9 +48,10 @@ public class CharacterAttributesClient : MonoBehaviour {
        //     case 't': gravitySpeed = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
        //     case 'u': gravityAcceleration = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
         //    case 'v': gravitySpeedMax = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
-        //    case 'w': aimSide = Toolkit.DeserializeVector(value); break;
+            case 'w': aimSide = Toolkit.DeserializeVector(value); break;
         //    case 'x': energy = int.Parse(value); break;
         //    case 'A': SetAbilityState(value); break;
+            case 'C': aimRotation = float.Parse(value); break;
         }
     }
 }

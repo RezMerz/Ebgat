@@ -261,6 +261,13 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != speedRate) { speedRate = value ; playerControl.worldState.RegisterCharStat(ID, 'z', value + ""); } }
     }//z
 
+    private float aimRotation;
+
+    public float AimRotation
+    {
+        get { return aimRotation; }
+        set { if (value != aimRotation) { aimRotation = value; playerControl.worldState.RegisterCharStat(ID, 'C', value + ""); } }
+    }
 
     public int energyRegenRate;
     public int attackEnergyConsume;

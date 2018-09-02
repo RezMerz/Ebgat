@@ -19,6 +19,7 @@ public class InputCharacter : MonoBehaviour
     private float axisY;
     private float axisX;
     private bool aiming;
+    private CharacterAim aim;
     public bool start { get;set; }
 
     private bool controllerConnected;
