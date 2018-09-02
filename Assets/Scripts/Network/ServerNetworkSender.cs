@@ -58,7 +58,7 @@ public class ServerNetworkSender : NetworkBehaviour {
     }
 
     public void SendWorldFullstate(WorldState worldState, int requesterID){
-        int id = ServerManager.instance.CurrentStateID++ * 3 + currentTime;
+        int id = ServerManager.instance.CurrentStateID * 3 + currentTime;
         clientNetworkReciever.RpcRecieveWorldstate(worldState.GetWorldData(), id, requesterID);
     }
 }
