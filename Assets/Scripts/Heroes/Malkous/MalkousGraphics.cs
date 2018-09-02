@@ -25,12 +25,11 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
-            animator.SetBool("Ulti", true);
+            animator.SetTrigger("Ulti");
             abilityEffect.SetBool("Ulti", true);
         }
         else if (value == "4")
         {
-            animator.SetBool("Ulti", false);
             abilityEffect.SetBool("Ulti", false);
         }
     }

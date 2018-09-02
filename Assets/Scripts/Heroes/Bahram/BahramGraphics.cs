@@ -27,7 +27,6 @@ public class BahramGraphics : HeroGraphics{
     public override void AttackNumber(string value)
     {
         attackNumber = int.Parse(value) +1 ;
-        print(attackNumber);
     }
 
     public override void AbilityState(string value)

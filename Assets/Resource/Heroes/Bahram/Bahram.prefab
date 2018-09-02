@@ -538,7 +538,7 @@ MonoBehaviour:
   onWallGravitySpeed: 5
   energyBase: 1000
   speedRate: 0
-  energyRegenRate: 5
+  energyRegenRate: 10
   attackEnergyConsume: 100
   jumpEnergyConsume: 50
   ability1EnergyConsume: 0
