@@ -71,7 +71,7 @@ public class CrushOfConqueror : Ability
     {
         active = true;
         physic.DashLayerSet();
-        physic.ExcludeBridge();
+       // physic.ExcludeBridge();
 
     }
 
@@ -130,6 +130,7 @@ public class CrushOfConqueror : Ability
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
         physic.DashLayerReset();
+        //physic.IncludeBridge();
         active = false;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
