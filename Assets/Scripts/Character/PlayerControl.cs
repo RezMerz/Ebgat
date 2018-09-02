@@ -153,8 +153,9 @@ public class PlayerControl : MonoBehaviour
             {
                 if (IsLocalPlayer())
                 {
+                    Debug.Log("request for :" + currentStateNumber +"+" + Time.frameCount);
                     waitingForRequest = true;
-                   // clientNetworkSender.RequestWorldState(playerId);
+                    clientNetworkSender.RequestWorldState(playerId);
                 }
             }
             currentStateNumber++;
@@ -404,7 +405,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-           // Debug.Log(id + "+" + Time.frameCount);
+          //  Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
@@ -422,6 +423,7 @@ public class PlayerControl : MonoBehaviour
 
     public void UpdateClient(int id, string state)
     {
+        Debug.Log("awnser for :" + id + "+" + Time.frameCount);
         waitingForRequest = false;
         start = false;
         if (id > currentStateNumber)

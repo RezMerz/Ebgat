@@ -599,19 +599,19 @@ MonoBehaviour:
     attackAnimationTime: 0.1
     size: {x: 7.3, y: 1.5}
     offset: {x: 1, y: 0.8}
-    force: 0.6
+    force: 0.4
     buff: {fileID: 0}
   - damage: 25
     attackAnimationTime: 0.1
     size: {x: 7.5, y: 1.7}
     offset: {x: 1, y: -0.5}
-    force: 0.6
+    force: 0.4
     buff: {fileID: 0}
   - damage: 40
     attackAnimationTime: 0.3
     size: {x: 7, y: 7}
     offset: {x: 1, y: 2.1}
-    force: 1
+    force: 0.8
     buff: {fileID: 0}
   comboTime: 0.5
 --- !u!114 &114432285978368132

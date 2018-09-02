@@ -101,11 +101,14 @@ public class MeleeAttack : Attack
         {
             if (targets[i].collider.tag.Equals("Sword"))
             {
-                //Vector2 direction = targets[i].point - (Vector2)transform.position;
-                Debug.Log("parry");
-                parry = true;
-                targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * attackForce, 0.2f, 0);
-                playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * attackForce, 0.2f, 0);
+                //Vector2 direction = targets[i].point - (Vector2)transform.positio
+                if (targets[i].collider.gameObject.GetComponentInParent<CharacterAttributes>().Side != charStats.Side)
+                {
+                    Debug.Log("parry");
+                    parry = true;
+                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * attackForce, 0.2f, 0);
+                    playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * attackForce, 0.2f, 0);
+                }
             }
         }
         if (!parry)
