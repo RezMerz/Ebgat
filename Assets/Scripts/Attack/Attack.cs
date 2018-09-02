@@ -8,12 +8,14 @@ public abstract class Attack : MonoBehaviour
     protected CharacterAttributes charStats;
     protected HeroGraphics heroGraphics;
     protected PlayerControl playerControl;
+    protected bool ready;
     // Use this for initialization
     protected void Start()
     {
         heroGraphics = GetComponent<HeroGraphics>();
         playerControl = GetComponent<PlayerControl>();
         charStats = playerControl.charStats;
+        ready = true;
         cooldownTimer = 0;
     }
 
@@ -29,6 +31,11 @@ public abstract class Attack : MonoBehaviour
         yield return new WaitForSeconds(attackAnimationTime);
         ApplyAttack();
         charStats.HandState = EHandState.Idle;
+    }
+    protected IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(charStats.AttackCooldown);
+        ready = true;
     }
 
     protected virtual void ApplyAttack() { }
