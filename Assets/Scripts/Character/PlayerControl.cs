@@ -124,6 +124,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (start)
         {
+            if (IsLocalPlayer())
+            {
+                Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked +"+ "+ Time.frameCount);
+            }
             if (playerStatesHash.Contains(currentStateNumber))
             {
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
@@ -144,8 +148,11 @@ public class PlayerControl : MonoBehaviour
             }
             if (currentStateNumber - lastStateChecked >= 3 && !waitingForRequest)
             {
-                waitingForRequest = true;
-               clientNetworkSender.RequestWorldState(playerId);
+                if (IsLocalPlayer())
+                {
+                    waitingForRequest = true;
+                    clientNetworkSender.RequestWorldState(playerId);
+                }
             }
             currentStateNumber++;
         }
