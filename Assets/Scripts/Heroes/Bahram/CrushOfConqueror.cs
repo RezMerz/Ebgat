@@ -71,7 +71,7 @@ public class CrushOfConqueror : Ability
     {
         active = true;
         physic.DashLayerSet();
-        physic.ExcludeBridge();
+       // physic.ExcludeBridge();
 
     }
 
@@ -107,7 +107,7 @@ public class CrushOfConqueror : Ability
 
     private void LandCrush()
     {
-        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 4), pushDownSize, 0, Vector2.up, characterSize.y / 2, layerMask, 0, 0);
+        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 4),landingSize, 0, Vector2.up, characterSize.y / 2, layerMask, 0, 0);
         foreach (RaycastHit2D hit in enemies)
         {
             if (hit.collider.tag.Equals("Player"))
@@ -130,6 +130,7 @@ public class CrushOfConqueror : Ability
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
         physic.DashLayerReset();
+        //physic.IncludeBridge();
         active = false;
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
