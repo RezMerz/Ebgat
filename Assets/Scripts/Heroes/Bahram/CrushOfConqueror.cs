@@ -31,7 +31,7 @@ public class CrushOfConqueror : Ability
         physic = GetComponent<CharacterPhysic>();
         characterSize = transform.localScale * GetComponent<BoxCollider2D>().size;
         pushDownSize = new Vector2(pushDownWidth, characterSize.y / 2);
-        landingSize = new Vector2(landingWidth, characterSize.y / 2);
+        landingSize = new Vector2(landingWidth,0.1f);
     }
 
     public override void AbilityKeyPrssed()
@@ -107,7 +107,9 @@ public class CrushOfConqueror : Ability
 
     private void LandCrush()
     {
-        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 4),landingSize, 0, Vector2.up, characterSize.y / 2, layerMask, 0, 0);
+
+        Debug.Log(landingSize);
+        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 2),landingSize, 0, Vector2.up, characterSize.y, layerMask, 0, 0);
         foreach (RaycastHit2D hit in enemies)
         {
             if (hit.collider.tag.Equals("Player"))

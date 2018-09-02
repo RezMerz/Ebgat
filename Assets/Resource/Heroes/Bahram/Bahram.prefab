@@ -494,7 +494,7 @@ MonoBehaviour:
   damage: 40
   stunDuration: 2
   Speed: 50
-  landingWidth: 10
+  landingWidth: 15
   pushDownWidth: 3
   pushForce: 1
 --- !u!114 &114257958083322680
