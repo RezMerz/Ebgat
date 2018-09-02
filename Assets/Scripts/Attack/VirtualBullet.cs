@@ -81,7 +81,7 @@ public class VirtualBullet : MonoBehaviour
         }
     }
 
-    private void Destroy()
+    public void Destroy()
     {
 
         /// send destroyed massage

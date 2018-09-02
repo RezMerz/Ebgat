@@ -78,14 +78,17 @@ public class MeleeAttack : Attack
         List<RaycastHit2D> targets = new List<RaycastHit2D>(Physics2D.BoxCastAll(transform.position + (Vector3)offset, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0));
         targets.Sort(new HitDistanceCompare());
         bool parry = false;
-        int max = 0;
+        int max = targets.Count;
         for (int i = 0; i < targets.Count; i++)
         {
             if (targets[i].collider.tag.Equals("Block"))
             {
-                max = i;
-                playerControl.physic.AddReductiveForce(-charStats.Side, attackForce, 0.1f, 0);
-                break;
+                if(targets[i].point.y - transform.position.y < 2)
+                {
+                    max = i;
+                    playerControl.physic.AddReductiveForce(-charStats.Side, attackForce, 0.1f, 0);
+                    break;
+                }
             }
         }
         for (int i = 0; i < max; i++)
@@ -95,8 +98,8 @@ public class MeleeAttack : Attack
                 //Vector2 direction = targets[i].point - (Vector2)transform.position;
                 Debug.Log("parry");
                 parry = true;
-                targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 2 * attackForce, 0.2f, 0);
-                playerControl.physic.AddReductiveForce(-charStats.Side,  2 *attackForce, 0.2f, 0);
+                targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * attackForce, 0.2f, 0);
+                playerControl.physic.AddReductiveForce(-charStats.Side,  1.5f *attackForce, 0.2f, 0);
             }
         }
         if (!parry)
@@ -107,6 +110,10 @@ public class MeleeAttack : Attack
                 {
                     targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
                     targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side,attackForce, 0.1f, 0);
+                }
+                else if (targets[i].collider.tag.Equals("Bullet"))
+                {
+                    targets[i].collider.gameObject.GetComponent<VirtualBullet>().Destroy();
                 }
             }
         }
