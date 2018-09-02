@@ -404,7 +404,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-            Debug.Log(id + "+" + Time.frameCount);
+           // Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {

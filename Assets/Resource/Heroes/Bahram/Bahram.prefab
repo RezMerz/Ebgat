@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 114489874745135552}
   - component: {fileID: 114068610890322924}
   - component: {fileID: 114175303413705874}
+  - component: {fileID: 114769973436579096}
   m_Layer: 0
   m_Name: Bahram
   m_TagString: Player
@@ -639,6 +640,7 @@ MonoBehaviour:
     type: 2}
   IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
+  audio_clips: []
 --- !u!114 &114516334755813448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -678,6 +680,23 @@ MonoBehaviour:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   - {fileID: 114648076683127938, guid: 209b23f7c34a9dd45a2dada2af167cc9, type: 2}
   - {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
+--- !u!114 &114769973436579096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053505828903372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ed2526fa5f9d242ac3e235e2d97caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTime: 0
+  coolDownTime: 20
+  energyUsage: 0
+  buff: {fileID: 0}
+  abilityNumber: 2
+  time: 15
 --- !u!212 &212044895692025378
 SpriteRenderer:
   m_ObjectHideFlags: 1
