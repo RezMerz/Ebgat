@@ -422,6 +422,7 @@ public class CharacterAttributes : MonoBehaviour {
             case "2": HandState = EHandState.Attacking; break;
             case "3": HandState = EHandState.Casting; break;
             case "4": HandState = EHandState.Channeling; break;
+            case "5": HandState = EHandState.Disarm; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -432,6 +433,7 @@ public class CharacterAttributes : MonoBehaviour {
             case "2": FeetState = EFeetState.Falling; break;
             case "3": FeetState = EFeetState.Jumping; break;
             case "4": FeetState = EFeetState.NoGravity; break;
+            case "9": FeetState = EFeetState.Root; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -481,6 +483,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EHandState.Attacking: worldState.RegisterCharStat(ID, 'c', "2"); break;
             case EHandState.Casting: worldState.RegisterCharStat(ID, 'c', "3"); break;
             case EHandState.Channeling: worldState.RegisterCharStat(ID, 'c', "4"); break;
+            case EHandState.Disarm: worldState.RegisterCharStat(ID, 'c', "5"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -495,6 +498,7 @@ public class CharacterAttributes : MonoBehaviour {
             case EFeetState.DoubleJumping: worldState.RegisterCharStat(ID, 'd', "5"); break;
             case EFeetState.OnWall: worldState.RegisterCharStat(ID, 'd', "6");break;
             case EFeetState.WallJumping: worldState.RegisterCharStat(ID, 'd', "8"); break;
+            case EFeetState.Root: worldState.RegisterCharStat(ID, 'd', "9"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -554,8 +558,8 @@ public class CharacterAttributes : MonoBehaviour {
 
 public enum EHeadState { Conscious = 1, Stunned = 2 };
 public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 3, Aiming = 4 };
-public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4};
-public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5,OnWall = 6,WallJumping = 8};
+public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4, Disarm = 5};
+public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5,OnWall = 6,WallJumping = 8, Root = 9};
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 
 
