@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 114158786255817076}
   - component: {fileID: 114936411307088194}
   - component: {fileID: 114567925331417990}
+  - component: {fileID: 114183606076338952}
   m_Layer: 0
   m_Name: Malkous
   m_TagString: Player
@@ -605,6 +606,17 @@ MonoBehaviour:
   interval: 0.3
   damage: 10
   size: {x: 5, y: 6}
+--- !u!114 &114183606076338952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114228986464155946
 MonoBehaviour:
   m_ObjectHideFlags: 1
