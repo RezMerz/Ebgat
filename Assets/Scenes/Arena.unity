@@ -7871,7 +7871,7 @@ MonoBehaviour:
   horizontalBorder: {x: 12, y: 12}
   verticalBorder: {x: 1.5, y: 20}
   zoomoutSize: 25
-  zoominSize: 15
+  zoominSize: 18
 --- !u!1 &373484227
 GameObject:
   m_ObjectHideFlags: 0

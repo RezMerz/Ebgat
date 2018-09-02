@@ -38,6 +38,7 @@ public class CharacterPhysic : Physic
             return;
 
         CheckPersitentForces();
+        CheckReductiveForces();
         PhysicAction += HitFunction;
         if (!layerSet)
         {
@@ -192,7 +193,6 @@ public class CharacterPhysic : Physic
                 if(charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    Debug.Log(charStats.CayoteTime);
                     if(timer >=  charStats.CayoteTime + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;

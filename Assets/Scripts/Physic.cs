@@ -11,6 +11,7 @@ abstract public class Physic : MonoBehaviour
     protected Vector2 size;
     protected Vector2 distance;
     protected List<PersitentForce> persitentForces = new List<PersitentForce>();
+    protected List<ReductiveForce> reductiveForces = new List<ReductiveForce>();
 
     public Vector2 virtualPosition { get; set; }
 
@@ -21,6 +22,10 @@ abstract public class Physic : MonoBehaviour
     public void AddPersistentForce(Vector2 force, float distance, int removeTag)
     {
         persitentForces.Add(new PersitentForce(force, distance, removeTag));
+    }
+    public void AddReductiveForce(Vector2 direction, float force, float reductionForce, int removeTag)
+    {
+        reductiveForces.Add(new ReductiveForce(direction,force,reductionForce,removeTag));
     }
 
     public void RemoveTaggedForces(int tag)
@@ -52,6 +57,22 @@ abstract public class Physic : MonoBehaviour
             }
         }
     }
+    protected void CheckReductiveForces()
+    {
+        for (int i = 0; i < reductiveForces.Count; i++)
+        {
+            if (reductiveForces[i].force > 0 )
+            {
+                AddForce(reductiveForces[i].direction * reductiveForces[i].force);
+                reductiveForces[i].force -= reductiveForces[i].reductionForce;
+            }
+            else
+            {
+                reductiveForces.Remove(reductiveForces[i]);
+            }
+        }
+
+    }
     protected abstract void Calculate();
 }
 public class PersitentForce
@@ -67,6 +88,20 @@ public class PersitentForce
         this.removeTag = removeTag;
         vectorSum = Vector2.zero;
     }
+}
 
+public class ReductiveForce
+{
+    public Vector2 direction;
+    public float force;
+    public float reductionForce;
+    public int removeTag;
+    public ReductiveForce(Vector2 direction,float force,float reductionForce,int removeTag)
+    {
+        this.direction = direction;
+        this.force = force;
+        this.reductionForce = reductionForce;
+        this.removeTag = removeTag;
+    }
 }
 
