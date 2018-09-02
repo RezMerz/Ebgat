@@ -97,5 +97,14 @@ public class CharacterAim : MonoBehaviour {
             charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
     }
 
+    public void AimClinet()
+    {
+        if (isServer)
+            return;
+
+        float rotation = Mathf.Asin(charStatsClient.aimSide.y);
+        arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
+
     
 }
