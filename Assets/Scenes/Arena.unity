@@ -14865,48 +14865,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &676184817
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -26.525322
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -25.054323
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &677508581
 GameObject:
   m_ObjectHideFlags: 0
@@ -37109,64 +37067,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1654901049
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -38.45457
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.5962477
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4312377023280200, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &1654901050 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1341430771966434, guid: c3360d9ad1a264bcaa2b490da85ceba2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1654901049}
---- !u!114 &1654901051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1654901050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1f4723248bd1b41bbe25fd98663ebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1663034722
 GameObject:
   m_ObjectHideFlags: 0
