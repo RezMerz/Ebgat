@@ -52,7 +52,7 @@ public class LobbyManager : NetworkBehaviour {
     public void RpcStartGame(){
         if (isServer)
         {
-            networkManager.StopHost();
+            //networkManager.StopHost();
         }
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
     }
