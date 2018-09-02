@@ -410,7 +410,10 @@ public class PlayerControl : MonoBehaviour
     {
         waitingForRequest = false;
         start = false;
-        currentStateNumber = id + 1;
+        if(id > currentStateNumber)
+        {
+            currentStateNumber = id + 1;
+        }
         GetData(state);
         for (int i = lastStateChecked + 1; i <= id; i++)
         {

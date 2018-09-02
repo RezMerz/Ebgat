@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MalkousDash : CharacterDash {
+public class MalkousDash : CharacterDash
+{
 
     private MalkousAttack malkousAttack;
 
@@ -12,12 +13,13 @@ public class MalkousDash : CharacterDash {
         malkousAttack = GetComponent<MalkousAttack>();
     }
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (started && charStats.BodyState == EBodyState.Dashing)
         {
             DashMove();
         }
-	}
+    }
 
     private void DashMove()
     {
@@ -30,12 +32,14 @@ public class MalkousDash : CharacterDash {
         }
         else
         {
-            physic.DashLayerReset();
-            gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
-            charStats.BodyState = EBodyState.Standing;
-            malkousAttack.StartIceShard();
-            distance = 0;
+            DashEnd();
         }
+    }
+
+
+    protected override void StartFunction()
+    {
+        malkousAttack.StartIceShard();
     }
 
     private void MalkousDashHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)

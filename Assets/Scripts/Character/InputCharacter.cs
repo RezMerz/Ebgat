@@ -171,6 +171,10 @@ public class InputCharacter : MonoBehaviour
             }
           
         }
+        if (Input.GetButtonDown("Debug"))
+        {
+            clientNetworkSender.RequestWorldState(playerControl.playerId);
+        }
 
     }
 
