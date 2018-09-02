@@ -136,6 +136,7 @@ public class Toolkit : MonoBehaviour
         string[] parts = s.Split(',');
         return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
     }
+
 }
 public class HitDistanceCompare : IComparer<RaycastHit2D>
 {

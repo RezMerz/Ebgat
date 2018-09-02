@@ -15,6 +15,7 @@ public class HeroGraphics : MonoBehaviour {
     private int maxEnergy = 1000;
     private int maxHp = 100;
     protected CharacterAttributes charStats;
+    protected CharacterAim aim;
     
     public void TakeDamage()
     {
@@ -46,6 +47,8 @@ public class HeroGraphics : MonoBehaviour {
             if (slider.name == "Energy Slider")
                 energySlider = slider;
         }
+
+        aim = GetComponent<CharacterAim>();
     }
 
     public virtual void AttackNumber(string value)
