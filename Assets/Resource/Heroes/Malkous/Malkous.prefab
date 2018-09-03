@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 114567925331417990}
   m_Layer: 0
   m_Name: Malkous
-  m_TagString: Player
+  m_TagString: VirtualPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
