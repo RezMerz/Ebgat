@@ -83,6 +83,14 @@ public class WorldState
         }
     }
 
+    public void AdditionalPlayerData(int id, string data){
+        
+    }
+
+    public void AdditionalWorldData(string data){
+        
+    }
+
     public void print(){
         //Debug.Log(heroesData[0].GetData());
     }
