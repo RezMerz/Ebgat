@@ -23,6 +23,8 @@ public class CharacterAttributesClient : MonoBehaviour {
 
     public float hpBase;
     public int energyBase;
+
+    public float speedRate { get; set; }
     void Start()
     {
         playerControl = GetComponent<PlayerControlClientside>();
@@ -125,6 +127,7 @@ public class CharacterAttributesClient : MonoBehaviour {
         //    case 'x': energy = int.Parse(value); break;
         //    case 'A': SetAbilityState(value); break;
             case 'C': aimRotation = float.Parse(value); break;
+            case 'z': speedRate = float.Parse(value); break;
         }
     }
 }
