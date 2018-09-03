@@ -18,7 +18,7 @@ public class HeroGraphics : MonoBehaviour
     protected CharacterAim aim;
     protected CharacterAttributesClient charStats;
     protected GameObject HeadIcons;
-    protected Color color;
+    protected Color color = Color.white;
 
     public void TakeDamage()
     {

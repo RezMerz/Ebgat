@@ -14,6 +14,7 @@ public class InputCharacter : MonoBehaviour
     private float axisX;
     private bool aiming;
     private CharacterAim aim;
+    private bool attacking;
     public bool start { get;set; }
 
     private bool controllerConnected;
@@ -68,13 +69,15 @@ public class InputCharacter : MonoBehaviour
         } */
 
         //Attack
-        if (Input.GetButtonDown("Fire"))
+        if (Input.GetButtonDown("Fire") && !attacking)
         {
+            attacking = true;
             clientNetworkSender.AttackPressed();
         }
-        else if(Input.GetButtonUp("Fire"))
+        else if(Input.GetButtonUp("Fire") && attacking)
         {
-            clientNetworkSender.AttackReleased();
+            attacking = false;
+            //clientNetworkSender.AttackReleased();
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {
@@ -146,9 +149,16 @@ public class InputCharacter : MonoBehaviour
             clientNetworkSender.AimReleased();
         }
 
-        if (Input.GetAxis("Fire") > 0.3)
+        if (Input.GetAxis("Fire") > 0.3  && !attacking)
         {
+            attacking = true;
+            print("get Axis");
             clientNetworkSender.AttackPressed();
+        }
+        else if (Input.GetAxis("Fire") < 0.3 && attacking)
+        {
+            attacking = false;
+           // clientNetworkSender.AttackReleased();
         }
         if (aiming)
         {
