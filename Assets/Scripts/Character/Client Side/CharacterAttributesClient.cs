@@ -21,8 +21,8 @@ public class CharacterAttributesClient : MonoBehaviour {
     public float hp { get; set; }
     public int energy { get; set; }
 
-    public float hpBase { get; set; }
-    public int energyBase { get; set; }
+    public float hpBase;
+    public int energyBase;
     void Start()
     {
         playerControl = GetComponent<PlayerControlClientside>();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputCharacter : MonoBehaviour
 {
-    public float speed;
     private PlayerControlClientside playerControl;
     private ClientNetworkSender clientNetworkSender;
     private AbilityManager abilityManager;
@@ -40,6 +39,7 @@ public class InputCharacter : MonoBehaviour
         // Move left and Right
         if ((!axisXChanged && axisX > 0.3 || axisX < -0.3))
         {
+
             axisXChanged = true;
             if (axisX > 0.1)
                 clientNetworkSender.Move(1);
