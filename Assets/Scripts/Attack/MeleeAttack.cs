@@ -124,7 +124,9 @@ public class MeleeAttack : Attack
                 }
                 else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
-                    targets[i].collider.gameObject.GetComponent<VirtualBullet>().Destroy();
+                    VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
+                    playerControl.TakeAttack(0, bullet.buff.name);
+                    bullet.Destroy();
                 }
             }
         }
@@ -155,7 +157,7 @@ public class MeleeAttack : Attack
             }
 
             sword.GetComponent<BoxCollider2D>().size = swordCombos[charStats.AttackNumber].size;
-            sword.transform.localPosition = Vector3.right * (swordCombos[charStats.AttackNumber].size.x / 2) + (Vector3)offset;
+            sword.transform.localPosition = (Vector3) charStats.Side * (swordCombos[charStats.AttackNumber].size.x / 2 + offset.x) + Vector3.up * offset.y ;
 
             attackNumber = charStats.AttackNumber;
         }

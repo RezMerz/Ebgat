@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 82964304089708752}
   - component: {fileID: 114245478714681916}
   - component: {fileID: 114084879097903336}
+  - component: {fileID: 114742028647210728}
   m_Layer: 0
   m_Name: malkous_Clienside
   m_TagString: Player
@@ -223,6 +224,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
+--- !u!114 &114742028647210728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480360778776026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43b15e64de82e14eb7882ca9f402673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletObjects:
+  - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
+  - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
 --- !u!114 &114837007490833840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81538638521dcab4c970273c1a170e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &114867319872311880
 MonoBehaviour:
   m_ObjectHideFlags: 1

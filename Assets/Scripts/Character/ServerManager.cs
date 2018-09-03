@@ -76,7 +76,6 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void PlayerSimulationFinished(int ID){
-        Debug.Log("player sim finishedf");
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
             ServerNetworkSender.instance.RegisterWorldState(currentWorldState);

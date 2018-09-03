@@ -108,7 +108,6 @@ public class PlayerControlClientside : MonoBehaviour
             {
                 if (IsLocalPlayer())
                 {
-                    Debug.Log("request for :" + currentStateNumber + "+" + Time.frameCount);
                     waitingForRequest = true;
                     clientNetworkSender.RequestWorldState(playerId);
                 }
@@ -206,6 +205,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'x': if (playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
             case 'y': heroGraphics.AttackNumber(value); break;
             case 'C': aim.AimClinet(); break;
+            case 'z': heroGraphics.SpeedRateChange(value); break;
         }
     }
 
@@ -231,7 +231,6 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void UpdateClient(int id, string state)
     {
-        Debug.Log("awnser for :" + id + "+" + Time.frameCount);
         waitingForRequest = false;
         start = false;
         if (id > currentStateNumber)
