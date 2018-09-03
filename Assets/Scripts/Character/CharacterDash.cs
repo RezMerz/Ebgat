@@ -32,7 +32,7 @@ public class CharacterDash : MonoBehaviour
     }
 
 
-    public void DashPressed()
+    public virtual void DashPressed()
     {
 
         if (!coolDownLock)
@@ -59,7 +59,7 @@ public class CharacterDash : MonoBehaviour
         }
     }
 
-    public void DashEnd()
+    public virtual void DashEnd()
     {
         physic.DashLayerReset();
         gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
@@ -69,7 +69,7 @@ public class CharacterDash : MonoBehaviour
     }
     protected virtual void StartFunction() {}
 
-    private IEnumerator CoolDownReset()
+    protected IEnumerator CoolDownReset()
     {
         yield return new WaitForSeconds(coolDownTime);
         coolDownLock = false;
