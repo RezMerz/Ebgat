@@ -92,6 +92,7 @@ public class CharacterPhysic : Physic
             }
         }
         virtualPosition += Vector2.up * distance;
+        transform.position = virtualPosition;
         playerControl.worldState.RegisterHeroPhysics(playerControl.playerId, virtualPosition, distance);
         PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
