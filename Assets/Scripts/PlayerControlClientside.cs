@@ -108,7 +108,6 @@ public class PlayerControlClientside : MonoBehaviour
             {
                 if (IsLocalPlayer())
                 {
-                    Debug.Log("request for :" + currentStateNumber + "+" + Time.frameCount);
                     waitingForRequest = true;
                     clientNetworkSender.RequestWorldState(playerId);
                 }

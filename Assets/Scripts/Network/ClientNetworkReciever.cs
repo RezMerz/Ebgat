@@ -22,7 +22,6 @@ public class ClientNetworkReciever : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcRecieveWorldData(string[] worlddata, int packetID){
-        Debug.Log("asdasdas");
         if (playerControls.Count != playernumber)
             UpdatePlayer();
         for (int i = 0; i < worlddata.Length; i++)
