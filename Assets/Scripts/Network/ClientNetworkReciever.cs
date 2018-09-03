@@ -44,7 +44,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
                     playerControls[id - 1].Shoot(rawData[2]);
                 if(!rawData[3].Equals(""))
                     playerControls[id - 1].DestroyBullet(rawData[3]);
-                if (rawData[3].Equals(""))
+                if (rawData[4].Equals(""))
                     playerControls[id - 1].GetAdditionalData(rawData[4]);
             }
             if(!heroData[0].Equals(""))

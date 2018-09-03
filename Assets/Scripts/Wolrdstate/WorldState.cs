@@ -59,7 +59,7 @@ public class WorldState
         for (int i = 0; i < heroesData.Count; i++){
             output += heroesData[i].GetData() + "#";
         }
-        return GetAdditionaldata() + output;
+        return GetAdditionaldata() + "#" + output;
     }
 
     public void BulletRegister(int playerID, int bulletID,Vector2 attackSide,float gravityAcc,float range,int attackNumber,Vector2 startPos)
