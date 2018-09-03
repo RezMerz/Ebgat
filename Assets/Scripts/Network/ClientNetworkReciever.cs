@@ -30,7 +30,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
                 continue;
             string[] heroData = worlddata[i].Split('#');
             int frameBaseId = packetID * 3;
-            for (int j = 0; j < heroData.Length; j++)
+            for (int j = 1; j < heroData.Length; j++)
             {
                 if (heroData[j].Length == 0)
                     continue;
@@ -44,7 +44,11 @@ public class ClientNetworkReciever : NetworkBehaviour {
                     playerControls[id - 1].Shoot(rawData[2]);
                 if(!rawData[3].Equals(""))
                     playerControls[id - 1].DestroyBullet(rawData[3]);
+                if (rawData[3].Equals(""))
+                    playerControls[id - 1].GetAdditionalData(rawData[4]);
             }
+            if(!heroData[0].Equals(""))
+                localPlayerControl.GetAdditionalWorldData(heroData[0]);
         }
     }
 
