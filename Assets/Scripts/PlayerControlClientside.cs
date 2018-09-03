@@ -81,10 +81,11 @@ public class PlayerControlClientside : MonoBehaviour
         {
             if (IsLocalPlayer())
             {
-                // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
             }
             if (playerStatesHash.Contains(currentStateNumber))
             {
+               // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
+
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
                 {
                     if (playerStatesHash.Contains(i))
@@ -213,7 +214,8 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-            //  Debug.Log(id + "+" + Time.frameCount);
+
+            //Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {

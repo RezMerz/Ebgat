@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22dc873a9bbd9f4a9c393bb0c0e6453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 0.2
+  castTime: 0.3
   coolDownTime: 0.1
   energyUsage: 0
   buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
@@ -165,7 +165,7 @@ MonoBehaviour:
   damage: 0
   stunDuration: 2
   Speed: 50
-  landingWidth: 15
+  landingWidth: 10
   pushDownWidth: 3
   pushForce: 1
 --- !u!114 &114257958083322680

@@ -23,6 +23,7 @@ public class CrushOfConqueror : Ability
     private Vector2 landingSize;
     private Vector2 characterSize;
     private int layerMask;
+    private int visibilityLayerMask;
     private bool active;
 
 
@@ -49,6 +50,7 @@ public class CrushOfConqueror : Ability
                     if (layerMask == 0)
                     {
                         layerMask = LayerMask.GetMask(charStats.enemyTeamName);
+                        visibilityLayerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks");
                     }
                     charStats.HandState = EHandState.Casting;
                     charStats.AbilityState = EAbility.Ability1Start;
@@ -107,27 +109,36 @@ public class CrushOfConqueror : Ability
 
     private void LandCrush()
     {
+        Vector2 origin = transform.position + (Vector3.up * characterSize.y * 3 / 2);
+
 
         Debug.Log(landingSize);
-        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.up * characterSize.y * 3 / 2), landingSize, 0, Vector2.down, characterSize.y * 2, layerMask, 0, 0);
+        Debug.DrawLine(origin, origin + Vector2.down * characterSize.y * 2, Color.red, 5);
+        RaycastHit2D[] enemies = Physics2D.BoxCastAll(origin, landingSize, 0, Vector2.down, characterSize.y * 2, layerMask, 0, 0);
         Debug.Log(enemies.Length);
         foreach (RaycastHit2D hit in enemies)
         {
             if (hit.collider.tag.Equals("VirtualPlayer"))
             {
                 GameObject enemy = hit.collider.gameObject;
-                if (enemy.transform.position.x > transform.position.x && hit.distance <= 2) 
+                if (enemy.transform.position.x > transform.position.x ) 
                 {
-                    float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
-                    enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    {
+                        float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
+                        enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
+                        enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                    }
                 }
-                else if(enemy.transform.position.x < transform.position.x && hit.distance <= 2)
+                else if(enemy.transform.position.x <= transform.position.x )
                 {
-                    float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
-                    enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
-
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    {
+                        float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
+                        enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
+                        enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                    }
                 }
-                enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
             }
         }
         StartCoroutine(CoolDownTimer(coolDownTime));
