@@ -23,6 +23,7 @@ public class CrushOfConqueror : Ability
     private Vector2 landingSize;
     private Vector2 characterSize;
     private int layerMask;
+    private int visibilityLayerMask;
     private bool active;
 
 
@@ -49,6 +50,7 @@ public class CrushOfConqueror : Ability
                     if (layerMask == 0)
                     {
                         layerMask = LayerMask.GetMask(charStats.enemyTeamName);
+                        visibilityLayerMask = LayerMask.GetMask(charStats.enemyTeamName,"Block");
                     }
                     charStats.HandState = EHandState.Casting;
                     charStats.AbilityState = EAbility.Ability1Start;
@@ -118,14 +120,19 @@ public class CrushOfConqueror : Ability
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.transform.position.x > transform.position.x && hit.distance <= 2) 
                 {
-                    float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
-                    enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    {
+                        float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
+                        enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
+                    }
                 }
                 else if(enemy.transform.position.x < transform.position.x && hit.distance <= 2)
                 {
-                    float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
-                    enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
-
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    {
+                        float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
+                        enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
+                    }
                 }
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
             }
