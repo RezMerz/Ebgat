@@ -84,9 +84,9 @@ public class PlayerControlClientside : MonoBehaviour
         if (start)
         {
 
-            if(biggestIdNumber - currentStateNumber >= 3 )
+            if(biggestIdNumber - currentStateNumber >= 6 )
             {
-                for (int i = lastStateChecked + 1; i < biggestIdNumber - counter; i++)
+                for (int i = lastStateChecked + 1; i <= biggestIdNumber - counter; i++)
                 {
                     if (playerStatesHash.Contains(i))
                     {
