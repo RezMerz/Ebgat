@@ -124,7 +124,9 @@ public class MeleeAttack : Attack
                 }
                 else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
-                    targets[i].collider.gameObject.GetComponent<VirtualBullet>().Destroy();
+                    VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
+                    playerControl.TakeAttack(0, bullet.buff.name);
+                    bullet.Destroy();
                 }
             }
         }

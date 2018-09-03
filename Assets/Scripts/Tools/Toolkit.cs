@@ -144,6 +144,14 @@ public class Toolkit : MonoBehaviour
         return hit;
     }
 
+    public static float PushBackForce(Vector2 forceOrigin,Vector2 d)
+    {
+
+
+
+        return 0;
+    }
+
 }
 public class HitDistanceCompare : IComparer<RaycastHit2D>
 {
