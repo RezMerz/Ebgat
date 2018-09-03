@@ -49,6 +49,11 @@ public class ServerManager : NetworkBehaviour {
             if(deadPlayers[i].respawnTimeLeft <= 0){
                 //Debug.Log();
                 RespawnHero(deadPlayers[i]);
+                for (int j = 0; j < playerControls.Count; i++){
+                    if (playerControls[j].playerId == deadPlayers[j].clientId)
+                        playerControls[j].Respawn();
+                        
+                }
                 deadPlayers.RemoveAt(i);
                 i--;
             }
