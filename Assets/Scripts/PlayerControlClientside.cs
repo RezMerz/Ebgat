@@ -95,7 +95,7 @@ public class PlayerControlClientside : MonoBehaviour
                     }
                 }
                 lastStateChecked = biggestIdNumber - counter;
-                currentStateNumber++;
+                currentStateNumber = lastStateChecked + 1;
                 counter = (counter - 1) % 3;
                 return;
             }
