@@ -27,7 +27,6 @@ public class ServerManager : NetworkBehaviour {
     public void Awake()
     {
         instance = this;
-        currentWorldState = new WorldState();
         playerControls = new List<PlayerControl>();
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         reservelist = new List<int>();
@@ -40,6 +39,7 @@ public class ServerManager : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
+        currentWorldState = new WorldState();
 	}
 
     private void FixedUpdate()
@@ -76,6 +76,8 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void PlayerSimulationFinished(int ID){
+        if(currentWorldState == null)
+            currentWorldState = new WorldState();
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
             ServerNetworkSender.instance.RegisterWorldState(currentWorldState);
