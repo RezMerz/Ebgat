@@ -250,7 +250,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("hey teacher don't leave these codes alone ");
+      //  Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
         GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
@@ -261,7 +261,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Respawn()
     {
-        Debug.Log("hey teacher don't leave these codes alone ");
+        //Debug.Log("hey teacher don't leave these codes alone ");
         input.start = true;
         GetComponent<SpriteRenderer>().enabled = true;
         if (IsLocalPlayer())

@@ -57,10 +57,11 @@ public class BuffManager : MonoBehaviour
 
     public void DebuffAllCharacter()
     {
-        foreach (Buff buff in activatedBuffList)
+        for (int i = 0; i <= activatedBuffList.Count; i++)
         {
-            buff.FinishBuff();
+            activatedBuffList[i].FinishBuff();
         }
+
     }
 
     public void RemoveBuffFromList(Buff buff)
