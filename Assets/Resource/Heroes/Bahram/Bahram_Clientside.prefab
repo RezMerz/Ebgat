@@ -21,13 +21,12 @@ GameObject:
   - component: {fileID: 4435843421954212}
   - component: {fileID: 212044895692025378}
   - component: {fileID: 61299342488998378}
-  - component: {fileID: 114289126813422942}
-  - component: {fileID: 114610447254143576}
   - component: {fileID: 114128794276802862}
   - component: {fileID: 95622444841042292}
   - component: {fileID: 82397943080947130}
   - component: {fileID: 114075672439317394}
   - component: {fileID: 114531530432973358}
+  - component: {fileID: 114986713533133072}
   m_Layer: 0
   m_Name: Bahram_Clientside
   m_TagString: VirtualPlayer
@@ -448,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &114289126813422942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,6 +460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerConnection: {fileID: 0}
+=======
+>>>>>>> ca9980cc939bca3423adede1d73d9d0451126d25
 --- !u!114 &114531530432973358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -476,7 +478,11 @@ MonoBehaviour:
   IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
   audio_clips: []
+<<<<<<< HEAD
 --- !u!114 &114610447254143576
+=======
+--- !u!114 &114986713533133072
+>>>>>>> ca9980cc939bca3423adede1d73d9d0451126d25
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,11 +490,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053505828903372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebca011c11433da4e92f7a4902d6ae93, type: 3}
+  m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffListRefrence:
-  - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
+  playerConnection: {fileID: 0}
 --- !u!212 &212044895692025378
 SpriteRenderer:
   m_ObjectHideFlags: 1

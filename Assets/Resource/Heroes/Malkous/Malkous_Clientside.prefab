@@ -55,15 +55,13 @@ GameObject:
   - component: {fileID: 212646341278126836}
   - component: {fileID: 61504289847547406}
   - component: {fileID: 114006569559281598}
-  - component: {fileID: 114667824745434310}
-  - component: {fileID: 114352001818264730}
-  - component: {fileID: 114108135820462582}
   - component: {fileID: 95267049145148780}
   - component: {fileID: 82839251275574280}
   - component: {fileID: 114890960111783770}
   - component: {fileID: 114063726377082134}
   - component: {fileID: 114019153843204608}
   - component: {fileID: 114754651399215910}
+  - component: {fileID: 114507402794810514}
   m_Layer: 0
   m_Name: Malkous_Clientside
   m_TagString: VirtualPlayer
@@ -544,7 +542,7 @@ MonoBehaviour:
   bulletObjects:
   - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
   - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
---- !u!114 &114108135820462582
+--- !u!114 &114507402794810514
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -552,9 +550,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341430771966434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebca011c11433da4e92f7a4902d6ae93, type: 3}
+  m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   buffListRefrence:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
@@ -580,6 +579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> ca9980cc939bca3423adede1d73d9d0451126d25
   playerConnection: {fileID: 0}
 --- !u!114 &114754651399215910
 MonoBehaviour:
