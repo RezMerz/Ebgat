@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 114531530432973358}
   m_Layer: 0
   m_Name: Bahram_Clientside
-  m_TagString: Player
+  m_TagString: VirtualPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,9 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamName: 
-  enemyTeamName: 
-  side: {x: 0, y: 0}
 --- !u!114 &114289126813422942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,10 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
-    type: 2}
   playerConnection: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114531530432973358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,6 +475,7 @@ MonoBehaviour:
     type: 2}
   IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
+  audio_clips: []
 --- !u!114 &114610447254143576
 MonoBehaviour:
   m_ObjectHideFlags: 1

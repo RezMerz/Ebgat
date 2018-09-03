@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 114754651399215910}
   m_Layer: 0
   m_Name: Malkous_Clientside
-  m_TagString: Player
+  m_TagString: VirtualPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -580,10 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d,
-    type: 2}
   playerConnection: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114754651399215910
 MonoBehaviour:
   m_ObjectHideFlags: 1
