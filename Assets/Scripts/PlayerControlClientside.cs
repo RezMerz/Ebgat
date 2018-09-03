@@ -84,8 +84,11 @@ public class PlayerControlClientside : MonoBehaviour
         if (start)
         {
 
+
+            Debug.Log(biggestIdNumber - currentStateNumber +"+"+ Time.frameCount);
             if(biggestIdNumber - currentStateNumber >= 6 )
             {
+                
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber - counter; i++)
                 {
                     if (playerStatesHash.Contains(i))
@@ -95,7 +98,11 @@ public class PlayerControlClientside : MonoBehaviour
                     }
                 }
                 lastStateChecked = biggestIdNumber - counter;
+
+                
                 currentStateNumber = lastStateChecked + 1;
+
+                Debug.Log(currentStateNumber);
                 counter = (counter - 1) % 3;
                 return;
             }
