@@ -32,7 +32,7 @@ public class HeroGraphics : MonoBehaviour
         float speedRate = float.Parse(value);
         if (speedRate < 1)
         {
-            sprite.color = new Color(0.27f, 1, 0.952f);\
+            sprite.color = new Color(0.27f, 1, 0.952f);
             color = sprite.color;
             animator.speed = speedRate;
         }
