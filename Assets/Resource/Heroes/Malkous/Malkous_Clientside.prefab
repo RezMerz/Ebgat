@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 114507402794810514}
   m_Layer: 0
   m_Name: Malkous_Clientside
-  m_TagString: Player
+  m_TagString: VirtualPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,6 +553,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  buffListRefrence:
+  - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
+  - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
+--- !u!114 &114352001818264730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d490fc08ad2b9f64c97247fe7501536b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114667824745434310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9a4dd166d3b004ab8ec688318bf95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+=======
+>>>>>>> ca9980cc939bca3423adede1d73d9d0451126d25
   playerConnection: {fileID: 0}
 --- !u!114 &114754651399215910
 MonoBehaviour:
