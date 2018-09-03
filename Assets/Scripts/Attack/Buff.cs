@@ -17,6 +17,11 @@ public abstract class Buff : MonoBehaviour {
     public void FinishBuff()
     {
         DebuffCharacter();
+        if(durationCoroutine != null)
+        {
+            StopCoroutine(durationCoroutine);
+        }
+
         buffManager.RemoveBuffFromList(this);
         Destroy(gameObject);
     }
