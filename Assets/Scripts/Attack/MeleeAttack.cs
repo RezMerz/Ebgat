@@ -117,7 +117,7 @@ public class MeleeAttack : Attack
         {
             for (int i = 0; i < max; i++)
             {
-                if (targets[i].collider.tag.Equals("Player"))
+                if (targets[i].collider.tag.Equals("VirtualPlayer"))
                 {
                     targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
                     targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, attackForce, 0.1f, 0);

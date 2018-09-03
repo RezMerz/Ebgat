@@ -113,7 +113,7 @@ public class CrushOfConqueror : Ability
         Debug.Log(enemies.Length);
         foreach (RaycastHit2D hit in enemies)
         {
-            if (hit.collider.tag.Equals("Player"))
+            if (hit.collider.tag.Equals("VirtualPlayer"))
             {
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.transform.position.x > transform.position.x && hit.distance <= 2) 

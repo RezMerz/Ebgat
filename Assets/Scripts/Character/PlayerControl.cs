@@ -267,33 +267,15 @@ public class PlayerControl : MonoBehaviour
     public void Die()
     {
         Debug.Log("Warning INCOMING POKH");
-        //transform.position = deathPoint;
-        //GetComponent<SpriteRenderer>().enabled = false;
-        //if (IsServer())
-        //{
-        //    physic.virtualPosition = transform.position;
-        //}
-        //if (IsLocalPlayer())
-        //{
-        //    Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
-        //}
+        transform.position = deathPoint;
+        charStats.ResetStats();
+        buffManager.DebuffAllCharacter();
     }
 
     public void Respawn()
     {
         Debug.Log("Warning INCOMING POKH");
-        //input.start = true;
-        //GetComponent<SpriteRenderer>().enabled = true;
-        //transform.position = playerConnection.spawnPoint;
-        //if (IsServer())
-        //{
-        //    physic.virtualPosition = transform.position;
-        //    charStats.ResetHP();
-        //}
-        //if (IsLocalPlayer())
-        //{
-        //    Camera.main.GetComponent<SmoothCamera2D>().FollowTarget();
-        //}
+        transform.position = playerConnection.spawnPoint;
     }
 }
 

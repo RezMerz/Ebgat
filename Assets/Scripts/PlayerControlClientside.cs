@@ -17,6 +17,8 @@ public class PlayerControlClientside : MonoBehaviour
     public static string teamName { get; set; }
     public CharacterAim aim { get; set; }
 
+    private InputCharacter input;
+
 
     private Hashtable playerStatesHash = new Hashtable();
     private int lastStateChecked;
@@ -34,6 +36,7 @@ public class PlayerControlClientside : MonoBehaviour
         heroGraphics = GetComponent<HeroGraphics>();
         bulletmanager = GetComponent<BulletManager>();
         aim = GetComponent<CharacterAim>();
+        input = GetComponent<InputCharacter>();
     }
 
     void Start()
@@ -249,8 +252,7 @@ public class PlayerControlClientside : MonoBehaviour
     public void Die()
     {
         Debug.Log("hey teacher don't leave these codes alone ");
-
-        //input.start = false;
+        input.start = false;
         GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
         {
@@ -261,7 +263,7 @@ public class PlayerControlClientside : MonoBehaviour
     public void Respawn()
     {
         Debug.Log("hey teacher don't leave these codes alone ");
-        //input.start = true;
+        input.start = true;
         GetComponent<SpriteRenderer>().enabled = true;
         if (IsLocalPlayer())
         {
