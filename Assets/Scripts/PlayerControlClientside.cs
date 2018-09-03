@@ -24,6 +24,10 @@ public class PlayerControlClientside : MonoBehaviour
     private int lastStateChecked;
     private int currentStateNumber;
     private int biggestIdNumber;
+    private int frameNumber;
+
+    private int counter;
+
     private bool start;
     private bool firstRecieved;
     private bool waitingForRequest;
@@ -79,12 +83,30 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (start)
         {
+
+            if(biggestIdNumber - currentStateNumber >= 3 )
+            {
+                for (int i = lastStateChecked + 1; i < biggestIdNumber - counter; i++)
+                {
+                    if (playerStatesHash.Contains(i))
+                    {
+                        GetData((string)playerStatesHash[i]);
+                        playerStatesHash.Remove(i);
+                    }
+                }
+                lastStateChecked = biggestIdNumber - counter;
+                currentStateNumber++;
+                counter = (counter - 1) % 3;
+                return;
+            }
+
             if (IsLocalPlayer())
             {
+                 Debug.Log(Time.deltaTime);
+                // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + " + " + Time.frameCount);
             }
             if (playerStatesHash.Contains(currentStateNumber))
             {
-               // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + "+ " + Time.frameCount);
 
                 for (int i = lastStateChecked + 1; i <= currentStateNumber; i++)
                 {
@@ -98,10 +120,15 @@ public class PlayerControlClientside : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
+               // Debug.Log("miss 1 fram :" + Time.frameCount);
+
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
-                    GetData((string)playerStatesHash[i]);
-                    playerStatesHash.Remove(i);
+                    if (playerStatesHash.Contains(i))
+                    {
+                        GetData((string)playerStatesHash[i]);
+                        playerStatesHash.Remove(i);
+                    }
                 }
                 lastStateChecked = biggestIdNumber;
             }
@@ -110,10 +137,11 @@ public class PlayerControlClientside : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                    clientNetworkSender.RequestWorldState(playerId);
+                   // clientNetworkSender.RequestWorldState(playerId);
                 }
             }
             currentStateNumber++;
+            counter = (counter - 1) % 3;
         }
 
     }
@@ -214,11 +242,11 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-
-            //Debug.Log(id + "+" + Time.frameCount);
+             //Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
+            counter = 2;
             currentStateNumber = id;
             lastStateChecked = id - 1;
             start = true;
@@ -235,10 +263,10 @@ public class PlayerControlClientside : MonoBehaviour
     {
         waitingForRequest = false;
         start = false;
-        if (id > currentStateNumber)
-        {
+       // if (id > currentStateNumber)
+       // {
             currentStateNumber = id + 1;
-        }
+       // }
         GetData(state);
         for (int i = lastStateChecked + 1; i <= id; i++)
         {
@@ -252,7 +280,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Die()
     {
-      //  Debug.Log("hey teacher don't leave these codes alone ");
+        // Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
         GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
@@ -301,11 +329,13 @@ public class PlayerControlClientside : MonoBehaviour
         }
     }
 
-    public void GetAdditionalData(string data){
-        
+    public void GetAdditionalData(string data)
+    {
+
     }
 
-    public void GetAdditionalWorldData(string data){
-        
+    public void GetAdditionalWorldData(string data)
+    {
+
     }
 }
