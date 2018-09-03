@@ -8,9 +8,11 @@ public class WorldState
 {
     public ServerNetworkSender serverNetworkSender;
     private List<HeroData> heroesData;
+    private List<string> additionalData;
    
     public WorldState(){
         heroesData = new List<HeroData>();
+        additionalData = new List<string>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("VirtualPlayer");
         foreach (GameObject obj in objs)
         {
@@ -57,7 +59,7 @@ public class WorldState
         for (int i = 0; i < heroesData.Count; i++){
             output += heroesData[i].GetData() + "#";
         }
-        return output;
+        return GetAdditionaldata() + output;
     }
 
     public void BulletRegister(int playerID, int bulletID,Vector2 attackSide,float gravityAcc,float range,int attackNumber,Vector2 startPos)
@@ -81,6 +83,27 @@ public class WorldState
                 return;
             }
         }
+    }
+
+    public void AdditionalPlayerData(int playerId, string data){
+        for (int i = 0; i < heroesData.Count; i++){
+            if(playerId == heroesData[i].playerID){
+                heroesData[i].AdditionalData(data);
+                return;
+            }
+        }   
+    }
+
+    public void AdditionalWorldData(string data){
+        additionalData.Add(data);
+    }
+
+    private string GetAdditionaldata(){
+        string output = "";
+        for (int i = 0; i < additionalData.Count; i++){
+            output += additionalData[i] + "$";
+        }
+        return output;
     }
 
     public void print(){

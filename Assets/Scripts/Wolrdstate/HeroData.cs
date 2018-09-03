@@ -10,6 +10,7 @@ public class HeroData {
     private string data;
     List<string> bullets;
     List<string> bulletHits;
+    List<string> additionalData;
 
     public HeroData(int playerID){
         data = "";
@@ -17,6 +18,7 @@ public class HeroData {
         heroPhysics = new HeroPhysicsClientSide(Vector2.down, Vector2.down);
         bullets = new List<string>();
         bulletHits = new List<string>();
+        additionalData = new List<string>();
     }
 
     public void RegisterCharstat(char keycode, string value){
@@ -40,9 +42,13 @@ public class HeroData {
         bulletHits.Add(bulletID + "");
     }
 
+    public void AdditionalData(string data){
+        additionalData.Add(data);
+    }
+
     public string GetData(){
         //Debug.Log(mynum + "    " + data);
-        return playerID + "@" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data + "@" + GetBulletData() + "@" + GetBulletHit();
+        return playerID + "@" + HeroPhysicsClientSide.Serialize(heroPhysics) + "$" + data + "@" + GetBulletData() + "@" + GetBulletHit() + "@" + GetAdditionaldata();
     }
 
     private string GetBulletData(){
@@ -60,5 +66,13 @@ public class HeroData {
             tempData += bulletHits[i] + "$";
         }
         return tempData;
+    }
+
+    private string GetAdditionaldata(){
+        string tempdata = "";
+        for (int i = 0; i < additionalData.Count; i++){
+            tempdata += additionalData + "$";
+        }
+        return tempdata;
     }
 }
