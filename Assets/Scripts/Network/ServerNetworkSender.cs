@@ -35,13 +35,6 @@ public class ServerNetworkSender : NetworkBehaviour {
     {
     }
 
-    private void SendCommands()
-    {
-        clientNetworkReciever.RpcRecieveCommands(data, hitData);
-        data = "";
-        hitData = "";
-    }
-
     public void RegisterWorldState(WorldState worldState){
         string s = worldState.GetWorldData();
         if (s.Length == 0)

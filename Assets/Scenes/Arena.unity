@@ -38559,8 +38559,8 @@ MonoBehaviour:
   - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
   - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
   clientSidePlayers:
-  - {fileID: 1341430771966434, guid: c3360d9ad1a264bcaa2b490da85ceba2, type: 2}
-  - {fileID: 1053505828903372, guid: a2ac7b833b38d401fa6c7fe6baa4615b, type: 2}
+  - {fileID: 1480360778776026, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+  - {fileID: 1611565634832398, guid: 9033c90f57d486f4fa102abd9e4b44ce, type: 2}
   heroSpawnPositions:
   - {fileID: 4519804688994576, guid: 05628decb61884ffcaa82d900970f572, type: 2}
   - {fileID: 4079915046112102, guid: 75f2c8b4d766d4816ab4e4ddb27eb5aa, type: 2}

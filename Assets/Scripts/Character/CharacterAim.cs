@@ -22,7 +22,7 @@ public class CharacterAim : MonoBehaviour {
         if (isServer)
             charStats = playerControl.charStats;
         else
-            charStatsClient = playerControl.charStatsClient;
+            charStatsClient = GetComponent<CharacterAttributesClient>();
         for(int i =0;i<transform.childCount;i++)
         {
             if (transform.GetChild(i).tag == "AimUI")

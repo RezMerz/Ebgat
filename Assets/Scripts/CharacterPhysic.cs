@@ -92,6 +92,7 @@ public class CharacterPhysic : Physic
             }
         }
         virtualPosition += Vector2.up * distance;
+        transform.position = virtualPosition;
         playerControl.worldState.RegisterHeroPhysics(playerControl.playerId, virtualPosition, distance);
         PhysicAction(verticalPoints, horizontalPoints, originalDistance);
         PhysicAction = null;
@@ -102,13 +103,11 @@ public class CharacterPhysic : Physic
     {
         gravityLayerMask += LayerMask.GetMask("Bridge");
         charStats.ResetCayoteTime();
-       // RemoveTaggedForces(1);
     }
     public void ExcludeBridge()
     {
         gravityLayerMask -= LayerMask.GetMask("Bridge");
         charStats.CayoteTime = 0;
-        //AddPersistentForce(Vector2.down * 20, 1000, 1);
     }
 
     public void DashLayerSet()

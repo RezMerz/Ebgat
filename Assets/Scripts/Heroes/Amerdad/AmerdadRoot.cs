@@ -28,7 +28,7 @@ public class AmerdadRoot : Ability {
 
     public override void AbilityKeyPrssed()
     {
-        GameObject[] playerobj = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] playerobj = GameObject.FindGameObjectsWithTag("VirtualPlayer");
         for (int i = 0; i < playerobj.Length; i++){
             PlayerControl playerControl = playerobj[i].GetComponent<PlayerControl>();
             if(!playerControl.charStats.teamName.Equals(charStats.teamName)){
