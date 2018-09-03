@@ -103,9 +103,9 @@ public class PlayerConnection : NetworkBehaviour {
 
     private IEnumerator SetReadyWait(int time){
         yield return new WaitForSeconds(time);
-        playerControl.SetReady();
-        if(isServer)
+        if (isServer)
             virtualPlayerControl.SetReady();
+        playerControl.SetReady();
     }
 
     [ClientRpc]
