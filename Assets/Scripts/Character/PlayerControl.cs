@@ -76,8 +76,6 @@ public class PlayerControl : MonoBehaviour
 
         charStats.teamName = teamName;
         charStats.enemyTeamName = enemyTeamName;
-        Debug.Log(teamName);
-        Debug.Log(LayerMask.NameToLayer(teamName));
         gameObject.layer = LayerMask.NameToLayer(teamName);
     }
 
