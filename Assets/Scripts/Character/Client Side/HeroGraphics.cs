@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class HeroGraphics : MonoBehaviour {
+public class HeroGraphics : MonoBehaviour
+{
     public GameObject landInstance;
     private SpriteRenderer sprite;
     protected Animator animator;
-    private PlayerControl playerControl;
+    private PlayerControlClientside playerControlClientside;
     protected AudioSource audioSource;
     private Slider hpSlider;
     private Slider energySlider;
@@ -16,7 +17,7 @@ public class HeroGraphics : MonoBehaviour {
     private float maxHp;
     protected CharacterAim aim;
     protected CharacterAttributesClient charStats;
-    
+
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -31,25 +32,25 @@ public class HeroGraphics : MonoBehaviour {
 
     void Start()
     {
-        
+
         charStats = GetComponent<CharacterAttributesClient>();
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).tag == "AbilityEffect")
+            if (transform.GetChild(i).tag == "AbilityEffect")
                 abilityEffect = transform.GetChild(i).GetComponent<Animator>();
         }
-            audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        playerControl = GetComponent<PlayerControl>();
+        playerControlClientside = GetComponent<PlayerControlClientside>();
         GameObject canvas = GameObject.Find("Canvas");
-        foreach(Slider slider in canvas.GetComponentsInChildren<Slider>())
+        foreach (Slider slider in canvas.GetComponentsInChildren<Slider>())
         {
             if (slider.name == "Energy Slider")
                 energySlider = slider;
         }
 
-       
+
         aim = GetComponent<CharacterAim>();
     }
 
@@ -81,11 +82,11 @@ public class HeroGraphics : MonoBehaviour {
 
     }
 
-    
+
     public void HpChange(string value)
     {
         float hp = float.Parse(value);
-        if(charStats.hp > hp)
+        if (charStats.hp > hp)
             TakeDamage();
         charStats.hp = hp;
         hpSlider.value = hp;
@@ -113,29 +114,16 @@ public class HeroGraphics : MonoBehaviour {
         hpSlider = hpSliderParent.transform.GetChild(0).GetComponent<Slider>();
         hpSlider.value = 1;
         // Change the Color
-        if (playerControl.IsServer())
+
+
+
+        if (playerControlClientside.charStatsClient.teamName == PlayerControl.teamName)
         {
-            if (playerControl.charStats.teamName == PlayerControl.teamName)
-            {
-                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
-            }
-            else
-            {
-                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
-            }
+            hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
         }
         else
         {
-
-
-            if (playerControl.charStatsClient.teamName == PlayerControl.teamName)
-            {
-                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
-            }
-            else
-            {
-                hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
-            }
+            hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.red;
         }
 
         maxHp = charStats.hpBase;
@@ -163,7 +151,7 @@ public class HeroGraphics : MonoBehaviour {
 
     public void SetSide(string value)
     {
-        Vector2 side =Toolkit.DeserializeVector(value);
+        Vector2 side = Toolkit.DeserializeVector(value);
         if (side.x == 1)
             transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (side.x == -1)

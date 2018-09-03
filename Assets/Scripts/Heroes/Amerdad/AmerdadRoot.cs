@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AmerdadRoot : Ability {
 
+    RootBuff rootBuff;
+
     // Use this for initialization
     void Start () {
 		
@@ -21,16 +23,22 @@ public class AmerdadRoot : Ability {
 
     public override void AbilityKeyHold()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void AbilityKeyPrssed()
     {
-        throw new System.NotImplementedException();
+        GameObject[] playerobj = GameObject.FindGameObjectsWithTag("VirtualPlayer");
+        for (int i = 0; i < playerobj.Length; i++){
+            PlayerControl playerControl = playerobj[i].GetComponent<PlayerControl>();
+            if(!playerControl.charStats.teamName.Equals(charStats.teamName)){
+                playerControl.TakeAttack(0, rootBuff.name);
+            }
+        }
     }
 
     public override void AbilityKeyReleased()
     {
-        throw new System.NotImplementedException();
+        
     }
 }
