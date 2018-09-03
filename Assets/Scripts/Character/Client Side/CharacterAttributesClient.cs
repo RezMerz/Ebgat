@@ -5,7 +5,7 @@ using System.Globalization;
 
 public class CharacterAttributesClient : MonoBehaviour {
     
-    private PlayerControl playerControl;
+    private PlayerControlClientside playerControl;
     public string teamName{get;set;}
     public string enemyTeamName { get;set;}
     public Vector2 side { get; set; }
@@ -25,10 +25,10 @@ public class CharacterAttributesClient : MonoBehaviour {
     public int energyBase { get; set; }
     void Start()
     {
-        playerControl = GetComponent<PlayerControl>();
+        playerControl = GetComponent<PlayerControlClientside>();
         playerControl.ReadyAction += SetReady;
-        hpBase = playerControl.charStats.hpBase;
-        energyBase = playerControl.charStats.EnergyBase;
+        hpBase = playerControl.charStatsClient.hpBase;
+        energyBase = playerControl.charStatsClient.energyBase;
     }
 
     public void SetReady(){
@@ -42,8 +42,8 @@ public class CharacterAttributesClient : MonoBehaviour {
         bodyState = EBodyState.Standing;
         handState = EHandState.Idle;
 
-        hpBase = playerControl.charStats.hpBase;
-        energyBase = playerControl.charStats.EnergyBase;
+        hpBase = playerControl.charStatsClient.hpBase;
+        energyBase = playerControl.charStatsClient.energyBase;
         //Hp
         hp = hpBase;
         energy = energyBase;

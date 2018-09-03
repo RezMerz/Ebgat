@@ -12,7 +12,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
 
-    private PlayerControl playerControl;
+    private PlayerControlClientside playerControl;
     PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }
@@ -53,7 +53,7 @@ public class PlayerConnection : NetworkBehaviour {
         }
         else
             player = Instantiate(networkManager.clientSidePlayers[heroId]);
-        playerControl = player.GetComponent<PlayerControl>();
+        playerControl = player.GetComponent<PlayerControlClientside>();
         serverNetworkReciever.SetPlayerControl(virtualPlayerControl);
         playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
         SetTeam(teamId);

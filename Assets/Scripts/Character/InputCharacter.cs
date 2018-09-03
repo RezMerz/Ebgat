@@ -5,12 +5,7 @@ using UnityEngine;
 public class InputCharacter : MonoBehaviour
 {
     public float speed;
-    private PlayerControl playerControl;
-
-    private CharacterAttributes charStats;
-    private Attack attack;
-    private CharacterMove characterMove;
-    private PlayerJump jump;
+    private PlayerControlClientside playerControl;
     private ClientNetworkSender clientNetworkSender;
     private AbilityManager abilityManager;
     private bool axisXChanged;
@@ -26,7 +21,7 @@ public class InputCharacter : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        playerControl = GetComponent<PlayerControl>();
+        playerControl = GetComponent<PlayerControlClientside>();
         playerControl.ReadyAction += Initialize;
         if (Input.GetJoystickNames().Length > 0)
         {
@@ -179,12 +174,8 @@ public class InputCharacter : MonoBehaviour
 
     private void Initialize()
     {
-        charStats = playerControl.charStats;
         clientNetworkSender = playerControl.clientNetworkSender;
-        attack = playerControl.attack;
-        characterMove = playerControl.characterMove;
         abilityManager = GetComponent<AbilityManager>();
-        jump = playerControl.jump;
 
         start = true;
     }
