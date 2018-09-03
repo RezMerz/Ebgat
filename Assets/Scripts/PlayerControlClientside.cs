@@ -298,4 +298,12 @@ public class PlayerControlClientside : MonoBehaviour
             bulletmanager.DestroyBullet(id);
         }
     }
+
+    public void GetAdditionalData(string data){
+        
+    }
+
+    public void GetAdditionalWorldData(string data){
+        
+    }
 }
