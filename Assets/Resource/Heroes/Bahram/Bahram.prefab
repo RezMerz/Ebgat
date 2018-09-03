@@ -491,7 +491,7 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   abilityNumber: 1
-  damage: 40
+  damage: 0
   stunDuration: 2
   Speed: 50
   landingWidth: 15
@@ -553,9 +553,9 @@ MonoBehaviour:
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.2
-  moveSpeedBase: 10
+  moveSpeedBase: 20
   moveAccelerationBase: 0.1
-  moveSpeedMaxBase: 15
+  moveSpeedMaxBase: 25
   jumpSpeedBase: 15
   jumpAccelerationBase: 50
   jumpSpeedMaxBase: 27

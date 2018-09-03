@@ -31,7 +31,7 @@ public class CrushOfConqueror : Ability
         physic = GetComponent<CharacterPhysic>();
         characterSize = transform.localScale * GetComponent<BoxCollider2D>().size;
         pushDownSize = new Vector2(pushDownWidth, characterSize.y / 2);
-        landingSize = new Vector2(landingWidth,0.1f);
+        landingSize = new Vector2(landingWidth, 0.1f);
     }
 
     public override void AbilityKeyPrssed()
@@ -71,7 +71,7 @@ public class CrushOfConqueror : Ability
     {
         active = true;
         physic.DashLayerSet();
-       // physic.ExcludeBridge();
+        // physic.ExcludeBridge();
 
     }
 
@@ -109,23 +109,23 @@ public class CrushOfConqueror : Ability
     {
 
         Debug.Log(landingSize);
-        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.down * characterSize.y / 2),landingSize, 0, Vector2.up, characterSize.y, layerMask, 0, 0);
+        RaycastHit2D[] enemies = Physics2D.BoxCastAll(transform.position + (Vector3.up * characterSize.y * 3 / 2), landingSize, 0, Vector2.down, characterSize.y * 2, layerMask, 0, 0);
+        Debug.Log(enemies.Length);
         foreach (RaycastHit2D hit in enemies)
         {
             if (hit.collider.tag.Equals("Player"))
             {
                 GameObject enemy = hit.collider.gameObject;
+                if (enemy.transform.position.x > transform.position.x && hit.distance <= 2) 
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,pushForce,0.2f,0);
+                }
+                else if(enemy.transform.position.x < transform.position.x && hit.distance <= 2)
+                {
+                    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
+
+                }
                 enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
-                //if (enemy.transform.position.x > transform.position.x)
-                //{
-                //    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.right * pushForce);
-                //    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.right * pushForce * 30, 5, 10);
-                //}
-                //else
-                //{
-                //    enemy.GetComponent<CharacterPhysic>().AddForce(Vector2.left * pushForce);
-                //    enemy.GetComponent<CharacterPhysic>().AddPersistentForce(Vector2.left * pushForce * 30, 5, 10);
-                //}
             }
         }
         StartCoroutine(CoolDownTimer(coolDownTime));
