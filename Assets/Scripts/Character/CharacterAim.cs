@@ -18,7 +18,8 @@ public class CharacterAim : MonoBehaviour {
     {
 
         playerControl = GetComponent<PlayerControl>();
-        isServer = playerControl.IsServer();
+        isServer = (playerControl != null);
+
         if (isServer)
             charStats = playerControl.charStats;
         else
