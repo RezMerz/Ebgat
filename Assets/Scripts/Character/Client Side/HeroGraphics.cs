@@ -31,7 +31,7 @@ public class HeroGraphics : MonoBehaviour
         float speedRate = float.Parse(value);
         if (speedRate < 1)
         {
-
+            print("Get Slow Here");
         }
     }
     IEnumerator DamageColorTimer(float time)
