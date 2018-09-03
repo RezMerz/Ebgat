@@ -11,12 +11,15 @@ public class PlayerConnection : NetworkBehaviour {
     private ServerManager serverManager;
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
+
     private PlayerControl playerControl;
+    PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }
 
     [SerializeField]
     private GameObject player;
+    private GameObject virtualPlayer;
 
 	// Use this for initialization
 	void Start () {
@@ -40,12 +43,18 @@ public class PlayerConnection : NetworkBehaviour {
     [ClientRpc]
     public void RpcInstansiateHero(int heroId, int teamId, string spawnPoint){
         this.spawnPoint = Toolkit.DeserializeVector(spawnPoint);
-        if(isServer)
-            player = Instantiate(networkManager.serverSidePlayers[heroId], this.spawnPoint, Quaternion.Euler(0,0,0));
+        if (isServer)
+        {
+            player = Instantiate(networkManager.clientSidePlayers[heroId], this.spawnPoint, Quaternion.Euler(0, 0, 0));
+            virtualPlayer = Instantiate(networkManager.serverSidePlayers[heroId], this.spawnPoint, Quaternion.Euler(0, 0, 0));
+            virtualPlayerControl = virtualPlayer.GetComponent<PlayerControl>();
+            virtualPlayerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
+            SetVirtualTeam(teamId);
+        }
         else
             player = Instantiate(networkManager.clientSidePlayers[heroId]);
         playerControl = player.GetComponent<PlayerControl>();
-        serverNetworkReciever.SetPlayerControl(playerControl);
+        serverNetworkReciever.SetPlayerControl(virtualPlayerControl);
         playerControl.SetNetworkComponents(this, clientNetworkSender, serverNetworkReciever, clientId);
         SetTeam(teamId);
         StartCoroutine(SetReadyWait(1));
@@ -66,6 +75,25 @@ public class PlayerConnection : NetworkBehaviour {
             Debug.Log("wrong team id");
         }
         playerControl.SetTeam(teamName, enemyTeamName);
+    }
+
+    private void SetVirtualTeam(int teamId){
+        string teamName = "", enemyTeamName = "";
+        if (teamId == 1)
+        {
+            teamName = "Virtual Team " + 1;
+            enemyTeamName = "Virtual Team " + 2;
+        }
+        else if (teamId == 2)
+        {
+            teamName = "Virtual Team " + 2;
+            enemyTeamName = "Virtual Team " + 1;
+        }
+        else
+        {
+            Debug.Log("wrong team id");
+        }
+        virtualPlayerControl.SetTeam(teamName, enemyTeamName);
     }
 
     [ClientRpc]
