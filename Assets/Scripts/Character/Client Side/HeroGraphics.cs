@@ -18,6 +18,7 @@ public class HeroGraphics : MonoBehaviour
     protected CharacterAim aim;
     protected CharacterAttributesClient charStats;
     protected GameObject HeadIcons;
+    protected Color color;
 
     public void TakeDamage()
     {
@@ -31,14 +32,19 @@ public class HeroGraphics : MonoBehaviour
         float speedRate = float.Parse(value);
         if (speedRate < 1)
         {
-            sprite.color = new Color(0.27f, 1, 0.952f);
+            sprite.color = new Color(0.27f, 1, 0.952f);\
+            color = sprite.color;
             animator.speed = speedRate;
+        }
+        else if(speedRate == 1){
+            sprite.color = Color.white;
+            color = sprite.color;
         }
     }
     IEnumerator DamageColorTimer(float time)
     {
         yield return new WaitForSeconds(time);
-        sprite.color = Color.white;
+        sprite.color = color;
     }
 
     void Start()
