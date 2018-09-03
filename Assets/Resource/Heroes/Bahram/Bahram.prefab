@@ -221,9 +221,9 @@ MonoBehaviour:
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.2
-  moveSpeedBase: 20
+  moveSpeedBase: 10
   moveAccelerationBase: 0.1
-  moveSpeedMaxBase: 25
+  moveSpeedMaxBase: 15
   jumpSpeedBase: 15
   jumpAccelerationBase: 50
   jumpSpeedMaxBase: 27
