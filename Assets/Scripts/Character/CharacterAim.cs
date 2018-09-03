@@ -18,7 +18,8 @@ public class CharacterAim : MonoBehaviour {
     {
 
         playerControl = GetComponent<PlayerControl>();
-        isServer = playerControl.IsServer();
+        isServer = (playerControl != null);
+
         if (isServer)
             charStats = playerControl.charStats;
         else
@@ -88,9 +89,9 @@ public class CharacterAim : MonoBehaviour {
     private void ChangeRotation()
     {
         angle = Vector2.SignedAngle(Vector2.right, position);
-        if (position.x < 0)
+        if (position.x < 0.3)
             charStats.Side = new Vector2(-1, 0);
-        else if (position.x > 0)
+        else if (position.x > 0.3)
             charStats.Side = new Vector2(1, 0);
         float rotation = Mathf.Ceil(angle / (360 / n)) * 360 / n;
         charStats.AimSide = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
