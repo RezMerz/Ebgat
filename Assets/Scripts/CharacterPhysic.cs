@@ -37,6 +37,8 @@ public class CharacterPhysic : Physic
         if (!start)
             return;
 
+
+        virtualPosition = transform.position;
         CheckPersitentForces();
         CheckReductiveForces();
         PhysicAction += HitFunction;
@@ -133,7 +135,7 @@ public class CharacterPhysic : Physic
             //RemoveTaggedForces(1);
             Collider2D hit = vHits[0].collider;
             JumpCheck(hit, direction);
-            if (hit.tag.Equals("Player"))
+            if (hit.tag.Equals("VirtualPlayer"))
             {
                 switch (hitType)
                 {
@@ -147,7 +149,7 @@ public class CharacterPhysic : Physic
         {
             OnWallCheck(direction);
             var hit = hHits[0].collider;
-            if (hit.tag.Equals("Player"))
+            if (hit.tag.Equals("VirtualPlayer"))
             {
                 switch (hitType)
                 {
@@ -164,7 +166,7 @@ public class CharacterPhysic : Physic
         Vector2 force;
         if (direction.y < 0)
         {
-            if (hit.tag.Equals("Player"))
+            if (hit.tag.Equals("VirtualPlayer"))
             {
                 force = Vector2.up * (charStats.JumpSpeed - direction.y * 20);
                 AddPersistentForce(force,0, 0);

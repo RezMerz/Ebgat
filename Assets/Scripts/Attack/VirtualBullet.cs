@@ -64,7 +64,7 @@ public class VirtualBullet : MonoBehaviour
 
     private void HitFunction(RaycastHit2D hitObject)
     {
-        if (hitObject.collider.tag.Equals("Player"))
+        if (hitObject.collider.tag.Equals("VirtualPlayer"))
         {
             var enemy = hitObject.collider.gameObject;
             string name = "";

@@ -561,6 +561,12 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'y' + '&' + attackNumber + '&';
         worldState.AppendCharstats(id, data);
     }
+
+    public void ResetStats()
+    {
+        HitPoints = hitPointsBase;
+        Energy = energyBase;
+    }
 }
 
 
