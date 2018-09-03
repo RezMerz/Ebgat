@@ -17,6 +17,7 @@ public class HeroGraphics : MonoBehaviour
     private float maxHp;
     protected CharacterAim aim;
     protected CharacterAttributesClient charStats;
+    protected GameObject HeadIcons;
 
     public void TakeDamage()
     {
@@ -38,6 +39,8 @@ public class HeroGraphics : MonoBehaviour
         {
             if (transform.GetChild(i).tag == "AbilityEffect")
                 abilityEffect = transform.GetChild(i).GetComponent<Animator>();
+            if (transform.GetChild(i).name == "Head Icons")
+                HeadIcons = transform.GetChild(i).gameObject;
         }
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -115,8 +118,6 @@ public class HeroGraphics : MonoBehaviour
         hpSlider.value = 1;
         // Change the Color
 
-
-
         if (playerControlClientside.charStatsClient.teamName == PlayerControl.teamName)
         {
             hpSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = Color.green;
@@ -138,10 +139,11 @@ public class HeroGraphics : MonoBehaviour
 
     public void HeadState(string value)
     {
-       /* if (value == "1")
-            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+
+        if (value == "1")
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(false);
         else if (value == "2")
-            transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;*/
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(true);
     }
     public void ChangePosition(Vector2 pos)
     {
