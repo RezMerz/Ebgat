@@ -154,7 +154,6 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void GetData(string data)
     {
-
         try
         {
             bool first = true;
@@ -181,10 +180,10 @@ public class PlayerControlClientside : MonoBehaviour
         {
             Debug.Log(data);
         }
-        catch (UnassignedReferenceException e)
+        /*catch (UnassignedReferenceException e)
         {
             Debug.Log(data);
-        }
+        }*/
     }
 
     // gets the code and value of datas
