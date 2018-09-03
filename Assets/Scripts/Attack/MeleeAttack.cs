@@ -94,7 +94,9 @@ public class MeleeAttack : Attack
                 if (targets[i].point.y - transform.position.y < 2)
                 {
                     max = i;
-                    playerControl.physic.AddReductiveForce(-charStats.Side, attackForce, 0.1f, 0);
+                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2) transform.position).x)) / 6 + attackForce ;
+
+                    playerControl.physic.AddReductiveForce(-charStats.Side, force, 0.25f, 0);
                     break;
                 }
             }
@@ -108,8 +110,10 @@ public class MeleeAttack : Attack
                 {
                     Debug.Log("parry");
                     parry = true;
-                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * attackForce, 0.2f, 0);
-                    playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * attackForce, 0.2f, 0);
+                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 6 + attackForce;
+
+                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * force, 0.4f, 0);
+                    playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * force, 0.4f, 0);
                 }
             }
         }
@@ -119,8 +123,9 @@ public class MeleeAttack : Attack
             {
                 if (targets[i].collider.tag.Equals("VirtualPlayer"))
                 {
+                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 6 + attackForce;
                     targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
-                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, attackForce, 0.1f, 0);
+                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, force, 0.25f, 0);
                 }
                 else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
