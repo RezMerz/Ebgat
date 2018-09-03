@@ -52,7 +52,6 @@ public class ClientNetworkReciever : NetworkBehaviour {
     public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
         if (localPlayerControl.playerId != RequesterID)
             return;
-        Debug.Log("Recieved absolute state");
         if (worldstate.Length == 0)
             return;
         string[] heroData = worldstate.Split('#');

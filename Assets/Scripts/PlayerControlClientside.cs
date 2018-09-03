@@ -231,7 +231,6 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void UpdateClient(int id, string state)
     {
-        Debug.Log("awnser for :" + id + "+" + Time.frameCount);
         waitingForRequest = false;
         start = false;
         if (id > currentStateNumber)
