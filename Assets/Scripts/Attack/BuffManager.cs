@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffManager : MonoBehaviour {
-    private CharacterAttributes charStats;
+public class BuffManager : MonoBehaviour
+{
     public Buff[] buffListRefrence;
-    private List<Buff>  activatedBuffList;
+
+
+    private CharacterAttributes charStats;
+    private List<Buff> activatedBuffList;
 
     void Start()
     {
@@ -14,10 +17,10 @@ public class BuffManager : MonoBehaviour {
     }
     public void ActivateBuff(string name)
     {
-        foreach(Buff buff in buffListRefrence)
-            if (buff.name == name)
+        foreach (Buff buff in buffListRefrence)
+            if (buff.name.Equals(name))
             {
-                if(buff.stackable)
+                if (buff.stackable)
                 {
                     AddBuffToList(buff);
                 }
@@ -29,7 +32,7 @@ public class BuffManager : MonoBehaviour {
                         if (thisBuff.name == buff.name)
                         {
                             // There is already a buff with this name, just extend the time
-                            thisBuff.timer = buff.time;
+                            thisBuff.DurationReset();
                             found = true;
                         }
                     }
@@ -41,14 +44,14 @@ public class BuffManager : MonoBehaviour {
                 }
 
             }
-     }
+    }
     // Instantiate and add Buff to list of activaded buffs
     private void AddBuffToList(Buff buff)
     {
         Buff thisBuff = Instantiate(buff);
         thisBuff.buffManager = this;
         thisBuff.charStats = charStats;
-        thisBuff.BuffCharacter();
+        thisBuff.StartBuff();
         activatedBuffList.Add(thisBuff);
     }
 

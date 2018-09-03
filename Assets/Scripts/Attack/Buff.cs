@@ -5,46 +5,43 @@ using UnityEngine;
 public abstract class Buff : MonoBehaviour {
     //Buff attributes
     public CharacterAttributes charStats{get;set;}
-    public float time;
-    public float timer { get; set; }
-    public bool stackable;
     public BuffManager buffManager { get; set; }
 
+    protected Coroutine durationCoroutine;
 
-    public bool finish { get; set; }
+
+    public float duration;
+    public bool stackable;
+
 
     public void FinishBuff()
     {
-        finish = true;
         DebuffCharacter();
         buffManager.RemoveBuffFromList(this);
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
 
-    void Start()
+    public void StartBuff()
     {
-        finish = false;
-        timer = time;
+        BuffCharacter();
+        durationCoroutine = StartCoroutine(Duration());
     }
+
+    public void DurationReset()
+    {
+        StopCoroutine(durationCoroutine);
+        durationCoroutine = StartCoroutine(Duration());
+    }
+
 
     public abstract void BuffCharacter();
 
     public abstract void DebuffCharacter();
 
-	// Use this for initialization
-    void Update()
+
+    protected IEnumerator Duration()
     {
-        if (!finish)
-        {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                print("FinishBuff");
-                FinishBuff();
-            }
-        }
+        yield return new WaitForSeconds(duration);
+        FinishBuff();
     }
 }

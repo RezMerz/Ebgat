@@ -194,7 +194,6 @@ public class PlayerControl : MonoBehaviour
             buffManager.ActivateBuff(buffName);
         }
         TakeDamage(damage);
-
     }
 
 
