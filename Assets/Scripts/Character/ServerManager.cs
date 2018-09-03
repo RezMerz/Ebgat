@@ -64,7 +64,7 @@ public class ServerManager : NetworkBehaviour {
     public void UpdatePlayers()
     {
         playerControls.Clear();
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("VirtualPlayer");
         for (int i = 0; i < objs.Length; i++)
             playerControls.Add(objs[i].GetComponent<PlayerControl>());
         SetWorldStateOnPlayers();

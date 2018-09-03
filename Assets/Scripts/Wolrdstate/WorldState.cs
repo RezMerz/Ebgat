@@ -11,7 +11,7 @@ public class WorldState
    
     public WorldState(){
         heroesData = new List<HeroData>();
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("VirtualPlayer");
         foreach (GameObject obj in objs)
         {
             heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
