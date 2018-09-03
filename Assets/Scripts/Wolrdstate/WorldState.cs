@@ -20,8 +20,21 @@ public class WorldState
         }
     }
 
+    private void Refresh(){
+        if(heroesData.Count == 0)
+        {
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("VirtualPlayer");
+            Debug.Log(objs.Length);
+            foreach (GameObject obj in objs)
+            {
+                heroesData.Add(new HeroData(obj.GetComponent<PlayerControl>().playerId));
+            }
+        }
+    }
+
     public void RegisterHeroPhysics(int ID,Vector2 destination, Vector2 force)
     {
+        Refresh();
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (ID == heroesData[i].playerID)
@@ -34,6 +47,7 @@ public class WorldState
 
     public void RegisterCharStat(int ID, char keycode, string value)
     {
+        Refresh();
         for (int i = 0; i<heroesData.Count; i++){
             if(ID == heroesData[i].playerID){
                 heroesData[i].RegisterCharstat(keycode, value);
@@ -44,6 +58,7 @@ public class WorldState
     }
 
     public void AppendCharstats(int Id, string stats){
+        Refresh();
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (Id == heroesData[i].playerID)
@@ -64,6 +79,7 @@ public class WorldState
 
     public void BulletRegister(int playerID, int bulletID,Vector2 attackSide,float gravityAcc,float range,int attackNumber,Vector2 startPos)
     {
+        Refresh();
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (playerID == heroesData[i].playerID)
@@ -75,6 +91,7 @@ public class WorldState
     }
 
     public void BulletHit(int playerID, int bulletID){
+        Refresh();
         for (int i = 0; i < heroesData.Count; i++)
         {
             if (playerID == heroesData[i].playerID)
@@ -86,6 +103,7 @@ public class WorldState
     }
 
     public void AdditionalPlayerData(int playerId, string data){
+        Refresh();
         for (int i = 0; i < heroesData.Count; i++){
             if(playerId == heroesData[i].playerID){
                 heroesData[i].AdditionalData(data);
