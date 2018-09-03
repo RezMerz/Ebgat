@@ -203,6 +203,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'x': if (playerConnection.isLocalPlayer) heroGraphics.EnergyChange(value); break;
             case 'y': heroGraphics.AttackNumber(value); break;
             case 'C': aim.AimClinet(); break;
+            case 'z': heroGraphics.SpeedRateChange(value); break;
         }
     }
 
