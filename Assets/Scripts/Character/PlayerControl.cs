@@ -160,6 +160,7 @@ public class PlayerControl : MonoBehaviour
             if (playerConnection.isServer)
             {
                 ServerManager.instance.KillHero(playerConnection.clientId);
+                Die();
             }
         }
     }
