@@ -20,10 +20,12 @@ public class AuraArmor : Ability
 
     public override void AbilityKeyPrssed()
     {
+        Debug.Log(coolDownLock);
         if (!coolDownLock)
         {
             if (energyUsage <= charStats.Energy)
             {
+
                 if (layerMask == 0)
                 {
                     layerMask = LayerMask.GetMask(charStats.enemyTeamName, charStats.teamName);
@@ -41,8 +43,9 @@ public class AuraArmor : Ability
     protected override void AbilityCast()
     {
         charStats.HandState = EHandState.Idle;
+        currentRadius = 0;
         abilityUse = true;
-        StartCoroutine(CoolDownTimer(coolDownTime));
+        //StartCoroutine(CoolDownTimer(coolDownTime));
     }
 
     private void FixedUpdate()
