@@ -34,27 +34,29 @@ public class CharacterDash : MonoBehaviour
 
     public virtual void DashPressed()
     {
-
-        if (!coolDownLock)
+        if (charStats.HeadState == EHeadState.Conscious)
         {
-            if (charStats.Energy >= charStats.dashEnergyConsume && charStats.FeetState != EFeetState.OnWall)
+            if (!coolDownLock)
             {
-
-                
-                if(charStats.HandState == EHandState.Attacking)
+                if (charStats.Energy >= charStats.dashEnergyConsume && charStats.FeetState != EFeetState.OnWall)
                 {
-                   attack.IntruptAttack();
+
+
+                    if (charStats.HandState == EHandState.Attacking)
+                    {
+                        attack.IntruptAttack();
+                    }
+                    //StartFunction();
+                    coolDownLock = true;
+                    StartCoroutine(CoolDownReset());
+                    charStats.BodyState = EBodyState.Dashing;
+                    physic.DashLayerSet();
+                    gameObject.layer = LayerMask.NameToLayer("Dashing");
                 }
-                //StartFunction();
-                coolDownLock = true;
-                StartCoroutine(CoolDownReset());
-                charStats.BodyState = EBodyState.Dashing;
-                physic.DashLayerSet();
-                gameObject.layer = LayerMask.NameToLayer("Dashing");
-            }
-            else
-            {
-                print("Low Energy");
+                else
+                {
+                    print("Low Energy");
+                }
             }
         }
     }

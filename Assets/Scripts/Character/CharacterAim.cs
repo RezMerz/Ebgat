@@ -11,7 +11,7 @@ public class CharacterAim : MonoBehaviour {
     private float angle;
     private float radius = 3;
     private Vector2 position;
-    private int n = 8;
+    private int n = 90;
     private bool isServer;
 	// Use this for initialization
     void Start()

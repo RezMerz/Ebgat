@@ -13,6 +13,8 @@ abstract public class Physic : MonoBehaviour
     protected List<PersitentForce> persitentForces = new List<PersitentForce>();
     protected List<ReductiveForce> reductiveForces = new List<ReductiveForce>();
 
+    protected bool moveLock;
+
     public Vector2 virtualPosition { get; set; }
 
     public void AddForce(Vector2 force)
@@ -25,6 +27,7 @@ abstract public class Physic : MonoBehaviour
     }
     public void AddReductiveForce(Vector2 direction, float force, float reductionForce, int removeTag)
     {
+        if(!moveLock)
         reductiveForces.Add(new ReductiveForce(direction,force,reductionForce,removeTag));
     }
 
@@ -72,6 +75,16 @@ abstract public class Physic : MonoBehaviour
             }
         }
 
+    }
+
+    public void Lock()
+    {
+        moveLock = true;
+    }
+
+    public void Unlock()
+    {
+        moveLock = false;
     }
     protected abstract void Calculate();
 }
