@@ -21,6 +21,7 @@ public class MalkousGraphics : HeroGraphics {
             GameObject obj = Instantiate(boomEffect, transform.position, Quaternion.Euler(0, 0, 0));
             obj.transform.parent = transform;
             DestoryObjectAfterTime(3,obj);
+            hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
         }
         else if (value == "2")
         {
@@ -38,6 +39,7 @@ public class MalkousGraphics : HeroGraphics {
     }
     public override void BodyState(string value)
     {
+        gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         aim.AimReleasedGraphic();
         animator.SetBool("Walking", false);
         if (value == "1")
@@ -51,7 +53,9 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
+            hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
             animator.SetBool("Dash", true);
+            gameObject.layer = LayerMask.NameToLayer("Dashing");
         }
         else if (value == "4")
             aim.AimPressedGraphics();

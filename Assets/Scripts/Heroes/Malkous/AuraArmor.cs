@@ -51,7 +51,7 @@ public class AuraArmor : Ability
     }
 
     private void FixedUpdate()
-    {
+    { 
         if (abilityUse)
         {
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, currentRadius + speed, layerMask, 0, 0);

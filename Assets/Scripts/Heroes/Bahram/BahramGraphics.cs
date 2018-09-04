@@ -36,6 +36,7 @@ public class BahramGraphics : HeroGraphics{
         if (value == "1")
         {
             animator.SetBool("Ability1", true);
+            hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
         }
         else if (value == "2")
         {
@@ -54,6 +55,7 @@ public class BahramGraphics : HeroGraphics{
     }
     public override void BodyState(string value)
     {
+        gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         if (value == "1")
         {
               animator.SetBool("Walking", false);
@@ -65,6 +67,8 @@ public class BahramGraphics : HeroGraphics{
         }
         else if(value == "3")
         {
+            gameObject.layer = LayerMask.NameToLayer("Dashing");
+            hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
             animator.SetTrigger("Roll");
         }
         else
