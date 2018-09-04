@@ -73,7 +73,7 @@ public class HUD : MonoBehaviour {
         else if (timer1 > coolDown1)
         {
             timer1 = coolDown1;
-            Icon1Black.fillAmount = 1;
+            Icon1Black.fillAmount = 0;
         }
         if (timer2 < coolDown2)
         {
@@ -83,7 +83,7 @@ public class HUD : MonoBehaviour {
         else if (timer2 > coolDown2)
         {
             timer2 = coolDown2;
-            Icon2Black.fillAmount = 1;
+            Icon2Black.fillAmount = 0;
         }
         if(timer3 < coolDown3)
         {
@@ -92,7 +92,7 @@ public class HUD : MonoBehaviour {
         }
         else if (timer3 > coolDown3)
         {
-            Icon3Black.fillAmount = 1;
+            Icon3Black.fillAmount = 0;
             timer3 = coolDown3;
         }
     }
