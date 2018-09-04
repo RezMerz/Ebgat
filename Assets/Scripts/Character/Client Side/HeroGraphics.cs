@@ -20,7 +20,8 @@ public class HeroGraphics : MonoBehaviour
     protected CharacterAttributesClient charStats;
     protected GameObject HeadIcons;
     protected Color color = Color.white;
-    private HUD hud;
+    protected HUD hud;
+    protected AbilityHudProperty[] abilitiesInfo;
 
     public void TakeDamage()
     {
@@ -74,6 +75,7 @@ public class HeroGraphics : MonoBehaviour
 
         hud = GameObject.FindObjectOfType<HUD>();
         aim = GetComponent<CharacterAim>();
+        abilitiesInfo = GetComponent<CharacterHudProperty>().abilities;
     }
 
     public virtual void AttackNumber(string value)

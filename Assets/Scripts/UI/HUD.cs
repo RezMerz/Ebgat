@@ -57,9 +57,9 @@ public class HUD : MonoBehaviour {
     {
         switch (n)
         {
-            case 1: Icon1Black.fillAmount = 1; coolDown1 = time; timer1 = time; break;
-            case 2: Icon2Black.fillAmount = 2; coolDown2 = time; timer2 = time; break;
-            case 3: Icon3Black.fillAmount = 3; coolDown3 = time;timer3 = time; break;
+            case 1: Icon1Black.fillAmount = 1; coolDown1 = time; timer1 = 0; break;
+            case 2: Icon2Black.fillAmount = 2; coolDown2 = time; timer2 = 0; break;
+            case 3: Icon3Black.fillAmount = 3; coolDown3 = time;timer3 = 0; break;
         }
     }
 
