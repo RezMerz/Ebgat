@@ -143,7 +143,7 @@ MonoBehaviour:
   virtualBullets:
   - VirtualBullet: {fileID: 1691014189850432, guid: 5644204ab404d3e4882e04645e872fed,
       type: 2}
-    range: 20
+    range: 15
     attackAnimationTime: 0.1
     damage: 25
     startingPos: {x: 2.25, y: 0.5}
@@ -151,7 +151,7 @@ MonoBehaviour:
       type: 2}
     range: 10
     attackAnimationTime: 0.2
-    damage: 40
+    damage: 30
     startingPos: {x: 2.25, y: 0.5}
 --- !u!114 &114108135820462582
 MonoBehaviour:
@@ -293,7 +293,7 @@ MonoBehaviour:
   enemyTeamName: 
   canDoubleJump: 0
   wallside: 0
-  hitPointsBase: 60
+  hitPointsBase: 80
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   range: 8
-  coolDownTime: 2
+  coolDownTime: 1
 --- !u!212 &212959272303692872
 SpriteRenderer:
   m_ObjectHideFlags: 1
