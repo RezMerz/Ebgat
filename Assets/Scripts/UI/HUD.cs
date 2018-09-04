@@ -67,7 +67,7 @@ public class HUD : MonoBehaviour {
     {
         if (timer1 < coolDown1)
         {
-            Icon1Black.fillAmount = (coolDown1 - timer1 / coolDown1);
+            Icon1Black.fillAmount = (coolDown1 - timer1) / coolDown1;
             timer1 += Time.deltaTime;
         }
         else if (timer1 > coolDown1)
@@ -77,7 +77,7 @@ public class HUD : MonoBehaviour {
         }
         if (timer2 < coolDown2)
         {
-            Icon2Black.fillAmount = (coolDown2 - timer2 / coolDown2);
+            Icon2Black.fillAmount = (coolDown2 - timer2) / coolDown2;
             timer2 += Time.deltaTime;
         }
         else if (timer2 > coolDown2)
@@ -87,7 +87,7 @@ public class HUD : MonoBehaviour {
         }
         if(timer3 < coolDown3)
         {
-            Icon3Black.fillAmount = (coolDown3 - timer3 / coolDown3);
+            Icon3Black.fillAmount = (coolDown3 - timer3) / coolDown3;
             timer3 += Time.deltaTime;
         }
         else if (timer3 > coolDown3)
