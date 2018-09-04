@@ -54,6 +54,7 @@ public class BahramGraphics : HeroGraphics{
     }
     public override void BodyState(string value)
     {
+        gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         if (value == "1")
         {
               animator.SetBool("Walking", false);
@@ -65,6 +66,7 @@ public class BahramGraphics : HeroGraphics{
         }
         else if(value == "3")
         {
+            gameObject.layer = LayerMask.NameToLayer("Dashing");
             animator.SetTrigger("Roll");
         }
         else

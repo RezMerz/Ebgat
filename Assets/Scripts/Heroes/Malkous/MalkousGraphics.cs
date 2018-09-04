@@ -39,6 +39,7 @@ public class MalkousGraphics : HeroGraphics {
     }
     public override void BodyState(string value)
     {
+        gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         aim.AimReleasedGraphic();
         animator.SetBool("Walking", false);
         if (value == "1")
@@ -53,6 +54,7 @@ public class MalkousGraphics : HeroGraphics {
         else if (value == "3")
         {
             animator.SetBool("Dash", true);
+            gameObject.layer = LayerMask.NameToLayer("Dashing");
         }
         else if (value == "4")
             aim.AimPressedGraphics();
