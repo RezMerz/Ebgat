@@ -44,4 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final/LobbyScene.unity
     guid: 8e847814f8f1e46aa8e11763e57c33a9
+  - enabled: 1
+    path: Assets/Scenes/Final/Team1 Win.unity
+    guid: fbe5d3cf8d5814c24ac7cdc6c123bc5d
+  - enabled: 1
+    path: Assets/Scenes/Final/Team2 Win.unity
+    guid: ca822405614594b9fb47fdefe33344ac
   m_configObjects: {}
