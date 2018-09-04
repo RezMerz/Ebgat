@@ -8,6 +8,12 @@ public class HUD : MonoBehaviour {
     private Image Icon1Black;
     private Image Icon2Black;
     private Image Icon3Black;
+    private float timer1;
+    private float timer2;
+    private float timer3;
+    private float coolDown1;
+    private float coolDown2;
+    private float coolDown3;
 	// Use this for initialization
 	void Start () {
         for (int i = 0; i < transform.childCount; i++)
@@ -47,9 +53,48 @@ public class HUD : MonoBehaviour {
         }
     }
 
-    public void AbilityStarted()
+    public void AbilityStarted(int n, float time)
     {
+        switch (n)
+        {
+            case 1: Icon1Black.fillAmount = 1; coolDown1 = time; timer1 = time; break;
+            case 2: Icon2Black.fillAmount = 2; coolDown2 = time; timer2 = time; break;
+            case 3: Icon3Black.fillAmount = 3; coolDown3 = time;timer3 = time; break;
+        }
+    }
 
+    void Update()
+    {
+        if (timer1 < coolDown1)
+        {
+            Icon1Black.fillAmount = (coolDown1 - timer1 / coolDown1);
+            timer1 += Time.deltaTime;
+        }
+        else if (timer1 > coolDown1)
+        {
+            timer1 = coolDown1;
+            Icon1Black.fillAmount = 1;
+        }
+        if (timer2 < coolDown2)
+        {
+            Icon2Black.fillAmount = (coolDown2 - timer2 / coolDown2);
+            timer2 += Time.deltaTime;
+        }
+        else if (timer2 > coolDown2)
+        {
+            timer2 = coolDown2;
+            Icon2Black.fillAmount = 1;
+        }
+        if(timer3 < coolDown3)
+        {
+            Icon3Black.fillAmount = (coolDown3 - timer3 / coolDown3);
+            timer3 += Time.deltaTime;
+        }
+        else if (timer3 > coolDown3)
+        {
+            Icon3Black.fillAmount = 1;
+            timer3 = coolDown3;
+        }
     }
 
 

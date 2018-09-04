@@ -9,12 +9,16 @@ public class CharacterHudProperty : MonoBehaviour {
     private HUD hud;
     void Start()
     {
-        hud = GameObject.FindObjectOfType<HUD>();
-        for (int i = 0; i < abilities.Length; i++)
+        if (GetComponent<PlayerControlClientside>().IsLocalPlayer())
         {
-            print(abilities[i].icon);
-            hud.SetImage(abilities[i].icon, i+1);
+            hud = GameObject.FindObjectOfType<HUD>();
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                print(abilities[i].icon);
+                hud.SetImage(abilities[i].icon, i + 1);
+            }
         }
+        
     }
 }
 

@@ -135,7 +135,6 @@ public class HeroGraphics : MonoBehaviour
     {
         float energy = float.Parse(value);
         charStats.energy = (int)energy;
-        energySlider.value = energy;
         hud.EnergyCHange(energy / maxEnergy);
     }
 
@@ -168,8 +167,6 @@ public class HeroGraphics : MonoBehaviour
         hpSlider.maxValue = maxHp;
         hpSlider.value = maxHp;
         maxEnergy = charStats.energyBase;
-        energySlider.maxValue = maxEnergy;
-        energySlider.value = maxEnergy;
 
     }
 
