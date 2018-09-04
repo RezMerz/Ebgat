@@ -109,7 +109,7 @@ public class InputCharacter : MonoBehaviour
         }
         if (Input.GetButtonDown("Ability2"))
         {
-            clientNetworkSender.Ability2Pressed();
+            //clientNetworkSender.Ability2Pressed();
         }
         //Drop Down
         if (!newAxisChanged&& axisY < -0.1f && !aiming)
