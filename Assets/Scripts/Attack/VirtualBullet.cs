@@ -7,6 +7,7 @@ public class VirtualBullet : MonoBehaviour
 
     public Buff buff;
     public float speed;
+    public float force;
 
     private float range;
     private int ID;
@@ -20,6 +21,7 @@ public class VirtualBullet : MonoBehaviour
     private Vector2 direction;
     private bool shot;
 
+    private Vector2 lastForce;
 
     private void Awake()
     {
@@ -58,6 +60,8 @@ public class VirtualBullet : MonoBehaviour
             gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
             gravitySpeedBase += gravityAcceleration * Time.deltaTime;
         }
+
+        lastForce = force + gravityForce;
         physic.AddForce(force + gravityForce);
         physic.BulletAction += HitFunction;
     }
@@ -72,6 +76,8 @@ public class VirtualBullet : MonoBehaviour
             {
                 name = buff.name;
             }
+
+            enemy.GetComponent<CharacterPhysic>().AddReductiveForce(lastForce.normalized, force, 0.1f, 0);
             enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
             Destroy();
         }
