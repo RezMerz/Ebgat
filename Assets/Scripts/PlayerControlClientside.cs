@@ -109,7 +109,6 @@ public class PlayerControlClientside : MonoBehaviour
 
             if (IsLocalPlayer())
             {
-                 Debug.Log(Time.deltaTime);
                 // Debug.Log(currentStateNumber + "+" + biggestIdNumber + "+" + lastStateChecked + " + " + Time.frameCount);
             }
             if (playerStatesHash.Contains(currentStateNumber))
