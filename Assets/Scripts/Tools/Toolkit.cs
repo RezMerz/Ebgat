@@ -137,13 +137,13 @@ public class Toolkit : MonoBehaviour
         return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
     }
 
-    public static bool IsVisible(Vector2 origin,Vector2 destenition,int layerMask)
+    public static bool IsVisible(Vector2 origin,Vector2 destenition,int layerMask,string tag)
     {
         Vector2 directiohn = destenition - origin;
         RaycastHit2D hit = Physics2D.Raycast(origin, directiohn.normalized, directiohn.magnitude, layerMask, 0, 0);
         Debug.DrawLine(origin,hit.point,Color.red,5);
         Debug.Log(hit.collider);
-        if (hit.collider.tag.Equals("VirtualPlayer"))
+        if (hit.collider.tag.Equals(tag))
         {
             return true;
         }

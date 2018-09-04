@@ -152,7 +152,7 @@ public class PlayerControl : MonoBehaviour
     private void TakeDamage(float damage)
     {
         //heroGraphics.TakeDamage();
-        charStats.HitPoints -= damage;
+        charStats.HitPoints -= (damage * (1 - charStats.Armor));
         if (charStats.HitPoints <= 0)
         {
             if (playerConnection.isServer)

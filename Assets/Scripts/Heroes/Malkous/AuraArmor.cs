@@ -8,6 +8,7 @@ public class AuraArmor : Ability
     [SerializeField]
     private float radius;
 
+
     private int layerMask;
     private float currentRadius;
     private bool abilityUse;
@@ -43,6 +44,10 @@ public class AuraArmor : Ability
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, radius, LayerMask.GetMask(charStats.teamName));
             foreach (Collider2D obj in hitObjects)
             {
+                if((obj.gameObject.transform.position - transform.position).magnitude > currentRadius)
+                {
+
+                }
                 //obj.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
             }
         }

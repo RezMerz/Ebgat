@@ -85,7 +85,7 @@ public class PlayerControlClientside : MonoBehaviour
         {
 
 
-            Debug.Log(biggestIdNumber - currentStateNumber +"+"+ Time.frameCount);
+            //Debug.Log(biggestIdNumber - currentStateNumber +"+"+ Time.frameCount);
             if(biggestIdNumber - currentStateNumber >= 6 )
             {
                 
@@ -144,7 +144,7 @@ public class PlayerControlClientside : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                   // clientNetworkSender.RequestWorldState(playerId);
+                    clientNetworkSender.RequestWorldState(playerId);
                 }
             }
             currentStateNumber++;

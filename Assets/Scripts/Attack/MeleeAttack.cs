@@ -60,7 +60,6 @@ public class MeleeAttack : Attack
                     {
                         StopCoroutine(comboTimeCoroutine);
                     }
-                    parryTimeCoroutine = StartCoroutine(ParryTime());
                     animationTimeCoroutine = StartCoroutine(AttackAnimateTime(swordCombos[charStats.AttackNumber].attackAnimationTime / charStats.SpeedRate));
                     ready = false;
                 }
@@ -74,13 +73,14 @@ public class MeleeAttack : Attack
     private IEnumerator ParryTime()
     {
         sword.GetComponent<BoxCollider2D>().enabled = true;
-        yield return new WaitForSeconds(swordCombos[charStats.AttackNumber].attackAnimationTime * 2f / charStats.SpeedRate);
+        yield return new WaitForSeconds(swordCombos[charStats.AttackNumber].attackAnimationTime * 1f / charStats.SpeedRate);
         sword.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     protected override void ApplyAttack()
     {
 
+        parryTimeCoroutine = StartCoroutine(ParryTime());
         offset = (charStats.Side + Vector2.up) * offset;
 
         List<RaycastHit2D> targets = new List<RaycastHit2D>(Physics2D.BoxCastAll(transform.position + (Vector3)offset, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0));
@@ -94,7 +94,7 @@ public class MeleeAttack : Attack
                 if (targets[i].point.y - transform.position.y < 2)
                 {
                     max = i;
-                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2) transform.position).x)) / 9 + attackForce ;
+                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
 
                     playerControl.physic.AddReductiveForce(-charStats.Side, force, 0.15f, 0);
                     break;
@@ -108,12 +108,14 @@ public class MeleeAttack : Attack
                 //Vector2 direction = targets[i].point - (Vector2)transform.positio
                 if (targets[i].collider.gameObject.GetComponentInParent<CharacterAttributes>().Side != charStats.Side)
                 {
-                    Debug.Log("parry");
-                    parry = true;
-                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 9 + attackForce;
-
-                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * force, 0.3f, 0);
-                    playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * force, 0.3f, 0);
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "Sword"))
+                    {
+                        Debug.Log("parry");
+                        parry = true;
+                        float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
+                        targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * force, 0.3f, 0);
+                        playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * force, 0.3f, 0);
+                    }
                 }
             }
         }
@@ -123,15 +125,21 @@ public class MeleeAttack : Attack
             {
                 if (targets[i].collider.tag.Equals("VirtualPlayer"))
                 {
-                    float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 9 + attackForce;
-                    targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
-                    targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, force, 0.15f, 0);
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "VirtualPlayer"))
+                    {
+                        float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
+                        targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(charStats.AttackDamage, buffName);
+                        targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, force, 0.15f, 0);
+                    }
                 }
                 else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
-                    VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
-                    playerControl.TakeAttack(0, bullet.buff.name);
-                    bullet.Destroy();
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "VirtualBullet"))
+                    {
+                        VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
+                        bullet.Destroy();
+                        playerControl.TakeAttack(0, bullet.buff.name);
+                    }
                 }
             }
         }
@@ -162,7 +170,7 @@ public class MeleeAttack : Attack
             }
 
             sword.GetComponent<BoxCollider2D>().size = swordCombos[charStats.AttackNumber].size;
-            sword.transform.localPosition = (Vector3) charStats.Side * (swordCombos[charStats.AttackNumber].size.x / 2 + offset.x) + Vector3.up * offset.y ;
+            sword.transform.localPosition = (Vector3)charStats.Side * (swordCombos[charStats.AttackNumber].size.x / 2 + offset.x) + Vector3.up * offset.y;
 
             attackNumber = charStats.AttackNumber;
         }

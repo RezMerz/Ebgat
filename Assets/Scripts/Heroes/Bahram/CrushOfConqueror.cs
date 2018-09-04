@@ -123,7 +123,7 @@ public class CrushOfConqueror : Ability
                 GameObject enemy = hit.collider.gameObject;
                 if (enemy.transform.position.x > transform.position.x ) 
                 {
-                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask, "VirtualPlayer"))
                     {
                         float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
                         enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
@@ -132,7 +132,7 @@ public class CrushOfConqueror : Ability
                 }
                 else if(enemy.transform.position.x <= transform.position.x )
                 {
-                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask))
+                    if (Toolkit.IsVisible(transform.position, hit.point, visibilityLayerMask,"VirtualPlayer"))
                     {
                         float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
                         enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
