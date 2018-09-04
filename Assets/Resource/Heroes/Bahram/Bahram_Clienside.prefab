@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114519488797203662}
   - component: {fileID: 95969431932785578}
   - component: {fileID: 82515075569728862}
+  - component: {fileID: 114284752092899120}
   m_Layer: 0
   m_Name: Bahram_Clienside
   m_TagString: Player
@@ -334,6 +335,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114284752092899120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611565634832398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27acef96dab614947b8d8adceba6be4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - icon: {fileID: 21300000, guid: 87de98c9798ebe14386b477f4b16b4c5, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: 28e1a86697c9431458c610751617c7f6, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: 502d4f0b656f2c248866e47b8106d093, type: 3}
+    cooldown: 0
+    timer: 0
 --- !u!114 &114422831266110136
 MonoBehaviour:
   m_ObjectHideFlags: 1
