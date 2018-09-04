@@ -43,6 +43,8 @@ public class AuraArmor : Ability
     protected override void AbilityCast()
     {
         charStats.HandState = EHandState.Idle;
+
+        GetComponent<PlayerControl>().TakeAttack(0, buff.name);
         currentRadius = 0;
         abilityUse = true;
         //StartCoroutine(CoolDownTimer(coolDownTime));

@@ -42,8 +42,13 @@ namespace UnityEngine.Networking
         bool m_ShowServer;
         bool gameStarted;
 
+        public GameObject background;
+
+        private bool isInfinite;
+
         public void OnHostFound(string fromAddress, string data)
         {
+            background.gameObject.SetActive(false);
             //networkDiscovery.StopBroadcast();
             string ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
             Debug.Log(ip);
@@ -100,11 +105,12 @@ namespace UnityEngine.Networking
                     {
                         if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
+                            background.gameObject.SetActive(false);
                             if (networkDiscovery.isClient || networkDiscovery.isServer)
                                 networkDiscovery.StopBroadcast();
                             //networkDiscovery.Initialize();
                             networkDiscovery.StartAsServer();
-                            manager.StartHost(playerCount, baseRespawnTime, respawnPenaltytime);
+                            manager.StartHost(playerCount, baseRespawnTime, respawnPenaltytime, isInfinite);
                         }
                     }
 
@@ -149,6 +155,7 @@ namespace UnityEngine.Networking
 
                     GUI.Label(new Rect(Screen.width * 3 / 40 + buttonWidth, Screen.height * 6.2f / 10, 200, 50), "Base Respawn Time");
                     GUI.Label(new Rect(Screen.width * 3 / 40 + buttonWidth, Screen.height * 7 / 10, 200, 50), "Respawn Penalty");
+                    isInfinite = GUI.Toggle(new Rect(Screen.width * 3 / 40 + buttonWidth, Screen.height * 8 / 10, 200, 50), isInfinite, "Unlimit");
                     float.TryParse(GUI.TextField(new Rect(Screen.width * 9 / 40 + buttonWidth, Screen.height * 6.2f / 10, 60, 30), baseRespawnTime + ""), out baseRespawnTime);
                     float.TryParse(GUI.TextField(new Rect(Screen.width * 9 / 40 + buttonWidth, Screen.height * 7f / 10, 60, 30), respawnPenaltytime + ""), out respawnPenaltytime);
                 }
@@ -177,7 +184,7 @@ namespace UnityEngine.Networking
                     ypos += spacing;
                     if (!gameStarted)
                     {
-                        if (GUI.Button(new Rect(xpos, ypos + 60, 100, 20), "Start the Game"))
+                        if (GUI.Button(new Rect(xpos, ypos + 60, 200, 40), "Start the Game"))
                         {
                             gameStarted = true;
                             ServerManager.instance.StartGame();

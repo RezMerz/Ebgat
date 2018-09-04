@@ -25,6 +25,7 @@ public class CustomNetworkManager : NetworkManager {
     public int maxPlayerCount;
     public float baseRespawnTime;
     public float respawnTimePenalty;
+    public bool isInfinite;
 
     private NetworkConnection networkConnection;
 
@@ -84,12 +85,13 @@ public class CustomNetworkManager : NetworkManager {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void StartHost(int maxPlayerCount, float baseRespawnTime, float respawnTimePenalty)
+    public void StartHost(int maxPlayerCount, float baseRespawnTime, float respawnTimePenalty, bool isInfinite)
     {
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
         this.baseRespawnTime = baseRespawnTime;
         this.respawnTimePenalty = respawnTimePenalty;
+        this.isInfinite = isInfinite;
     }
 
     /*public override void OnClientConnect(NetworkConnection conn)

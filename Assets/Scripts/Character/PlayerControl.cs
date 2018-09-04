@@ -240,27 +240,32 @@ public class PlayerControl : MonoBehaviour
 
     public void deltaYAim(float deltaY)
     {
-        aim.yChange(deltaY);
+        if(aim != null)
+            aim.yChange(deltaY);
     }
 
     public void deltaXAim(float deltaX)
     {
-        aim.XChange(deltaX);
+        if(aim != null)
+            aim.XChange(deltaX);
     }
 
     public void AimPressed()
     {
-        aim.AimPressed();
+        if(aim != null)
+            aim.AimPressed();
     }
 
     public void AimReleased()
     {
-        aim.AimReleased();
+        if(aim != null)
+            aim.AimReleased();
     }
 
     public void AimController(Vector2 aimAxis)
     {
-        aim.ControllerAim(aimAxis);
+        if(aim != null)
+            aim.ControllerAim(aimAxis);
     }
 
     public void Die()

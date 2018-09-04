@@ -19,6 +19,7 @@ public class MalkousGraphics : HeroGraphics {
         if (value == "1")
         {
             GameObject obj = Instantiate(boomEffect, transform.position, Quaternion.Euler(0, 0, 0));
+            obj.transform.parent = transform;
             DestoryObjectAfterTime(3,obj);
         }
         else if (value == "2")

@@ -23,6 +23,7 @@ public class ServerManager : NetworkBehaviour {
     private int bulletIdCounter = 0;
 
     public float respawnTime, respawnPenalty;
+    public bool isInfinite;
 
     private float resTimeTeam1;
     private float resTimeTeam2;
@@ -42,6 +43,7 @@ public class ServerManager : NetworkBehaviour {
         respawnPenalty = networkManager.respawnTimePenalty;
         resTimeTeam1 = respawnTime;
         resTimeTeam2 = respawnTime;
+        isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
         UpdatePlayers();
     }
@@ -214,9 +216,21 @@ public class ServerManager : NetworkBehaviour {
                 }
                 SendKillCommand(playerId);
                 if (team1DeadCount > 0 && team1Count == team1DeadCount)
-                    Debug.Log("team 2 wins");
+                {
+                    if (!isInfinite)
+                    {
+                        Debug.Log("team 2 wins");
+                        SendGameFinishedCommand(2);
+                    }
+                }
                 else if (team2DeadCount > 0 && team2Count == team2DeadCount)
-                    Debug.Log("team 1 wins");
+                {
+                    if (!isInfinite)
+                    {
+                        Debug.Log("team 1 wins");
+                        SendGameFinishedCommand(1);
+                    }
+                }
                 break;
 
             }
