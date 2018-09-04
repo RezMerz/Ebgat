@@ -118,4 +118,9 @@ public class PlayerConnection : NetworkBehaviour {
     public void RpcRespawnHero(){
         playerControl.Respawn();
     }
+
+    [ClientRpc]
+    public void RpcGameFinished(int winnerTeamId){
+        Debug.Log("Team " + winnerTeamId + "Won the game");
+    }
 }

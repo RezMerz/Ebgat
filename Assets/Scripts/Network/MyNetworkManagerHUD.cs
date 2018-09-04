@@ -36,6 +36,8 @@ namespace UnityEngine.Networking
 
         private int playerCount = 1;
 
+        float baseRespawnTime = 5, respawnPenaltytime = 2;
+
         // Runtime variable
         bool m_ShowServer;
         bool gameStarted;
@@ -102,7 +104,7 @@ namespace UnityEngine.Networking
                                 networkDiscovery.StopBroadcast();
                             //networkDiscovery.Initialize();
                             networkDiscovery.StartAsServer();
-                            manager.StartHost(playerCount);
+                            manager.StartHost(playerCount, baseRespawnTime, respawnPenaltytime);
                         }
                     }
 
@@ -144,6 +146,11 @@ namespace UnityEngine.Networking
                         Debug.Log("quiting");
                         Application.Quit();
                     }
+
+                    GUI.Label(new Rect(Screen.width * 3 / 40 + buttonWidth, Screen.height * 6.2f / 10, 200, 50), "Base Respawn Time");
+                    GUI.Label(new Rect(Screen.width * 3 / 40 + buttonWidth, Screen.height * 7 / 10, 200, 50), "Respawn Penalty");
+                    float.TryParse(GUI.TextField(new Rect(Screen.width * 9 / 40 + buttonWidth, Screen.height * 6.2f / 10, 60, 30), baseRespawnTime + ""), out baseRespawnTime);
+                    float.TryParse(GUI.TextField(new Rect(Screen.width * 9 / 40 + buttonWidth, Screen.height * 7f / 10, 60, 30), respawnPenaltytime + ""), out respawnPenaltytime);
                 }
                 else
                 {

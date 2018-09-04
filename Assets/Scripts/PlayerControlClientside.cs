@@ -137,7 +137,7 @@ public class PlayerControlClientside : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                   // clientNetworkSender.RequestWorldState(playerId);
+                    clientNetworkSender.RequestWorldState(playerId);
                 }
             }
             currentStateNumber++;
