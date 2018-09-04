@@ -42,8 +42,11 @@ namespace UnityEngine.Networking
         bool m_ShowServer;
         bool gameStarted;
 
+        public GameObject background;
+
         public void OnHostFound(string fromAddress, string data)
         {
+            background.gameObject.SetActive(false);
             //networkDiscovery.StopBroadcast();
             string ip = fromAddress.Substring(fromAddress.LastIndexOf(':') + 1);
             Debug.Log(ip);
@@ -100,6 +103,7 @@ namespace UnityEngine.Networking
                     {
                         if (GUI.Button(new Rect(Screen.width * 11 / 40, Screen.height * 5 / 10, buttonWidth, buttonHeight), "LAN Host"))
                         {
+                            background.gameObject.SetActive(false);
                             if (networkDiscovery.isClient || networkDiscovery.isServer)
                                 networkDiscovery.StopBroadcast();
                             //networkDiscovery.Initialize();
@@ -177,7 +181,7 @@ namespace UnityEngine.Networking
                     ypos += spacing;
                     if (!gameStarted)
                     {
-                        if (GUI.Button(new Rect(xpos, ypos + 60, 100, 20), "Start the Game"))
+                        if (GUI.Button(new Rect(xpos, ypos + 60, 200, 40), "Start the Game"))
                         {
                             gameStarted = true;
                             ServerManager.instance.StartGame();
