@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 114245478714681916}
   - component: {fileID: 114084879097903336}
   - component: {fileID: 114742028647210728}
+  - component: {fileID: 114811490440031576}
   m_Layer: 0
   m_Name: malkous_Clienside
   m_TagString: Player
@@ -126,7 +127,7 @@ GameObject:
   - component: {fileID: 4963578587528368}
   - component: {fileID: 212417101166234238}
   m_Layer: 0
-  m_Name: Disarmed (1)
+  m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480360778776026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3581948, y: -6.550809, z: 0}
+  m_LocalPosition: {x: -4.1425204, y: -4.8637266, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4105297281714138}
@@ -183,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614682136794428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4299998, y: 2.6136153, z: 0}
+  m_LocalPosition: {x: 0, y: 2.6136153, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4820732182060698}
@@ -239,8 +240,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015281467260126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0.81, y: 0, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 4247517859071392}
   m_RootOrder: 0
@@ -252,8 +253,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519168346612076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 0, z: 0}
-  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 1}
+  m_LocalPosition: {x: -0.54, y: 0, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 4247517859071392}
   m_RootOrder: 2
@@ -451,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
+  boomEffect: {fileID: 1308741438377836, guid: 74faf871d0cd5254d883b9fedfb64205, type: 2}
 --- !u!114 &114742028647210728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,6 +467,24 @@ MonoBehaviour:
   bulletObjects:
   - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
   - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
+--- !u!114 &114811490440031576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480360778776026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27acef96dab614947b8d8adceba6be4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - icon: {fileID: 0}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 0}
+    cooldown: 0
+    timer: 0
 --- !u!114 &114837007490833840
 MonoBehaviour:
   m_ObjectHideFlags: 1

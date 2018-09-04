@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Globalization;
 public class HeroGraphics : MonoBehaviour
 {
     public GameObject landInstance;
@@ -19,6 +20,7 @@ public class HeroGraphics : MonoBehaviour
     protected CharacterAttributesClient charStats;
     protected GameObject HeadIcons;
     protected Color color = Color.white;
+    private HUD hud;
 
     public void TakeDamage()
     {
@@ -37,6 +39,7 @@ public class HeroGraphics : MonoBehaviour
             animator.speed = speedRate;
         }
         else if(speedRate == 1){
+            animator.speed = 1;
             sprite.color = Color.white;
             color = sprite.color;
         }
@@ -69,7 +72,7 @@ public class HeroGraphics : MonoBehaviour
                 energySlider = slider;
         }
 
-
+        hud = GameObject.FindObjectOfType<HUD>();
         aim = GetComponent<CharacterAim>();
     }
 
@@ -102,6 +105,19 @@ public class HeroGraphics : MonoBehaviour
     }
 
 
+    public void ArmorChange(string value)
+    {
+        float armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
+        if(armor> 0 )
+        {
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else if (armor == 0)
+        {
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
     public void HpChange(string value)
     {
         float hp = float.Parse(value);
@@ -109,6 +125,10 @@ public class HeroGraphics : MonoBehaviour
             TakeDamage();
         charStats.hp = hp;
         hpSlider.value = hp;
+        if (playerControlClientside.IsLocalPlayer())
+        {
+            hud.HpChange(hp / maxHp);
+        }
     }
 
     public void EnergyChange(string value)
@@ -116,6 +136,7 @@ public class HeroGraphics : MonoBehaviour
         float energy = float.Parse(value);
         charStats.energy = (int)energy;
         energySlider.value = energy;
+        hud.EnergyCHange(energy / maxEnergy);
     }
 
     public void BulletShoot(GameObject bullet, Vector2 direction)

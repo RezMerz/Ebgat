@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MalkousGraphics : HeroGraphics {
 
-
+    public GameObject boomEffect;
     public override void HandState(string value)
     {
         if (value == "2")
@@ -18,7 +18,8 @@ public class MalkousGraphics : HeroGraphics {
         print(value);
         if (value == "1")
         {
-
+            GameObject obj = Instantiate(boomEffect, transform.position, Quaternion.Euler(0, 0, 0));
+            DestoryObjectAfterTime(3,obj);
         }
         else if (value == "2")
         {

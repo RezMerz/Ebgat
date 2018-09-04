@@ -131,11 +131,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (charStats.Energy < charStats.energyBase / 3)
             {
-                charStats.Energy += (int)(charStats.energyRegenRate * 1);
+                charStats.Energy += (int)(charStats.energyRegenRate * 2);
             }
             else if (charStats.Energy < charStats.energyBase * 2 / 3)
             {
-                charStats.Energy += (int)(charStats.energyRegenRate * 1.5);
+                charStats.Energy += (int)(charStats.energyRegenRate * 2);
             }
             else
             {

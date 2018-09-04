@@ -27,7 +27,6 @@ public class MalkousAttack : Attack
     {
         if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall)
         {
-            Debug.Log(ready);
             if (ready)
             {
                 if (charStats.Energy >= charStats.attackEnergyConsume)

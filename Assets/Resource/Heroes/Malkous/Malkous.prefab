@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castTime: 0.2
-  coolDownTime: 5
+  coolDownTime: 2
   energyUsage: 0
   buff: {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
   abilityNumber: 1
