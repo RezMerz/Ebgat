@@ -23,6 +23,8 @@ public class CustomNetworkManager : NetworkManager {
     public List<PlayerConnection> playerConnections;
 
     public int maxPlayerCount;
+    public float baseRespawnTime;
+    public float respawnTimePenalty;
 
     private NetworkConnection networkConnection;
 
@@ -82,10 +84,12 @@ public class CustomNetworkManager : NetworkManager {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void StartHost(int maxPlayerCount)
+    public void StartHost(int maxPlayerCount, float baseRespawnTime, float respawnTimePenalty)
     {
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
+        this.baseRespawnTime = baseRespawnTime;
+        this.respawnTimePenalty = respawnTimePenalty;
     }
 
     /*public override void OnClientConnect(NetworkConnection conn)
