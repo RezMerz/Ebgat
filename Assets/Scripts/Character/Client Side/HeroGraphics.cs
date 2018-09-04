@@ -38,6 +38,7 @@ public class HeroGraphics : MonoBehaviour
             animator.speed = speedRate;
         }
         else if(speedRate == 1){
+            animator.speed = 1;
             sprite.color = Color.white;
             color = sprite.color;
         }
