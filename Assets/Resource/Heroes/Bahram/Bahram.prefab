@@ -162,7 +162,7 @@ MonoBehaviour:
   energyUsage: 10
   buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   abilityNumber: 1
-  damage: 100
+  damage: 10
   stunDuration: 1
   Speed: 50
   landingWidth: 10
