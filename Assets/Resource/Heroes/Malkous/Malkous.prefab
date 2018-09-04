@@ -120,12 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0833c1bcaf3724d87f949e865b3456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 0
-  coolDownTime: 0
+  castTime: 0.1
+  coolDownTime: 2
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 1
-  radius: 0
+  radius: 16
   pushForce: 0
   speed: 0
 --- !u!114 &114098260815372376

@@ -173,7 +173,7 @@ public class CharacterPhysic : Physic
             }
             else if (hit.tag.Equals("jump"))
             {
-                force = Vector2.up * (charStats.JumpSpeed - direction.y * 30);
+                force = Vector2.up * (charStats.JumpSpeed - direction.y * 40);
                 AddPersistentForce(force,0, 0);
             }
         }
