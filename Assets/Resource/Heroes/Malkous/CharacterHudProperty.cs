@@ -9,6 +9,11 @@ public class CharacterHudProperty : MonoBehaviour {
     private HUD hud;
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         if (GetComponent<PlayerControlClientside>().IsLocalPlayer())
         {
             hud = GameObject.FindObjectOfType<HUD>();
@@ -18,7 +23,6 @@ public class CharacterHudProperty : MonoBehaviour {
                 hud.SetImage(abilities[i].icon, i + 1);
             }
         }
-        
     }
 }
 

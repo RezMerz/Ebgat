@@ -53,7 +53,7 @@ public class HeroGraphics : MonoBehaviour
 
     void Start()
     {
-
+        hud = GameObject.FindObjectOfType<HUD>();
         charStats = GetComponent<CharacterAttributesClient>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -73,7 +73,7 @@ public class HeroGraphics : MonoBehaviour
                 energySlider = slider;
         }
 
-        hud = GameObject.FindObjectOfType<HUD>();
+        
         aim = GetComponent<CharacterAim>();
         abilitiesInfo = GetComponent<CharacterHudProperty>().abilities;
     }
@@ -169,6 +169,8 @@ public class HeroGraphics : MonoBehaviour
         hpSlider.maxValue = maxHp;
         hpSlider.value = maxHp;
         maxEnergy = charStats.energyBase;
+        hud.EnergyCHange(maxEnergy);
+        hud.HpChange(maxEnergy);
 
     }
 
