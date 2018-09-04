@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 114158786255817076}
   - component: {fileID: 114936411307088194}
   - component: {fileID: 114567925331417990}
+  - component: {fileID: 114485687046366930}
   m_Layer: 0
   m_Name: Malkous
   m_TagString: VirtualPlayer
@@ -125,6 +126,8 @@ MonoBehaviour:
   buff: {fileID: 0}
   abilityNumber: 1
   radius: 0
+  pushForce: 0
+  speed: 0
 --- !u!114 &114098260815372376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,6 +169,7 @@ MonoBehaviour:
   - {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   - {fileID: 114648076683127938, guid: 209b23f7c34a9dd45a2dada2af167cc9, type: 2}
   - {fileID: 114991850052140064, guid: e546a8bf9088e304ca29b740f82ad5f8, type: 2}
+  - {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
 --- !u!114 &114158786255817076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +201,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d490fc08ad2b9f64c97247fe7501536b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114485687046366930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341430771966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0833c1bcaf3724d87f949e865b3456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTime: 0.2
+  coolDownTime: 5
+  energyUsage: 0
+  buff: {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
+  abilityNumber: 1
+  radius: 10
+  pushForce: 0.3
+  speed: 0.5
 --- !u!114 &114488834796104956
 MonoBehaviour:
   m_ObjectHideFlags: 1
