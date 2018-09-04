@@ -121,7 +121,7 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcGameFinished(int winnerTeamId){
-        Debug.Log("Team " + winnerTeamId + "Won the game");س
+        Debug.Log("Team " + winnerTeamId + "Won the game");
         if (winnerTeamId == 1)
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team1 Win");
         else if (winnerTeamId == 2)
