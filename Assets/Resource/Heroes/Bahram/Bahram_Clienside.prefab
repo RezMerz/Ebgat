@@ -348,10 +348,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - icon: {fileID: 21300000, guid: 87de98c9798ebe14386b477f4b16b4c5, type: 3}
-    cooldown: 0
+    cooldown: 1
     timer: 0
   - icon: {fileID: 21300000, guid: 28e1a86697c9431458c610751617c7f6, type: 3}
-    cooldown: 0
+    cooldown: 3
     timer: 0
   - icon: {fileID: 21300000, guid: 502d4f0b656f2c248866e47b8106d093, type: 3}
     cooldown: 0
