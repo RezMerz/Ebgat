@@ -217,7 +217,7 @@ MonoBehaviour:
   enemyTeamName: 
   canDoubleJump: 1
   wallside: 0
-  hitPointsBase: 100
+  hitPointsBase: 1000
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.2
@@ -235,9 +235,9 @@ MonoBehaviour:
   energyBase: 1000
   speedRate: 0
   energyRegenRate: 10
-  attackEnergyConsume: 100
+  attackEnergyConsume: 75
   jumpEnergyConsume: 50
-  ability1EnergyConsume: 1
+  ability1EnergyConsume: 0
   ability2EnergyConsume: 0
   dashEnergyConsume: 100
 --- !u!114 &114422898562219348
@@ -252,19 +252,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCombos:
-  - damage: 25
+  - damage: 150
     attackAnimationTime: 0.1
     size: {x: 7.3, y: 1.5}
     offset: {x: 1, y: 0.8}
     force: 0.3
     buff: {fileID: 0}
-  - damage: 25
+  - damage: 150
     attackAnimationTime: 0.1
     size: {x: 7.5, y: 1.7}
     offset: {x: 1, y: -0.5}
     force: 0.3
     buff: {fileID: 0}
-  - damage: 40
+  - damage: 250
     attackAnimationTime: 0.3
     size: {x: 7, y: 7}
     offset: {x: 1, y: 2.1}

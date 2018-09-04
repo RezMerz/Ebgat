@@ -213,12 +213,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castTime: 0.2
-  coolDownTime: 2
-  energyUsage: 0
+  coolDownTime: 5
+  energyUsage: 100
   buff: {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
   abilityNumber: 1
-  radius: 10
-  pushForce: 0.3
+  radius: 16
+  pushForce: 0.2
   speed: 0.5
 --- !u!114 &114488834796104956
 MonoBehaviour:
@@ -293,7 +293,7 @@ MonoBehaviour:
   enemyTeamName: 
   canDoubleJump: 0
   wallside: 0
-  hitPointsBase: 100
+  hitPointsBase: 600
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
@@ -308,14 +308,14 @@ MonoBehaviour:
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
-  energyBase: 1000
+  energyBase: 1200
   speedRate: 0
-  energyRegenRate: 5
-  attackEnergyConsume: 100
+  energyRegenRate: 10
+  attackEnergyConsume: 150
   jumpEnergyConsume: 50
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
-  dashEnergyConsume: 100
+  dashEnergyConsume: 150
 --- !u!114 &114916447596799302
 MonoBehaviour:
   m_ObjectHideFlags: 1
