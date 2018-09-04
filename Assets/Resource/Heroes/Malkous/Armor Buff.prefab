@@ -52,5 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  stackable: 0
-  deltaArmor: 0.3
+  stackable: 1
+  deltaArmor: 0.05

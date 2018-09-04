@@ -25,6 +25,7 @@ public class AuraArmor : Ability
         {
             if (energyUsage <= charStats.Energy)
             {
+                charStats.Energy -= energyUsage;
 
                 if (layerMask == 0)
                 {
