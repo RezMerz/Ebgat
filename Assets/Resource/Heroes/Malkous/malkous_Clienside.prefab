@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 114245478714681916}
   - component: {fileID: 114084879097903336}
   - component: {fileID: 114742028647210728}
+  - component: {fileID: 114811490440031576}
   m_Layer: 0
   m_Name: malkous_Clienside
   m_TagString: Player
@@ -465,6 +466,24 @@ MonoBehaviour:
   bulletObjects:
   - {fileID: 1691014189850432, guid: 53718ac5b45434a47974786478ed47b3, type: 2}
   - {fileID: 1691014189850432, guid: 68ed301d0d8f3f444aeeec34f08980e6, type: 2}
+--- !u!114 &114811490440031576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480360778776026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27acef96dab614947b8d8adceba6be4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - icon: {fileID: 0}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 0}
+    cooldown: 0
+    timer: 0
 --- !u!114 &114837007490833840
 MonoBehaviour:
   m_ObjectHideFlags: 1
