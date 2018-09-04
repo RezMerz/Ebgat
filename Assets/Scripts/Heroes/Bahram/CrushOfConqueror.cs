@@ -52,6 +52,9 @@ public class CrushOfConqueror : Ability
                         layerMask = LayerMask.GetMask(charStats.enemyTeamName);
                         visibilityLayerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks");
                     }
+
+                    physic.Lock();
+
                     charStats.HandState = EHandState.Casting;
                     charStats.AbilityState = EAbility.Ability1Start;
                     coolDownLock = true;
@@ -144,6 +147,8 @@ public class CrushOfConqueror : Ability
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability1Finish;
+
+        physic.Unlock();
         physic.DashLayerReset();
         //physic.IncludeBridge();
         active = false;
