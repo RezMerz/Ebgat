@@ -35,7 +35,7 @@ public class MeleeAttack : Attack
         maxAttackNumber = swordCombos.Length;
         sword = transform.GetChild(0).gameObject;
         sword.layer = gameObject.layer;
-        layerMask = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
+        layerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks");
         ChangeCombo();
     }
 

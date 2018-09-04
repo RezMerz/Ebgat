@@ -140,9 +140,7 @@ public class Toolkit : MonoBehaviour
     public static bool IsVisible(Vector2 origin,Vector2 destenition,int layerMask,string tag)
     {
         Vector2 directiohn = destenition - origin;
-        RaycastHit2D hit = Physics2D.Raycast(origin, directiohn.normalized, directiohn.magnitude, layerMask, 0, 0);
-        Debug.DrawLine(origin,hit.point,Color.red,5);
-        Debug.Log(hit.collider);
+        RaycastHit2D hit = Physics2D.Raycast(origin, directiohn.normalized,directiohn.magnitude + 1, layerMask, 0, 0);
         if (hit.collider.tag.Equals(tag))
         {
             return true;
