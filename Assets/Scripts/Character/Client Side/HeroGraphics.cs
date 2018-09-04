@@ -19,6 +19,7 @@ public class HeroGraphics : MonoBehaviour
     protected CharacterAttributesClient charStats;
     protected GameObject HeadIcons;
     protected Color color = Color.white;
+    private HUD hud;
 
     public void TakeDamage()
     {
@@ -69,7 +70,7 @@ public class HeroGraphics : MonoBehaviour
                 energySlider = slider;
         }
 
-
+        hud = GameObject.FindObjectOfType<HUD>();
         aim = GetComponent<CharacterAim>();
     }
 
@@ -109,6 +110,10 @@ public class HeroGraphics : MonoBehaviour
             TakeDamage();
         charStats.hp = hp;
         hpSlider.value = hp;
+        if (playerControlClientside.IsLocalPlayer())
+        {
+            hud.HpChange(hp / maxHp);
+        }
     }
 
     public void EnergyChange(string value)
@@ -116,6 +121,7 @@ public class HeroGraphics : MonoBehaviour
         float energy = float.Parse(value);
         charStats.energy = (int)energy;
         energySlider.value = energy;
+        hud.EnergyCHange(energy / maxEnergy);
     }
 
     public void BulletShoot(GameObject bullet, Vector2 direction)

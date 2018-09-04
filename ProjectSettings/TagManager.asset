@@ -19,6 +19,7 @@ TagManager:
   - NetworkDiscovery
   - VirtualBullet
   - VirtualPlayer
+  - HUD
   layers:
   - Default
   - TransparentFX
