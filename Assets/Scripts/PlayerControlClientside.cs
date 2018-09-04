@@ -241,6 +241,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'y': heroGraphics.AttackNumber(value); break;
             case 'C': aim.AimClinet(); break;
             case 'z': heroGraphics.SpeedRateChange(value); break;
+            case 'f': heroGraphics.ArmorChange(value); break;
         }
     }
 
