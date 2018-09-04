@@ -112,11 +112,11 @@ public class HeroGraphics : MonoBehaviour
         float armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
         if(armor> 0 )
         {
-            HeadIcons.transform.GetChild(0).gameObject.SetActive(true);
+            HeadIcons.transform.GetChild(2).gameObject.SetActive(true);
         }
         else if (armor == 0)
         {
-            HeadIcons.transform.GetChild(0).gameObject.SetActive(false);
+            HeadIcons.transform.GetChild(2).gameObject.SetActive(false);
         }
     }
 

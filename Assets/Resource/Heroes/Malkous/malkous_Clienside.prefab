@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614682136794428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.6136153, z: 0}
+  m_LocalPosition: {x: 0, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4820732182060698}
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - icon: {fileID: 21300000, guid: b1c69cba53d68584e9a778f05fa7ab94, type: 3}
-    cooldown: 0
+    cooldown: 1
     timer: 0
   - icon: {fileID: 21300000, guid: f3f84a9d1b31aff4baeca0db0a4df744, type: 3}
     cooldown: 0
