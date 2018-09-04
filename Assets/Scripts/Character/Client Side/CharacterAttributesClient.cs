@@ -24,6 +24,8 @@ public class CharacterAttributesClient : MonoBehaviour {
     public float hpBase;
     public int energyBase;
 
+
+    public float armor { get; set; }
     public float speedRate { get; set; }
     void Start()
     {
@@ -106,7 +108,7 @@ public class CharacterAttributesClient : MonoBehaviour {
             case 'c': SetHandState(value); break;
             case 'd': SetFeetState(value); break;
             case 'e': side = Toolkit.DeserializeVector(value); break;
-        //    case 'f': armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
+            case 'f': armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
        //     case 'g': hitPoints = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
        //     case 'h': SetAttackMode(value); break;
        //     case 'i': range = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
@@ -126,8 +128,8 @@ public class CharacterAttributesClient : MonoBehaviour {
             case 'w': aimSide = Toolkit.DeserializeVector(value); break;
         //    case 'x': energy = int.Parse(value); break;
         //    case 'A': SetAbilityState(value); break;
-            case 'C': aimRotation = float.Parse(value); break;
-            case 'z': speedRate = float.Parse(value); break;
+            case 'C': aimRotation = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
+            case 'z': speedRate = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
         }
     }
 }

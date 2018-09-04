@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Globalization;
 public class HeroGraphics : MonoBehaviour
 {
     public GameObject landInstance;
@@ -103,6 +104,19 @@ public class HeroGraphics : MonoBehaviour
 
     }
 
+
+    public void ArmorChange(string value)
+    {
+        float armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
+        if(armor> 0 )
+        {
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else if (armor == 0)
+        {
+            HeadIcons.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
 
     public void HpChange(string value)
     {
