@@ -180,3 +180,5 @@ MonoBehaviour:
     type: 2}
   playerConnections: []
   maxPlayerCount: 0
+  baseRespawnTime: 0
+  respawnTimePenalty: 0

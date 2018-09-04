@@ -452,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
+  boomEffect: {fileID: 1308741438377836, guid: 74faf871d0cd5254d883b9fedfb64205, type: 2}
 --- !u!114 &114742028647210728
 MonoBehaviour:
   m_ObjectHideFlags: 1
