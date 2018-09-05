@@ -270,6 +270,24 @@ MonoBehaviour:
     offset: {x: 1, y: 2.1}
     force: 0.5
     buff: {fileID: 0}
+  - damage: 25
+    attackAnimationTime: 0.3
+    size: {x: 7, y: 7}
+    offset: {x: 1, y: 2.1}
+    force: 0.5
+    buff: {fileID: 0}
+  - damage: 25
+    attackAnimationTime: 0.3
+    size: {x: 7, y: 7}
+    offset: {x: 1, y: 2.1}
+    force: 0.5
+    buff: {fileID: 0}
+  - damage: 25
+    attackAnimationTime: 0.3
+    size: {x: 7, y: 7}
+    offset: {x: 1, y: 2.1}
+    force: 0.5
+    buff: {fileID: 0}
   comboTime: 0.7
 --- !u!114 &114432285978368132
 MonoBehaviour:
@@ -339,4 +357,12 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 2
-  time: 60
+  duration: 0
+  minMovementSpeed: 0
+  maxMovementSpeed: 0
+  movementAcceleration: 0
+  minJumpSpeed: 0
+  maxJumpSpeed: 0
+  jumpAcceleration: 0
+  gravityAcceleration: 0
+  onWallGravitySpeed: 0
