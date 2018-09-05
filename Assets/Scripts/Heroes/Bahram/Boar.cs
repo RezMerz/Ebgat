@@ -47,7 +47,7 @@ public class Boar : Ability
         maxMoveSpeedHuman = charStats.moveSpeedMaxBase;
         moveAccelerationHuman = charStats.moveAccelerationBase;
 
-        minJumpSpeedHuman = charStats.jumpAccelerationBase;
+        minJumpSpeedHuman = charStats.jumpSpeedBase;
         maxJumpSpeedHuman = charStats.jumpSpeedMaxBase;
         jumpAccelerationHuman = charStats.jumpAccelerationBase;
 
@@ -77,7 +77,6 @@ public class Boar : Ability
         physic.Unlock();
         StartCoroutine(Duration());
         StartCoroutine(CoolDownTimer(coolDownTime));
-
         BoarForm();
     }
     private void BoarForm()
@@ -129,7 +128,7 @@ public class Boar : Ability
         charStats.ResetMoveAcceleration();
 
         charStats.ResetJumpSpeed();
-        charStats.ResetJumpSpeed();
+        charStats.ResetJumpAcceleration();
         charStats.ResetMoveAcceleration();
         charStats.ResetGravitAcceleration();
 
