@@ -52,9 +52,16 @@ public class BahramGraphics : HeroGraphics{
         {
             animator.SetBool("Boar", false);
         }
+        else if (value == "5")
+        {
+            animator.SetTrigger("Ability 3");
+        }
     }
     public override void BodyState(string value)
     {
+        if (charStats.bodyState == EBodyState.Dashing)
+            if (value == "1")
+                animator.SetTrigger("Idle");
         animator.SetBool("Walking", false);
         gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         if (value == "1")
