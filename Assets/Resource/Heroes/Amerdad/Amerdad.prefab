@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114655279656209964}
   - component: {fileID: 114104728755885962}
   - component: {fileID: 114720025948883728}
+  - component: {fileID: 114631831022143276}
   m_Layer: 0
   m_Name: Amerdad
   m_TagString: VirtualPlayer
@@ -134,6 +135,8 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 0
+  size: {x: 0, y: 0}
+  offset: {x: 0, y: 0}
 --- !u!114 &114336623137953200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,6 +199,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 0
   hitType: 2
+--- !u!114 &114631831022143276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561336051650090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86e726908d914088a6ddcad410106a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamage: 0
+  maxDamage: 0
+  maxHoldTime: 2
+  thronedArrowTime: 0
+  virtualBullets: []
 --- !u!114 &114655279656209964
 MonoBehaviour:
   m_ObjectHideFlags: 1
