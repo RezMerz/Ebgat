@@ -23,7 +23,8 @@ namespace UnityEngine.Networking
         private int textureSize;
 
         private bool malkousSelect;
-        private bool bahramSelect = true;
+        private bool bahramSelect ;
+        private bool amerdadSelect = true;
 
 
         String heroName = "hero name";
@@ -138,13 +139,22 @@ namespace UnityEngine.Networking
                     if (malkousSelect)
                     {
                         bahramSelect = false;
+                        amerdadSelect = false;
                         manager.playerNumber = 0;
                     }
                     bahramSelect = GUI.Toggle(new Rect(11f / 20f * Screen.width, 5f / 20f * Screen.height, textureSize,textureSize),bahramSelect, bahramTexture);
                     if (bahramSelect)
                     {
                         malkousSelect = false;
+                        amerdadSelect = false;
                         manager.playerNumber = 1;
+                    }
+                    amerdadSelect = GUI.Toggle(new Rect(15f / 20f * Screen.width, 5f / 20f * Screen.height, textureSize, textureSize), amerdadSelect, bahramTexture);
+                    if (amerdadSelect)
+                    {
+                        malkousSelect = false;
+                        bahramSelect = false;
+                        manager.playerNumber = 2;
                     }
 
                     ypos += spacing * 2;

@@ -55,10 +55,11 @@ public class BahramGraphics : HeroGraphics{
     }
     public override void BodyState(string value)
     {
+        animator.SetBool("Walking", false);
         gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         if (value == "1")
         {
-              animator.SetBool("Walking", false);
+
         }
         else if (value == "2")
         {
