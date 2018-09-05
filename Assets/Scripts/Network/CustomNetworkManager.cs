@@ -53,14 +53,21 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+        Debug.Log(conn.connectionId);
         connectionTable.Add(++playerID, conn);
         GameObject playercon = Instantiate(playerConnection);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
         p.clientId = playerID;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
-        networkConnection = conn;
 
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+        networkConnection = conn;
+        RegisterNetworkClient();
     }
 
     /*public override void OnClientDisconnect(NetworkConnection conn)
@@ -101,8 +108,11 @@ public class CustomNetworkManager : NetworkManager {
     }*/
 
     private void RegisterNetworkClient(){
+        Debug.Log("registered");
         NetworkClient networkClient = new NetworkClient(networkConnection);
-        networkClient.RegisterHandler(MsgType.AddPlayer, OnConnected);
+        PlayerConnection pc = GameObject.FindWithTag("PlayerConnection").GetComponent<PlayerConnection>();
+        Debug.Log(pc);
+        networkClient.RegisterHandler(MsgType.AddPlayer, pc.GetAbsoluteState);
     }
 
     void OnConnected(NetworkMessage netMsg)

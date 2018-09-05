@@ -75,13 +75,7 @@ namespace UnityEngine.Networking
         {
             if (!showGUI)
                 return;
-            if (NetworkServer.active && manager.IsClientConnected())
-            {
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    manager.StopHost();
-                }
-            }
+            
         }
 
         void OnGUI()
@@ -214,7 +208,7 @@ namespace UnityEngine.Networking
 
             if (NetworkServer.active || manager.IsClientConnected())
             {
-                if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Stop (X)"))
+                if (GUI.Button(new Rect(xpos, ypos, 200, 20), "Stop"))
                 {
                     manager.StopHost();
                 }

@@ -109,6 +109,10 @@ public class PlayerConnection : NetworkBehaviour {
             virtualPlayerControl.SetReady();
     }
 
+    public void GetAbsoluteState(NetworkMessage netMsg){
+        
+    }
+
     [ClientRpc]
     public void RpcKillHero(){
         playerControl.Die();
