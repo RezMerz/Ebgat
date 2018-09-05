@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 using System.Globalization;
 public class CharacterAttributes : MonoBehaviour {
 
@@ -232,13 +231,13 @@ public class CharacterAttributes : MonoBehaviour {
     private float gravityAcceleration;
     public float GravityAcceleration {
         get { return gravityAcceleration; }
-        set { if (value != jumpAcceleration) { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); } }
+        set { if (value != gravityAcceleration) { gravityAcceleration = value; playerControl.worldState.RegisterCharStat(ID, 'u', value + ""); } }
     } //u
 
     private float gravitySpeedMax;
     public float GravitySpeedMax {
         get { return gravitySpeedMax; }
-        set { if (value != jumpAcceleration) { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } }
+        set { if (value != gravitySpeedMax) { gravitySpeedMax = value; playerControl.worldState.RegisterCharStat(ID, 'v', value + ""); } }
     } //v
 
     private Vector2 aimSide;
@@ -343,9 +342,12 @@ public class CharacterAttributes : MonoBehaviour {
     {
         GravitySpeed = gravitySpeedBase;
     }
-    public void ResetGravitAcceleration()
+    public void ResetGravityAcceleration()
     {
+
+       // Debug.Log(GravityAcceleration);
         GravityAcceleration = gravityAccelerationBase;
+        //Debug.Log(GravityAcceleration);
     }
 
 
@@ -377,9 +379,9 @@ public class CharacterAttributes : MonoBehaviour {
 
     public void ResetJumpSpeed()
     {
-        jumpSpeed = jumpSpeedBase;
+        JumpSpeed = jumpSpeedBase;
     }
-    public void RestJumpMaxSpeed()
+    public void ResetJumpMaxSpeed()
     {
         JumpSpeedMax = jumpSpeedMaxBase;
     }

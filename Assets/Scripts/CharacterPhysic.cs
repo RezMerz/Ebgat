@@ -129,7 +129,7 @@ public class CharacterPhysic : Physic
         if (vHits.Count > 0)
         {
             charStats.ResetJumpSpeed();
-            charStats.RestJumpMaxSpeed();
+            charStats.ResetJumpMaxSpeed();
             charStats.ResetGravitySpeed();
             RemoveTaggedForces(0);
             //RemoveTaggedForces(1);
@@ -194,7 +194,7 @@ public class CharacterPhysic : Physic
                 if(charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if(timer >=  charStats.CayoteTime + Time.deltaTime)
+                    if(timer >=  0.15f + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }

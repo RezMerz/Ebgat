@@ -100,9 +100,10 @@ public class Boar : Ability
         charStats.ResetMoveAcceleration();
 
         charStats.ResetJumpSpeed();
-        charStats.ResetJumpSpeed();
-        charStats.ResetMoveAcceleration();
-        charStats.ResetGravitAcceleration();
+        charStats.ResetJumpMaxSpeed();
+        charStats.ResetJumpAcceleration();
+
+        charStats.ResetGravityAcceleration();
 
 
         charStats.AttackNumber = 3;
@@ -128,10 +129,11 @@ public class Boar : Ability
         charStats.ResetMoveAcceleration();
 
         charStats.ResetJumpSpeed();
+        charStats.ResetJumpMaxSpeed();
         charStats.ResetJumpAcceleration();
-        charStats.ResetMoveAcceleration();
-        charStats.ResetGravitAcceleration();
 
+        
+        charStats.ResetGravityAcceleration();
         charStats.AttackNumber = 0;
     }
     private IEnumerator Duration()
