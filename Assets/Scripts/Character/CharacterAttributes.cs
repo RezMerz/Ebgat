@@ -153,11 +153,11 @@ public class CharacterAttributes : MonoBehaviour {
 
     //movement attributes
     [SerializeField]
-    private float moveSpeedBase;
+    public float moveSpeedBase;
     [SerializeField]
-    private float moveAccelerationBase;
+    public float moveAccelerationBase;
     [SerializeField]
-    private float moveSpeedMaxBase;
+    public float moveSpeedMaxBase;
 
 
     private float moveSpeed;
@@ -178,11 +178,11 @@ public class CharacterAttributes : MonoBehaviour {
 
     //jump attributes
     [SerializeField]
-    private float jumpSpeedBase;
+    public  float jumpSpeedBase;
     [SerializeField]
-    private float jumpAccelerationBase;
+    public float jumpAccelerationBase;
     [SerializeField]
-    private float jumpSpeedMaxBase;
+    public float jumpSpeedMaxBase;
 
     private float jumpSpeed;
     public float JumpSpeed {
@@ -207,15 +207,15 @@ public class CharacterAttributes : MonoBehaviour {
 
     //gravity attributes
     [SerializeField]
-    private float gravitySpeedBase;
+    public float gravitySpeedBase;
     [SerializeField]
-    private float gravityAccelerationBase;
+    public float gravityAccelerationBase;
     [SerializeField]
-    private float gravitySpeedMaxBase;
+    public float gravitySpeedMaxBase;
     [SerializeField]
     private float baseCayoteTime;
     [SerializeField]
-    private float onWallGravitySpeed;
+    public float onWallGravitySpeed;
 
     private float cayoteTime;
     public float CayoteTime{
@@ -249,8 +249,6 @@ public class CharacterAttributes : MonoBehaviour {
     } //w
 
     /// Energy Attributes
-
-    
     public int energyBase;
 
     private int energy;
@@ -287,11 +285,6 @@ public class CharacterAttributes : MonoBehaviour {
 
     // size attributes
     public Vector2 size { get; set; }
-
-    private void Update()
-    {
-        ID = playerControl.playerId;
-    }
 
     // Use this for initialization
     void Start ()
@@ -342,25 +335,45 @@ public class CharacterAttributes : MonoBehaviour {
 
         //SpeedRate
         speedRate = 1;
+
+        ID = playerControl.playerId;
     }
 
     public void ResetGravitySpeed()
     {
-        gravitySpeed = gravitySpeedBase;
+        GravitySpeed = gravitySpeedBase;
     }
+    public void ResetGravitAcceleration()
+    {
+        GravityAcceleration = gravityAccelerationBase;
+    }
+
+
     public void GravityOnWall()
     {
         GravitySpeed = onWallGravitySpeed;
     }
 
+
     public void ResetCayoteTime()
     {
         cayoteTime = baseCayoteTime;
     }
+
+
     public void ResetMoveSpeed()
     {
-        moveSpeed = moveSpeedBase;
+        MoveSpeed = moveSpeedBase;
     }
+    public void ResetMoveSpeedMax()
+    {
+        MoveSpeedMax = moveSpeedMaxBase;
+    }
+    public void ResetMoveAcceleration()
+    {
+        MoveAcceleration = moveAccelerationBase;
+    }
+
 
     public void ResetJumpSpeed()
     {
@@ -370,11 +383,21 @@ public class CharacterAttributes : MonoBehaviour {
     {
         JumpSpeedMax = jumpSpeedMaxBase;
     }
+    public void ResetJumpAcceleration()
+    {
+        JumpAcceleration = jumpAccelerationBase;
+    }
 
-    public void ResetHP()
+    public void ResetStats()
     {
         HitPoints = hitPointsBase;
+        Energy = energyBase;
     }
+
+
+
+
+
 
     public void SetAttribute(char attributeCode, string value){
         switch(attributeCode){
@@ -446,7 +469,6 @@ public class CharacterAttributes : MonoBehaviour {
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
-
     private void SetAbilityState(string value)
     {
         switch (value)
@@ -465,7 +487,6 @@ public class CharacterAttributes : MonoBehaviour {
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
-
     private void RegisterHeadState(WorldState worldState){
         switch(HeadState){
             case EHeadState.Conscious: worldState.RegisterCharStat(ID, 'a', "1"); break;
@@ -511,7 +532,6 @@ public class CharacterAttributes : MonoBehaviour {
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
-
     private void RegisterAttackMode(){
         switch(attackMode){
             case EAttackMode.Ranged: playerControl.worldState.RegisterCharStat(ID, 'h', "1"); break;
@@ -530,7 +550,6 @@ public class CharacterAttributes : MonoBehaviour {
             case EAbility.Ability2Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "4"); break;
         }
     }
-
     public void RegisterAllStates(WorldState worldState){
         print("Register All States");
         int id = playerControl.playerId;
@@ -560,12 +579,6 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'x' + "&" + energy + "&";
         data += 'y' + '&' + attackNumber + '&';
         worldState.AppendCharstats(id, data);
-    }
-
-    public void ResetStats()
-    {
-        HitPoints = hitPointsBase;
-        Energy = energyBase;
     }
 }
 

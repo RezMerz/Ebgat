@@ -141,5 +141,10 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
+    public void IntruptJump()
+    {
+        jumped = false;
+    }
+
 }
 
