@@ -60,7 +60,7 @@ public class AuraArmor : Ability
             {
                 if ((obj.gameObject.transform.position - transform.position).magnitude > currentRadius)
                 {
-                    if (Toolkit.IsVisible(transform.position, obj.transform.position, visibilityLayerMask, "VirtualPlayer"))
+                    if (Toolkit.IsVisible(transform.position, obj.transform.position, visibilityLayerMask,obj))
                     {
                         if (obj.gameObject.layer == gameObject.layer)
                         {
