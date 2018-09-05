@@ -13,7 +13,6 @@ public class CharacterDash : MonoBehaviour
     public float range;
     public float coolDownTime;
     protected bool coolDownLock;
-
     protected bool started;
 
     // Use this for initialization

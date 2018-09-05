@@ -6,12 +6,6 @@ public class AmerdadDash : CharacterDash {
 
     protected bool secondCoolDownLock;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () 
     {
         if (started && charStats.BodyState == EBodyState.Dashing)
