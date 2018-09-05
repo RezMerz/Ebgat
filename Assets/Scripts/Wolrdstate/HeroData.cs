@@ -71,7 +71,7 @@ public class HeroData {
     private string GetAdditionaldata(){
         string tempdata = "";
         for (int i = 0; i < additionalData.Count; i++){
-            tempdata += additionalData + "$";
+            tempdata += additionalData[i] + "$";
         }
         return tempdata;
     }

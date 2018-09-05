@@ -22,7 +22,6 @@ public class LobbyNetworkManager : NetworkManager {
         isSlotFull = new bool[6];
         if (NetworkServer.active && isServer)
         {
-            Debug.Log("ghere");
             GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
             lobbyManager = lobbyManagerObj.GetComponent<LobbyManager>();
             NetworkServer.Spawn(lobbyManagerObj);

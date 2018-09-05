@@ -287,7 +287,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Die()
     {
-        // Debug.Log("hey teacher don't leave these codes alone ");
+        Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
         GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
@@ -298,7 +298,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Respawn()
     {
-        //Debug.Log("hey teacher don't leave these codes alone ");
+        Debug.Log("hey teache leave these codes alone ");
         input.start = true;
         GetComponent<SpriteRenderer>().enabled = true;
         if (IsLocalPlayer())
@@ -338,11 +338,20 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void GetAdditionalData(string data)
     {
-        Debug.Log(data);
+        string[] deString = data.Split('$');
+        for (int i = 0; i < deString.Length; i++)
+        {
+            if (deString[i].Equals(""))
+                continue;
+            if (deString[i][0] == 'Z')
+                Die();
+            else if (deString[i][0] == 'Y')
+                Respawn();
+        }
     }
 
     public void GetAdditionalWorldData(string data)
     {
-
+        
     }
 }
