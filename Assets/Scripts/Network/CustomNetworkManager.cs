@@ -110,9 +110,17 @@ public class CustomNetworkManager : NetworkManager {
     private void RegisterNetworkClient(){
         Debug.Log("registered");
         NetworkClient networkClient = new NetworkClient(networkConnection);
-        PlayerConnection pc = GameObject.FindWithTag("PlayerConnection").GetComponent<PlayerConnection>();
-        Debug.Log(pc);
-        networkClient.RegisterHandler(MsgType.AddPlayer, pc.GetAbsoluteState);
+        GameObject[] g = GameObject.FindGameObjectsWithTag("PlayerConnection");
+        for (int i = 0; i < g.Length; i++)
+        {
+            PlayerConnection pc = g[i].GetComponent<PlayerConnection>();
+            if (pc.isLocalPlayer)
+            {
+                Debug.Log(pc);
+                networkClient.RegisterHandler(MsgType.AddPlayer, pc.GetAbsoluteState);
+                return;
+            }
+        }
     }
 
     void OnConnected(NetworkMessage netMsg)
