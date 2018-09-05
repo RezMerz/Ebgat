@@ -56490,7 +56490,7 @@ MonoBehaviour:
   heroSpawnPositions:
   - {fileID: 4519804688994576, guid: 05628decb61884ffcaa82d900970f572, type: 2}
   - {fileID: 4079915046112102, guid: 75f2c8b4d766d4816ab4e4ddb27eb5aa, type: 2}
-  playerConnection: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
+  playerConnectionPrefab: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
     type: 2}
   playerConnections: []
   maxPlayerCount: 0

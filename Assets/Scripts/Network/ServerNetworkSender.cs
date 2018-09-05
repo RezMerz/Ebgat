@@ -56,7 +56,7 @@ public class ServerNetworkSender : NetworkBehaviour {
         NetworkConnection connection = (NetworkConnection)networkManager.connectionTable[requesterID];
         Debug.Log(isServer);
         Debug.Log(connection.connectionId);
-        NetworkServer.SendToClient(connection.connectionId, MsgType.AddPlayer, new AbsoluteStateMessage());
+        NetworkServer.SendToClient(connection.connectionId, MsgType.Highest + 1, new AbsoluteStateMessage());
         //int id = ServerManager.instance.CurrentStateID * 3 + currentTime;
         //clientNetworkReciever.RpcRecieveWorldstate(worldState.GetWorldData(), id, requesterID);
     }
