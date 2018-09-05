@@ -28,6 +28,7 @@ public class PlayerConnection : NetworkBehaviour {
         serverNetworkReciever = GetComponent<ServerNetwork>();
         if(isLocalPlayer){
             serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
+            base.connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
         }
 	}
 
@@ -110,7 +111,12 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     public void GetAbsoluteState(NetworkMessage netMsg){
-        
+        Debug.Log("recieved");
+    }
+
+    public void SendAbsoluteState(){
+        Debug.Log("sending");
+        base.connectionToClient.Send(MsgType.Highest + 1, new AbsoluteStateMessage());
     }
 
     [ClientRpc]

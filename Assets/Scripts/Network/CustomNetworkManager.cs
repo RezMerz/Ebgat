@@ -67,7 +67,7 @@ public class CustomNetworkManager : NetworkManager {
     {
         base.OnClientConnect(conn);
         networkConnection = conn;
-        RegisterNetworkClient();
+        //RegisterNetworkClient();
     }
 
     /*public override void OnClientDisconnect(NetworkConnection conn)
