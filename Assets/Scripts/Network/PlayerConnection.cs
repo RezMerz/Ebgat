@@ -28,6 +28,7 @@ public class PlayerConnection : NetworkBehaviour {
         serverNetworkReciever = GetComponent<ServerNetwork>();
         if(isLocalPlayer){
             serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
+            base.connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
         }
 	}
 
@@ -107,6 +108,16 @@ public class PlayerConnection : NetworkBehaviour {
         //yield return new WaitForSeconds(time);
         if (isServer)
             virtualPlayerControl.SetReady();
+    }
+
+    public void GetAbsoluteState(NetworkMessage netMsg){
+        string s = netMsg.reader.ReadString();
+        int a = netMsg.reader.ReadInt32();
+        playerControl.clientNetworkReciever.RecieveWorldstate(s, a);
+    }
+
+    public void SendAbsoluteState(AbsoluteStateMessage message){
+        base.connectionToClient.Send(MsgType.Highest + 1, message);
     }
 
     [ClientRpc]

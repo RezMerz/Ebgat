@@ -12,6 +12,8 @@ public class MeleeAttack : Attack
 
     private GameObject sword;
 
+
+    private float animationTime;
     private float damage;
     private Vector2 weaponSize;
     private float distance;
@@ -32,7 +34,7 @@ public class MeleeAttack : Attack
     private new void Start()
     {
         base.Start();
-        maxAttackNumber = swordCombos.Length;
+        maxAttackNumber = 3;   //swordCombos.Length;
         sword = transform.GetChild(0).gameObject;
         sword.layer = gameObject.layer;
         layerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks");
@@ -60,7 +62,7 @@ public class MeleeAttack : Attack
                     {
                         StopCoroutine(comboTimeCoroutine);
                     }
-                    animationTimeCoroutine = StartCoroutine(AttackAnimateTime(swordCombos[charStats.AttackNumber].attackAnimationTime / charStats.SpeedRate));
+                    animationTimeCoroutine = StartCoroutine(AttackAnimateTime(animationTime / charStats.SpeedRate));
                     ready = false;
                 }
                 else
@@ -73,7 +75,7 @@ public class MeleeAttack : Attack
     private IEnumerator ParryTime()
     {
         sword.GetComponent<BoxCollider2D>().enabled = true;
-        yield return new WaitForSeconds(swordCombos[charStats.AttackNumber].attackAnimationTime * 1f / charStats.SpeedRate);
+        yield return new WaitForSeconds(animationTime * 1f / charStats.SpeedRate);
         sword.GetComponent<BoxCollider2D>().enabled = false;
     }
 
@@ -113,7 +115,7 @@ public class MeleeAttack : Attack
                         Debug.Log("parry");
                         parry = true;
                         float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
-                        targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * force, 0.3f, 0);
+                       // targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, 1.5f * force, 0.3f, 0);
                         playerControl.physic.AddReductiveForce(-charStats.Side, 1.5f * force, 0.3f, 0);
                     }
                 }
@@ -144,6 +146,10 @@ public class MeleeAttack : Attack
             }
         }
         charStats.AttackNumber = (charStats.AttackNumber + 1) % maxAttackNumber;
+        if(charStats.AbilityState == EAbility.Ability2Start)
+        {
+            charStats.AttackNumber += 3;
+        }
         if (charStats.AttackNumber != 0)
         {
             comboTimeCoroutine = StartCoroutine(ComboTime());
@@ -155,6 +161,7 @@ public class MeleeAttack : Attack
     {
         if (attackNumber != charStats.AttackNumber)
         {
+            animationTime = swordCombos[charStats.AttackNumber].attackAnimationTime;
             weaponSize = new Vector2(0.1f, swordCombos[charStats.AttackNumber].size.y);
             distance = swordCombos[charStats.AttackNumber].size.x;
             offset = swordCombos[charStats.AttackNumber].offset;
@@ -171,7 +178,6 @@ public class MeleeAttack : Attack
 
             sword.GetComponent<BoxCollider2D>().size = swordCombos[charStats.AttackNumber].size;
             sword.transform.localPosition = (Vector3)charStats.Side * (swordCombos[charStats.AttackNumber].size.x / 2 + offset.x) + Vector3.up * offset.y;
-
             attackNumber = charStats.AttackNumber;
         }
     }

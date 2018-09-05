@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
     CustomNetworkDiscovery networkDiscovery;
     LobbyNetworkManager networkManager;
+    CustomNetworkManager customNetworkManager;
 
     public string hostIp { get; set; }
     public LobbyClient myLobbyClient { get; set; }
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour {
                 instance.StartLobbyHost();
             else if (instance.currentScene == CurrentScene.LobbyClient)
                 StartLobbyClient();
+            else if(instance.currentScene == CurrentScene.GameHost)
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
@@ -73,8 +75,19 @@ public class GameManager : MonoBehaviour {
         networkManager.networkAddress = instance.hostIp;
         networkManager.StartClient();
     }
+
+    void StartGameHost(){
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        customNetworkManager.StartHost();
+    }
+
+    void StartGameClient(){
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        customNetworkManager.networkAddress = hostIp;
+        customNetworkManager.StartClient();
+    }
 }
 
 public enum CurrentScene{
-    Menu, LobbyHost, LobbyClient, Game
+    Menu, LobbyHost, LobbyClient, GameHost, GameClient
 }

@@ -11,7 +11,7 @@ public class CustomNetworkManager : NetworkManager {
     public List<GameObject> serverSidePlayers;
     public List<GameObject> clientSidePlayers;
     public List<Transform> heroSpawnPositions;
-    public GameObject playerConnection;
+    public GameObject playerConnectionPrefab;
 
     private bool flag;
     bool start;
@@ -53,14 +53,21 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+        Debug.Log(conn.connectionId);
         connectionTable.Add(++playerID, conn);
-        GameObject playercon = Instantiate(playerConnection);
+        GameObject playercon = Instantiate(playerConnectionPrefab);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
         p.clientId = playerID;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
-        networkConnection = conn;
 
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+        networkConnection = conn;
+        //RegisterNetworkClient();
     }
 
     /*public override void OnClientDisconnect(NetworkConnection conn)
@@ -101,11 +108,14 @@ public class CustomNetworkManager : NetworkManager {
     }*/
 
     private void RegisterNetworkClient(){
+        Debug.Log("registered");
+        Debug.Log(networkConnection);
+        Debug.Log(networkConnection.connectionId);
         NetworkClient networkClient = new NetworkClient(networkConnection);
-        networkClient.RegisterHandler(MsgType.AddPlayer, OnConnected);
+        networkClient.RegisterHandler(MsgType.Highest + 1, GeAbsoluteState);
     }
 
-    void OnConnected(NetworkMessage netMsg)
+    void GeAbsoluteState(NetworkMessage netMsg)
     {
         Debug.Log("Client connected");
     }
