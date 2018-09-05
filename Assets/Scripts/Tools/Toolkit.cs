@@ -137,13 +137,20 @@ public class Toolkit : MonoBehaviour
         return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat));
     }
 
-    public static bool IsVisible(Vector2 origin,Vector2 destenition,int layerMask,string tag)
+    public static bool IsVisible(Vector2 origin,Vector2 destenition,int layerMask,Collider2D colider)
     {
         Vector2 directiohn = destenition - origin;
-        RaycastHit2D hit = Physics2D.Raycast(origin, directiohn.normalized,directiohn.magnitude + 1, layerMask, 0, 0);
-        if (hit.collider.tag.Equals(tag))
+        List  <RaycastHit2D> hits = new List<RaycastHit2D>( Physics2D.RaycastAll(origin, directiohn.normalized,directiohn.magnitude + 1, layerMask, 0, 0));
+        foreach (RaycastHit2D hit in hits)
         {
-            return true;
+            if (hit.collider.tag.Equals("Blocks"))
+            {
+                return false;
+            }
+            if (hit.collider.Equals(colider))
+            {
+                return true;
+            }
         }
         return false;
     }
