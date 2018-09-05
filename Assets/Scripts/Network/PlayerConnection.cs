@@ -112,7 +112,7 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     public void GetAbsoluteState(NetworkMessage netMsg){
-        //Debug.Log(netMsg.ToString());
+        Debug.Log("recieved");
         int a = netMsg.reader.ReadInt32();
         string s = netMsg.reader.ReadString();
         playerControl.clientNetworkReciever.RecieveWorldstate(s, a);
