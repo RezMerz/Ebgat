@@ -56,7 +56,6 @@ public class MeleeAttack : Attack
                         GetComponent<CharacterDash>().DashEnd();
                     }
                     ChangeCombo();
-                    cooldownTimer = charStats.AttackCooldown;
                     charStats.HandState = EHandState.Attacking;
                     if (comboTimeCoroutine != null)
                     {
@@ -110,7 +109,7 @@ public class MeleeAttack : Attack
                 //Vector2 direction = targets[i].point - (Vector2)transform.positio
                 if (targets[i].collider.gameObject.GetComponentInParent<CharacterAttributes>().Side != charStats.Side)
                 {
-                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "Sword"))
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask,targets[i].collider))
                     {
                         Debug.Log("parry");
                         parry = true;
@@ -127,7 +126,7 @@ public class MeleeAttack : Attack
             {
                 if (targets[i].collider.tag.Equals("VirtualPlayer"))
                 {
-                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "VirtualPlayer"))
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask,targets[i].collider))
                     {
                         float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
                         targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, buffName);
@@ -136,7 +135,7 @@ public class MeleeAttack : Attack
                 }
                 else if (targets[i].collider.tag.Equals("VirtualBullet"))
                 {
-                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, "VirtualBullet"))
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask,targets[i].collider))
                     {
                         VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
                         bullet.Destroy();
