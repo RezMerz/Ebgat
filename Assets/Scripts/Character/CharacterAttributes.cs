@@ -548,6 +548,8 @@ public class CharacterAttributes : MonoBehaviour {
             case EAbility.Ability1Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "2"); break;
             case EAbility.Ability2Start: playerControl.worldState.RegisterCharStat(ID, 'A', "3"); break;
             case EAbility.Ability2Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "4"); break;
+            case EAbility.Ability3Start: playerControl.worldState.RegisterCharStat(ID, 'A', "5"); break;
+            case EAbility.Ability3Finish: playerControl.worldState.RegisterCharStat(ID, 'A', "6"); break;
         }
     }
     public void RegisterAllStates(WorldState worldState){
@@ -590,5 +592,5 @@ public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 ,
 public enum EAttackMode { Ranged = 1, Melee = 2 };
 
 
-public enum EAbility { Ability1Start = 1, Ability1Finish = 2, Ability2Start=3,Ability2Finish =4};
+public enum EAbility { Ability1Start = 1, Ability1Finish = 2, Ability2Start=3,Ability2Finish =4,Ability3Start = 5,Ability3Finish = 6};
 
