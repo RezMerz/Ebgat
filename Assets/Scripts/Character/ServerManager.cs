@@ -244,25 +244,12 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void SendKillCommand(int playerId){
-        for (int i = 0; i < networkManager.playerConnections.Count; i++)
-        {
-            if (networkManager.playerConnections[i].clientId == playerId)
-            {
-                networkManager.playerConnections[i].RpcKillHero();
-                break;
-            }
-        }
+        currentWorldState.AdditionalPlayerData(playerId, "Z");
     }
 
     private void RespawnHero(PlayerInfo playerInfo){
         playerInfo.isAlive = true;
-        for (int i = 0; i < networkManager.playerConnections.Count; i++)
-        {
-            if (networkManager.playerConnections[i].clientId == playerInfo.clientId)
-            {
-                networkManager.playerConnections[i].RpcRespawnHero();
-            }
-        }
+        currentWorldState.AdditionalPlayerData(playerInfo.clientId, "Y");
     }
 }
 

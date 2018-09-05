@@ -338,7 +338,7 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void GetAdditionalData(string data)
     {
-
+        Debug.Log(data);
     }
 
     public void GetAdditionalWorldData(string data)
