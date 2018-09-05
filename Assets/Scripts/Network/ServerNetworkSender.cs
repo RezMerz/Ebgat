@@ -51,11 +51,14 @@ public class ServerNetworkSender : NetworkBehaviour {
     }
 
     public void SendWorldFullstate(WorldState worldState, int requesterID){
-        Debug.Log("sending msg");
         CustomNetworkManager networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
-        for (int i = 0; i < networkManager.playerConnections.Count; i++){
-            if(networkManager.playerConnections[i].clientId == requesterID){
-                networkManager.playerConnections[i].SendAbsoluteState();
+        for (int i = 0; i < networkManager.playerConnections.Count; i++)
+        {
+            if (networkManager.playerConnections[i].clientId == requesterID)
+            {
+                Debug.Log(ServerManager.instance.CurrentStateID + currentTime);
+                networkManager.playerConnections[i].SendAbsoluteState(new AbsoluteStateMessage(worldState.GetWorldData(), ServerManager.instance.CurrentStateID + currentTime));
+                return;
             }
         }
         //int id = ServerManager.instance.CurrentStateID * 3 + currentTime;

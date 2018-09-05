@@ -7,13 +7,11 @@ using UnityEngine.Networking;
 
     public static short AbsoluteMessageType = MsgType.Highest + 1;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public string message;
+    public int frameId;
+
+    public AbsoluteStateMessage(string message, int frameId){
+        this.message = message;
+        this.frameId = frameId;
+    }
 }

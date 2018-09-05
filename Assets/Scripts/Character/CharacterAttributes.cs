@@ -551,7 +551,6 @@ public class CharacterAttributes : MonoBehaviour {
         }
     }
     public void RegisterAllStates(WorldState worldState){
-        print("Register All States");
         int id = playerControl.playerId;
         string data = "";
         RegisterHeadState(worldState);

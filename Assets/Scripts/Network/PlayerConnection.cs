@@ -111,12 +111,13 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     public void GetAbsoluteState(NetworkMessage netMsg){
-        Debug.Log("recieved");
+        string s = netMsg.reader.ReadString();
+        int a = netMsg.reader.ReadInt32();
+        playerControl.clientNetworkReciever.RecieveWorldstate(s, a);
     }
 
-    public void SendAbsoluteState(){
-        Debug.Log("sending");
-        base.connectionToClient.Send(MsgType.Highest + 1, new AbsoluteStateMessage());
+    public void SendAbsoluteState(AbsoluteStateMessage message){
+        base.connectionToClient.Send(MsgType.Highest + 1, message);
     }
 
     [ClientRpc]

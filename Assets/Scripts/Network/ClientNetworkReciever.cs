@@ -55,10 +55,7 @@ public class ClientNetworkReciever : NetworkBehaviour {
         }
     }
 
-    [ClientRpc]
-    public void RpcRecieveWorldstate(string worldstate, int frameID, int RequesterID){
-        if (localPlayerControl.playerId != RequesterID)
-            return;
+    public void RecieveWorldstate(string worldstate, int frameID){
         if (worldstate.Length == 0)
             return;
         string[] heroData = worldstate.Split('#');
