@@ -60,10 +60,9 @@ public class Boar : Ability
         {
             if (!coolDownLock)
             {
-                if (energyUsage >= charStats.Energy)
+                if (energyUsage <= charStats.Energy)
                 {
                     coolDownLock = true;
-
                     physic.Lock();
                     castTimeCoroutine = StartCoroutine(CastTime(castTime));
                     charStats.HandState = EHandState.Casting;

@@ -146,6 +146,10 @@ MonoBehaviour:
   speed: 25
   range: 8
   coolDownTime: 1
+  boarFormSpeed: 0
+  boarFormRange: 0
+  dashForce: 0
+  buff: {fileID: 0}
 --- !u!114 &114175303413705874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,12 +361,12 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 2
-  duration: 0
-  minMovementSpeed: 0
-  maxMovementSpeed: 0
-  movementAcceleration: 0
-  minJumpSpeed: 0
-  maxJumpSpeed: 0
-  jumpAcceleration: 0
-  gravityAcceleration: 0
-  onWallGravitySpeed: 0
+  duration: 20
+  minMovementSpeed: 15
+  maxMovementSpeed: 20
+  movementAcceleration: 0.1
+  minJumpSpeed: 20
+  maxJumpSpeed: 35
+  jumpAcceleration: 50
+  gravityAcceleration: 60
+  onWallGravitySpeed: 7
