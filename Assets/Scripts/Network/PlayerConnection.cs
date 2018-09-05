@@ -29,6 +29,7 @@ public class PlayerConnection : NetworkBehaviour {
         if(isLocalPlayer){
             serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
             base.connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
+
         }
 	}
 
@@ -111,8 +112,9 @@ public class PlayerConnection : NetworkBehaviour {
     }
 
     public void GetAbsoluteState(NetworkMessage netMsg){
-        string s = netMsg.reader.ReadString();
+        //Debug.Log(netMsg.ToString());
         int a = netMsg.reader.ReadInt32();
+        string s = netMsg.reader.ReadString();
         playerControl.clientNetworkReciever.RecieveWorldstate(s, a);
     }
 

@@ -10,8 +10,23 @@ using UnityEngine.Networking;
     public string message;
     public int frameId;
 
-    public AbsoluteStateMessage(string message, int frameId){
+    public AbsoluteStateMessage(string message, int frameId)
+    {
         this.message = message;
         this.frameId = frameId;
+    }
+
+    public override void Serialize(NetworkWriter writer)
+    {
+        writer.Write(frameId); 
+        writer.Write(message);
+        //base.Serialize(writer);
+    }
+
+    public override void Deserialize(NetworkReader reader)
+    {
+        frameId = reader.ReadInt32();
+        message = reader.ReadString();
+        base.Deserialize(reader);
     }
 }
