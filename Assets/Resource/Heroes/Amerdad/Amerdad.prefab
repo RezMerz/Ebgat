@@ -223,7 +223,7 @@ MonoBehaviour:
     range: 30
     attackAnimationTime: 0.1
     damage: 0
-    startingPos: {x: 0, y: 0}
+    startingPos: {x: 1.16, y: 0.57}
 --- !u!114 &114655279656209964
 MonoBehaviour:
   m_ObjectHideFlags: 1

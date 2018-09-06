@@ -58,7 +58,8 @@ public class AmerdadGraphics : HeroGraphics {
 
     public override void HandState(string value)
     {
-        base.HandState(value);
+        if (value == "2")
+            animator.SetTrigger("Attack");
     }
 
     public override void AbilityState(string value)

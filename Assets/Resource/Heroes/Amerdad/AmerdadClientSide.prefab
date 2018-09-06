@@ -450,8 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBase: 0
-  energyBase: 0
+  hpBase: 100
+  energyBase: 1000
 --- !u!212 &212158161614638338
 SpriteRenderer:
   m_ObjectHideFlags: 1

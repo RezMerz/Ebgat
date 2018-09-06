@@ -115,7 +115,7 @@ public class HeroGraphics : MonoBehaviour
         }
         else if (value == "false")
         {
-            HeadIcons.transform.GetChild(1).gameObject.SetActive(flase);
+            HeadIcons.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
     public void ArmorChange(string value)
