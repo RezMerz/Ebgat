@@ -73,6 +73,8 @@ public class Bullet : MonoBehaviour
 
         if (hitObject.collider != null)
         {
+            transform.localScale = Vector3.one;
+
             shot = false;
             Vector2 hitsSide = Toolkit.HitSide(hitObject);
             if(hitsSide == Vector2.right)
@@ -101,6 +103,7 @@ public class Bullet : MonoBehaviour
     {
         if (!hitAnimation)
         {
+            transform.localScale = Vector3.one;
             shot = false;
             animator.SetTrigger("Hit");
         }
