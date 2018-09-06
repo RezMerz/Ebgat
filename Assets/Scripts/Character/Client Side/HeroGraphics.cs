@@ -8,7 +8,7 @@ public class HeroGraphics : MonoBehaviour
     public GameObject landInstance;
     protected SpriteRenderer sprite;
     protected Animator animator;
-    private PlayerControlClientside playerControlClientside;
+    protected PlayerControlClientside playerControlClientside;
     protected AudioSource audioSource;
     private Slider hpSlider;
     private Slider energySlider;
