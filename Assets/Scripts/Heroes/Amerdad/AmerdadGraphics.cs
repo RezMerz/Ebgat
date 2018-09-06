@@ -17,7 +17,7 @@ public class AmerdadGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
-
+            animator.SetTrigger("Dash");
         }
         else if(value == "4")
         {
@@ -46,14 +46,14 @@ public class AmerdadGraphics : HeroGraphics {
         }
         else if (value == "6")
         {
-            animator.SetBool("OnWall", true);
+            animator.SetTrigger("OnWall");
         }
         else if (value == "4")
         {
             //print(EFeetState.NoGravity);
         }
-        else
-            print("Wrong Feet State Code");
+        else if (value == "8")
+            animator.SetTrigger("Jump");
     }
 
     public override void HandState(string value)
@@ -64,7 +64,10 @@ public class AmerdadGraphics : HeroGraphics {
 
     public override void AbilityState(string value)
     {
-        base.AbilityState(value);
+        if (value == "1")
+        {
+            animator.SetTrigger("Ability 1");
+        }
     }
 
 }

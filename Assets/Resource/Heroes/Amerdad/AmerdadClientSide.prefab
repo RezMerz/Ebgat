@@ -390,6 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
+  dashInstance: {fileID: 1262026146424876, guid: c32cc02519489d143a4d615181861632,
+    type: 2}
 --- !u!114 &114308272760187236
 MonoBehaviour:
   m_ObjectHideFlags: 1

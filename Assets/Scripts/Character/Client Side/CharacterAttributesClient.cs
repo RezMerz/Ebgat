@@ -80,7 +80,6 @@ public class CharacterAttributesClient : MonoBehaviour {
             case "2": handState = EHandState.Attacking; break;
             case "3": handState = EHandState.Casting; break;
             case "4": handState = EHandState.Channeling; break;
-            case "5": handState = EHandState.Disarm; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }

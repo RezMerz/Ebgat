@@ -74,6 +74,7 @@ public class AmerdadDisarm : Ability
                 }
             }
         }
+        charStats.HandState = EHandState.Idle;
     }
 
 
