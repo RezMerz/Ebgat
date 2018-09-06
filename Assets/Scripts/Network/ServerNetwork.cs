@@ -57,8 +57,8 @@ public class ServerNetwork : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSendWorldStateToClient(int id){
-        ServerManager.instance.SendWorldStateToClient(id);
+    public void CmdSendWorldStateToClient(int requesterId, int FrameId){
+        ServerManager.instance.SendWorldStateToClient(requesterId);
     }
 
 
