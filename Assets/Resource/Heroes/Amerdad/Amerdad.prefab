@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46abd6c837648eeb3714dded3c7ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 0
-  coolDownTime: 0
+  castTime: 0.2
+  coolDownTime: 1
   energyUsage: 0
-  buff: {fileID: 0}
+  buff: {fileID: 114109344943414118, guid: 9ae508828b6fba243aa7262f4617b60f, type: 2}
   abilityNumber: 2
 --- !u!114 &114745505873878942
 MonoBehaviour:

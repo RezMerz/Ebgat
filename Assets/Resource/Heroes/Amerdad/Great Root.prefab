@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247224230697868}
-  - component: {fileID: 114109344943414118}
+  - component: {fileID: 114754754373969400}
   m_Layer: 0
-  m_Name: Great Marked For Root Buff
+  m_Name: Great Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114109344943414118
+--- !u!114 &114754754373969400
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,10 +48,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1644391085090094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f4797a8391de2459ab8b1ad30e7cbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 225df6f283e5a4d408fa7c1791a47215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
+  duration: 5
   stackable: 0
-  damage: 0
-  rootBuff: {fileID: 114754754373969400, guid: 8cdf756cb989c7449844457444a9c989, type: 2}
