@@ -294,7 +294,14 @@ public class CharacterAttributes : MonoBehaviour {
     public bool MarkedForRoot
     {
         get { return markedForRoot; }
-        set { if (markedForRoot != disarm) { markedForRoot = value; playerControl.worldState.RegisterCharStat(ID, 'E', value + ""); } }
+        set { if (value != markedForRoot) { markedForRoot = value; playerControl.worldState.RegisterCharStat(ID, 'E', value + ""); } }
+    }
+
+    private bool root;
+    public bool Root
+    {
+        get { return root; }
+        set { if (value != root) { root = value; playerControl.worldState.RegisterCharStat(ID, 'F', value + ""); } }
     }
 
 

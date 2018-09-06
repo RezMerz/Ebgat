@@ -53,6 +53,8 @@ public class AmerdadRoot : Ability
         }
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability2Finish;
+        StartCoroutine(CoolDownTimer(coolDownTime));
+
     }
 
     public override void AbilityKeyReleased()
