@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmerdadDash : CharacterDash {
+public class AmerdadDash : CharacterDash
+{
 
-    protected bool secondCoolDownLock;
+    private AmerdadAttack amerdadAttack;
 
-	void Update () 
+
+    private void Awake()
+    {
+
+        amerdadAttack = GetComponent<AmerdadAttack>();
+    }
+    // Update is called once per frame
+    void Update()
     {
         if (started && charStats.BodyState == EBodyState.Dashing)
         {
             DashMove();
         }
-	}
+    }
 
     private void DashMove()
     {
@@ -20,6 +28,7 @@ public class AmerdadDash : CharacterDash {
         if (currentDistance + distance <= range)
         {
             physic.AddForce(charStats.Side * speed * Time.deltaTime);
+            physic.PhysicAction += MalkousDashHitFunction;
             distance += currentDistance;
         }
         else
@@ -28,58 +37,15 @@ public class AmerdadDash : CharacterDash {
         }
     }
 
-    public override void DashPressed()
+
+    protected override void DashEffect()
     {
-        if(charStats.BodyState == EBodyState.Dashing)
-            return;
-        if (!coolDownLock)
-        {
-            if (charStats.Energy >= charStats.dashEnergyConsume)
-            {
-                if (charStats.HandState == EHandState.Attacking)
-                {
-                    attack.IntruptAttack();
-                }
-                //StartFunction();
-                coolDownLock = true;
-                StartCoroutine(CoolDownReset());
-                charStats.BodyState = EBodyState.Dashing;
-                physic.DashLayerSet();
-                gameObject.layer = LayerMask.NameToLayer("Dashing");
-            }
-            else
-            {
-                print("Low Energy");
-            }
-        }
-        else if(!secondCoolDownLock){
-            if (charStats.Energy >= charStats.dashEnergyConsume)
-            {
-                if (charStats.HandState == EHandState.Attacking)
-                {
-                    attack.IntruptAttack();
-                    charStats.BodyState = EBodyState.Dashing;
-                    StartCoroutine(SecondCoolDownReset());
-                    physic.DashLayerSet();
-                    gameObject.layer = LayerMask.NameToLayer("Dashing");
-                }
-                secondCoolDownLock = true;
-            }
-            else
-            {
-                print("Low Energy");
-            }
-        }
+        //amerdadAttack.StartIceShard();
+        physic.DashLayerSet();
     }
 
-    private IEnumerator SecondCoolDownReset()
+    private void MalkousDashHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
-        yield return new WaitForSeconds(coolDownTime);
-        secondCoolDownLock = false;
-    }
 
-    public override void DashEnd()
-    {
-        base.DashEnd();
     }
 }

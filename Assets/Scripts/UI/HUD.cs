@@ -8,6 +8,8 @@ public class HUD : MonoBehaviour {
     private Image Icon1Black;
     private Image Icon2Black;
     private Image Icon3Black;
+    private Image Icon4Black;
+    private Image Icon5Black;
     private float timer1;
     private float timer2;
     private float timer3;
@@ -28,6 +30,10 @@ public class HUD : MonoBehaviour {
                 Icon2Black = transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>();
             else if (transform.GetChild(i).name == "Icon 3")
                 Icon3Black = transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>();
+            else if(transform.GetChild(i).name == "Icon 4")
+                Icon4Black = transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>();
+            else if(transform.GetChild(i).name == "Icon 5")
+                Icon5Black = transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>();
         }
 	}
     
@@ -50,6 +56,9 @@ public class HUD : MonoBehaviour {
             case 1: Icon1Black.transform.parent.GetComponent<Image>().sprite = image; break;
             case 2: Icon2Black.transform.parent.GetComponent<Image>().sprite = image; break;
             case 3: Icon3Black.transform.parent.GetComponent<Image>().sprite = image; break;
+            case 4: Icon4Black.transform.parent.GetComponent<Image>().sprite = image; break;
+            case 5: Icon5Black.transform.parent.GetComponent<Image>().sprite = image; break;
+            
         }
     }
 
@@ -58,11 +67,24 @@ public class HUD : MonoBehaviour {
         switch (n)
         {
             case 1: Icon1Black.fillAmount = 1; coolDown1 = time; timer1 = 0; break;
-            case 2: Icon2Black.fillAmount = 2; coolDown2 = time; timer2 = 0; break;
-            case 3: Icon3Black.fillAmount = 3; coolDown3 = time;timer3 = 0; break;
+            case 2: Icon2Black.fillAmount = 1; coolDown2 = time; timer2 = 0; break;
+            case 3: Icon3Black.fillAmount = 1; coolDown3 = time;timer3 = 0; break;
+            case 4: Icon4Black.fillAmount = 1; coolDown3 = time; timer3 = 0; break;
+            case 5: Icon5Black.fillAmount = 1; coolDown3 = time; timer3 = 0; break;
         }
     }
+    public void SetBlack(int n,float fill)
+    {
 
+        switch (n)
+        {
+            case 1: Icon1Black.fillAmount = fill;  break;
+            case 2: Icon2Black.fillAmount = fill;  break;
+            case 3: Icon3Black.fillAmount = fill;  break;
+            case 4: Icon4Black.fillAmount = fill;   break;
+            case 5: Icon5Black.fillAmount = fill;  break;
+        }
+    }
     void Update()
     {
         if (timer1 < coolDown1)

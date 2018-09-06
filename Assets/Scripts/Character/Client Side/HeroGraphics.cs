@@ -58,7 +58,11 @@ public class HeroGraphics : MonoBehaviour
         else if (value == "False")
         {
             if (rootGround != null)
+            {
                 rootGround.GetComponent<Animator>().SetTrigger("UnRoot");
+                DestoryObjectAfterTime(3, rootGround);
+                rootGround = null;
+            }
         }
     }
 
@@ -89,7 +93,7 @@ public class HeroGraphics : MonoBehaviour
         sprite.color = color;
     }
 
-    void Start()
+    protected void Start()
     {
         hud = GameObject.FindObjectOfType<HUD>();
         charStats = GetComponent<CharacterAttributesClient>();

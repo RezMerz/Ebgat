@@ -6,6 +6,8 @@ public class AmerdadGraphics : HeroGraphics {
 
     public override void BodyState(string value)
     {
+        aim.AimReleasedGraphic();
+        animator.SetBool("Dash", false);
         animator.SetBool("Walk", false);
         if (value == "1")
         {
@@ -17,11 +19,11 @@ public class AmerdadGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
-            animator.SetTrigger("Dash");
+            animator.SetBool("Dash",true);
         }
         else if(value == "4")
         {
-
+            aim.AimPressedGraphics();
         }
     }
 

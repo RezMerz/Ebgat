@@ -226,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026552530270422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.551903, y: 6.64069, z: 0.7376083}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7376083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4009481634187690}
@@ -490,7 +490,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27acef96dab614947b8d8adceba6be4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities: []
+  abilities:
+  - icon: {fileID: 21300000, guid: f88d61edd5a19d24495c656f583748fb, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: 765f9770f2251714f8cd4fc50ff913d1, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: 8db2f4a585497c14db5726c2c653103d, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: c3fffa286a6d58940895a4f24036d762, type: 3}
+    cooldown: 0
+    timer: 0
+  - icon: {fileID: 21300000, guid: 539396abd29e9924cb801e561e6d6b18, type: 3}
+    cooldown: 0
+    timer: 0
 --- !u!114 &114971003779202340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -768,7 +783,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 25
   m_Sprite: {fileID: 21300000, guid: 667130847977225479d6861c58a2aff7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
