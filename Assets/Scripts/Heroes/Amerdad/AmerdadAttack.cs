@@ -121,9 +121,9 @@ public class AmerdadAttack : Attack
         }
         GameObject virtualBullet = Instantiate(virtualBullets[charStats.AttackNumber].VirtualBullet, transform.position + (Vector3)startPos, Quaternion.identity);
         virtualBullet.layer = gameObject.layer;
-        virtualBullet.GetComponent<VirtualBullet>().Shoot(damage, attackSide, layerMask, gravityAcc, playerControl, bulletID, range);
+        virtualBullet.GetComponent<VirtualBullet>().Shoot(damage, attackSide, layerMask, gravityAcc, playerControl, bulletID, range,0);
         // register bullet
-        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos);
+        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos,0);
         StartCoroutine(CoolDown());
         currentHoldTime = 0;
         if (charStats.AttackNumber != 0)

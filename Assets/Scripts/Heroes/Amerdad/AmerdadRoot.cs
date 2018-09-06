@@ -51,6 +51,7 @@ public class AmerdadRoot : Ability
                 playerControl.TakeAttack(0, buff.name);
             }
         }
+        physic.Unlock();
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability2Finish;
         StartCoroutine(CoolDownTimer(coolDownTime));
