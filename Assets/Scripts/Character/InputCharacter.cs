@@ -38,9 +38,8 @@ public class InputCharacter : MonoBehaviour
         axisX = Input.GetAxis("Horizontal");
         axisY = Input.GetAxis("Vertical");
         // Move left and Right
-        if ((!axisXChanged && axisX > 0.3 || axisX < -0.3))
+        if ((!axisXChanged && (axisX > 0.3 || axisX < -0.3)))
         {
-
             axisXChanged = true;
             if (axisX > 0.1)
                 clientNetworkSender.Move(1);

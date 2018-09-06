@@ -30,7 +30,6 @@ public class BulletPhysic : Physic
     public void SetData(int layer)
     {
         layerMask = layer;
-        Debug.Log(layerMask);
     }
     protected override void Calculate()
     {

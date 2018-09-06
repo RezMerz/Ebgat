@@ -101,7 +101,6 @@ public class AmerdadAttack : Attack
             currentHoldTime = maxHoldTime;
         }
         float damage = minDamage + (currentHoldTime / maxHoldTime) * (maxDamage - minDamage);
-        Debug.Log(damage);
         float gravityAcc = charStats.GravityAcceleration;
         float range = virtualBullets[charStats.AttackNumber].range;
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);

@@ -19,7 +19,6 @@ public class CharacterHudProperty : MonoBehaviour {
             hud = GameObject.FindObjectOfType<HUD>();
             for (int i = 0; i < abilities.Length; i++)
             {
-                print(abilities[i].icon);
                 hud.SetImage(abilities[i].icon, i + 1);
             }
         }
