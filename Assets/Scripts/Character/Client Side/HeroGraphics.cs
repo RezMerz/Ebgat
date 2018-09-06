@@ -24,6 +24,8 @@ public class HeroGraphics : MonoBehaviour
     protected AbilityHudProperty[] abilitiesInfo;
     public GameObject dieInstance;
     private Animator rootMark;
+    private GameObject rootGround;
+    public GameObject rootGroundInstance;
 
     public void TakeDamage()
     {
@@ -42,6 +44,20 @@ public class HeroGraphics : MonoBehaviour
         else if (value == "False")
         {
             rootMark.SetBool("Root", false);
+        }
+    }
+
+    public void Root(string value)
+    {
+        if (value == "True")
+        {
+            rootGround = Instantiate(rootGroundInstance);
+            rootGround.transform.position = transform.position;
+        }
+        else if (value == "False")
+        {
+            if (rootGround != null)
+                rootGround.GetComponent<Animator>().SetTrigger("UnRoot");
         }
     }
 
