@@ -30,6 +30,10 @@ public class ServerManager : NetworkBehaviour {
     private int team1Count = 0, team1DeadCount = 0;
     private int team2Count = 0, team2DeadCount = 0;
 
+
+    private Hashtable worldStatesStash;
+    int lowesId = 0;
+
     public void Awake()
     {
         instance = this;
@@ -38,6 +42,7 @@ public class ServerManager : NetworkBehaviour {
         reservelist = new List<int>();
         playerInfoList = new List<PlayerInfo>();
         deadPlayers = new List<PlayerInfo>();
+        worldStatesStash = new Hashtable();
         maxClientCount = networkManager.maxPlayerCount;
         respawnTime = networkManager.baseRespawnTime;
         respawnPenalty = networkManager.respawnTimePenalty;
@@ -91,38 +96,29 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void PlayerSimulationFinished(int ID){
-        if(currentWorldState == null)
-            currentWorldState = new WorldState();
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
-            ServerNetworkSender.instance.RegisterWorldState(currentWorldState);
+            string rawData = currentWorldState.GetWorldData();
+            ServerNetworkSender.instance.RegisterWorldState(rawData);
             finishedPLayercounter = 0;
+            worldStatesStash.Add(CurrentStateID * 3 + ServerNetworkSender.instance.currentTime, currentWorldState);
+            if (worldStatesStash.Count > 600)
+            {
+                worldStatesStash.Remove(lowesId);
+                lowesId++;
+            }
             currentWorldState = new WorldState();
             UpdatePlayers();
 
         }
     }
-
-    //temp
-    public WorldState GetFullState(){
-        WorldState tempWorldState = new WorldState();
-        foreach (PlayerControl p in playerControls)
-        {
-            tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
-            p.worldState = tempWorldState;
-            p.charStats.RegisterAllStates(tempWorldState);
-        }
-        return tempWorldState;
-    }
     
-    public void SendWorldStateToClient(int playerID){
-        WorldState tempWorldState = new WorldState();
-        foreach (PlayerControl p in playerControls)
-        {
-            tempWorldState.RegisterHeroPhysics(p.playerId, p.physic.virtualPosition, Vector2.zero);
-            p.charStats.RegisterAllStates(tempWorldState);
+    public void SendWorldStateToClient(int playerID, int frameId){
+        string tempWorldState = "";
+        for (int i = frameId; i < CurrentStateID * 3; i++){
+            tempWorldState += worldStatesStash[i] + "!";
         }
-        ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID);
+        ServerNetworkSender.instance.SendWorldFullstate(tempWorldState, playerID, frameId);
     }
 
     public void SpawnHero(int clientId, int heroId, int teamId, Vector2 SpawnPoint)

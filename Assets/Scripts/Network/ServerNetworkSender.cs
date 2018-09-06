@@ -12,12 +12,10 @@ public class ServerNetworkSender : NetworkBehaviour {
     string data = "";
     string hitData = "";
     string[] worldData;
-    int attackID;
 
     public int networkSendTime = 3;
     private string[] worldStates;
-    private int currentTime = 0;
-    private int currentid;
+    public int currentTime = 0;
 
     private void Awake()
     {
@@ -35,11 +33,10 @@ public class ServerNetworkSender : NetworkBehaviour {
     {
     }
 
-    public void RegisterWorldState(WorldState worldState){
-        string s = worldState.GetWorldData();
-        if (s.Length == 0)
+    public void RegisterWorldState(string worldState){
+        if (worldState.Length == 0)
             return;
-        worldStates[currentTime] = s;
+        worldStates[currentTime] = worldState;
         currentTime++;
         if(currentTime == networkSendTime){
             clientNetworkReciever.RpcRecieveWorldData(worldStates, ServerManager.instance.CurrentStateID);
@@ -50,14 +47,14 @@ public class ServerNetworkSender : NetworkBehaviour {
 
     }
 
-    public void SendWorldFullstate(WorldState worldState, int requesterID){
+    public void SendWorldFullstate(string worldStates, int requesterID, int frameId){
         CustomNetworkManager networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
             if (networkManager.playerConnections[i].clientId == requesterID)
             {
                 Debug.Log(ServerManager.instance.CurrentStateID + currentTime);
-                networkManager.playerConnections[i].SendAbsoluteState(new AbsoluteStateMessage(worldState.GetWorldData(), ServerManager.instance.CurrentStateID + currentTime));
+                networkManager.playerConnections[i].SendAbsoluteState(new AbsoluteStateMessage(worldStates, frameId));
                 return;
             }
         }
