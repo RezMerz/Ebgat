@@ -287,9 +287,9 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Die()
     {
+        heroGraphics.Die();
         Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
-        GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();

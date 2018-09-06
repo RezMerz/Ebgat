@@ -6,7 +6,7 @@ using System.Globalization;
 public class HeroGraphics : MonoBehaviour
 {
     public GameObject landInstance;
-    private SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
     protected Animator animator;
     private PlayerControlClientside playerControlClientside;
     protected AudioSource audioSource;
@@ -22,6 +22,7 @@ public class HeroGraphics : MonoBehaviour
     protected Color color = Color.white;
     protected HUD hud;
     protected AbilityHudProperty[] abilitiesInfo;
+    public GameObject dieInstance;
 
     public void TakeDamage()
     {
@@ -30,6 +31,12 @@ public class HeroGraphics : MonoBehaviour
     }
 
 
+    public void Die()
+    {
+        GameObject die = Instantiate(dieInstance);
+        die.transform.position = transform.position;
+        DestoryObjectAfterTime(2, die);
+    }
     public void SpeedRateChange(string value)
     {
         float speedRate = float.Parse(value);
