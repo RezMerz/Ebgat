@@ -277,20 +277,20 @@ MonoBehaviour:
     buff: {fileID: 0}
   - damage: 20
     attackAnimationTime: 0.1
-    size: {x: 5, y: 4}
-    offset: {x: 1, y: 2.1}
+    size: {x: 5.9, y: 2.2}
+    offset: {x: 1, y: 0.4}
     force: 0.2
     buff: {fileID: 0}
   - damage: 20
     attackAnimationTime: 0.1
-    size: {x: 5, y: 4}
-    offset: {x: 1, y: 2.1}
+    size: {x: 5.7, y: 1.6}
+    offset: {x: 1, y: 0.1}
     force: 0.2
     buff: {fileID: 0}
   - damage: 30
     attackAnimationTime: 0.2
-    size: {x: 4, y: 4}
-    offset: {x: 1, y: 2.1}
+    size: {x: 3.8, y: 4.9}
+    offset: {x: 1, y: 1}
     force: 0.4
     buff: {fileID: 0}
   comboTime: 0.7
@@ -352,6 +352,8 @@ MonoBehaviour:
   - {fileID: 114887446209080760, guid: cf18b18aac53cf147adae1ae8121d279, type: 2}
   - {fileID: 114991850052140064, guid: c072f86d460465946b47050450233211, type: 2}
   - {fileID: 114991850052140064, guid: d66d0aa273e62454fbeffe0fe9ee4496, type: 2}
+  - {fileID: 114109344943414118, guid: bed12c108888fa2429967b2e318567f3, type: 2}
+  - {fileID: 114754754373969400, guid: c96291a1595c8554fa173263723c5683, type: 2}
 --- !u!114 &114769973436579096
 MonoBehaviour:
   m_ObjectHideFlags: 1
