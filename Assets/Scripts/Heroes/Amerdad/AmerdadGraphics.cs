@@ -68,6 +68,8 @@ public class AmerdadGraphics : HeroGraphics {
         {
             animator.SetTrigger("Ability 1");
         }
+        else if (value == "3")
+            animator.SetTrigger("Ulti");
     }
 
 }
