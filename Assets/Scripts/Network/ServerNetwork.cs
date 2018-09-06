@@ -26,7 +26,7 @@ public class ServerNetwork : NetworkBehaviour
             {
                 case "1": playerControl.MoveRight(); break;
                 case "2": playerControl.MoveLeft(); break;
-                case "3": playerControl.MoveFinished(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
+                case "3": playerControl.MoveFinished(); break;
                 case "4": playerControl.JumpPressed(); break;
                 case "6": playerControl.JumpReleased(); break;
              //   case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
