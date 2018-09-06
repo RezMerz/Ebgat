@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4546206193501974}
   - component: {fileID: 114999439395002206}
   - component: {fileID: 58047122701672354}
-  - component: {fileID: 114959743718954288}
+  - component: {fileID: 114957315735834296}
   m_Layer: 0
-  m_Name: Virtual Bullet 1
+  m_Name: Virtual Bullet 3
   m_TagString: VirtualBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1691014189850432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.362163, y: -5.7940755, z: -0.4609375}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,8 +56,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
---- !u!114 &114959743718954288
+  m_Radius: 1
+--- !u!114 &114957315735834296
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,12 +65,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691014189850432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95217242742bc66428285bea1c95b8b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 65bafbb0750572c45b142aea21e997eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buff: {fileID: 114991850052140064, guid: e546a8bf9088e304ca29b740f82ad5f8, type: 2}
-  speed: 35
-  force: 0.3
+  buff: {fileID: 114991850052140064, guid: d66d0aa273e62454fbeffe0fe9ee4496, type: 2}
+  speed: 75
+  force: 1
 --- !u!114 &114999439395002206
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4541248044619066}
   - component: {fileID: 114991850052140064}
   m_Layer: 0
-  m_Name: Slow Buff
+  m_Name: Slow Buff 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,5 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  stackable: 1
-  slowRate: 0.05
+  stackable: 0
+  slowRate: 0.6

@@ -14,7 +14,7 @@ public class VirtualBullet : MonoBehaviour
     private float damage;
     private float gravitySpeedBase;
     private float gravityAcceleration;
-    private BulletPhysic physic;
+    protected BulletPhysic physic;
     private PlayerControl playerControl;
     private float distance;
     private Vector2 distanceVector;
@@ -24,6 +24,7 @@ public class VirtualBullet : MonoBehaviour
     protected bool changed;
 
     private Vector2 lastForce;
+    protected int layer;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class VirtualBullet : MonoBehaviour
     public void Shoot(float damage, Vector2 direction, int layer, float gravityAcc, PlayerControl pl, int id,float range,float changeRange)
     {
         shot = true;
+        this.layer = layer;
         physic.SetData(layer);
         this.direction = direction;
         this.damage = damage;

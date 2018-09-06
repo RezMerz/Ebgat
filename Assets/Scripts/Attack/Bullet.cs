@@ -12,14 +12,15 @@ public class Bullet : MonoBehaviour
     private int ID;
     private float gravitySpeedBase;
     private float gravityAcceleration;
-    private BulletPhysic physic;
+    protected BulletPhysic physic;
     private float distance;
     private Vector2 distanceVector;
     private Vector2 direction;
     protected bool shot;
-    private Animator animator;
+    protected Animator animator;
 
     private float changeBehaviourRange;
+    protected int layer;
 
     private bool hitAnimation;
     protected bool changed;
@@ -42,6 +43,7 @@ public class Bullet : MonoBehaviour
     {
         shot = true;
         physic.SetData(layer);
+        this.layer = layer;
         this.direction = direction;
         this.range = range;
         changeBehaviourRange = changeRange;
@@ -99,6 +101,7 @@ public class Bullet : MonoBehaviour
     {
         shot = false;
         GetComponent<Collider2D>().enabled = false;
+        transform.localScale = Vector3.one;
         if (hitSide == Vector2.right)
         {
             transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -124,7 +127,7 @@ public class Bullet : MonoBehaviour
     {
         if (!hitAnimation)
         {
-           // transform.localScale = Vector3.one;
+            transform.localScale = Vector3.one;
             shot = false;
             animator.SetTrigger("Hit");
         }
