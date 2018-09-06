@@ -70,77 +70,21 @@ public class LobbyNetworkManager : NetworkManager {
         isServer = true;
     }
 
-    public void SetClientDataOnServer(int id, string name){
-        Debug.Log(id + "   "  + name);
-        for (int i = 0; i < clientsData.Count; i++){
-            if(clientsData[i].id == id){
-                clientsData[i].name = name;
-            }
-        }
-    }
-
-    public string GetLobbyData(){
-        string output = "";
-        for (int i = 0; i < clientsData.Count; i++){
-            output += clientsData[i].slot + "&" + clientsData[i].name + "$";
-        }
-        return output;
-    }
-
-    public void ChangeTeam(int id){
-        for (int i = 0; i < clientsData.Count; i++){
-            if(clientsData[i].id == id){
-                if(clientsData[i].slot < 4){
-                    for (int j = 3; j < isSlotFull.Length; j++){
-                        if(!isSlotFull[j]){
-                            isSlotFull[j] = true;
-                            isSlotFull[clientsData[i].slot - 1] = false;
-                            clientsData[i].slot = j + 1;
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (!isSlotFull[j])
-                        {
-                            isSlotFull[j] = true;
-                            isSlotFull[clientsData[i].slot - 1] = false;
-                            clientsData[i].slot = j + 1;
-                            return;
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
-    public void StartGame(){
-        if(isServer){
-            
-            GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
-            Destroy(GetComponent<NetworkDiscovery>());
-            StartCoroutine(SendRpc(0));
-        }
-    }
-
-    IEnumerator SendRpc(int time){
-        yield return new WaitForSeconds(time);
-        lobbyManager.RpcStartGame();
-    }
-
     class ClientData
     {
         public string name;
         public int id;
         public int slot;
+        public int team;
 
-        public ClientData(int id, int slot){
+        public ClientData(int id, int slot)
+        {
             this.id = id;
             this.slot = slot;
+            if (slot > 3)
+                team = 2;
+            else
+                team = 1;
         }
     }
 }

@@ -248,8 +248,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 186228062}
-  - component: {fileID: 186228060}
   - component: {fileID: 186228061}
+  - component: {fileID: 186228060}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: NetworkManager
@@ -265,14 +265,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 186228059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4d3e31a48ca426c9211d4eee8d3bfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 03a93c760903f4b8d800463c4fb4e631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
   m_NetworkAddress: localhost
-  m_DontDestroyOnLoad: 0
+  m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
@@ -280,11 +280,17 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: 
-  m_OnlineScene: LobbyScene
+  m_OfflineScene: Arena
+  m_OnlineScene: Arena
   m_SpawnPrefabs:
+  - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
+  - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
+  - {fileID: 1314286711458398, guid: 566e8320660fd4ff095cdee1d315b206, type: 2}
+  - {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f, type: 2}
+  - {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f, type: 2}
+  - {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168, type: 2}
+  - {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f, type: 2}
   - {fileID: 1768710473888078, guid: b10bebad151c54e8aa61570fae9b3570, type: 2}
-  - {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -344,6 +350,30 @@ MonoBehaviour:
     type: 2}
   lobbyManagerPrefab: {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046,
     type: 2}
+  serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
+    type: 2}
+  clientNetworkReciever: {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f,
+    type: 2}
+  serverManager: {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f,
+    type: 2}
+  serverSidePlayers:
+  - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
+  - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
+  - {fileID: 1561336051650090, guid: 5bc495752fe962e42aba2d152f2b394b, type: 2}
+  clientSidePlayers:
+  - {fileID: 1480360778776026, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+  - {fileID: 1611565634832398, guid: 9033c90f57d486f4fa102abd9e4b44ce, type: 2}
+  - {fileID: 1838980340684846, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+  heroSpawnPositions:
+  - {fileID: 4519804688994576, guid: 05628decb61884ffcaa82d900970f572, type: 2}
+  - {fileID: 4079915046112102, guid: 75f2c8b4d766d4816ab4e4ddb27eb5aa, type: 2}
+  playerConnectionPrefab: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
+    type: 2}
+  playerConnections: []
+  maxPlayerCount: 0
+  baseRespawnTime: 0
+  respawnTimePenalty: 0
+  isInfinite: 0
 --- !u!114 &186228061
 MonoBehaviour:
   m_ObjectHideFlags: 0
