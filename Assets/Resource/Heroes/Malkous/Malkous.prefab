@@ -172,6 +172,8 @@ MonoBehaviour:
   - {fileID: 114754754373969400, guid: 8cdf756cb989c7449844457444a9c989, type: 2}
   - {fileID: 114109344943414118, guid: 9ae508828b6fba243aa7262f4617b60f, type: 2}
   - {fileID: 114887446209080760, guid: cf18b18aac53cf147adae1ae8121d279, type: 2}
+  - {fileID: 114991850052140064, guid: c072f86d460465946b47050450233211, type: 2}
+  - {fileID: 114991850052140064, guid: d66d0aa273e62454fbeffe0fe9ee4496, type: 2}
 --- !u!114 &114158786255817076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,10 +190,14 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   abilityNumber: 2
-  time: 7
-  interval: 0.3
+  virtualBullet: {fileID: 1691014189850432, guid: aee7437982da70f41acbae3bb78c0c86,
+    type: 2}
+  interval: 0.2
+  number: 50
   damage: 10
-  size: {x: 5, y: 6}
+  maxHeight: 90
+  minHeight: 45
+  radius: 10
 --- !u!114 &114352001818264730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,7 +322,7 @@ MonoBehaviour:
   speedRate: 0
   energyRegenRate: 10
   attackEnergyConsume: 150
-  jumpEnergyConsume: 50
+  jumpEnergyConsume: 5
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
   dashEnergyConsume: 150
