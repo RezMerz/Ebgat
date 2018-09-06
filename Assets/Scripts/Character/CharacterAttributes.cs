@@ -89,6 +89,7 @@ public class CharacterAttributes : MonoBehaviour {
         get { return hitPointsBase; }
     }
 
+    public int energyBase;
     public int EnergyBase
     {
         get { return energyBase; }
@@ -248,13 +249,13 @@ public class CharacterAttributes : MonoBehaviour {
     } //w
 
     /// Energy Attributes
-    public int energyBase;
+
 
     private int energy;
     public int Energy
     {
         get { return energy; }
-        set { if (value != energy) { energy = value; playerControl.worldState.RegisterCharStat(ID, 'x', value + ""); } }
+        set {if (value != energy) { energy = value; playerControl.worldState.RegisterCharStat(ID, 'x', value + ""); } }
     } //x
 
 
@@ -304,6 +305,13 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != root) { root = value; playerControl.worldState.RegisterCharStat(ID, 'F', value + ""); } }
     } // F
 
+    private bool aim;
+
+    public bool Aim
+    {
+        get { return aim; }
+        set { if (value != aim) { aim = value; playerControl.worldState.RegisterCharStat(ID, 'G', value + ""); } }
+    }  //G
 
     public int energyRegenRate;
     public int attackEnergyConsume;
@@ -335,7 +343,7 @@ public class CharacterAttributes : MonoBehaviour {
         BodyState = EBodyState.Standing;
         HandState = EHandState.Idle;
         //Hp
-        hitPoints = hitPointsBase;
+        HitPoints = hitPointsBase;
         //Attack
         attackDamage = attackDamageBase;
         attackCooldown = attackCooldownBase;
@@ -360,10 +368,10 @@ public class CharacterAttributes : MonoBehaviour {
         side = Vector2.right;
 
         // Energy
-        energy = energyBase;
+        Energy = energyBase;
 
         //SpeedRate
-        speedRate = 1;
+        SpeedRate = 1;
 
         ID = playerControl.playerId;
     }
@@ -473,7 +481,6 @@ public class CharacterAttributes : MonoBehaviour {
             case "1": BodyState = EBodyState.Standing; break;
             case "2": bodyState = EBodyState.Moving; break;
             case "3": bodyState = EBodyState.Dashing; break;
-            case "4": bodyState = EBodyState.Aiming; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }
@@ -530,7 +537,6 @@ public class CharacterAttributes : MonoBehaviour {
             case EBodyState.Standing: worldState.RegisterCharStat(ID, 'b', "1"); break;
             case EBodyState.Moving: worldState.RegisterCharStat(ID, 'b', "2"); break;
             case EBodyState.Dashing: worldState.RegisterCharStat(ID, 'b', "3"); break;
-            case EBodyState.Aiming: worldState.RegisterCharStat(ID, 'b', "4"); break;
             default: UnityEngine.Debug.Log("error in registering"); break;
         }
     }
@@ -614,7 +620,7 @@ public class CharacterAttributes : MonoBehaviour {
 
 
 public enum EHeadState { Conscious = 1, Stunned = 2 };
-public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 3, Aiming = 4 };
+public enum EBodyState { Standing = 1,Moving = 2 , Dashing = 3};
 public enum EHandState { Idle = 1, Attacking = 2, Casting = 3, Channeling = 4};
 public enum EFeetState { Onground = 1, Falling = 2, Jumping = 3, NoGravity = 4 , DoubleJumping = 5,OnWall = 6,WallJumping = 8, Root = 9};
 public enum EAttackMode { Ranged = 1, Melee = 2 };

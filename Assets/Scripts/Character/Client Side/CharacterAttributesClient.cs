@@ -69,7 +69,6 @@ public class CharacterAttributesClient : MonoBehaviour {
             case "1": bodyState = EBodyState.Standing; break;
             case "2": bodyState = EBodyState.Moving; break;
             case "3": bodyState = EBodyState.Dashing; break;
-            case "4": bodyState = EBodyState.Aiming; break;
             default: UnityEngine.Debug.Log("Error is setting char stat"); break;
         }
     }

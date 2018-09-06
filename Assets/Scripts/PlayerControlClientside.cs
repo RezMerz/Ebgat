@@ -243,6 +243,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'D': heroGraphics.Disarm(value); break;
             case 'E': heroGraphics.RootMark(value); break;
             case 'F': heroGraphics.Root(value); break;
+            case 'G': heroGraphics.Aim(value); break;
         }
         charStatsClient.SetAttribute(code, value);
     }

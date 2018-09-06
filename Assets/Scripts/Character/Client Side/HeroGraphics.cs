@@ -190,6 +190,17 @@ public class HeroGraphics : MonoBehaviour
         }
     }
 
+    public virtual void Aim(string value)
+    {
+        if(value == "True")
+        {
+            aim.AimPressedGraphics();
+        }
+        else if (value == "False")
+        {
+            aim.AimReleasedGraphic();
+        }
+    }
     public void EnergyChange(string value)
     {
         float energy = float.Parse(value);
@@ -226,7 +237,7 @@ public class HeroGraphics : MonoBehaviour
         hpSlider.maxValue = maxHp;
         hpSlider.value = maxHp;
         maxEnergy = charStats.energyBase;
-        hud.EnergyCHange(maxEnergy);
+        hud.EnergyCHange(1);
         hud.HpChange(maxEnergy);
 
     }

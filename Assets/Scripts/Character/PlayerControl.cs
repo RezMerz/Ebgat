@@ -129,21 +129,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (charStats.Energy < charStats.energyBase)
         {
-            if (charStats.Energy < charStats.energyBase / 3)
-            {
-                charStats.Energy += (int)(charStats.energyRegenRate * 1);
-            }
-            else if (charStats.Energy < charStats.energyBase * 2 / 3)
-            {
-                charStats.Energy += (int)(charStats.energyRegenRate * 1);
-            }
-            else
-            {
-                charStats.Energy += (int)(charStats.energyRegenRate * 1);
-            }
+            charStats.Energy += (int)(charStats.energyRegenRate * 1);
         }
         else if (charStats.Energy > charStats.energyBase)
+        {
             charStats.Energy = charStats.energyBase;
+        }
     }
     public void TakeStun(float time)
     {
