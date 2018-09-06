@@ -30,6 +30,7 @@ public class PlayerConnection : NetworkBehaviour {
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
         serverNetworkReciever = GetComponent<ServerNetwork>();
+        DontDestroyOnLoad(gameObject);
         Debug.Log(isLocalPlayer);
         Debug.Log(hasAuthority);
         if(isLocalPlayer){
@@ -60,7 +61,6 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcInstansiateHero(int heroId, int teamId, string spawnPoint){
-        Debug.Log("hereherehereherehereherehereherehereherehereherehereherehereher");
         this.spawnPoint = Toolkit.DeserializeVector(spawnPoint);
         if (isServer)
         {
