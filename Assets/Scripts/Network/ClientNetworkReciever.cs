@@ -55,10 +55,10 @@ public class ClientNetworkReciever : NetworkBehaviour {
         }
     }
 
-    public void RecieveWorldstate(string worldstate, int frameID){
-        if (worldstate.Length == 0)
+    public void RecieveWorldstate(string worldstates, int frameID){
+        if (worldstates.Length == 0)
             return;
-        string[] heroData = worldstate.Split('#');
+        string[] heroData = worldstates.Split('#');
         for (int j = 0; j < heroData.Length; j++)
         {
             if (heroData[j].Length == 0)

@@ -30,6 +30,9 @@ public class ServerManager : NetworkBehaviour {
     private int team1Count = 0, team1DeadCount = 0;
     private int team2Count = 0, team2DeadCount = 0;
 
+
+    private List<WorldState> worldStatesStash;
+
     public void Awake()
     {
         instance = this;
@@ -38,6 +41,7 @@ public class ServerManager : NetworkBehaviour {
         reservelist = new List<int>();
         playerInfoList = new List<PlayerInfo>();
         deadPlayers = new List<PlayerInfo>();
+        worldStatesStash = new List<WorldState>();
         maxClientCount = networkManager.maxPlayerCount;
         respawnTime = networkManager.baseRespawnTime;
         respawnPenalty = networkManager.respawnTimePenalty;
@@ -91,8 +95,11 @@ public class ServerManager : NetworkBehaviour {
     }
 
     public void PlayerSimulationFinished(int ID){
-        if(currentWorldState == null)
+        if (currentWorldState == null)
+        {
+            Debug.Log("wuuuuut");
             currentWorldState = new WorldState();
+        }
         finishedPLayercounter++;
         if(finishedPLayercounter == playerControls.Count){
             ServerNetworkSender.instance.RegisterWorldState(currentWorldState);
