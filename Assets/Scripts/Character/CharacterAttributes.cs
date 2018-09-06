@@ -290,6 +290,13 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != disarm) { disarm = value; playerControl.worldState.RegisterCharStat(ID, 'D', value + ""); } }
     } // D
 
+    private bool markedForRoot;
+    public bool MarkedForRoot
+    {
+        get { return markedForRoot; }
+        set { if (markedForRoot != disarm) { markedForRoot = value; playerControl.worldState.RegisterCharStat(ID, 'E', value + ""); } }
+    }
+
 
     public int energyRegenRate;
     public int attackEnergyConsume;
@@ -361,9 +368,7 @@ public class CharacterAttributes : MonoBehaviour {
     public void ResetGravityAcceleration()
     {
 
-       // Debug.Log(GravityAcceleration);
         GravityAcceleration = gravityAccelerationBase;
-        //Debug.Log(GravityAcceleration);
     }
 
 
