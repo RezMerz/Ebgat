@@ -83,7 +83,7 @@ public class CharacterMove : MonoBehaviour
         Physic.AddForce(force * charStats.SpeedRate);
         Physic.PhysicAction += HitFunction;
     }
-    public void MoveReleasedServerside(Vector3 position)
+    public void MoveReleasedServerside()
     {
         movedPressed = false;
         if (charStats.BodyState == EBodyState.Moving)

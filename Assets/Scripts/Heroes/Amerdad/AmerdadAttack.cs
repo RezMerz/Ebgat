@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmerdadAttack : Attack {
+public class AmerdadAttack : Attack
+{
 
 
     public float minDamage;
@@ -23,7 +24,7 @@ public class AmerdadAttack : Attack {
     [SerializeField]
     public List<MalkousBullet> virtualBullets;
 
-	// Use this for initialization
+    // Use this for initialization
 
     public override void AttackPressed()
     {
@@ -35,9 +36,11 @@ public class AmerdadAttack : Attack {
                 {
                     if (charStats.BodyState == EBodyState.Dashing)
                     {
+
                         GetComponent<CharacterDash>().DashEnd();
                     }
-                    charStats.HandState = EHandState.Attacking;
+
+                    charStats.HandState = EHandState.Channeling;
                     attackHoldCoroutine = StartCoroutine(AttackHoldCo());
                     ready = false;
                 }
@@ -51,7 +54,7 @@ public class AmerdadAttack : Attack {
 
     IEnumerator AttackHoldCo()
     {
-        while(currentHoldTime < maxHoldTime)
+        while (currentHoldTime < maxHoldTime)
         {
             currentHoldTime += Time.deltaTime;
             yield return null;
@@ -60,9 +63,13 @@ public class AmerdadAttack : Attack {
 
     public override void AttackReleased()
     {
-        if (charStats.HandState == EHandState.Attacking)
+        if (charStats.HandState == EHandState.Channeling)
         {
-            StopCoroutine(attackHoldCoroutine);
+            if (attackHoldCoroutine != null)
+            {
+                StopCoroutine(attackHoldCoroutine);
+            }
+            charStats.HandState = EHandState.Attacking;
             animationTimeCoroutine = StartCoroutine(AttackAnimateTime(virtualBullets[charStats.AttackNumber].attackAnimationTime / charStats.SpeedRate));
         }
     }
@@ -73,7 +80,7 @@ public class AmerdadAttack : Attack {
         {
             StopCoroutine(animationTimeCoroutine);
         }
-        if(attackHoldCoroutine != null)
+        if (attackHoldCoroutine != null)
         {
             StopCoroutine(attackHoldCoroutine);
         }
@@ -86,7 +93,6 @@ public class AmerdadAttack : Attack {
         {
             currentHoldTime = maxHoldTime;
         }
-        //float damage = virtualBullets[charStats.AttackNumber].damage;
         float damage = minDamage + (currentHoldTime / maxHoldTime) * (maxDamage - minDamage);
         float gravityAcc = charStats.GravityAcceleration;
         float range = virtualBullets[charStats.AttackNumber].range;
@@ -96,7 +102,7 @@ public class AmerdadAttack : Attack {
         Vector2 attackSide = charStats.AimSide;
         if (attackSide == Vector2.zero)
         {
-            if(charStats.FeetState == EFeetState.OnWall)
+            if (charStats.FeetState == EFeetState.OnWall)
             {
                 attackSide = charStats.Side * -1;
             }
@@ -112,7 +118,7 @@ public class AmerdadAttack : Attack {
         playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos);
         StartCoroutine(CoolDown());
 
-        if(charStats.AttackNumber != 0)
+        if (charStats.AttackNumber != 0)
         {
             charStats.AttackNumber = 0;
         }

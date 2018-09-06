@@ -16,7 +16,7 @@ public class ClientNetworkSender : NetworkBehaviour
 
     private void Awake()
     {
-        
+
     }
 
     // Use this for initialization
@@ -37,9 +37,9 @@ public class ClientNetworkSender : NetworkBehaviour
         SendCommands();
     }
 
-    public void RequestWorldState(int playerId,int lastState)
+    public void RequestWorldState(int playerId, int lastState)
     {
-        serverNetworkReciever.CmdSendWorldStateToClient(playerId,lastState);
+        serverNetworkReciever.CmdSendWorldStateToClient(playerId, lastState);
     }
 
     private void SendCommands()
@@ -59,14 +59,14 @@ public class ClientNetworkSender : NetworkBehaviour
             Debug.Log("wrong input");
     }
 
-    public void MoveFinished(Vector3 position)
+    public void MoveFinished()
     {
-        data += 3 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 3 + ",\n";
     }
 
-    public void JumpPressed(Vector3 position)
+    public void JumpPressed()
     {
-        data += 4 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 4 + ",\n";
     }
 
     public void JumpLong(Vector3 position)
@@ -74,9 +74,9 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 5 + "," + position.x + "," + position.y + "," + position.z + ",\n";
     }
 
-    public void JumpReleased(Vector3 position)
+    public void JumpReleased()
     {
-        data += 6 + "," + position.x + "," + position.y + "," + position.z + ",\n";
+        data += 6 + ",\n";
     }
 
     public void SetVerticalDirection(int num)
@@ -84,7 +84,8 @@ public class ClientNetworkSender : NetworkBehaviour
         data += 7 + "," + num + ",\n";
     }
 
-    public void AttackPressed(){
+    public void AttackPressed()
+    {
         data += 8 + ",\n";
     }
 
@@ -152,11 +153,11 @@ public class ClientNetworkSender : NetworkBehaviour
 
     public void AimReleased()
     {
-        data += 22 + ",\n"; 
+        data += 22 + ",\n";
     }
 
     public void AimAxis(Vector2 aimAxis)
     {
-        data += 23 +"," + aimAxis.x + "," + aimAxis.y +",\n";
+        data += 23 + "," + aimAxis.x + "," + aimAxis.y + ",\n";
     }
 }

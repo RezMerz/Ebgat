@@ -50,7 +50,7 @@ public class InputCharacter : MonoBehaviour
         else if (axisXChanged && axisX < 0.3 && axisX > -0.3)
         {
             axisXChanged = false;
-            clientNetworkSender.MoveFinished(transform.position);
+            clientNetworkSender.MoveFinished();
         }
 
         // Move Down and Top
@@ -77,7 +77,7 @@ public class InputCharacter : MonoBehaviour
         else if(Input.GetButtonUp("Fire") && attacking)
         {
             attacking = false;
-            //clientNetworkSender.AttackReleased();
+            clientNetworkSender.AttackReleased();
         }
         else if(Input.GetAxis("Fire") > 0.1)
         {
@@ -88,12 +88,12 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            clientNetworkSender.JumpPressed(transform.position);
+            clientNetworkSender.JumpPressed();
             //jump.JumpPressed();
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            clientNetworkSender.JumpReleased(transform.position);
+            clientNetworkSender.JumpReleased();
             //jump.JumpReleased();
         }
 
