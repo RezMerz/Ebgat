@@ -23,6 +23,7 @@ public class HeroGraphics : MonoBehaviour
     protected HUD hud;
     protected AbilityHudProperty[] abilitiesInfo;
     public GameObject dieInstance;
+    private Animator rootMark;
 
     public void TakeDamage()
     {
@@ -30,6 +31,18 @@ public class HeroGraphics : MonoBehaviour
         StartCoroutine(DamageColorTimer(0.1f));
     }
 
+
+    public void RootMark(string value)
+    {
+        if(value == "true")
+        {
+            rootMark.SetBool("Root", true);
+        }
+        else if (value == "false")
+        {
+            rootMark.SetBool("Root", false);
+        }
+    }
 
     public void Die()
     {
@@ -68,6 +81,10 @@ public class HeroGraphics : MonoBehaviour
                 abilityEffect = transform.GetChild(i).GetComponent<Animator>();
             if (transform.GetChild(i).name == "Head Icons")
                 HeadIcons = transform.GetChild(i).gameObject;
+            if (transform.GetChild(i).name == "Root Alarm")
+            {
+                rootMark = transform.GetChild(i).GetComponent<Animator>();
+            }
         }
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();

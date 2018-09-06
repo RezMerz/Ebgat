@@ -241,6 +241,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'z': heroGraphics.SpeedRateChange(value); break;
             case 'f': heroGraphics.ArmorChange(value); break;
             case 'D': heroGraphics.Disarm(value); break;
+            case 'E': heroGraphics.RootMark(value); break;
         }
         charStatsClient.SetAttribute(code, value);
     }
