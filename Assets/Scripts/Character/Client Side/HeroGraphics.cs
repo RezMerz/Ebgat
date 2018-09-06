@@ -49,10 +49,11 @@ public class HeroGraphics : MonoBehaviour
 
     public void Root(string value)
     {
+        print(value);
         if (value == "True")
         {
             rootGround = Instantiate(rootGroundInstance);
-            rootGround.transform.position = transform.position;
+            rootGround.transform.position = transform.position + new Vector3(0,-0.6f,0);
         }
         else if (value == "False")
         {
