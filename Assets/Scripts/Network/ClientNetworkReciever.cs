@@ -55,21 +55,35 @@ public class ClientNetworkReciever : NetworkBehaviour {
         }
     }
 
-    public void RecieveWorldstate(string worldstate, int frameID){
-        if (worldstate.Length == 0)
+    public void RecieveWorldstate(string worldstates, int frameId){
+        if (worldstates.Length == 0)
             return;
-        string[] heroData = worldstate.Split('#');
-        for (int j = 0; j < heroData.Length; j++)
+        string[] frameState = worldstates.Split('!');
+        for (int i = 0; i < frameState.Length; i++)
         {
-            if (heroData[j].Length == 0)
-                continue;
-            string[] rawData = heroData[j].Split('@');
-            string[] data = rawData[1].Split('$');
-            int id = Convert.ToInt32(rawData[0]);
-            if (id == 0 || id > playerControls.Count)
-                continue;
-            playerControls[id - 1].UpdateClient(frameID, rawData[1]);
+            string[] heroData = frameState[i].Split('#');
+            for (int j = 1; j < heroData.Length; j++)
+            {
+                if (heroData[j].Length == 0)
+                    continue;
+                string[] rawData = heroData[j].Split('@');
+                Debug.Log(frameState[i]);
+                string[] data = rawData[1].Split('$');
+                int id = Convert.ToInt32(rawData[0]);
+                if (id == 0 || id > playerControls.Count)
+                    continue;
+                playerControls[id - 1].AddTOHashTable(frameId + i, rawData[1]);
+                if (!rawData[2].Equals(""))
+                    playerControls[id - 1].Shoot(rawData[2]);
+                if (!rawData[3].Equals(""))
+                    playerControls[id - 1].DestroyBullet(rawData[3]);
+                if (!rawData[4].Equals(""))
+                    playerControls[id - 1].GetAdditionalData(rawData[4]);
+            }
+            if (!heroData[0].Equals(""))
+                localPlayerControl.GetAdditionalWorldData(heroData[0]);
         }
+        localPlayerControl.UpdateClient();
     }
 
     [ClientRpc]

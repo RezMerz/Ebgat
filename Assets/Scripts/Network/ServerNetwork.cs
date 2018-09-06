@@ -11,8 +11,7 @@ public class ServerNetwork : NetworkBehaviour
     public PlayerControl playerControl;// { get; set;}
     string data = "";
 
-    public void SetPlayerControl(PlayerControl playerControl)
-    {
+    public void SetPlayerControl(PlayerControl playerControl){
         this.playerControl = playerControl;
     }
 
@@ -27,10 +26,10 @@ public class ServerNetwork : NetworkBehaviour
             {
                 case "1": playerControl.MoveRight(); break;
                 case "2": playerControl.MoveLeft(); break;
-                case "3": playerControl.MoveFinished(); break;
+                case "3": playerControl.MoveFinished(new Vector3(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(parts[3], CultureInfo.InvariantCulture.NumberFormat))); break;
                 case "4": playerControl.JumpPressed(); break;
                 case "6": playerControl.JumpReleased(); break;
-                //   case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
+             //   case "7": playerControl.SetVerticalDirection(Convert.ToInt32(parts[1])); break;
                 case "8": playerControl.AttackPressed(); break;
                 case "9": playerControl.AttackReleased(); break;
                 case "10": playerControl.Ability1Pressed(); break;
@@ -46,7 +45,7 @@ public class ServerNetwork : NetworkBehaviour
                 case "20": playerControl.deltaXAim(float.Parse(parts[1], CultureInfo.InvariantCulture.NumberFormat)); break;
                 case "21": playerControl.AimPressed(); break;
                 case "22": playerControl.AimReleased(); break;
-                case "23": playerControl.AimController(new Vector2(float.Parse(parts[1]), float.Parse(parts[2]))); break;
+                case "23": playerControl.AimController(new Vector2(float.Parse(parts[1]),float.Parse(parts[2]))); break;
             }
         }
     }
@@ -58,21 +57,18 @@ public class ServerNetwork : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSendWorldStateToClient(int requesterId, int FrameId)
-    {
-        ServerManager.instance.SendWorldStateToClient(requesterId);
+    public void CmdSendWorldStateToClient(int requesterId, int frameId){
+        ServerManager.instance.SendWorldStateToClient(requesterId, frameId);
     }
 
 
     [Command]
-    public void CmdClientConnected(int clientId, int heroId)
-    {
+    public void CmdClientConnected(int clientId, int heroId){
         ServerManager.instance.ClientConnected(clientId, heroId);
     }
 
     [Command]
-    public void CmdHeroSpawned(int clientid)
-    {
+    public void CmdHeroSpawned(int clientid){
         ServerManager.instance.HeroSpawned(clientid);
     }
 }
