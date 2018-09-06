@@ -502,6 +502,8 @@ MonoBehaviour:
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
   dieInstance: {fileID: 0}
+  rootGroundInstance: {fileID: 1954952673507374, guid: 4fee53714e3c9694895492a20f944cba,
+    type: 2}
   boomEffect: {fileID: 1308741438377836, guid: 74faf871d0cd5254d883b9fedfb64205, type: 2}
 --- !u!114 &114742028647210728
 MonoBehaviour:
