@@ -24,6 +24,8 @@ public class AmerdadAttack : Attack
     [SerializeField]
     public List<MalkousBullet> virtualBullets;
 
+
+    
     // Use this for initialization
 
     public override void AttackPressed()
@@ -38,6 +40,11 @@ public class AmerdadAttack : Attack
                     {
 
                         GetComponent<CharacterDash>().DashEnd();
+                    }
+
+                    if(layerMask == 0)
+                    {
+                        layerMask = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
                     }
 
                     charStats.HandState = EHandState.Channeling;
@@ -94,6 +101,7 @@ public class AmerdadAttack : Attack
             currentHoldTime = maxHoldTime;
         }
         float damage = minDamage + (currentHoldTime / maxHoldTime) * (maxDamage - minDamage);
+        Debug.Log(damage);
         float gravityAcc = charStats.GravityAcceleration;
         float range = virtualBullets[charStats.AttackNumber].range;
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
@@ -117,7 +125,7 @@ public class AmerdadAttack : Attack
         // register bullet
         playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos);
         StartCoroutine(CoolDown());
-
+        currentHoldTime = 0;
         if (charStats.AttackNumber != 0)
         {
             charStats.AttackNumber = 0;

@@ -68,6 +68,7 @@ public class VirtualBullet : MonoBehaviour
 
     private void HitFunction(RaycastHit2D hitObject)
     {
+        Debug.Log("hit");
         if (hitObject.collider.tag.Equals("VirtualPlayer"))
         {
             var enemy = hitObject.collider.gameObject;
@@ -76,8 +77,8 @@ public class VirtualBullet : MonoBehaviour
             {
                 name = buff.name;
             }
-
             enemy.GetComponent<CharacterPhysic>().AddReductiveForce(lastForce.normalized, force, 0.1f, 0);
+            Debug.Log(enemy);
             enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
             Destroy();
         }

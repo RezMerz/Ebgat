@@ -50,6 +50,7 @@ public abstract class Ability : MonoBehaviour
         if (castTimeCoroutine != null)
         {
             StopCoroutine(castTimeCoroutine);
+            charStats.HandState = EHandState.Idle;
             StartCoroutine(CoolDownTimer(coolDownTime));
         }
     }

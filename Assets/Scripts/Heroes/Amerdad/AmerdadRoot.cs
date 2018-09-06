@@ -51,6 +51,8 @@ public class AmerdadRoot : Ability
                 playerControl.TakeAttack(0, buff.name);
             }
         }
+        charStats.HandState = EHandState.Idle;
+        charStats.AbilityState = EAbility.Ability2Finish;
     }
 
     public override void AbilityKeyReleased()

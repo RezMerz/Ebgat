@@ -130,14 +130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4841a7bed8f6043f7aa879f246d192ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 0.1
+  castTime: 0.3
   coolDownTime: 1
   energyUsage: 0
   buff: {fileID: 114887446209080760, guid: cf18b18aac53cf147adae1ae8121d279, type: 2}
   abilityNumber: 1
   damage: 20
-  size: {x: 0, y: 0}
-  offset: {x: 0, y: 0}
+  size: {x: 10, y: 1.5}
+  offset: {x: 1, y: 0.5}
 --- !u!114 &114336623137953200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,7 +309,7 @@ MonoBehaviour:
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
-  onWallGravitySpeed: 5
+  onWallGravitySpeed: 0
   energyBase: 1000
   speedRate: 0
   energyRegenRate: 5

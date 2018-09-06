@@ -76,6 +76,7 @@ public class Gravity : MonoBehaviour {
             if(GravityAction != null)
             {
                 GravityAction();
+                GravityAction = null;
             }
         }
         else
