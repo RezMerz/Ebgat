@@ -85,11 +85,12 @@ public class CrushOfConqueror : Ability
 
     }
 
-    protected override void IntruptCast()
+    public override void IntruptCast()
     {
         if (castTimeCoroutine != null)
         {
             StopCoroutine(castTimeCoroutine);
+            physic.Unlock();
             StartCoroutine(CoolDownTimer(coolDownTime));
         }
     }

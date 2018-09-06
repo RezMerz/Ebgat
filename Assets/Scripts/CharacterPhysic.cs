@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CharacterPhysic : Physic
 {
+    public float fallDamage;
+    public float spikeDamage;
+
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
     private int gravityLayerMask;
@@ -15,7 +18,6 @@ public class CharacterPhysic : Physic
     private List<RaycastHit2D> horizontalPoints = new List<RaycastHit2D>();
     private Vector2 offset;
     private float timer;
-
     private bool start;
     // Use this for initialization
     void Start()
@@ -132,9 +134,9 @@ public class CharacterPhysic : Physic
             charStats.ResetJumpMaxSpeed();
             charStats.ResetGravitySpeed();
             RemoveTaggedForces(0);
-            //RemoveTaggedForces(1);
             Collider2D hit = vHits[0].collider;
             JumpCheck(hit, direction);
+            SpikeHitVertical(hit, direction);
             if (hit.tag.Equals("VirtualPlayer"))
             {
                 switch (hitType)
@@ -147,6 +149,7 @@ public class CharacterPhysic : Physic
         }
         if (hHits.Count > 0)
         {
+            SpikeHitHorizantal(hHits[0], direction);
             OnWallCheck(direction);
             var hit = hHits[0].collider;
             if (hit.tag.Equals("VirtualPlayer"))
@@ -169,12 +172,13 @@ public class CharacterPhysic : Physic
             if (hit.tag.Equals("VirtualPlayer"))
             {
                 force = Vector2.up * (charStats.JumpSpeed - direction.y * 20);
-                AddPersistentForce(force,0, 0);
+                hit.gameObject.GetComponent<PlayerControl>().TakeAttack(fallDamage, "");
+                AddPersistentForce(force, 0, 0);
             }
             else if (hit.tag.Equals("jump"))
             {
                 force = Vector2.up * (charStats.JumpSpeed - direction.y * 40);
-                AddPersistentForce(force,0, 0);
+                AddPersistentForce(force, 0, 0);
             }
         }
     }
@@ -182,7 +186,7 @@ public class CharacterPhysic : Physic
     {
         if (direction.y > 0)
         {
-            if ( charStats.FeetState != EFeetState.WallJumping &&charStats.FeetState != EFeetState.DoubleJumping && charStats.FeetState != EFeetState.Jumping)
+            if (charStats.FeetState != EFeetState.WallJumping && charStats.FeetState != EFeetState.DoubleJumping && charStats.FeetState != EFeetState.Jumping)
             {
                 charStats.FeetState = EFeetState.Jumping;
             }
@@ -191,10 +195,10 @@ public class CharacterPhysic : Physic
         {
             if (charStats.FeetState != EFeetState.Onground && charStats.FeetState != EFeetState.Falling)
             {
-                if(charStats.FeetState == EFeetState.OnWall)
+                if (charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if(timer >=  0.15f + Time.deltaTime)
+                    if (timer >= 0.15f + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }
@@ -208,9 +212,9 @@ public class CharacterPhysic : Physic
     }
     private void OnWallCheck(Vector2 direction)
     {
-        if ((charStats.FeetState == EFeetState.Falling  || charStats.FeetState == EFeetState.OnWall ) && charStats.Side.x * direction.x > 0)
+        if ((charStats.FeetState == EFeetState.Falling || charStats.FeetState == EFeetState.OnWall) && charStats.Side.x * direction.x > 0)
         {
-            if(Toolkit.OnWallCheck(virtualPosition,size, offset * new Vector2(charStats.Side.x, 1),charStats.Side,Mathf.Abs(direction.x), wallLayerMask))
+            if (Toolkit.OnWallCheck(virtualPosition, size, offset * new Vector2(charStats.Side.x, 1), charStats.Side, Mathf.Abs(direction.x), wallLayerMask))
             {
                 timer = 0;
                 charStats.FeetState = EFeetState.OnWall;
@@ -218,6 +222,50 @@ public class CharacterPhysic : Physic
                 RemoveTaggedForces(3);
                 RemoveTaggedForces(4);
             }
+        }
+    }
+
+    private void SpikeHitVertical(Collider2D hit, Vector2 direction)
+    {
+        if (hit.tag.Equals("Spike"))
+        {
+            if (charStats.BodyState == EBodyState.Dashing)
+            {
+                GetComponent<CharacterDash>().DashEnd();
+            }
+            if (direction.y > 0)
+            {
+                AddReductiveForce(Vector2.down, 0.6f, 0.1f, 0);
+            }
+            else
+            {
+                Vector2 force = Vector2.up * (charStats.JumpSpeed - direction.y * 15);
+                AddPersistentForce(force, 0, 0);
+            }
+            playerControl.TakeAttack(spikeDamage, "");
+        }
+    }
+
+    private void SpikeHitHorizantal(RaycastHit2D hit, Vector2 direction)
+    {
+        if (hit.collider.tag.Equals("Spike"))
+        {
+            if (charStats.BodyState == EBodyState.Dashing)
+            {
+                GetComponent<CharacterDash>().DashEnd();
+            }
+
+            Vector2 hitDirection;
+            if (direction.x > 0)
+            {
+                hitDirection = Vector2.right;
+            }
+            else
+            {
+                hitDirection = Vector2.left;
+            }
+            playerControl.TakeAttack(spikeDamage, "");
+            AddReductiveForce(hitDirection * -1, 0.7f, 0.1f, 0);
         }
     }
 

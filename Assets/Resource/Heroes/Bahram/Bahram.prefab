@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
+  fallDamage: 10
+  spikeDamage: 10
   hitType: 2
 --- !u!114 &114593228069086336
 MonoBehaviour:

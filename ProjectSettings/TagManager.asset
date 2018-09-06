@@ -20,6 +20,7 @@ TagManager:
   - VirtualBullet
   - VirtualPlayer
   - HUD
+  - Spike
   layers:
   - Default
   - TransparentFX
