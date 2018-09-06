@@ -31,6 +31,7 @@ public class MarkedForRoot : Buff {
     private void Root()
     {
         playerControl.TakeAttack(damage, rootBuff.name);
+        charStats.MarkedForRoot = false;
     }
 
     public void Start ()
