@@ -174,9 +174,9 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    public void MoveFinished(Vector3 position)
+    public void MoveFinished()
     {
-        characterMove.MoveReleasedServerside(position);
+        characterMove.MoveReleasedServerside();
     }
 
     public void JumpPressed()

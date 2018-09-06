@@ -86,9 +86,9 @@ public class PlayerControlClientside : MonoBehaviour
 
 
             //Debug.Log(biggestIdNumber - currentStateNumber +"+"+ Time.frameCount);
-            if(biggestIdNumber - currentStateNumber >= 6 )
+            if (biggestIdNumber - currentStateNumber >= 6)
             {
-                
+
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber - counter; i++)
                 {
                     if (playerStatesHash.Contains(i))
@@ -99,7 +99,7 @@ public class PlayerControlClientside : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber - counter;
 
-                
+
                 currentStateNumber = lastStateChecked + 1;
 
                 Debug.Log(currentStateNumber);
@@ -126,7 +126,7 @@ public class PlayerControlClientside : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-               // Debug.Log("miss 1 fram :" + Time.frameCount);
+                // Debug.Log("miss 1 fram :" + Time.frameCount);
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
@@ -143,7 +143,7 @@ public class PlayerControlClientside : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                    clientNetworkSender.RequestWorldState(playerId,lastStateChecked);
+                    clientNetworkSender.RequestWorldState(playerId, lastStateChecked);
                 }
             }
             currentStateNumber++;
@@ -249,7 +249,7 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-             //Debug.Log(id + "+" + Time.frameCount);
+            //Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
@@ -266,23 +266,23 @@ public class PlayerControlClientside : MonoBehaviour
         }
     }
 
-    public void UpdateClient(int id, string state)
+    public void UpdateClient()
     {
         waitingForRequest = false;
-        start = false;
-       // if (id > currentStateNumber)
-       // {
-            currentStateNumber = id + 1;
-       // }
-        GetData(state);
-        for (int i = lastStateChecked + 1; i <= id; i++)
-        {
-            if (playerStatesHash.Contains(i))
-            {
-                playerStatesHash.Remove(i);
-            }
-        }
-        lastStateChecked = id;
+        // start = false;
+        //// if (id > currentStateNumber)
+        //// {
+        //     currentStateNumber = id + 1;
+        //// }
+        // GetData(state);
+        // for (int i = lastStateChecked + 1; i <= id; i++)
+        // {
+        //     if (playerStatesHash.Contains(i))
+        //     {
+        //         playerStatesHash.Remove(i);
+        //     }
+        // }
+        // lastStateChecked = id;
     }
 
     public void Die()
@@ -352,6 +352,6 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void GetAdditionalWorldData(string data)
     {
-        
+
     }
 }

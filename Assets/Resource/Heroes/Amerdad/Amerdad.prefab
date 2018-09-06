@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 1561336051650090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -26.525322, y: -25.054323, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4747067983767356}
   m_Father: {fileID: 0}
@@ -95,18 +95,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.14149213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 3}
+  m_Size: {x: 1.5546191, y: 2.7738338}
   m_EdgeRadius: 0
 --- !u!114 &114093355388278026
 MonoBehaviour:
@@ -135,6 +135,7 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 0
+  damage: 0
   size: {x: 0, y: 0}
   offset: {x: 0, y: 0}
 --- !u!114 &114336623137953200
@@ -198,6 +199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
+  fallDamage: 0
+  spikeDamage: 0
   hitType: 2
 --- !u!114 &114631831022143276
 MonoBehaviour:
@@ -210,11 +213,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86e726908d914088a6ddcad410106a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 0
-  maxDamage: 0
+  minDamage: 10
+  maxDamage: 20
   maxHoldTime: 2
-  thronedArrowTime: 0
-  virtualBullets: []
+  thronedArrowTime: 2
+  virtualBullets:
+  - VirtualBullet: {fileID: 1644391085090094, guid: 679f25bd464b48e4192456cdb4f2f999,
+      type: 2}
+    range: 30
+    attackAnimationTime: 0.1
+    damage: 0
+    startingPos: {x: 0, y: 0}
 --- !u!114 &114655279656209964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -287,12 +296,12 @@ MonoBehaviour:
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
-  moveSpeedBase: 10
+  moveSpeedBase: 12
   moveAccelerationBase: 0.1
-  moveSpeedMaxBase: 15
-  jumpSpeedBase: 15
+  moveSpeedMaxBase: 18
+  jumpSpeedBase: 20
   jumpAccelerationBase: 50
-  jumpSpeedMaxBase: 27
+  jumpSpeedMaxBase: 30
   gravitySpeedBase: 0.1
   gravityAccelerationBase: 50
   gravitySpeedMaxBase: 30
