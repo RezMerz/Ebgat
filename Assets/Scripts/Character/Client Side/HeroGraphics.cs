@@ -58,7 +58,11 @@ public class HeroGraphics : MonoBehaviour
         else if (value == "False")
         {
             if (rootGround != null)
+            {
                 rootGround.GetComponent<Animator>().SetTrigger("UnRoot");
+                DestoryObjectAfterTime(3, rootGround);
+                rootGround = null;
+            }
         }
     }
 
