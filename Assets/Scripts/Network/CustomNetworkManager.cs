@@ -8,13 +8,9 @@ public class CustomNetworkManager : NetworkManager {
     /// <summary>
     /// offline
     /// </summary>
-
-
-    public GameObject lobbyClientPrefab;
     public GameObject lobbyManagerPrefab;
 
-    List<ClientData> clientsData;
-    private int id;
+    public List<ClientData> clientsData;
     private LobbyManager lobbyManager;
     private bool isServer = false;
     private bool[] isSlotFull;
@@ -47,10 +43,10 @@ public class CustomNetworkManager : NetworkManager {
     public bool isInfinite;
 
     private NetworkConnection networkConnection;
+    public PlayerConnection localPlayerconnection { get; set; }
 
     private void Start()
     {
-        id = 0;
         clientsData = new List<ClientData>();
         isSlotFull = new bool[6];
         if (NetworkServer.active && isServer)
@@ -71,7 +67,7 @@ public class CustomNetworkManager : NetworkManager {
         if(NetworkServer.active && flag && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == onlineScene){
             flag = false;
             InstantiateGameSceneObjects();
-        } 
+        }
     }
 
     public void InstantiateGameSceneObjects(){
@@ -85,9 +81,6 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        GameObject lobbyClientObj = Instantiate(lobbyClientPrefab);
-        LobbyClient lobbyClient = lobbyClientObj.GetComponent<LobbyClient>();
-        lobbyClient.id = ++id;
         int slot = 0;
         for (int i = 0; i < isSlotFull.Length; i++)
         {
@@ -98,17 +91,15 @@ public class CustomNetworkManager : NetworkManager {
                 break;
             }
         }
-        lobbyClient.slot = slot;
-        clientsData.Add(new ClientData(id, slot));
-        NetworkServer.AddPlayerForConnection(conn, lobbyClientObj, playerControllerId);
+        clientsData.Add(new ClientData(++playerID, slot));
 
-        /*Debug.Log(conn.connectionId);
-        connectionTable.Add(++playerID, conn);
+        connectionTable.Add(playerID, conn);
         GameObject playercon = Instantiate(playerConnectionPrefab);
+        DontDestroyOnLoad(playercon);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
         p.clientId = playerID;
         playerConnections.Add(p);
-        NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);*/
+        NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
     }
 
@@ -116,19 +107,20 @@ public class CustomNetworkManager : NetworkManager {
     {
         base.OnClientConnect(conn);
         networkConnection = conn;
-        //RegisterNetworkClient();
-    }
 
-    /*public override void OnClientDisconnect(NetworkConnection conn)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }*/
+    }
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         StopHost();
         GetComponent<CustomNetworkDiscovery>().Initialize();
         GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+    }
+
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+        localPlayerconnection.SetClientReady();
     }
 
     public override void OnStopHost()
@@ -167,21 +159,8 @@ public class CustomNetworkManager : NetworkManager {
             GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
             ServerChangeScene(onlineScene);
             //Destroy(GetComponent<NetworkDiscovery>());
-            //StartCoroutine(SendRpc(0));
         }
     }
-
-    IEnumerator SendRpc(int time)
-    {
-        yield return new WaitForSeconds(time);
-        lobbyManager.RpcStartGame();
-    }
-
-    /*public override void OnClientConnect(NetworkConnection conn)
-    {
-        if(ServerManager.instance.currentClientCount < ServerManager.instance.maxClientCount)
-            base.OnClientConnect(conn);
-    }*/
 
     private void RegisterNetworkClient(){
         Debug.Log("registered");
@@ -258,25 +237,28 @@ public class CustomNetworkManager : NetworkManager {
 
         }
     }
+}
 
-    class ClientData
+public class ClientData
+{
+    public string name;
+    public int id;
+    public int slot;
+    public int team;
+    public int heroId;
+
+    public ClientData(int id, int slot)
     {
-        public string name;
-        public int id;
-        public int slot;
-        public int team;
+        this.id = id;
+        this.slot = slot;
+        UpdateTeam();
+    }
 
-        public ClientData(int id, int slot)
-        {
-            this.id = id;
-            this.slot = slot;
-        }
-
-        public void UpdateTeam(){
-            if (slot > 3)
-                team = 2;
-            else
-                team = 1;
-        }
+    public void UpdateTeam()
+    {
+        if (slot > 3)
+            team = 2;
+        else
+            team = 1;
     }
 }

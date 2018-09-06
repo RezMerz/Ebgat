@@ -17,7 +17,6 @@ public class LobbyClient : NetworkBehaviour {
             first = false;
             playerName = GameManager.instance.playerName;
             CmdSetClientDataOnServer(id, playerName);
-            GameManager.instance.myLobbyClient = this;
         }
     }
 

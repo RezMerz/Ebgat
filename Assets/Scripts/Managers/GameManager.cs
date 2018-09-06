@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     CustomNetworkManager customNetworkManager;
 
     public string hostIp { get; set; }
-    public LobbyClient myLobbyClient { get; set; }
+    public PlayerConnection playerConnection { get; set; }
 
 	// Use this for initialization
 	void Awake () {
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void OnChangeTeamClicked(){
-        myLobbyClient.ChangeTeamClicked();
+        playerConnection.ChangeTeamClicked();
     }
 
     public void OnLeaveClicked(){

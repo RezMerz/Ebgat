@@ -125,9 +125,13 @@ public class ServerManager : NetworkBehaviour {
     {
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
+            Debug.Log(networkManager.playerConnections[i].clientId);
+            Debug.Log(clientId);
             if (networkManager.playerConnections[i].clientId == clientId)
             {
+                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn");
                 networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId, Toolkit.VectorSerialize(SpawnPoint));
+                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn 000000000000");
                 break;
             }
         }
@@ -135,38 +139,39 @@ public class ServerManager : NetworkBehaviour {
     }
 
 
-    public void ClientConnected(int clientId, int heroId)
+    public void ClientConnected(int clientId)
     {
-        Debug.Log("id: " + clientId + " , " + heroId);
-        playerInfoList.Add(new PlayerInfo(clientId, heroId, true));
+        Debug.Log("id: " + clientId);
+        for (int i = 0; i < networkManager.clientsData.Count; i++){
+            if(networkManager.clientsData[i].id == clientId){
+                playerInfoList.Add(new PlayerInfo(networkManager.clientsData[i].id, networkManager.clientsData[i].heroId, networkManager.clientsData[i].team, true));
+            }
+        }
         currentClientCount++;
-
+        if(currentClientCount == networkManager.clientsData.Count){
+            StartGame();
+        }
     }
 
     public void StartGame()
     {
-        int teamId = 1;
-        networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
-        for (int i = 0; i < currentClientCount; i++)
+        //networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+        for (int i = 0; i < playerInfoList.Count; i++)
         {
-            SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
-            playerInfoList[i].teamId = teamId;
-           if (teamId == 1)
-            {
+            Debug.Log(playerInfoList[i].teamId - 1);
+            Debug.Log(networkManager.heroSpawnPositions.Count);
+            Debug.Log(networkManager.heroSpawnPositions[playerInfoList[i].teamId - 1].position);
+            SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, playerInfoList[i].teamId, networkManager.heroSpawnPositions[playerInfoList[i].teamId - 1].position);
+            if (playerInfoList[i].teamId == 1)
                 team1Count++;
-                teamId = 2;
-            }
             else
-            {
                 team2Count++;
-                teamId = 1;
-            }
         }
         UpdatePlayers();
         ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
-    public void HeroSpawned(int cliendId){
+    /*public void HeroSpawned(int cliendId){
         spawnedHeroCount++;
         if(spawnedHeroCount == maxClientCount){ //spawn at the begining of the match
             for (int i = 0; i < maxClientCount; i++){
@@ -184,7 +189,7 @@ public class ServerManager : NetworkBehaviour {
                 }
             }
         }
-    }
+    }*/
 
     public int GetBulletID(int playerId)
     {
@@ -255,11 +260,11 @@ class PlayerInfo{
     public float respawnTimeLeft;
     public PlayerConnection playerConnection;
 
-    public PlayerInfo(int clientId, int heroId, bool isAlive){
+    public PlayerInfo(int clientId, int heroId,int teamId , bool isAlive){
         this.heroId = heroId;
         this.clientId = clientId;
         this.isAlive = isAlive;
         respawnTimeLeft = 0;
-        teamId = 0;
+        this.teamId = teamId;
     }
 }
