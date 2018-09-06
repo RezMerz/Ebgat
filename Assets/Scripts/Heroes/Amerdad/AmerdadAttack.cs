@@ -27,7 +27,8 @@ public class AmerdadAttack : Attack {
 
     public override void AttackPressed()
     {
-        if (charStats.HeadState != EHeadState.Stunned){
+        if (charStats.HeadState != EHeadState.Stunned && !charStats.Disarm)
+        {
             if (ready)
             {
                 if (charStats.Energy >= charStats.attackEnergyConsume)

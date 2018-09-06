@@ -21,7 +21,7 @@ public class PlayerControlClientside : MonoBehaviour
 
 
     private Hashtable playerStatesHash = new Hashtable();
-    private int lastStateChecked;
+    public int lastStateChecked;
     private int currentStateNumber;
     private int biggestIdNumber;
     private int frameNumber;
@@ -143,7 +143,7 @@ public class PlayerControlClientside : MonoBehaviour
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
-                    clientNetworkSender.RequestWorldState(playerId);
+                    clientNetworkSender.RequestWorldState(playerId,lastStateChecked);
                 }
             }
             currentStateNumber++;

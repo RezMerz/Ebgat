@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmerdadDisarm : Ability {
-
+public class AmerdadDisarm : Ability
+{
+    public float damage;
     public Vector2 size;
     public Vector2 offset;
 
+
+    private Vector2 weaponSize;
+    private float distance;
     private int layerMask;
     private int visibilityLayerMask;
 
     // Use this for initialization
+    private void Start()
+    {
+        weaponSize = new Vector2(0.1f, size.y);
+        distance = size.x;
 
+    }
     public override void AbilityKeyPrssed()
     {
         if (charStats.HeadState == EHeadState.Stunned)
@@ -52,21 +61,34 @@ public class AmerdadDisarm : Ability {
 
     protected override void AbilityCast()
     {
-        
+        StartCoroutine(CoolDownTimer(coolDownTime));
+        offset = (charStats.Side + Vector2.up) * offset;
+        RaycastHit2D[] targets = Physics2D.BoxCastAll(transform.position + (Vector3)offset, weaponSize, 0, charStats.Side, distance, layerMask, 0, 0);
+        foreach (RaycastHit2D target in targets)
+        {
+            if (target.collider.tag.Equals("VirtualPlayer"))
+            {
+                if (Toolkit.IsVisible(transform.position,target.point,visibilityLayerMask,target.collider))
+                {
+                    target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                }
+            }
+        }
     }
+
 
     public override void AbilityActivateClientSide()
     {
-        
+
     }
 
     public override void AbilityKeyHold()
     {
-        
+
     }
 
     public override void AbilityKeyReleased()
     {
-        
+
     }
 }

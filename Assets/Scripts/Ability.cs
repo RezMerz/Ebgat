@@ -45,5 +45,12 @@ public abstract class Ability : MonoBehaviour
     }
 
     protected virtual void AbilityCast() { }
-    protected virtual void IntruptCast() { }
+    public virtual void IntruptCast()
+    {
+        if (castTimeCoroutine != null)
+        {
+            StopCoroutine(castTimeCoroutine);
+            StartCoroutine(CoolDownTimer(coolDownTime));
+        }
+    }
 }

@@ -275,6 +275,22 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != aimRotation) { aimRotation = value; playerControl.worldState.RegisterCharStat(ID, 'C', value + ""); } }
     }
 
+    private int rage;
+    public int Rage
+    {
+        get { return rage; }
+        set { if (value != rage) { Rage = value; playerControl.worldState.RegisterCharStat(ID, 'B', value + ""); } }
+    }
+
+
+    private bool disarm;
+    public bool Disarm
+    {
+        get { return disarm; }
+        set { if (value != disarm) { disarm = value; playerControl.worldState.RegisterCharStat(ID, 'D', value + ""); } }
+    }
+
+
     public int energyRegenRate;
     public int attackEnergyConsume;
     public int jumpEnergyConsume;

@@ -23,12 +23,13 @@ abstract public class Physic : MonoBehaviour
     }
     public void AddPersistentForce(Vector2 force, float distance, int removeTag)
     {
-        persitentForces.Add(new PersitentForce(force, distance, removeTag));
+        if (!moveLock)
+            persitentForces.Add(new PersitentForce(force, distance, removeTag));
     }
     public void AddReductiveForce(Vector2 direction, float force, float reductionForce, int removeTag)
     {
-        if(!moveLock)
-        reductiveForces.Add(new ReductiveForce(direction,force,reductionForce,removeTag));
+        if (!moveLock)
+            reductiveForces.Add(new ReductiveForce(direction, force, reductionForce, removeTag));
     }
 
     public void RemoveTaggedForces(int tag)
@@ -64,7 +65,7 @@ abstract public class Physic : MonoBehaviour
     {
         for (int i = 0; i < reductiveForces.Count; i++)
         {
-            if (reductiveForces[i].force > 0 )
+            if (reductiveForces[i].force > 0)
             {
                 AddForce(reductiveForces[i].direction * reductiveForces[i].force);
                 reductiveForces[i].force -= reductiveForces[i].reductionForce;
@@ -109,7 +110,7 @@ public class ReductiveForce
     public float force;
     public float reductionForce;
     public int removeTag;
-    public ReductiveForce(Vector2 direction,float force,float reductionForce,int removeTag)
+    public ReductiveForce(Vector2 direction, float force, float reductionForce, int removeTag)
     {
         this.direction = direction;
         this.force = force;

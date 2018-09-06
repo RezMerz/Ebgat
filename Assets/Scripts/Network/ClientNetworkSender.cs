@@ -37,8 +37,9 @@ public class ClientNetworkSender : NetworkBehaviour
         SendCommands();
     }
 
-    public void RequestWorldState(int playerId){
-        serverNetworkReciever.CmdSendWorldStateToClient(playerId);
+    public void RequestWorldState(int playerId,int lastState)
+    {
+        serverNetworkReciever.CmdSendWorldStateToClient(playerId,lastState);
     }
 
     private void SendCommands()

@@ -25,7 +25,7 @@ public class MalkousAttack : Attack
 
     public override void AttackPressed()
     {
-        if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall)
+        if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall && !charStats.Disarm)
         {
             if (ready)
             {

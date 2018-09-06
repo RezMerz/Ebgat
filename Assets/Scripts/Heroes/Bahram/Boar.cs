@@ -154,7 +154,7 @@ public class Boar : Ability
         physic.Unlock();
         HumanForm();
     }
-    protected override void IntruptCast()
+    public override void IntruptCast()
     {
         if(castTimeCoroutine != null)
         {

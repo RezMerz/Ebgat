@@ -43,7 +43,7 @@ public class MeleeAttack : Attack
 
     public override void AttackPressed()
     {
-        if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall)
+        if (charStats.HeadState != EHeadState.Stunned && charStats.FeetState != EFeetState.OnWall && !charStats.Disarm)
         {
 
 
@@ -81,7 +81,7 @@ public class MeleeAttack : Attack
     protected override void ApplyAttack()
     {
 
-        Debug.Log(charStats.AttackNumber);
+       // Debug.Log(charStats.AttackNumber);
         parryTimeCoroutine = StartCoroutine(ParryTime());
         offset = (charStats.Side + Vector2.up) * offset;
 

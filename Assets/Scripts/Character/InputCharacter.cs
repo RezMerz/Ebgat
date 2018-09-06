@@ -99,7 +99,7 @@ public class InputCharacter : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
-            clientNetworkSender.JumpReleased(transform.position);
+            // clientNetworkSender.JumpReleased(transform.position);
             //jump.JumpReleased();
         }
         //Ability
@@ -177,7 +177,7 @@ public class InputCharacter : MonoBehaviour
         }
         if (Input.GetButtonDown("Debug"))
         {
-            clientNetworkSender.RequestWorldState(playerControl.playerId);
+            clientNetworkSender.RequestWorldState(playerControl.playerId,playerControl.lastStateChecked);
         }
 
     }
