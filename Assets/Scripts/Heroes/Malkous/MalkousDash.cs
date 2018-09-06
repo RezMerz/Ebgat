@@ -10,6 +10,7 @@ public class MalkousDash : CharacterDash
 
     private void Awake()
     {
+        
         malkousAttack = GetComponent<MalkousAttack>();
     }
     // Update is called once per frame

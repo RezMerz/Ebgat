@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MalkousGraphics : HeroGraphics {
-
+    private int attackNumber = 0;
     public GameObject boomEffect;
     public override void HandState(string value)
     {
@@ -12,7 +12,11 @@ public class MalkousGraphics : HeroGraphics {
 
 
     }
-
+    public override void AttackNumber(string value)
+    {
+        attackNumber = int.Parse(value);
+        animator.SetInteger("Attack Number", attackNumber);
+    }
     public override void AbilityState(string value)
     {
         print(value);
@@ -21,7 +25,8 @@ public class MalkousGraphics : HeroGraphics {
             GameObject obj = Instantiate(boomEffect, transform.position, Quaternion.Euler(0, 0, 0));
             obj.transform.parent = transform;
             DestoryObjectAfterTime(3,obj);
-            hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
+            if(playerControlClientside.IsLocalPlayer())
+                hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
         }
         else if (value == "2")
         {
@@ -53,7 +58,8 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "3")
         {
-            hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
+            if(playerControlClientside.IsLocalPlayer())
+                hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
             animator.SetBool("Dash", true);
             gameObject.layer = LayerMask.NameToLayer("Dashing");
         }
@@ -67,9 +73,9 @@ public class MalkousGraphics : HeroGraphics {
         animator.SetBool("OnWall", false);
         if (value == "1")
         {
-           // GameObject land = Instantiate(landInstance);
-           // StartCoroutine(DestoryObjectAfterTime(1, land));
-           // land.transform.position = transform.position + Vector3.down * 3 /2;
+            // GameObject land = Instantiate(landInstance);
+            // StartCoroutine(DestoryObjectAfterTime(1, land));
+            // land.transform.position = transform.position + Vector3.down * 3 /2;
             animator.SetTrigger("OnGround");
         }
         else if (value == "2")
@@ -85,8 +91,8 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "4")
             print(EFeetState.NoGravity);
-      //  else
-        //    print("Wrong Feet State Code");
+        else if (value == "8")
+            animator.SetTrigger("Jump");
 
     }
 }

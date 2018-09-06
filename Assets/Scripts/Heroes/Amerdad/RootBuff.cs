@@ -6,11 +6,13 @@ public class RootBuff : Buff {
 
     public override void BuffCharacter()
     {
-        charStats.FeetState = EFeetState.Root;
+        charStats.Root = true;
+        charStats.GetComponent<Physic>().Lock();
     }
 
     public override void DebuffCharacter()
     {
-        charStats.FeetState = EFeetState.Onground;
+        charStats.Root =  false;
+        charStats.GetComponent<Physic>().Unlock();
     }
 }

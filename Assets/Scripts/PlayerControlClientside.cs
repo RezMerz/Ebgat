@@ -241,6 +241,8 @@ public class PlayerControlClientside : MonoBehaviour
             case 'z': heroGraphics.SpeedRateChange(value); break;
             case 'f': heroGraphics.ArmorChange(value); break;
             case 'D': heroGraphics.Disarm(value); break;
+            case 'E': heroGraphics.RootMark(value); break;
+            case 'F': heroGraphics.Root(value); break;
         }
         charStatsClient.SetAttribute(code, value);
     }
@@ -287,9 +289,9 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void Die()
     {
+        heroGraphics.Die();
         Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
-        GetComponent<SpriteRenderer>().enabled = false;
         if (IsLocalPlayer())
         {
             Camera.main.GetComponent<SmoothCamera2D>().UnfollowTarget();
@@ -321,7 +323,8 @@ public class PlayerControlClientside : MonoBehaviour
             float range = float.Parse(deString[3]);
             int number = int.Parse(deString[4]);
             Vector2 startPos = Toolkit.DeserializeVector(deString[5]);
-            bulletmanager.Shoot(attackSide, gravityAcc, id, range, number, startPos);
+            float changeRange = float.Parse(deString[6]);
+            bulletmanager.Shoot(attackSide, gravityAcc, id, range, number, startPos, changeRange);
         }
     }
     public void DestroyBullet(string data)

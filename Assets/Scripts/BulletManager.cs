@@ -20,12 +20,12 @@ public class BulletManager : MonoBehaviour
         layerMask = LayerMask.GetMask(playerControl.charStatsClient.enemyTeamName, "Blocks");
     }
 
-    public void Shoot(Vector2 direction, float gravityAcc, int id, float range, int number, Vector2 startPos)
+    public void Shoot(Vector2 direction, float gravityAcc, int id, float range, int number, Vector2 startPos,float changeRange)
     {
         GameObject bulletObject = Instantiate(bulletObjects[number], transform.position + (Vector3)startPos, Quaternion.identity);
         bulletObject.layer = gameObject.layer;
         shotBullets.Add(id, bulletObject);
-        bulletObject.GetComponent<Bullet>().Shoot(direction, layerMask, gravityAcc, range);
+        bulletObject.GetComponent<Bullet>().Shoot(direction, layerMask, gravityAcc, range,changeRange);
     }
 
     public void DestroyBullet(int id)

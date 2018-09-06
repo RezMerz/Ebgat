@@ -6,9 +6,9 @@ using System.Globalization;
 public class HeroGraphics : MonoBehaviour
 {
     public GameObject landInstance;
-    private SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
     protected Animator animator;
-    private PlayerControlClientside playerControlClientside;
+    protected PlayerControlClientside playerControlClientside;
     protected AudioSource audioSource;
     private Slider hpSlider;
     private Slider energySlider;
@@ -22,6 +22,10 @@ public class HeroGraphics : MonoBehaviour
     protected Color color = Color.white;
     protected HUD hud;
     protected AbilityHudProperty[] abilitiesInfo;
+    public GameObject dieInstance;
+    private Animator rootMark;
+    private GameObject rootGround;
+    public GameObject rootGroundInstance;
 
     public void TakeDamage()
     {
@@ -30,6 +34,44 @@ public class HeroGraphics : MonoBehaviour
     }
 
 
+    public void RootMark(string value)
+    {
+        print(value);
+        if(value == "True")
+        {
+            rootMark.SetBool("Root", true);
+        }
+        else if (value == "False")
+        {
+            rootMark.SetBool("Root", false);
+        }
+    }
+
+    public void Root(string value)
+    {
+        print(value);
+        if (value == "True")
+        {
+            rootGround = Instantiate(rootGroundInstance);
+            rootGround.transform.position = transform.position + new Vector3(0,-0.6f,0);
+        }
+        else if (value == "False")
+        {
+            if (rootGround != null)
+            {
+                rootGround.GetComponent<Animator>().SetTrigger("UnRoot");
+                DestoryObjectAfterTime(3, rootGround);
+                rootGround = null;
+            }
+        }
+    }
+
+    public void Die()
+    {
+        GameObject die = Instantiate(dieInstance);
+        die.transform.position = transform.position;
+        DestoryObjectAfterTime(2, die);
+    }
     public void SpeedRateChange(string value)
     {
         float speedRate = float.Parse(value);
@@ -61,6 +103,10 @@ public class HeroGraphics : MonoBehaviour
                 abilityEffect = transform.GetChild(i).GetComponent<Animator>();
             if (transform.GetChild(i).name == "Head Icons")
                 HeadIcons = transform.GetChild(i).gameObject;
+            if (transform.GetChild(i).name == "Root Alarm")
+            {
+                rootMark = transform.GetChild(i).GetComponent<Animator>();
+            }
         }
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -109,11 +155,11 @@ public class HeroGraphics : MonoBehaviour
 
     public void Disarm(string value)
     {
-        if (value == "true")
+        if (value == "True")
         {
             HeadIcons.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (value == "false")
+        else if (value == "False")
         {
             HeadIcons.transform.GetChild(1).gameObject.SetActive(false);
         }
@@ -204,9 +250,9 @@ public class HeroGraphics : MonoBehaviour
     {
         Vector2 side = Toolkit.DeserializeVector(value);
         if (side.x == 1)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            sprite.flipX = false;
         else if (side.x == -1)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            sprite.flipX = true;
     }
 
 

@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Gravity : MonoBehaviour {
+    public Action GravityAction;
+
 
     private PlayerControl playerControl;
     private CharacterPhysic physic;
@@ -70,6 +73,11 @@ public class Gravity : MonoBehaviour {
         {
             timer = 0;
             charStats.FeetState = EFeetState.Onground;
+            if(GravityAction != null)
+            {
+                GravityAction();
+                GravityAction = null;
+            }
         }
         else
         {

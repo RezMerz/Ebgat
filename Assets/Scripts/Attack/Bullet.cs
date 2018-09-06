@@ -16,11 +16,13 @@ public class Bullet : MonoBehaviour
     private float distance;
     private Vector2 distanceVector;
     private Vector2 direction;
-    private bool shot;
+    protected bool shot;
     private Animator animator;
 
-    private bool hitAnimation;
+    private float changeBehaviourRange;
 
+    private bool hitAnimation;
+    protected bool changed;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -36,13 +38,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range)
+    public void Shoot(Vector2 direction, int layer, float gravityAcc, float range,float changeRange)
     {
         shot = true;
         physic.SetData(layer);
         this.direction = direction;
         this.range = range;
+        changeBehaviourRange = changeRange;
         gravityAcceleration = gravityAcc;
+    }
+
+    public virtual void ChangeBehaviour()
+    {
+        changed = true;
     }
 
     private void Move()
@@ -50,20 +58,25 @@ public class Bullet : MonoBehaviour
         Vector2 force = direction.normalized * speed * Time.deltaTime;
         distanceVector += force;
         distance = distanceVector.magnitude;
+        if (!changed &&  distance >= changeBehaviourRange)
+        {
+            ChangeBehaviour();
+        }
+
         Vector2 gravityForce = Vector2.zero;
         if (distance > range)
         {
             gravityForce = Vector2.down * gravitySpeedBase * Time.deltaTime;
             gravitySpeedBase += gravityAcceleration * Time.deltaTime;
         }
-        float angle = Vector2.SignedAngle(Vector2.right,(force + gravityForce).normalized);
+        float angle = Vector2.SignedAngle(Vector2.right, (force + gravityForce).normalized);
         float angleX = 0;
-        if(angle > 90 || angle < -90)
+        if (angle > 90 || angle < -90)
         {
             angleX = 180;
             angle = -angle;
         }
-        transform.rotation = Quaternion.Euler(angleX,0,angle);
+        transform.rotation = Quaternion.Euler(angleX, 0, angle);
         physic.AddForce(force + gravityForce);
         physic.BulletAction += HitFunction;
     }
@@ -73,34 +86,45 @@ public class Bullet : MonoBehaviour
 
         if (hitObject.collider != null)
         {
-            shot = false;
             Vector2 hitsSide = Toolkit.HitSide(hitObject);
-            if(hitsSide == Vector2.right)
+            HitWithSide(hitsSide);
+            if (hitObject.collider.tag.Equals("Bullet"))
             {
-                transform.rotation = Quaternion.Euler(0,0,-90);
+                hitObject.collider.gameObject.GetComponent<Bullet>().HitWithSide(hitsSide * -1);
             }
-            else if (hitsSide == Vector2.left)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-            }
-            else if (hitsSide == Vector2.down)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-            }
-            else if(hitsSide == Vector2.up)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            hitAnimation = true;
-            animator.SetTrigger("Hit");
         }
     }
-    
+
+    public virtual void HitWithSide(Vector2 hitSide)
+    {
+        shot = false;
+        GetComponent<Collider2D>().enabled = false;
+        if (hitSide == Vector2.right)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (hitSide == Vector2.left)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (hitSide == Vector2.down)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (hitSide == Vector2.up)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        hitAnimation = true;
+        animator.SetTrigger("Hit");
+    }
+
 
     public void DestroyAnimation()
     {
         if (!hitAnimation)
         {
+           // transform.localScale = Vector3.one;
             shot = false;
             animator.SetTrigger("Hit");
         }
@@ -108,7 +132,7 @@ public class Bullet : MonoBehaviour
 
     public void Destroy()
     {
-       // Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
 

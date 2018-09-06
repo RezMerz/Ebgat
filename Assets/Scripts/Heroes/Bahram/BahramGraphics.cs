@@ -36,7 +36,8 @@ public class BahramGraphics : HeroGraphics{
         if (value == "1")
         {
             animator.SetBool("Ability1", true);
-            hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
+            if(playerControlClientside.IsLocalPlayer())
+                hud.AbilityStarted(2, abilitiesInfo[1].cooldown);
         }
         else if (value == "2")
         {
@@ -76,7 +77,8 @@ public class BahramGraphics : HeroGraphics{
         else if(value == "3")
         {
             gameObject.layer = LayerMask.NameToLayer("Dashing");
-            hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
+            if(playerControlClientside.IsLocalPlayer())
+                hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
             animator.SetTrigger("Roll");
         }
         else
@@ -89,13 +91,13 @@ public class BahramGraphics : HeroGraphics{
         {
             GameObject land = Instantiate(landInstance);
             StartCoroutine(DestoryObjectAfterTime(1, land));
-            land.transform.position = transform.position + Vector3.down * 3 /2;
-            if(charStats.bodyState != EBodyState.Dashing)
+            land.transform.position = transform.position + Vector3.down * 3 / 2;
+            if (charStats.bodyState != EBodyState.Dashing)
                 animator.SetTrigger("OnGround");
         }
         else if (value == "2")
         {
-             animator.SetTrigger("Fall");
+            animator.SetTrigger("Fall");
         }
         else if (value == "3")
         {
@@ -112,8 +114,8 @@ public class BahramGraphics : HeroGraphics{
         }
         else if (value == "5")
             animator.SetTrigger("DoubleJump");
-        else
-            print("Wrong Feet State Code");
+        else if (value == "8")
+            animator.SetTrigger("Jump");
 
     }
 }

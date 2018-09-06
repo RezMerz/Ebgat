@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmerdadRoot : Ability {
-
-    RootBuff rootBuff;
+public class AmerdadRoot : Ability
+{
+    private CharacterPhysic physic;
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+        physic = GetComponent<CharacterPhysic>();
+    }
 
     public override void AbilityActivateClientSide()
     {
@@ -23,22 +19,47 @@ public class AmerdadRoot : Ability {
 
     public override void AbilityKeyHold()
     {
-        
+
     }
 
     public override void AbilityKeyPrssed()
     {
-        GameObject[] playerobj = GameObject.FindGameObjectsWithTag("VirtualPlayer");
-        for (int i = 0; i < playerobj.Length; i++){
-            PlayerControl playerControl = playerobj[i].GetComponent<PlayerControl>();
-            if(!playerControl.charStats.teamName.Equals(charStats.teamName)){
-                playerControl.TakeAttack(0, rootBuff.name);
+        if (charStats.HeadState == EHeadState.Conscious && (charStats.FeetState == EFeetState.Onground))
+        {
+            if (!coolDownLock)
+            {
+                if (energyUsage <= charStats.Energy)
+                {
+                    coolDownLock = true;
+                    physic.Lock();
+                    castTimeCoroutine = StartCoroutine(CastTime(castTime));
+                    charStats.HandState = EHandState.Casting;
+                    charStats.AbilityState = EAbility.Ability2Start;
+                }
             }
         }
     }
 
+    protected override void AbilityCast()
+    {
+        GameObject[] playerobj = GameObject.FindGameObjectsWithTag("VirtualPlayer");
+        for (int i = 0; i < playerobj.Length; i++)
+        {
+            PlayerControl playerControl = playerobj[i].GetComponent<PlayerControl>();
+            if (!playerControl.charStats.teamName.Equals(charStats.teamName))
+            {
+                playerControl.TakeAttack(0, buff.name);
+            }
+        }
+        physic.Unlock();
+        charStats.HandState = EHandState.Idle;
+        charStats.AbilityState = EAbility.Ability2Finish;
+        StartCoroutine(CoolDownTimer(coolDownTime));
+
+    }
+
     public override void AbilityKeyReleased()
     {
-        
+
     }
 }

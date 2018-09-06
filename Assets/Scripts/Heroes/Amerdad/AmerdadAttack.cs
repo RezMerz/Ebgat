@@ -24,6 +24,8 @@ public class AmerdadAttack : Attack
     [SerializeField]
     public List<MalkousBullet> virtualBullets;
 
+
+    
     // Use this for initialization
 
     public override void AttackPressed()
@@ -38,6 +40,11 @@ public class AmerdadAttack : Attack
                     {
 
                         GetComponent<CharacterDash>().DashEnd();
+                    }
+
+                    if(layerMask == 0)
+                    {
+                        layerMask = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
                     }
 
                     charStats.HandState = EHandState.Channeling;
@@ -94,6 +101,7 @@ public class AmerdadAttack : Attack
             currentHoldTime = maxHoldTime;
         }
         float damage = minDamage + (currentHoldTime / maxHoldTime) * (maxDamage - minDamage);
+        Debug.Log(damage);
         float gravityAcc = charStats.GravityAcceleration;
         float range = virtualBullets[charStats.AttackNumber].range;
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
@@ -113,11 +121,11 @@ public class AmerdadAttack : Attack
         }
         GameObject virtualBullet = Instantiate(virtualBullets[charStats.AttackNumber].VirtualBullet, transform.position + (Vector3)startPos, Quaternion.identity);
         virtualBullet.layer = gameObject.layer;
-        virtualBullet.GetComponent<VirtualBullet>().Shoot(damage, attackSide, layerMask, gravityAcc, playerControl, bulletID, range);
+        virtualBullet.GetComponent<VirtualBullet>().Shoot(damage, attackSide, layerMask, gravityAcc, playerControl, bulletID, range,0);
         // register bullet
-        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos);
+        playerControl.worldState.BulletRegister(playerControl.playerId, bulletID, attackSide, gravityAcc, range, charStats.AttackNumber, startPos,0);
         StartCoroutine(CoolDown());
-
+        currentHoldTime = 0;
         if (charStats.AttackNumber != 0)
         {
             charStats.AttackNumber = 0;

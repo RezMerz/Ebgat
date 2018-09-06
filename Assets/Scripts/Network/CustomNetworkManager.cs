@@ -110,8 +110,29 @@ public class CustomNetworkManager : NetworkManager {
 
     }
 
+    public override void OnStopClient()
+    {
+        Debug.Log("stop client");
+    }
+
+    public override void OnStopServer()
+    {
+        Debug.Log("stop server");
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        Debug.Log("client disconected");
+    }
+
+    public override void OnClientError(NetworkConnection conn, int errorCode)
+    {
+        Debug.Log("erooorrr");
+    }
+
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        Debug.Log("on server disconect");
         StopHost();
         GetComponent<CustomNetworkDiscovery>().Initialize();
         GetComponent<CustomNetworkDiscovery>().StopBroadcast();
