@@ -67,9 +67,9 @@ public class MalkousGraphics : HeroGraphics {
         animator.SetBool("OnWall", false);
         if (value == "1")
         {
-           // GameObject land = Instantiate(landInstance);
-           // StartCoroutine(DestoryObjectAfterTime(1, land));
-           // land.transform.position = transform.position + Vector3.down * 3 /2;
+            // GameObject land = Instantiate(landInstance);
+            // StartCoroutine(DestoryObjectAfterTime(1, land));
+            // land.transform.position = transform.position + Vector3.down * 3 /2;
             animator.SetTrigger("OnGround");
         }
         else if (value == "2")
@@ -85,8 +85,8 @@ public class MalkousGraphics : HeroGraphics {
         }
         else if (value == "4")
             print(EFeetState.NoGravity);
-      //  else
-        //    print("Wrong Feet State Code");
+        else if (value == "8")
+            animator.SetTrigger("Jump");
 
     }
 }
