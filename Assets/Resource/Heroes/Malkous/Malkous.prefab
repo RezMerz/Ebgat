@@ -150,9 +150,9 @@ MonoBehaviour:
   - VirtualBullet: {fileID: 1691014189850432, guid: 2c0f6bfd71fbdcf4ab2e1985f39f5d7a,
       type: 2}
     range: 10
-    attackAnimationTime: 0.2
+    attackAnimationTime: 0.25
     damage: 30
-    startingPos: {x: 2.25, y: 0.5}
+    startingPos: {x: 3.5, y: 0.8}
 --- !u!114 &114108135820462582
 MonoBehaviour:
   m_ObjectHideFlags: 1
