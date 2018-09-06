@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CharacterPhysic : Physic
 {
+    public float fallDamage;
+
     public Action<List<RaycastHit2D>, List<RaycastHit2D>, Vector2> PhysicAction;
     public HitType hitType;
     private int gravityLayerMask;
@@ -129,7 +131,7 @@ public class CharacterPhysic : Physic
         if (vHits.Count > 0)
         {
             charStats.ResetJumpSpeed();
-            charStats.RestJumpMaxSpeed();
+            charStats.ResetJumpMaxSpeed();
             charStats.ResetGravitySpeed();
             RemoveTaggedForces(0);
             //RemoveTaggedForces(1);
@@ -169,6 +171,7 @@ public class CharacterPhysic : Physic
             if (hit.tag.Equals("VirtualPlayer"))
             {
                 force = Vector2.up * (charStats.JumpSpeed - direction.y * 20);
+                hit.gameObject.GetComponent<PlayerControl>().TakeAttack(fallDamage,"");
                 AddPersistentForce(force,0, 0);
             }
             else if (hit.tag.Equals("jump"))
@@ -194,7 +197,7 @@ public class CharacterPhysic : Physic
                 if(charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if(timer >=  charStats.CayoteTime + Time.deltaTime)
+                    if(timer >=  0.15f + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }

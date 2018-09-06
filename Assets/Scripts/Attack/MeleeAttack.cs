@@ -81,6 +81,7 @@ public class MeleeAttack : Attack
     protected override void ApplyAttack()
     {
 
+        Debug.Log(charStats.AttackNumber);
         parryTimeCoroutine = StartCoroutine(ParryTime());
         offset = (charStats.Side + Vector2.up) * offset;
 
@@ -160,6 +161,7 @@ public class MeleeAttack : Attack
     {
         if (attackNumber != charStats.AttackNumber)
         {
+
             animationTime = swordCombos[charStats.AttackNumber].attackAnimationTime;
             weaponSize = new Vector2(0.1f, swordCombos[charStats.AttackNumber].size.y);
             distance = swordCombos[charStats.AttackNumber].size.x;
@@ -184,7 +186,14 @@ public class MeleeAttack : Attack
     public IEnumerator ComboTime()
     {
         yield return new WaitForSeconds(comboTime);
-        charStats.AttackNumber = 0;
+        if(charStats.AbilityState != EAbility.Ability2Start)
+        {
+            charStats.AttackNumber = 0;
+        }
+        else
+        {
+            charStats.AttackNumber = 3;
+        }
     }
 
     public override void IntruptAttack()

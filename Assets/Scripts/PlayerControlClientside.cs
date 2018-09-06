@@ -226,8 +226,6 @@ public class PlayerControlClientside : MonoBehaviour
     // gets the code and value of datas
     private void Deserilize(char code, string value)
     {
-
-        charStatsClient.SetAttribute(code, value);
         switch (code)
         {
             case 'A': heroGraphics.AbilityState(value); break;
@@ -243,6 +241,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'z': heroGraphics.SpeedRateChange(value); break;
             case 'f': heroGraphics.ArmorChange(value); break;
         }
+        charStatsClient.SetAttribute(code, value);
     }
 
     public void AddTOHashTable(int id, string state)

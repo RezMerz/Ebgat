@@ -146,9 +146,10 @@ MonoBehaviour:
   speed: 25
   range: 8
   coolDownTime: 1
-  boarFormSpeed: 0
-  boarFormRange: 0
-  dashForce: 0
+  boarFormSpeed: 30
+  boarFormRange: 8
+  dashForce: 0.3
+  stunAnimationTime: 0.1
   buff: {fileID: 0}
 --- !u!114 &114175303413705874
 MonoBehaviour:
@@ -274,23 +275,23 @@ MonoBehaviour:
     offset: {x: 1, y: 2.1}
     force: 0.5
     buff: {fileID: 0}
-  - damage: 25
-    attackAnimationTime: 0.3
-    size: {x: 7, y: 7}
+  - damage: 20
+    attackAnimationTime: 0.1
+    size: {x: 5, y: 4}
     offset: {x: 1, y: 2.1}
-    force: 0.5
+    force: 0.2
     buff: {fileID: 0}
-  - damage: 25
-    attackAnimationTime: 0.3
-    size: {x: 7, y: 7}
+  - damage: 20
+    attackAnimationTime: 0.1
+    size: {x: 5, y: 4}
     offset: {x: 1, y: 2.1}
-    force: 0.5
+    force: 0.2
     buff: {fileID: 0}
-  - damage: 25
-    attackAnimationTime: 0.3
-    size: {x: 7, y: 7}
+  - damage: 30
+    attackAnimationTime: 0.2
+    size: {x: 4, y: 4}
     offset: {x: 1, y: 2.1}
-    force: 0.5
+    force: 0.4
     buff: {fileID: 0}
   comboTime: 0.7
 --- !u!114 &114432285978368132
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffListRefrence:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
-  - {fileID: 114648076683127938, guid: 209b23f7c34a9dd45a2dada2af167cc9, type: 2}
+  - {fileID: 114004682952367580, guid: dccdd0c6b4f7cbd46adf98c4803c56de, type: 2}
   - {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   - {fileID: 114991850052140064, guid: e546a8bf9088e304ca29b740f82ad5f8, type: 2}
   - {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
@@ -361,7 +362,7 @@ MonoBehaviour:
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 2
-  duration: 20
+  duration: 2
   minMovementSpeed: 15
   maxMovementSpeed: 20
   movementAcceleration: 0.1

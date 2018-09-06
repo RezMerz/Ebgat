@@ -9,6 +9,7 @@ public class BahramDash : CharacterDash
     public float boarFormSpeed;
     public float boarFormRange;
     public float dashForce;
+    public float stunAnimationTime;
     public Buff buff;
 
     private new void Start()
@@ -109,6 +110,13 @@ public class BahramDash : CharacterDash
         meleeAttack.StartComboCorutine();
     }
 
+    private IEnumerator StunTime()
+    {
+        yield return new WaitForSeconds(stunAnimationTime);
+        charStats.HandState = EHandState.Idle;
+        charStats.AbilityState = EAbility.Ability3Finish;
+    }
+
     private void BahramDashHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {
         if (hHits.Count != 0 && direction.x * charStats.Side.x > 0)
@@ -117,6 +125,8 @@ public class BahramDash : CharacterDash
             {
                 hHits[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
                 hHits[0].collider.gameObject.GetComponent<CharacterPhysic>().AddReductiveForce(charStats.Side, dashForce, 0.1f, 0);
+                charStats.HandState = EHandState.Casting;
+                charStats.AbilityState = EAbility.Ability3Start;
             }
             DashEnd();
         }

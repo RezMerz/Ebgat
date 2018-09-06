@@ -5,6 +5,8 @@ using UnityEngine;
 public class AuraArmor : Ability
 {
 
+
+
     [SerializeField]
     private float radius;
     [SerializeField]
@@ -68,8 +70,7 @@ public class AuraArmor : Ability
                         }
                         else
                         {
-                            float force = (radius - (obj.transform.position - transform.position).magnitude) / 5 + pushForce;
-
+                            float force = (radius - (obj.transform.position - transform.position).magnitude) / 8 + pushForce;
                             Vector2 direction = (obj.transform.position - transform.position).normalized;
                             obj.gameObject.GetComponent<CharacterPhysic>().AddReductiveForce(direction, force, 0.25f, 0);
                         }
