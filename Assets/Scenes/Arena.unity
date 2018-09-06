@@ -58756,6 +58756,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1767897054
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114811490440031576, guid: a89d8fd9556069b45bde8273dbe352dc,
+        type: 2}
+      propertyPath: abilities.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.1425204
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.8637266
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184779788893356, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114811490440031576, guid: a89d8fd9556069b45bde8273dbe352dc,
+        type: 2}
+      propertyPath: abilities.Array.data[3].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: f3f84a9d1b31aff4baeca0db0a4df744,
+        type: 3}
+    - target: {fileID: 114811490440031576, guid: a89d8fd9556069b45bde8273dbe352dc,
+        type: 2}
+      propertyPath: abilities.Array.data[4].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: c360bc5dba2f5184b80be793472f950c,
+        type: 3}
+    - target: {fileID: 114811490440031576, guid: a89d8fd9556069b45bde8273dbe352dc,
+        type: 2}
+      propertyPath: abilities.Array.data[1].icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 83d547978a987524a9ca1d6a95047ceb,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1771061156
 GameObject:
   m_ObjectHideFlags: 0
