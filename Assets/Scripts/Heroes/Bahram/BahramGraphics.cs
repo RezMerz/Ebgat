@@ -6,7 +6,11 @@ public class BahramGraphics : HeroGraphics{
     public GameObject IronFistInstance;
     private int attackNumber = 1;
     public AudioClip[] audio_clips;
-
+    void Start()
+    {
+        base.Start();
+        hud.SetBlack(5,0);
+    }
     public override void HandState(string value)
     {
         if (value == "2")
@@ -86,6 +90,7 @@ public class BahramGraphics : HeroGraphics{
     }
     public override void FeetState(string value)
     {
+        hud.SetBlack(5, 0);
         animator.SetBool("OnWall", false);
         if (value == "1")
         {
@@ -113,7 +118,10 @@ public class BahramGraphics : HeroGraphics{
             //print(EFeetState.NoGravity);
         }
         else if (value == "5")
+        {
             animator.SetTrigger("DoubleJump");
+            hud.SetBlack(5, 1);
+        }
         else if (value == "8")
             animator.SetTrigger("Jump");
 

@@ -93,7 +93,7 @@ public class HeroGraphics : MonoBehaviour
         sprite.color = color;
     }
 
-    void Start()
+    protected void Start()
     {
         hud = GameObject.FindObjectOfType<HUD>();
         charStats = GetComponent<CharacterAttributesClient>();

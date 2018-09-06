@@ -73,7 +73,18 @@ public class HUD : MonoBehaviour {
             case 5: Icon5Black.fillAmount = 1; coolDown3 = time; timer3 = 0; break;
         }
     }
+    public void SetBlack(int n,float fill)
+    {
 
+        switch (n)
+        {
+            case 1: Icon1Black.fillAmount = fill;  break;
+            case 2: Icon2Black.fillAmount = fill;  break;
+            case 3: Icon3Black.fillAmount = fill;  break;
+            case 4: Icon4Black.fillAmount = fill;   break;
+            case 5: Icon5Black.fillAmount = fill;  break;
+        }
+    }
     void Update()
     {
         if (timer1 < coolDown1)
