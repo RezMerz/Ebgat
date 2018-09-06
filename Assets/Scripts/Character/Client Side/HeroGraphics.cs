@@ -34,11 +34,12 @@ public class HeroGraphics : MonoBehaviour
 
     public void RootMark(string value)
     {
-        if(value == "true")
+        print(value);
+        if(value == "True")
         {
             rootMark.SetBool("Root", true);
         }
-        else if (value == "false")
+        else if (value == "False")
         {
             rootMark.SetBool("Root", false);
         }
@@ -133,11 +134,11 @@ public class HeroGraphics : MonoBehaviour
 
     public void Disarm(string value)
     {
-        if (value == "true")
+        if (value == "True")
         {
             HeadIcons.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (value == "false")
+        else if (value == "False")
         {
             HeadIcons.transform.GetChild(1).gameObject.SetActive(false);
         }
