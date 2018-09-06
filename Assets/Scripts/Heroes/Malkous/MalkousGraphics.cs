@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MalkousGraphics : HeroGraphics {
-
+    private int attackNumber = 0;
     public GameObject boomEffect;
     public override void HandState(string value)
     {
@@ -12,7 +12,11 @@ public class MalkousGraphics : HeroGraphics {
 
 
     }
-
+    public override void AttackNumber(string value)
+    {
+        attackNumber = int.Parse(value);
+        animator.SetInteger("Attack Number", attackNumber);
+    }
     public override void AbilityState(string value)
     {
         print(value);

@@ -229,9 +229,9 @@ public class HeroGraphics : MonoBehaviour
     {
         Vector2 side = Toolkit.DeserializeVector(value);
         if (side.x == 1)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            sprite.flipX = false;
         else if (side.x == -1)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            sprite.flipX = true;
     }
 
 
