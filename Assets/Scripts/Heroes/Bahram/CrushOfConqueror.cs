@@ -37,7 +37,7 @@ public class CrushOfConqueror : Ability
 
     public override void AbilityKeyPrssed()
     {
-        if(charStats.HeadState == EHeadState.Stunned)
+        if(charStats.HeadState == EHeadState.Stunned || charStats.AbilityState == EAbility.Ability2Start)
         {
             return;
         }
