@@ -166,10 +166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffListRefrence:
   - {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
-  - {fileID: 114004682952367580, guid: dccdd0c6b4f7cbd46adf98c4803c56de, type: 2}
   - {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
+  - {fileID: 114004682952367580, guid: dccdd0c6b4f7cbd46adf98c4803c56de, type: 2}
   - {fileID: 114991850052140064, guid: e546a8bf9088e304ca29b740f82ad5f8, type: 2}
-  - {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
+  - {fileID: 114754754373969400, guid: 8cdf756cb989c7449844457444a9c989, type: 2}
+  - {fileID: 114109344943414118, guid: 9ae508828b6fba243aa7262f4617b60f, type: 2}
+  - {fileID: 114887446209080760, guid: cf18b18aac53cf147adae1ae8121d279, type: 2}
 --- !u!114 &114158786255817076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
+  fallDamage: 0
+  spikeDamage: 0
   hitType: 2
 --- !u!114 &114567925331417990
 MonoBehaviour:
