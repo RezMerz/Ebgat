@@ -64,6 +64,7 @@ public class CharacterMove : MonoBehaviour
         }
         if (charStats.BodyState != EBodyState.Dashing )
         {
+            print("Attack Side");
             charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
             SpeedCheck(moveSide);
