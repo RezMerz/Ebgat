@@ -28,43 +28,46 @@ public class CharacterMove : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (playerControl.IsServer())
+        if (movedPressed)
         {
-            if (movedPressed)
-            {
-                if (charStats.BodyState != EBodyState.Dashing && charStats.BodyState != EBodyState.Aiming)
-                    charStats.BodyState = EBodyState.Moving;
-            }
-            if (charStats.HandState != EHandState.Idle && charStats.BodyState == EBodyState.Moving)
+            if (charStats.BodyState != EBodyState.Dashing && charStats.BodyState != EBodyState.Aiming && !charStats.Root)
+                charStats.BodyState = EBodyState.Moving;
+        }
+        if (charStats.HandState != EHandState.Idle && charStats.BodyState == EBodyState.Moving)
+        {
+            charStats.BodyState = EBodyState.Standing;
+            charStats.ResetMoveSpeed();
+            //return;
+        }
+        if (charStats.BodyState == EBodyState.Moving)
+            if (charStats.HeadState == EHeadState.Stunned)
             {
                 charStats.BodyState = EBodyState.Standing;
                 charStats.ResetMoveSpeed();
-                //return;
             }
-            if (charStats.BodyState == EBodyState.Moving)
-                if (charStats.HeadState == EHeadState.Stunned)
-                {
-                    charStats.BodyState = EBodyState.Standing;
-                    charStats.ResetMoveSpeed();
-                }
-                else
-                {
-                    MoveServerside();
-                }
             else
             {
-                charStats.ResetMoveSpeed();
+                MoveServerside();
             }
+        else
+        {
+            charStats.ResetMoveSpeed();
         }
+
     }
     public void MovePressed(int i)
     {
         movedPressed = true;
         moveSide = i;
-        if (charStats.HeadState != EHeadState.Stunned && charStats.BodyState != EBodyState.Dashing && charStats.BodyState != EBodyState.Aiming)
+        if(charStats.HeadState == EHeadState.Stunned)
+        {
+            return;
+        }
+        if (charStats.BodyState != EBodyState.Dashing && charStats.BodyState != EBodyState.Aiming)
         {
             charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
+            SpeedCheck(moveSide);
             // charStats.Side = Vector2.right * i;
         }
     }

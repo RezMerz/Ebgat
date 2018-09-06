@@ -33,6 +33,11 @@ public class CharacterDash : MonoBehaviour
 
     public virtual void DashPressed()
     {
+        if (charStats.Root)
+        {
+            return;
+        }
+
         if (charStats.HeadState == EHeadState.Conscious)
         {
             if (!coolDownLock)

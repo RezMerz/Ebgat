@@ -55,6 +55,12 @@ public class PlayerJump : MonoBehaviour
     // First Jump
     public void JumpPressed()
     {
+        if(charStats.Root)
+        {
+            return;
+        }
+        
+
         // Jump only if on 
         if (charStats.FeetState == EFeetState.Onground && charStats.HeadState != EHeadState.Stunned)
         {
