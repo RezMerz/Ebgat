@@ -288,7 +288,7 @@ public class CharacterAttributes : MonoBehaviour {
     {
         get { return disarm; }
         set { if (value != disarm) { disarm = value; playerControl.worldState.RegisterCharStat(ID, 'D', value + ""); } }
-    }
+    } // D
 
 
     public int energyRegenRate;

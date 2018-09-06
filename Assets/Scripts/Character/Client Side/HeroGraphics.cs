@@ -107,6 +107,17 @@ public class HeroGraphics : MonoBehaviour
     }
 
 
+    public void Disarm(string value)
+    {
+        if (value == "true")
+        {
+            HeadIcons.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else if (value == "false")
+        {
+            HeadIcons.transform.GetChild(1).gameObject.SetActive(flase);
+        }
+    }
     public void ArmorChange(string value)
     {
         float armor = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
