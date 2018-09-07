@@ -239,6 +239,7 @@ MonoBehaviour:
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
   speedRate: 0
+  maxRage: 100
   energyRegenRate: 10
   attackEnergyConsume: 75
   jumpEnergyConsume: 50
