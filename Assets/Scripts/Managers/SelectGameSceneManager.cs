@@ -23,7 +23,12 @@ public class SelectGameSceneManager : MonoBehaviour {
         buttonManagers = new List<ButtonManager>();
 	}
 	
-	
+    public void BackToMainMenu(){
+        CustomNetworkDiscovery customNetworkDiscovery = GetComponent<CustomNetworkDiscovery>();
+        if (customNetworkDiscovery.isClient)
+            customNetworkDiscovery.StopBroadcast();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    }
 
     public void LoadHostSceen(){
         GameManager.instance.playerName = playerName.text;
