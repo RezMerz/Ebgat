@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 37092761}
   - component: {fileID: 37092760}
   m_Layer: 5
-  m_Name: Right Arrow (1)
+  m_Name: Left Arrow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ RectTransform:
   m_GameObject: {fileID: 37092758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3000149, y: 0.3000149, z: 1.0000099}
+  m_LocalScale: {x: 0.3000149, y: 0.3000149, z: 1}
   m_Children: []
   m_Father: {fileID: 2063147613}
   m_RootOrder: 2
@@ -187,7 +187,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 37092761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076935774}
+        m_MethodName: HeroLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &37092761
@@ -374,7 +385,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 78172225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076935773}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &78172225
@@ -1950,7 +1972,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 889761242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
@@ -2204,6 +2226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3a0e1952b3f403e894822bf8c2a4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Heroes: []
   texts:
   - {fileID: 0}
   - {fileID: 0}
@@ -2362,7 +2385,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263988154}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
@@ -2401,7 +2424,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 546b259312f60b94490eaee4e40af52f, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 60a692d886dad4e43b8cc4be70b63f20, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2412,7 +2435,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1263988157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076935774}
+        m_MethodName: HeroRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1263988157
@@ -3268,6 +3302,7 @@ GameObject:
   - component: {fileID: 1707827266}
   - component: {fileID: 1707827265}
   - component: {fileID: 1707827267}
+  - component: {fileID: 1707827268}
   m_Layer: 5
   m_Name: Hero
   m_TagString: Untagged
@@ -3290,7 +3325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440, y: 23}
+  m_AnchoredPosition: {x: 447.99997, y: 23.000002}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707827265
@@ -3336,7 +3371,7 @@ Animator:
   m_GameObject: {fileID: 1707827263}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d29aeaa1837e9324c9e2bfe87611670c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3345,6 +3380,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1707827268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1707827263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de734501106322e41aa7e6e2e7a53584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729926279
 GameObject:
   m_ObjectHideFlags: 0
