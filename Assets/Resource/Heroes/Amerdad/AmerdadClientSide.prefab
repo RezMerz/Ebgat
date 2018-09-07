@@ -519,16 +519,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - icon: {fileID: 21300000, guid: f88d61edd5a19d24495c656f583748fb, type: 3}
-    cooldown: 0
+    cooldown: 1
     timer: 0
   - icon: {fileID: 21300000, guid: 765f9770f2251714f8cd4fc50ff913d1, type: 3}
-    cooldown: 0
+    cooldown: 0.1
     timer: 0
   - icon: {fileID: 21300000, guid: 8db2f4a585497c14db5726c2c653103d, type: 3}
-    cooldown: 0
+    cooldown: 15
     timer: 0
   - icon: {fileID: 21300000, guid: c3fffa286a6d58940895a4f24036d762, type: 3}
-    cooldown: 0
+    cooldown: 10
     timer: 0
   - icon: {fileID: 21300000, guid: 539396abd29e9924cb801e561e6d6b18, type: 3}
     cooldown: 0
@@ -544,8 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61999857692a489ef28f1e6d0719c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBase: 100
-  energyBase: 1000
+  hpBase: 75
+  energyBase: 1500
 --- !u!212 &212158161614638338
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -626,7 +626,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 61f5c9d0b7af882418f1db9c2b516d95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

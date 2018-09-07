@@ -60,7 +60,7 @@ public class Boar : Ability
         {
             if (!coolDownLock)
             {
-                if (energyUsage <= charStats.Energy)
+                if (charStats.Rage == charStats.maxRage)
                 {
                     coolDownLock = true;
                     physic.Lock();
@@ -73,6 +73,7 @@ public class Boar : Ability
     }
     protected override void AbilityCast()
     {
+        charStats.EmptyRage();
         charStats.HandState = EHandState.Idle;
         physic.Unlock();
         StartCoroutine(Duration());

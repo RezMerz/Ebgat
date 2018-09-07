@@ -32,7 +32,7 @@ public class Malkousan : Ability {
         {
             if (!coolDownLock)
             {
-                if (energyUsage <= charStats.Energy)
+                if (charStats.Rage == charStats.maxRage)
                 {
                     if(layer == 0)
                     {
@@ -100,6 +100,7 @@ public class Malkousan : Ability {
 
     protected override void AbilityCast()
     {
+        charStats.EmptyRage();
         intervalCo = StartCoroutine(IntervalCouroutine());
         StartCoroutine(CoolDownTimer(coolDownTime));
         charStats.HandState = EHandState.Idle;

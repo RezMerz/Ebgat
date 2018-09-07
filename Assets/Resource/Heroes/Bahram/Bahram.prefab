@@ -162,12 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22dc873a9bbd9f4a9c393bb0c0e6453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 0.3
-  coolDownTime: 3
-  energyUsage: 10
+  castTime: 0.25
+  coolDownTime: 5
+  energyUsage: 1000
   buff: {fileID: 114004682952367580, guid: cd1f8b9e86958b74c8d6c0bffa702bca, type: 2}
   abilityNumber: 1
-  damage: 10
+  damage: 15
   stunDuration: 1
   Speed: 50
   landingWidth: 14
@@ -240,8 +240,8 @@ MonoBehaviour:
   onWallGravitySpeed: 5
   speedRate: 0
   maxRage: 100
-  energyRegenRate: 10
-  attackEnergyConsume: 75
+  energyRegenRate: 5
+  attackEnergyConsume: 100
   jumpEnergyConsume: 50
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0
@@ -258,31 +258,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCombos:
-  - damage: 15
+  - damage: 10
     attackAnimationTime: 0.1
     size: {x: 7.3, y: 1.5}
     offset: {x: 1, y: 0.8}
     force: 0.3
     buff: {fileID: 0}
-  - damage: 15
+  - damage: 10
     attackAnimationTime: 0.1
     size: {x: 7.5, y: 1.7}
     offset: {x: 1, y: -0.5}
     force: 0.3
     buff: {fileID: 0}
-  - damage: 25
+  - damage: 20
     attackAnimationTime: 0.3
     size: {x: 7, y: 7}
     offset: {x: 1, y: 2.1}
     force: 0.5
     buff: {fileID: 0}
-  - damage: 20
+  - damage: 15
     attackAnimationTime: 0.1
     size: {x: 5.9, y: 2.2}
     offset: {x: 1, y: 0.4}
     force: 0.2
     buff: {fileID: 0}
-  - damage: 20
+  - damage: 15
     attackAnimationTime: 0.1
     size: {x: 5.7, y: 1.6}
     offset: {x: 1, y: 0.1}
@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
-  fallDamage: 10
-  spikeDamage: 10
+  fallDamage: 5
+  spikeDamage: 5
   hitType: 2
 --- !u!114 &114593228069086336
 MonoBehaviour:
@@ -367,11 +367,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castTime: 0.5
-  coolDownTime: 0
+  coolDownTime: 60
   energyUsage: 0
   buff: {fileID: 0}
   abilityNumber: 2
-  duration: 20
+  duration: 15
   minMovementSpeed: 15
   maxMovementSpeed: 20
   movementAcceleration: 0.1

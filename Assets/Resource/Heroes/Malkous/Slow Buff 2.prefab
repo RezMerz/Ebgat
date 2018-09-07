@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 5
   stackable: 0
-  slowRate: 0.5
+  slowRate: 0.9

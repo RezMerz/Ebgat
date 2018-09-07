@@ -299,6 +299,11 @@ public class CharacterAttributes : MonoBehaviour {
         print(Rage);
     }
 
+    public void EmptyRage()
+    {
+        Rage = 0;
+    }
+
 
     private bool disarm;
     public bool Disarm

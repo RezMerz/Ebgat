@@ -131,7 +131,7 @@ MonoBehaviour:
       type: 2}
     range: 10
     attackAnimationTime: 0.25
-    damage: 30
+    damage: 20
     startingPos: {x: 3.5, y: 0.8}
 --- !u!114 &114108135820462582
 MonoBehaviour:
@@ -168,15 +168,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castTime: 0.5
-  coolDownTime: 0
+  coolDownTime: 60
   energyUsage: 0
   buff: {fileID: 114201951680113868, guid: 4e4143f2a46d9ab499ef5309a1affa8a, type: 2}
   abilityNumber: 2
   virtualBullet: {fileID: 1691014189850432, guid: aee7437982da70f41acbae3bb78c0c86,
     type: 2}
-  interval: 0.2
-  number: 50
-  damage: 10
+  interval: 0.1
+  number: 75
+  damage: 5
   maxHeight: 70
   minHeight: 3.5
   leftBorder: -108
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castTime: 0.2
-  coolDownTime: 5
+  coolDownTime: 7
   energyUsage: 100
   buff: {fileID: 114431934945506226, guid: 727a440ed8d430443b563a322d26ee14, type: 2}
   abilityNumber: 1
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 0
-  fallDamage: 0
-  spikeDamage: 0
+  fallDamage: 5
+  spikeDamage: 5
   hitType: 2
 --- !u!114 &114567925331417990
 MonoBehaviour:
@@ -304,8 +304,9 @@ MonoBehaviour:
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
   speedRate: 0
-  energyRegenRate: 10
-  attackEnergyConsume: 150
+  maxRage: 0
+  energyRegenRate: 5
+  attackEnergyConsume: 100
   jumpEnergyConsume: 5
   ability1EnergyConsume: 0
   ability2EnergyConsume: 0

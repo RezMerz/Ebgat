@@ -467,6 +467,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 9ded7c4e44330934b8a42633d1d64d7e, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: 81a8cac00a4d28342acee0630b124bc5, type: 3}
   onGroundSound: {fileID: 8300000, guid: 5470aa7f2e91376439746bf8f6cc1297, type: 3}
+  onWallSound: {fileID: 0}
 --- !u!114 &114284752092899120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,13 +484,13 @@ MonoBehaviour:
     cooldown: 1
     timer: 0
   - icon: {fileID: 21300000, guid: 4a849680ff6ff684d85d16c1c49b4b12, type: 3}
-    cooldown: 3
+    cooldown: 0.3
     timer: 0
   - icon: {fileID: 21300000, guid: 502d4f0b656f2c248866e47b8106d093, type: 3}
-    cooldown: 0
+    cooldown: 60
     timer: 0
   - icon: {fileID: 21300000, guid: 28e1a86697c9431458c610751617c7f6, type: 3}
-    cooldown: 0
+    cooldown: 5
     timer: 0
   - icon: {fileID: 21300000, guid: 7007f70867b2b8d4b8e8d11c9c303f76, type: 3}
     cooldown: 0

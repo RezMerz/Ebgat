@@ -28,7 +28,7 @@ public class AmerdadRoot : Ability
         {
             if (!coolDownLock)
             {
-                if (energyUsage <= charStats.Energy)
+                if (charStats.Rage == charStats.maxRage)
                 {
                     coolDownLock = true;
                     physic.Lock();
@@ -42,6 +42,7 @@ public class AmerdadRoot : Ability
 
     protected override void AbilityCast()
     {
+        charStats.EmptyRage();
         GameObject[] playerobj = GameObject.FindGameObjectsWithTag("VirtualPlayer");
         for (int i = 0; i < playerobj.Length; i++)
         {
@@ -55,7 +56,6 @@ public class AmerdadRoot : Ability
         charStats.HandState = EHandState.Idle;
         charStats.AbilityState = EAbility.Ability2Finish;
         StartCoroutine(CoolDownTimer(coolDownTime));
-
     }
 
     public override void AbilityKeyReleased()
