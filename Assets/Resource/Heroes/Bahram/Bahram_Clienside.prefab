@@ -506,6 +506,8 @@ MonoBehaviour:
     type: 2}
   IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
+  swordsEffectInstance: {fileID: 1264357375501326, guid: 104caf7c4f8f6c34ca8a2a6cf3c7b2f9,
+    type: 2}
 --- !u!114 &114519488797203662
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class BahramGraphics : HeroGraphics{
     public GameObject IronFistInstance;
     private int attackNumber = 1;
     private GameObject abilityEffectParent;
+    public GameObject swordsEffectInstance;
     void Start()
     {
         base.Start();
@@ -55,6 +56,9 @@ public class BahramGraphics : HeroGraphics{
         {
             animator.SetBool("Ability1", false);
             GameObject ironFistEffect = Instantiate(IronFistInstance, transform.position, Quaternion.Euler(0, 0, 0));
+            GameObject swordsEffect = Instantiate(swordsEffectInstance);
+            swordsEffect.transform.position = transform.position + new Vector3(0,4,0);
+            StartCoroutine(DestoryObjectAfterTime(3, swordsEffect));
             StartCoroutine(DestoryObjectAfterTime(1.5f, ironFistEffect));
         }
         else if (value == "3")
