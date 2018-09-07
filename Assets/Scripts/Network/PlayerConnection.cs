@@ -156,12 +156,14 @@ public class PlayerConnection : NetworkBehaviour {
         {
             
             Debug.Log("Team " + winnerTeamId + "Won the game");
-            GameObject.FindObjectOfType<EndGame>().EndGameFunction(winnerTeamId);
+            StartCoroutine(BackToMenu(6,winnerTeamId));
         }
     }
 
-    private IEnumerator BackToMenu(float t)
+    private IEnumerator BackToMenu(float t,int i)
     {
+        yield return new WaitForSeconds(2);
+        GameObject.FindObjectOfType<EndGame>().EndGameFunction(i);
         yield return new WaitForSeconds(t);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
