@@ -10,11 +10,10 @@ public class GameManager : MonoBehaviour {
     public string playerName;
 
     CustomNetworkDiscovery networkDiscovery;
-    LobbyNetworkManager networkManager;
     CustomNetworkManager customNetworkManager;
 
     public string hostIp { get; set; }
-    public LobbyClient myLobbyClient { get; set; }
+    public PlayerConnection playerConnection { get; set; }
 
 	// Use this for initialization
 	void Awake () {
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour {
                 instance.StartLobbyHost();
             else if (instance.currentScene == CurrentScene.LobbyClient)
                 StartLobbyClient();
-            else if(instance.currentScene == CurrentScene.GameHost)
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
@@ -45,22 +43,26 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void OnChangeTeamClicked(){
-        myLobbyClient.ChangeTeamClicked();
+        playerConnection.ChangeTeamClicked();
     }
 
     public void OnLeaveClicked(){
-        
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        if (customNetworkManager.isServer)
+            customNetworkManager.StopHost();
+        else
+            customNetworkManager.StopClient();
     }
 
     public void OnStartClicked(){
         Debug.Log("on start cliiiiiiiiicked");
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
-        networkManager.StartGame();
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        customNetworkManager.StartGame();
     }
 
     void StartLobbyHost(){
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
-        networkManager.StartHost();
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        customNetworkManager.StartHost();
         networkDiscovery = GameObject.FindWithTag("NetworkDiscovery").GetComponent<CustomNetworkDiscovery>();
         if (playerName.Length == 0)
             playerName = "Player";
@@ -71,9 +73,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void StartLobbyClient(){
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
-        networkManager.networkAddress = instance.hostIp;
-        networkManager.StartClient();
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        customNetworkManager.networkAddress = instance.hostIp;
+        customNetworkManager.StartClient();
     }
 
     void StartGameHost(){

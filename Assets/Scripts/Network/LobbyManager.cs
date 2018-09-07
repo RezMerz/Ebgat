@@ -8,13 +8,13 @@ public class LobbyManager : NetworkBehaviour {
 
     public float timeInterval = 1;
     private float currentTimeInterval;
-    LobbyNetworkManager networkManager;
+    CustomNetworkManager networkManager;
     string[] lobbyData;
     Text[] playerNames;
 
 	// Use this for initialization
 	void Start () {
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
 	}
 	
 	// Update is called once per frame
@@ -50,7 +50,9 @@ public class LobbyManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartGame(){
-        if (isServer)
+        Debug.Log("heloooo");
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+        /*if (isServer)
         {
             StartCoroutine(StopHostCo(1));
 
@@ -60,14 +62,9 @@ public class LobbyManager : NetworkBehaviour {
             if (networkManager.isActiveAndEnabled)
             {
                 networkManager.StopClient();
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+
             }
         }
-    }
-
-    IEnumerator StopHostCo(int time){
-        yield return new WaitForSeconds(time);
-        networkManager.StopHost();
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
+        */
     }
 }

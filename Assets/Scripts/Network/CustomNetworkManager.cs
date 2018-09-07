@@ -4,7 +4,23 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class CustomNetworkManager : NetworkManager {
-    
+
+    /// <summary>
+    /// offline
+    /// </summary>
+    public GameObject lobbyManagerPrefab;
+
+    public List<ClientData> clientsData;
+    private LobbyManager lobbyManager;
+    public bool isServer = false;
+    private bool[] isSlotFull;
+
+
+    /// <summary>
+    /// online
+    /// </summary>
+
+
     public GameObject serverNetwork;
     public GameObject clientNetworkReciever;
     public GameObject serverManager;
@@ -19,7 +35,6 @@ public class CustomNetworkManager : NetworkManager {
 
 
     private bool flag;
-    bool start;
 
     public int playerNumber { get; set; }
 
@@ -33,38 +48,64 @@ public class CustomNetworkManager : NetworkManager {
     public bool isInfinite;
 
     private NetworkConnection networkConnection;
+    public PlayerConnection localPlayerconnection { get; set; }
 
     private void Start()
     {
+        clientsData = new List<ClientData>();
+        isSlotFull = new bool[6];
+        if (NetworkServer.active && isServer)
+        {
+            GameObject lobbyManagerObj = Instantiate(lobbyManagerPrefab);
+            lobbyManager = lobbyManagerObj.GetComponent<LobbyManager>();
+            NetworkServer.Spawn(lobbyManagerObj);
+        }
+
         connectionTable = new Hashtable();
         playerConnections = new List<PlayerConnection>();
-        playerID = 0;
-        start = true;
         flag = true;
     }
 
     private void Update()
     {
-        if(NetworkServer.active && flag){
+        if(NetworkServer.active && flag && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == onlineScene){
             flag = false;
-            GameObject server = Instantiate(serverNetwork);
-            GameObject clientNetwork = Instantiate(clientNetworkReciever);
-            GameObject srvmanager = Instantiate(serverManager);
-            NetworkServer.Spawn(clientNetwork);
-            NetworkServer.Spawn(server);
-            NetworkServer.Spawn(srvmanager);
-        } 
+            InstantiateGameSceneObjects();
+        }
+    }
+
+    public void InstantiateGameSceneObjects(){
+        GameObject server = Instantiate(serverNetwork);
+        GameObject clientNetwork = Instantiate(clientNetworkReciever);
+        GameObject srvmanager = Instantiate(serverManager);
+        NetworkServer.Spawn(clientNetwork);
+        NetworkServer.Spawn(server);
+        NetworkServer.Spawn(srvmanager);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        Debug.Log(conn.connectionId);
-        connectionTable.Add(++playerID, conn);
+        int slot = 0;
+        for (int i = 0; i < isSlotFull.Length; i++)
+        {
+            if (!isSlotFull[i])
+            {
+                isSlotFull[i] = true;
+                slot = i + 1;
+                break;
+            }
+        }
+        clientsData.Add(new ClientData(conn.connectionId, slot));
+
+        connectionTable.Add(conn.connectionId, conn);
         GameObject playercon = Instantiate(playerConnectionPrefab);
+        DontDestroyOnLoad(playercon);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
-        p.clientId = playerID;
+        p.clientId = conn.connectionId;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
+
+
 
     }
 
@@ -72,17 +113,24 @@ public class CustomNetworkManager : NetworkManager {
     {
         base.OnClientConnect(conn);
         networkConnection = conn;
-        //RegisterNetworkClient();
-    }
 
-    /*public override void OnClientDisconnect(NetworkConnection conn)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }*/
+    }
 
     public override void OnStopClient()
     {
         Debug.Log("stop client");
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+        {
+            Destroy(GameObject.FindWithTag("NetworkDiscovery"));
+            GameManager.instance.currentScene = CurrentScene.Menu;
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameSelectScene");
+            StartCoroutine(StopPlease());
+        }
+    }
+
+    private IEnumerator StopPlease(){
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
     public override void OnStopServer()
@@ -93,6 +141,19 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         Debug.Log("client disconected");
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+        {
+            Debug.Log("shoop");
+            Destroy(GameObject.FindWithTag("NetworkDiscovery"));
+            GameObject[] go = GameObject.FindGameObjectsWithTag("PlayerConnection");
+            for (int i = 0; i < go.Length; i++)
+            {
+                Destroy(go[i]);
+            }
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameSelectScene");
+        }
+        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+            localPlayerconnection.playerControl.DisconnectedFromServer();
     }
 
     public override void OnClientError(NetworkConnection conn, int errorCode)
@@ -102,20 +163,47 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        Debug.Log("on server disconect");
-        StopHost();
-        GetComponent<CustomNetworkDiscovery>().Initialize();
-        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+        Debug.Log("fack");
+        for (int i = 0; i < playerConnections.Count; i++){
+            if(playerConnections[i].clientId == conn.connectionId){
+                Debug.Log("destroying");
+                PlayerConnection pc = playerConnections[i];
+                playerConnections.RemoveAt(i);
+                NetworkServer.Destroy(pc.gameObject);
+                break;
+            }
+        }
+        for (int i = 0; i < clientsData.Count; i++){
+            if(clientsData[i].id == conn.connectionId){
+                Debug.Log("destroying clienst data");
+                clientsData.RemoveAt(i);
+                break;
+            }
+        }
+        connectionTable.Remove(conn.connectionId);
+        isSlotFull[conn.connectionId] = false;
+    }
+
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        try
+        {
+            base.OnClientSceneChanged(conn);
+            localPlayerconnection.SetClientReady();
+        }
+        catch{}
     }
 
     public override void OnStopHost()
     {
         Debug.Log("Stoping host");
         base.OnStopHost();
-        GetComponent<CustomNetworkDiscovery>().Initialize();
-        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
-        Start();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public override void OnStartHost()
+    {
+        base.OnStartHost();
+        isServer = true;
     }
 
     public void StartHost(int maxPlayerCount, float baseRespawnTime, float respawnTimePenalty, bool isInfinite)
@@ -127,11 +215,16 @@ public class CustomNetworkManager : NetworkManager {
         this.isInfinite = isInfinite;
     }
 
-    /*public override void OnClientConnect(NetworkConnection conn)
+    public void StartGame()
     {
-        if(ServerManager.instance.currentClientCount < ServerManager.instance.maxClientCount)
-            base.OnClientConnect(conn);
-    }*/
+        if (isServer)
+        {
+
+            GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
+            ServerChangeScene(onlineScene);
+            //Destroy(GetComponent<NetworkDiscovery>());
+        }
+    }
 
     private void RegisterNetworkClient(){
         Debug.Log("registered");
@@ -144,5 +237,92 @@ public class CustomNetworkManager : NetworkManager {
     void GeAbsoluteState(NetworkMessage netMsg)
     {
         Debug.Log("Client connected");
+    }
+
+    public void SetClientDataOnServer(int id, string name)
+    {
+        Debug.Log(id + "   " + name);
+        for (int i = 0; i < clientsData.Count; i++)
+        {
+            if (clientsData[i].id == id)
+            {
+                clientsData[i].name = name;
+            }
+        }
+    }
+
+    public string GetLobbyData()
+    {
+        string output = "";
+        for (int i = 0; i < clientsData.Count; i++)
+        {
+            output += clientsData[i].slot + "&" + clientsData[i].name + "$";
+        }
+        return output;
+    }
+
+
+
+    public void ChangeTeam(int id)
+    {
+        for (int i = 0; i < clientsData.Count; i++)
+        {
+            if (clientsData[i].id == id)
+            {
+                if (clientsData[i].slot < 4)
+                {
+                    for (int j = 3; j < isSlotFull.Length; j++)
+                    {
+                        if (!isSlotFull[j])
+                        {
+                            isSlotFull[j] = true;
+                            isSlotFull[clientsData[i].slot - 1] = false;
+                            clientsData[i].slot = j + 1;
+                            clientsData[i].UpdateTeam();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (!isSlotFull[j])
+                        {
+                            isSlotFull[j] = true;
+                            isSlotFull[clientsData[i].slot - 1] = false;
+                            clientsData[i].slot = j + 1;
+                            clientsData[i].UpdateTeam();
+                            return;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+public class ClientData
+{
+    public string name;
+    public int id;
+    public int slot;
+    public int team;
+    public int heroId;
+
+    public ClientData(int id, int slot)
+    {
+        this.id = id;
+        this.slot = slot;
+        UpdateTeam();
+    }
+
+    public void UpdateTeam()
+    {
+        if (slot > 3)
+            team = 2;
+        else
+            team = 1;
     }
 }

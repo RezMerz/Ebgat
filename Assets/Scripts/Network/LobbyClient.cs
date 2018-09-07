@@ -9,7 +9,7 @@ public class LobbyClient : NetworkBehaviour {
     public int slot;
     bool first = true;
     string playerName;
-    LobbyNetworkManager networkManager;
+    CustomNetworkManager networkManager;
 
     private void Update()
     {
@@ -17,7 +17,6 @@ public class LobbyClient : NetworkBehaviour {
             first = false;
             playerName = GameManager.instance.playerName;
             CmdSetClientDataOnServer(id, playerName);
-            GameManager.instance.myLobbyClient = this;
         }
     }
 
@@ -27,7 +26,7 @@ public class LobbyClient : NetworkBehaviour {
 
     [Command]
     public void CmdSetClientDataOnServer(int id, string name){
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<LobbyNetworkManager>();
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         networkManager.SetClientDataOnServer(id, name);
     }
 
