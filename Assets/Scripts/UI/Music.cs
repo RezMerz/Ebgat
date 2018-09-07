@@ -7,7 +7,10 @@ public class Music : MonoBehaviour {
     void Start()
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Arena 2")
+        {
+            print("Arena 2");
             Destroy(Music.instance);
+        }
 
         if (instance == null)
             instance = null;
