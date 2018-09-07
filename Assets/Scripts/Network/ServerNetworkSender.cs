@@ -53,7 +53,7 @@ public class ServerNetworkSender : NetworkBehaviour {
         {
             if (networkManager.playerConnections[i].clientId == requesterID)
             {
-                Debug.Log(ServerManager.instance.CurrentStateID + currentTime);
+                //Debug.Log(ServerManager.instance.CurrentStateID + currentTime);
                 networkManager.playerConnections[i].SendAbsoluteState(new AbsoluteStateMessage(worldStates, frameId));
                 return;
             }

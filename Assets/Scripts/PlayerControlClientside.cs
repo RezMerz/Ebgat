@@ -151,7 +151,7 @@ public class PlayerControlClientside : MonoBehaviour
                 {
                     waitingForRequest = true;
                     clientNetworkSender.RequestWorldState(playerId, lastStateChecked);
-                    Debug.Log("request from : "+ lastStateChecked +" +"+ currentStateNumber   +  "+" + Time.frameCount);
+                    //Debug.Log("request from : "+ lastStateChecked +" +"+ currentStateNumber   +  "+" + Time.frameCount);
                 }
             }
             currentStateNumber++;
@@ -274,7 +274,7 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer() && waitingForRequest)
         {
-           Debug.Log(id + "+" + Time.frameCount);
+           //Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {

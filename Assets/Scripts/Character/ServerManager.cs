@@ -54,6 +54,7 @@ public class ServerManager : NetworkBehaviour {
         matchTime = networkManager.maxtime;
         maxKillCount = networkManager.maxkill;
         matchTimeLeft = matchTime * 60;
+        Debug.Log(matchTimeLeft);
         UpdatePlayers();
     }
 
@@ -82,8 +83,9 @@ public class ServerManager : NetworkBehaviour {
                 i--;
             }
         }
-
-        matchTimeLeft -= Time.fixedTime;
+       // Debug.Log(matchTimeLeft);
+        matchTimeLeft -= Time.fixedDeltaTime;
+       // Debug.Log(matchTimeLeft);
         if(matchTimeLeft <= 0){
             if (team1KillCount > team2KillCount)
                 SendGameFinishedCommand(1);

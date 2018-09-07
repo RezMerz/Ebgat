@@ -31,8 +31,8 @@ public class PlayerConnection : NetworkBehaviour {
         serverManager = ServerManager.instance;
         serverNetworkReciever = GetComponent<ServerNetwork>();
         DontDestroyOnLoad(gameObject);
-        Debug.Log(isLocalPlayer);
-        Debug.Log(hasAuthority);
+       // Debug.Log(isLocalPlayer);
+       // Debug.Log(hasAuthority);
         if(isLocalPlayer){
             connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
             Debug.Log("herhehrerheheheghrerhehrerbdfdfsbbdf");
