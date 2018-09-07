@@ -264,6 +264,9 @@ public class PlayerControlClientside : MonoBehaviour
         {
             case 'c': heroSounds.HandState(value); break;
             case 'd': heroSounds.FeetState(value); break;
+            case 'A': heroSounds.AbilityState(value); break;
+            case 'a': heroSounds.HeadState(value); break;
+            case 'b': heroSounds.BodyState(value); break;
         }
     }
 
@@ -310,6 +313,7 @@ public class PlayerControlClientside : MonoBehaviour
     public void Die()
     {
         heroGraphics.Die();
+        heroSounds.DieSound();
         Debug.Log("hey teacher don't leave these codes alone ");
         input.start = false;
         if (IsLocalPlayer())

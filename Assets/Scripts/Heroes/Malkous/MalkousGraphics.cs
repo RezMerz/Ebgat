@@ -35,7 +35,6 @@ public class MalkousGraphics : HeroGraphics {
         else if (value == "3")
         {
             animator.SetTrigger("Ulti");
-            abilityEffect.SetBool("Ulti", true);
         }
         else if (value == "4")
         {
