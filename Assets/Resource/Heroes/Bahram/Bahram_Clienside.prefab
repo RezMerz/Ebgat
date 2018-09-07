@@ -520,6 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runes:
+  - {fileID: 1052302081557694, guid: a2c1b756cb2e67b419eca50077b4ed61, type: 2}
   playerConnection: {fileID: 0}
   lastStateChecked: 0
 --- !u!114 &114701661618156024

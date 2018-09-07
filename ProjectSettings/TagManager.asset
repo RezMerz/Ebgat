@@ -21,6 +21,7 @@ TagManager:
   - VirtualPlayer
   - HUD
   - Spike
+  - Rune
   layers:
   - Default
   - TransparentFX
@@ -39,8 +40,8 @@ TagManager:
   - Dashing
   - Virtual Team 1
   - Virtual Team 2
-  - 
-  - 
+  - Virtual Rune
+  - Rune
   - 
   - 
   - 

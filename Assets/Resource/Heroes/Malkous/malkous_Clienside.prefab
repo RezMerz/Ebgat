@@ -502,8 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
-  dieInstance: {fileID: 1250965437859606, guid: e954ed77d76430240a6b88558866bd8a,
-    type: 2}
+  dieInstance: {fileID: 0}
   rootGroundInstance: {fileID: 1954952673507374, guid: 4fee53714e3c9694895492a20f944cba,
     type: 2}
   boomEffect: {fileID: 1308741438377836, guid: 74faf871d0cd5254d883b9fedfb64205, type: 2}
@@ -585,6 +584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runes:
+  - {fileID: 1052302081557694, guid: a2c1b756cb2e67b419eca50077b4ed61, type: 2}
   playerConnection: {fileID: 0}
   lastStateChecked: 0
 --- !u!212 &212133427687126708
