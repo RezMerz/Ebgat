@@ -24,11 +24,13 @@ public class ServerManager : NetworkBehaviour {
 
     public float respawnTime, respawnPenalty;
     public bool isInfinite;
+    public float matchTime;
 
     private float resTimeTeam1;
     private float resTimeTeam2;
-    private int team1Count = 0, team1DeadCount = 0;
-    private int team2Count = 0, team2DeadCount = 0;
+    private int team1Count = 0, team1DeadCount = 0, team1KillCount = 0;
+    private int team2Count = 0, team2DeadCount = 0, team2KillCount = 0;
+    private float timeLeft;
 
 
     private Hashtable worldStatesStash;
@@ -50,6 +52,7 @@ public class ServerManager : NetworkBehaviour {
         resTimeTeam2 = respawnTime;
         isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
+        timeLeft = matchTime;
         UpdatePlayers();
     }
 
@@ -77,6 +80,11 @@ public class ServerManager : NetworkBehaviour {
                 deadPlayers.RemoveAt(i);
                 i--;
             }
+        }
+
+        timeLeft -= matchTime;
+        if(timeLeft <= 0){
+            if(team)
         }
     }
 
@@ -267,4 +275,8 @@ class PlayerInfo{
         respawnTimeLeft = 0;
         this.teamId = teamId;
     }
+}
+
+public enum GameMode{
+    TeamDeathMatch, LastTeamStanding
 }
