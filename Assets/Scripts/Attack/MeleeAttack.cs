@@ -37,7 +37,7 @@ public class MeleeAttack : Attack
         maxAttackNumber = 3;   //swordCombos.Length;
         sword = transform.GetChild(0).gameObject;
         sword.layer = gameObject.layer;
-        layerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks");
+        layerMask = LayerMask.GetMask(charStats.enemyTeamName,"Blocks","VirtualRune");
         ChangeCombo();
     }
 
@@ -140,6 +140,15 @@ public class MeleeAttack : Attack
                     {
                         VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
                         bullet.Destroy();
+                        //playerControl.TakeAttack(0, bullet.buff.name);
+                    }
+                }
+                else if (targets[i].collider.tag.Equals("VirtualRune"))
+                {
+                    if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask, targets[i].collider))
+                    {
+                        RuneServerside Rune = targets[i].collider.gameObject.GetComponent<RuneServerside>();
+                        Rune.TakeDamge(playerControl, damage);
                         //playerControl.TakeAttack(0, bullet.buff.name);
                     }
                 }

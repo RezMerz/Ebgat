@@ -145,7 +145,7 @@ public class PlayerControlClientside : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            if (currentStateNumber - lastStateChecked >= 3 && !waitingForRequest)
+            if (currentStateNumber - lastStateChecked >= 2 && !waitingForRequest)
             {
                 if (IsLocalPlayer())
                 {

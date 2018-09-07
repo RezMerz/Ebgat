@@ -73,7 +73,7 @@ public class Gravity : MonoBehaviour {
         {
             timer = 0;
             charStats.FeetState = EFeetState.Onground;
-            if(GravityAction != null)
+            if(GravityAction != null && !vHits[0].collider.tag.Equals("VirtualPlayer") )
             {
                 GravityAction();
                 GravityAction = null;
