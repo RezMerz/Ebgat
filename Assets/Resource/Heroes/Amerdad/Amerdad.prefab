@@ -242,7 +242,7 @@ MonoBehaviour:
   - VirtualBullet: {fileID: 1644391085090094, guid: 679f25bd464b48e4192456cdb4f2f999,
       type: 2}
     range: 30
-    attackAnimationTime: 0.1
+    attackAnimationTime: 0
     damage: 0
     startingPos: {x: 1.16, y: 0.57}
   - VirtualBullet: {fileID: 1644391085090094, guid: 4d7ddc333ef625748ab1adfbf841ed25,
@@ -306,6 +306,7 @@ MonoBehaviour:
   canDoubleJump: 0
   wallside: 0
   hitPointsBase: 100
+  energyBase: 1000
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
@@ -320,7 +321,6 @@ MonoBehaviour:
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
   onWallGravitySpeed: 0
-  energyBase: 1000
   speedRate: 0
   energyRegenRate: 5
   attackEnergyConsume: 100
