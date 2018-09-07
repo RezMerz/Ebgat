@@ -165,7 +165,9 @@ public class PlayerConnection : NetworkBehaviour {
         yield return new WaitForSeconds(2);
         GameObject.FindObjectOfType<EndGame>().EndGameFunction(i);
         yield return new WaitForSeconds(t);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Main Menu");
+        Destroy(networkManager.gameObject);
+        GameManager.instance.currentScene = CurrentScene.Menu;
     }
 
     public void ChangeTeamClicked()

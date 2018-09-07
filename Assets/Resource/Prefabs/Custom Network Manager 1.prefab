@@ -58,6 +58,7 @@ MonoBehaviour:
   offsetY: 0
   bahramTexture: {fileID: 2800000, guid: 10aa35200a9a047669eaa693910028f6, type: 3}
   malkousTexture: {fileID: 2800000, guid: bf187a4e760664e43b432046044843a9, type: 3}
+  background: {fileID: 0}
 --- !u!114 &114437951432622062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +168,8 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  lobbyManagerPrefab: {fileID: 0}
+  isServer: 0
   serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
     type: 2}
   clientNetworkReciever: {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f,
@@ -176,9 +179,12 @@ MonoBehaviour:
   serverSidePlayers: []
   clientSidePlayers: []
   heroSpawnPositions: []
-  playerConnection: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
-    type: 2}
-  playerConnections: []
+  playerConnectionPrefab: {fileID: 0}
+  runesServeside: []
+  runeClientsides: []
+  runeSpawnPositions: []
+  runeSpawnTime: 0
   maxPlayerCount: 0
   baseRespawnTime: 0
-  respawnTimePenalty: 0
+  maxtime: 0
+  maxkill: 0

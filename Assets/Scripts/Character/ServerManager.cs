@@ -61,6 +61,7 @@ public class ServerManager : NetworkBehaviour {
     // Use this for initialization
     void Start () {
         currentWorldState = new WorldState();
+        UIStats.SetTime((int)matchTime * 60);
 	}
 
     private void FixedUpdate()
@@ -251,12 +252,14 @@ public class ServerManager : NetworkBehaviour {
                 {
                     team1DeadCount++;
                     team2KillCount++;
+                    UIStats.SetKill(2, team2KillCount);
                     playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 else
                 {
                     team2DeadCount++;
                     team1KillCount++;
+                    UIStats.SetKill(1, team1KillCount);
                     playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 SendKillCommand(playerId);
