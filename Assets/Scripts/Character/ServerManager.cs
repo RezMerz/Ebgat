@@ -83,6 +83,9 @@ public class ServerManager : NetworkBehaviour {
                 i--;
             }
         }
+        runeSpawnTimeLeft -= Time.fixedDeltaTime;
+        if (runeSpawnTimeLeft <= 0)
+            SpawnRune();
     }
 
     private void SpawnRune(){
