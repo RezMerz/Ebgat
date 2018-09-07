@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIStats : MonoBehaviour {
     private float timer;
-    private float time = 20;
+    private float time = 210;
     private Text timeText;
     private bool redTimeLock;
     private bool urgentTimeLock;
@@ -15,7 +15,7 @@ public class UIStats : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timer = time;
-        timeText = transform.GetChild(0).GetComponent<Text>();
+        timeText = transform.GetChild(3).GetComponent<Text>();
 	}
 
     public void SetKills(int teamNumber,int n)
