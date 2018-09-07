@@ -18,8 +18,8 @@ public class Sounds : MonoBehaviour {
     {
         if (value == "2")
         {
-            audioSource.clip = attackSounds[charStatsClient.attackNumber];
-            audioSource.Play();
+           // audioSource.clip = attackSounds[charStatsClient.attackNumber];
+            //audioSource.Play();
         }
     }
 
