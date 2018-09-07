@@ -33,7 +33,6 @@ public class CustomNetworkManager : NetworkManager {
 
     public int playerNumber { get; set; }
 
-    private int playerID;
     public Hashtable connectionTable;
     public List<PlayerConnection> playerConnections;
 
@@ -58,7 +57,6 @@ public class CustomNetworkManager : NetworkManager {
 
         connectionTable = new Hashtable();
         playerConnections = new List<PlayerConnection>();
-        playerID = 0;
         flag = true;
     }
 
@@ -91,13 +89,13 @@ public class CustomNetworkManager : NetworkManager {
                 break;
             }
         }
-        clientsData.Add(new ClientData(++playerID, slot));
+        clientsData.Add(new ClientData(conn.connectionId, slot));
 
-        connectionTable.Add(playerID, conn);
+        connectionTable.Add(conn.connectionId, conn);
         GameObject playercon = Instantiate(playerConnectionPrefab);
         DontDestroyOnLoad(playercon);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
-        p.clientId = playerID;
+        p.clientId = conn.connectionId;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
@@ -133,10 +131,22 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        Debug.Log("on server disconect");
-        StopHost();
-        GetComponent<CustomNetworkDiscovery>().Initialize();
-        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+        for (int i = 0; i < playerConnections.Count; i++){
+            if(playerConnections[i].clientId == conn.connectionId){
+                Debug.Log("destroying");
+                NetworkServer.Destroy(playerConnections[i].gameObject);
+                break;
+            }
+        }
+        for (int i = 0; i < clientsData.Count; i++){
+            if(clientsData[i].id == conn.connectionId){
+                Debug.Log("destroying clienst data");
+                clientsData.RemoveAt(i);
+                break;
+            }
+        }
+        connectionTable.Remove(conn.connectionId);
+        isSlotFull[conn.connectionId] = false;
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
@@ -147,9 +157,6 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnStopHost()
     {
-        
-        var s = new System.Diagnostics.StackTrace();
-        Debug.Log(s.GetFrame(4).GetMethod().Name);
         Debug.Log("Stoping host");
         base.OnStopHost();
         GetComponent<CustomNetworkDiscovery>().Initialize();

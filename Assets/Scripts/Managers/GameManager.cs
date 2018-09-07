@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnLeaveClicked(){
-        
+        Debug.Log("hush");
     }
 
     public void OnStartClicked(){

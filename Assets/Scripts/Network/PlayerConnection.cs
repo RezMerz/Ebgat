@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class PlayerConnection : NetworkBehaviour {
 
-    [SyncVar] public int clientId;
+    [SyncVar] public int clientId = -1;
 
     private CustomNetworkManager networkManager;
     private ServerManager serverManager;
@@ -42,7 +42,7 @@ public class PlayerConnection : NetworkBehaviour {
 
     private void Update()
     {
-        if (first && isLocalPlayer && clientId != 0)
+        if (first && isLocalPlayer && clientId != -1)
         {
             first = false;
             playerName = GameManager.instance.playerName;

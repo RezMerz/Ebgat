@@ -17,6 +17,6 @@ public class LobbyText : MonoBehaviour {
     }
 
     public void OnLeaveClicked(){
-        
+        GameManager.instance.OnLeaveClicked();
     }
 }

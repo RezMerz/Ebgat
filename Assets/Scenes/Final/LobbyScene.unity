@@ -347,8 +347,6 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  lobbyClientPrefab: {fileID: 1768710473888078, guid: b10bebad151c54e8aa61570fae9b3570,
-    type: 2}
   lobbyManagerPrefab: {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046,
     type: 2}
   serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
@@ -1526,7 +1524,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1076935774}
-        m_MethodName: OnLeaveclicked
+        m_MethodName: OnLeaveClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
