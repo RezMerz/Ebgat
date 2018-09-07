@@ -20,10 +20,12 @@ public abstract class Ability : MonoBehaviour
 
     protected Coroutine castTimeCoroutine;
 
+    protected PlayerControl playerControl;
     protected void Awake()
     {
         abilityUseServerside = false;
         charStats = GetComponent<CharacterAttributes>();
+        playerControl = GetComponent<PlayerControl>();
     }
 
     public abstract void AbilityKeyPrssed();

@@ -47,7 +47,7 @@ public class AuraArmor : Ability
     {
         charStats.HandState = EHandState.Idle;
 
-        GetComponent<PlayerControl>().TakeAttack(0, buff.name);
+        GetComponent<PlayerControl>().TakeAttack(playerControl,0, buff.name);
         currentRadius = 0;
         abilityUse = true;
         //StartCoroutine(CoolDownTimer(coolDownTime));
@@ -66,7 +66,7 @@ public class AuraArmor : Ability
                     {
                         if (obj.gameObject.layer == gameObject.layer)
                         {
-                            obj.gameObject.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
+                            obj.gameObject.GetComponent<PlayerControl>().TakeAttack(playerControl,0, buff.name);
                         }
                         else
                         {

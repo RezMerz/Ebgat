@@ -109,7 +109,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
     // Some Damage has been done
-    public void TakeAttack(float damage, string buffName)
+    public void TakeAttack(PlayerControl damager,float damage, string buffName)
     {
         if (buffName != "")
         {

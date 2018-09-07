@@ -48,7 +48,7 @@ public class AmerdadRoot : Ability
             PlayerControl playerControl = playerobj[i].GetComponent<PlayerControl>();
             if (!playerControl.charStats.teamName.Equals(charStats.teamName))
             {
-                playerControl.TakeAttack(0, buff.name);
+                playerControl.TakeAttack(playerControl,0, buff.name);
             }
         }
         physic.Unlock();

@@ -36,12 +36,12 @@ public class BoarForm : Ability {
         if (vHits.Count > 0 && vHits[0].collider.tag.Equals( "Player"))
         {
             HumanForm();
-            vHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+            vHits[0].collider.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, buff.name);
         }
         else if (hHits.Count > 0 && hHits[0].collider.tag.Equals( "Player"))
         {
             HumanForm();
-            hHits[0].collider.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+            hHits[0].collider.GetComponent<PlayerControl>().TakeAttack(playerControl, damage, buff.name);
         }
     }
     private void BoarMoveServerside()
