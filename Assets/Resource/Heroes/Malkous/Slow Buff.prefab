@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc022a03c8c36434688af3111feb9dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 2
   stackable: 1
-  slowRate: 0.05
+  slowRate: 0.95
