@@ -34,6 +34,9 @@ public class ServerManager : NetworkBehaviour {
     private Hashtable worldStatesStash;
     int lowesId = 0;
 
+    private float runeSpawnTimeLeft;
+    public List<RuneServerside> spawnedRunes;
+
     public void Awake()
     {
         instance = this;
@@ -50,6 +53,8 @@ public class ServerManager : NetworkBehaviour {
         resTimeTeam2 = respawnTime;
         isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
+        runeSpawnTimeLeft = networkManager.runeSpawnTime;
+        spawnedRunes = new List<RuneServerside>();
         UpdatePlayers();
     }
 
@@ -78,6 +83,30 @@ public class ServerManager : NetworkBehaviour {
                 i--;
             }
         }
+    }
+
+    private void SpawnRune(){
+        runeSpawnTimeLeft = networkManager.runeSpawnTime;
+        if (spawnedRunes.Count == networkManager.runeSpawnPositions.Count)
+            return;
+        List<Vector2> availableSpawnPositions = new List<Vector2>();
+        for (int i = 0; i < networkManager.runeSpawnPositions.Count; i++){
+            bool available = true;
+            for (int j = 0; j < spawnedRunes.Count; j++){
+                if(Vector2.Distance(networkManager.runeSpawnPositions[i].position, spawnedRunes[j].spawnPosition) < 0.1){
+                    available = false;
+                    break;
+                }
+            }
+            if (available)
+                availableSpawnPositions.Add(networkManager.runeSpawnPositions[i].position);
+        }
+        int runenum = Random.Range(0, networkManager.runesServeside.Count);
+        int runeposnum = Random.Range(0, availableSpawnPositions.Count);
+        RuneServerside rune = Instantiate(networkManager.runesServeside[runenum]);
+        rune.transform.position = availableSpawnPositions[runeposnum];
+        spawnedRunes.Add(rune);
+        currentWorldState.AdditionalWorldData("R" + "&" + runenum + "&" + Toolkit.VectorSerialize(availableSpawnPositions[runeposnum]));
     }
 
     private void SetWorldStateOnPlayers(){
