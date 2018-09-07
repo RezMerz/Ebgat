@@ -375,10 +375,8 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void GetAdditionalWorldData(string data)
     {
-        Debug.Log(data);
         string[] deString = data.Split('$');
-
-        for(int i = 0; i < deString.Length; i++)
+        for(int i = 0; i < deString.Length - 1; i++)
         {
             if (deString[i][0] == 'R')
             {
