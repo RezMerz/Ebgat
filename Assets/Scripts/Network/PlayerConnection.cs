@@ -164,6 +164,10 @@ public class PlayerConnection : NetworkBehaviour {
         CmdChangeMyTeam(clientId);
     }
 
+    public void ReadyClicked(){
+        CmdSetMyClientReady(clientId);
+    }
+
     [Command]
     public void CmdSetClientDataOnServer(int id, string name)
     {
@@ -175,5 +179,15 @@ public class PlayerConnection : NetworkBehaviour {
     public void CmdChangeMyTeam(int clientId)
     {
         networkManager.ChangeTeam(clientId);
+    }
+
+    [Command]
+    public void CmdSetMyHero(int clientId, int heroId){
+        networkManager.SetHero(clientId, heroId);
+    }
+
+    [Command]
+    public void CmdSetMyClientReady(int clientId){
+        networkManager.ClientIsReady(clientId);
     }
 }

@@ -163,6 +163,7 @@ public class ServerManager : NetworkBehaviour {
     
     public void SendWorldStateToClient(int playerID, int frameId){
         string tempWorldState = "";
+        //Mathf.Min(CurrentStateID * 3, frameId + 5)
         for (int i = frameId; i < CurrentStateID * 3; i++){
             tempWorldState += worldStatesStash[i] + "!";
         }
@@ -177,9 +178,7 @@ public class ServerManager : NetworkBehaviour {
             Debug.Log(clientId);
             if (networkManager.playerConnections[i].clientId == clientId)
             {
-                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn");
                 networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId, Toolkit.VectorSerialize(SpawnPoint));
-                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn 000000000000");
                 break;
             }
         }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class LobbyText : MonoBehaviour {
 
     public Text[] texts;
-
+    public Text[] heroTexts;
+    public SpriteRenderer[] readySprites;
 
     public void OnChangeTeamClick(){
         GameManager.instance.OnChangeTeamClicked();
@@ -19,6 +20,4 @@ public class LobbyText : MonoBehaviour {
     public void OnLeaveClicked(){
         GameManager.instance.OnLeaveClicked();
     }
-
-
 }
