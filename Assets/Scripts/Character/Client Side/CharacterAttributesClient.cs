@@ -27,6 +27,8 @@ public class CharacterAttributesClient : MonoBehaviour {
 
     public float armor { get; set; }
     public float speedRate { get; set; }
+
+    public int attackNumber { get; set; }
     void Start()
     {
         playerControl = GetComponent<PlayerControlClientside>();
@@ -128,6 +130,7 @@ public class CharacterAttributesClient : MonoBehaviour {
         //    case 'A': SetAbilityState(value); break;
             case 'C': aimRotation = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
             case 'z': speedRate = float.Parse(value, CultureInfo.InvariantCulture.NumberFormat); break;
+            case 'y': attackNumber = int.Parse(value); break;
         }
     }
 }
