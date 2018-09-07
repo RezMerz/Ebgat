@@ -8,7 +8,10 @@ public class PlayerControlClientside : MonoBehaviour
     public Action ReadyAction;
 
 
-//public Sounds heroSounds;
+    //public Sounds heroSounds;
+    public GameObject[] runes; 
+
+
     public CharacterAttributesClient charStatsClient { get; set; }
     public HeroGraphics heroGraphics { get; private set; }
     public ClientNetworkSender clientNetworkSender { get; private set; }
@@ -373,5 +376,17 @@ public class PlayerControlClientside : MonoBehaviour
     public void GetAdditionalWorldData(string data)
     {
         Debug.Log(data);
+        string[] deString = data.Split('$');
+
+        for(int i = 0; i < deString.Length; i++)
+        {
+            if (deString[i][0] == 'R')
+            {
+                string[] dataS = deString[i].Split('&');
+                int runeNum = int.Parse(dataS[1]);
+                Vector2 spawnPos = Toolkit.DeserializeVector(dataS[2]);
+                Instantiate(runes[runeNum], spawnPos, Quaternion.identity);
+            }
+        }
     }
 }
