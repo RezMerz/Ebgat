@@ -13,7 +13,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ServerNetwork serverNetworkReciever;
 
     public PlayerControlClientside playerControl;
-    PlayerControl virtualPlayerControl = null;
+    public PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }
 
@@ -152,16 +152,29 @@ public class PlayerConnection : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcGameFinished(int winnerTeamId){
-        Debug.Log("Team " + winnerTeamId + "Won the game");
-        if (winnerTeamId == 1)
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team1 Win");
-        else if (winnerTeamId == 2)
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team2 Win");
+        if (isLocalPlayer)
+        {
+            
+            Debug.Log("Team " + winnerTeamId + "Won the game");
+            StartCoroutine(BackToMenu(6,winnerTeamId));
+        }
+    }
+
+    private IEnumerator BackToMenu(float t,int i)
+    {
+        yield return new WaitForSeconds(2);
+        GameObject.FindObjectOfType<EndGame>().EndGameFunction(i);
+        yield return new WaitForSeconds(t);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 
     public void ChangeTeamClicked()
     {
         CmdChangeMyTeam(clientId);
+    }
+
+    public void ReadyClicked(){
+        CmdSetMyClientReady(clientId);
     }
 
     [Command]
@@ -175,5 +188,15 @@ public class PlayerConnection : NetworkBehaviour {
     public void CmdChangeMyTeam(int clientId)
     {
         networkManager.ChangeTeam(clientId);
+    }
+
+    [Command]
+    public void CmdSetMyHero(int clientId, int heroId){
+        networkManager.SetHero(clientId, heroId);
+    }
+
+    [Command]
+    public void CmdSetMyClientReady(int clientId){
+        networkManager.ClientIsReady(clientId);
     }
 }

@@ -44,8 +44,8 @@ public class CustomNetworkManager : NetworkManager {
 
     public int maxPlayerCount;
     public float baseRespawnTime;
-    public float respawnTimePenalty;
-    public bool isInfinite;
+    public int maxtime;
+    public int maxkill;
 
     private NetworkConnection networkConnection;
     public PlayerConnection localPlayerconnection { get; set; }
@@ -167,6 +167,10 @@ public class CustomNetworkManager : NetworkManager {
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == conn.connectionId + 1){
                 Debug.Log("destroying");
+                if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Arena 2")){
+                    playerConnections[i].playerControl.Die();
+                    playerConnections[i].virtualPlayerControl.Die();
+                }
                 PlayerConnection pc = playerConnections[i];
                 playerConnections.RemoveAt(i);
                 NetworkServer.Destroy(pc.gameObject);
@@ -211,8 +215,6 @@ public class CustomNetworkManager : NetworkManager {
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
         this.baseRespawnTime = baseRespawnTime;
-        this.respawnTimePenalty = respawnTimePenalty;
-        this.isInfinite = isInfinite;
     }
 
     public void StartGame()
@@ -256,7 +258,7 @@ public class CustomNetworkManager : NetworkManager {
         string output = "";
         for (int i = 0; i < clientsData.Count; i++)
         {
-            output += clientsData[i].slot + "&" + clientsData[i].name + "$";
+            output += clientsData[i].slot + "&" + clientsData[i].name + "&" + clientsData[i].heroName + "&" + clientsData[i].isReady + "$";
         }
         return output;
     }
@@ -301,6 +303,26 @@ public class CustomNetworkManager : NetworkManager {
 
         }
     }
+
+    public void SetHero(int clientId, int heroId){
+        for (int i = 0; i < clientsData.Count; i++){
+            if(clientId == clientsData[i].id){
+                clientsData[i].SetHero(heroId);
+                return;
+            }
+        }
+    }
+
+    public void ClientIsReady(int clientId){
+        for (int i = 0; i < clientsData.Count; i++)
+        {
+            if (clientId == clientsData[i].id)
+            {
+                clientsData[i].isReady = true;
+                return;
+            }
+        }
+    }
 }
 
 public class ClientData
@@ -310,11 +332,16 @@ public class ClientData
     public int slot;
     public int team;
     public int heroId;
+    public string heroName;
+    public bool isReady;
 
     public ClientData(int id, int slot)
     {
         this.id = id;
         this.slot = slot;
+        heroId = 0;
+        isReady = false;
+        SetHero(heroId);
         UpdateTeam();
     }
 
@@ -324,5 +351,15 @@ public class ClientData
             team = 2;
         else
             team = 1;
+    }
+
+    public void SetHero(int heroId){
+        this.heroId = heroId;
+        if (heroId == 0)
+            heroName = "Varahram";
+        else if (heroId == 1)
+            heroName = "Malkous";
+        else if (heroId == 2)
+            heroName = "Amertat";
     }
 }

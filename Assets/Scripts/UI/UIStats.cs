@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class UIStats : MonoBehaviour {
-    private float timer;
-    private float time = 20;
+    private static float timer;
+    private float time = 210;
     private Text timeText;
     private bool redTimeLock;
     private bool urgentTimeLock;
@@ -12,11 +12,26 @@ public class UIStats : MonoBehaviour {
     private Text team2Kills;
     private int redTime = 1;
     private int urgentTime = 15;
+    private static Text kill1;
+    private static Text kill2;
 	// Use this for initialization
 	void Start () {
         timer = time;
-        timeText = transform.GetChild(0).GetComponent<Text>();
+        timeText = transform.GetChild(3).GetComponent<Text>();
+        kill1 = transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        kill2 = transform.GetChild(1).GetChild(0).GetComponent<Text>();
 	}
+    public static void SetTime(int t){
+        timer = t;
+    }
+
+    public static void SetKill(int team,int number)
+    {
+        if (team == 1)
+            kill1.text = number.ToString();
+        else if (team == 2)
+            kill2.text = number.ToString();
+    }
 
     public void SetKills(int teamNumber,int n)
     {
