@@ -12,7 +12,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
 
-    private PlayerControlClientside playerControl;
+    public PlayerControlClientside playerControl;
     PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }

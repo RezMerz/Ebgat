@@ -357,4 +357,8 @@ public class PlayerControlClientside : MonoBehaviour
     {
 
     }
+
+    public void DisconnectedFromServer(){
+        
+    }
 }

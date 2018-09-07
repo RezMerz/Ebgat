@@ -123,6 +123,7 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         Debug.Log("client disconected");
+        localPlayerconnection.playerControl.DisconnectedFromServer();
     }
 
     public override void OnClientError(NetworkConnection conn, int errorCode)
