@@ -283,7 +283,7 @@ public class CharacterAttributes : MonoBehaviour {
         get { return rage; }
         private set { 
             if (value != rage) { 
-                Rage = value; playerControl.worldState.RegisterCharStat(ID, 'B', value + ""); 
+                rage = value; playerControl.worldState.RegisterCharStat(ID, 'B', value + ""); 
     } 
         }
     } // B
