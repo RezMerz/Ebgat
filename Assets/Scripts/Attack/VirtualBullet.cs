@@ -102,6 +102,11 @@ public class VirtualBullet : MonoBehaviour
             hitObject.collider.gameObject.GetComponent<VirtualBullet>().Destroy();
             Destroy();
         }
+        else if (hitObject.collider.tag.Equals("VirtualRune"))
+        {
+            hitObject.collider.gameObject.GetComponent<RuneServerside>().TakeDamge(playerControl,damage);
+            Destroy();
+        }
         else
         {
             Destroy();

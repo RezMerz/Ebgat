@@ -19,7 +19,7 @@ public class MalkousAttack : Attack
     {
         charStats = GetComponent<CharacterAttributes>();
         playerControl = GetComponent<PlayerControl>();
-        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName);
+        layerMask = LayerMask.GetMask("Blocks", charStats.enemyTeamName,"VirtualRune");
         ready = true;
     }
 

@@ -269,6 +269,8 @@ public class PlayerControl : MonoBehaviour
         charStats.ResetStats();
         buffManager.DebuffAllCharacter();
     }
+    
+
 
     public void Respawn()
     {

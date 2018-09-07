@@ -44,7 +44,7 @@ public class AmerdadAttack : Attack
 
                     if(layerMask == 0)
                     {
-                        layerMask = LayerMask.GetMask(charStats.enemyTeamName, "Blocks");
+                        layerMask = LayerMask.GetMask(charStats.enemyTeamName, "Blocks","VirtualRune");
                     }
 
                     charStats.HandState = EHandState.Channeling;

@@ -21,7 +21,7 @@ public class BulletManager : MonoBehaviour
 
     public void Shoot(Vector2 direction, float gravityAcc, int id, float range, int number, Vector2 startPos,float changeRange)
     {
-        layerMask = LayerMask.GetMask(playerControl.charStatsClient.enemyTeamName, "Blocks");
+        layerMask = LayerMask.GetMask(playerControl.charStatsClient.enemyTeamName, "Blocks","Rune");
         if(number == 2)
         {
             layerMask = LayerMask.GetMask(playerControl.charStatsClient.enemyTeamName);
