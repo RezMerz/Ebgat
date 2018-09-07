@@ -9,7 +9,7 @@ public class PlayerControlClientside : MonoBehaviour
 
 
     //public Sounds heroSounds;
-    public GameObject[] runes; 
+    public GameObject[] runes;
 
 
     public CharacterAttributesClient charStatsClient { get; set; }
@@ -145,13 +145,13 @@ public class PlayerControlClientside : MonoBehaviour
                 }
                 lastStateChecked = biggestIdNumber;
             }
-            if (currentStateNumber - lastStateChecked >= 2 && !waitingForRequest)
+            if (currentStateNumber - lastStateChecked >= 6 && !waitingForRequest)
             {
                 if (IsLocalPlayer())
                 {
                     waitingForRequest = true;
                     clientNetworkSender.RequestWorldState(playerId, lastStateChecked);
-                    Debug.Log("request from : "+ lastStateChecked +" +"+ currentStateNumber   +  "+" + Time.frameCount);
+                    Debug.Log("request from : " + lastStateChecked + " +" + currentStateNumber + "+" + Time.frameCount);
                 }
             }
             currentStateNumber++;
@@ -274,7 +274,7 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer() && waitingForRequest)
         {
-           Debug.Log(id + "+" + Time.frameCount);
+            Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
@@ -284,7 +284,11 @@ public class PlayerControlClientside : MonoBehaviour
             start = true;
             firstRecieved = true;
         }
-        playerStatesHash.Add(id, state);
+        if (!playerStatesHash.Contains(id))
+        {
+            playerStatesHash.Add(id, state);
+
+        }
         if (id > biggestIdNumber)
         {
             biggestIdNumber = id;
@@ -380,7 +384,7 @@ public class PlayerControlClientside : MonoBehaviour
     public void GetAdditionalWorldData(string data)
     {
         string[] deString = data.Split('$');
-        for(int i = 0; i < deString.Length - 1; i++)
+        for (int i = 0; i < deString.Length - 1; i++)
         {
             if (deString[i][0] == 'R')
             {
@@ -392,7 +396,8 @@ public class PlayerControlClientside : MonoBehaviour
         }
     }
 
-    public void DisconnectedFromServer(){
-        
+    public void DisconnectedFromServer()
+    {
+
     }
 }
