@@ -362,6 +362,6 @@ public class ClientData
         else if (heroId == 1)
             heroName = "Malkous";
         else if (heroId == 2)
-            heroName = "Amerdad";
+            heroName = "Amertat";
     }
 }

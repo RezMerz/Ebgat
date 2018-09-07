@@ -49,7 +49,7 @@ public class SelectGameSceneManager : MonoBehaviour {
                 return;
             }
         }
-
+        Debug.Log("host found");
         GameObject button = butonParent.transform.GetChild(counter).gameObject;
         button.SetActive(true);
         string hostName = data + " Game";
