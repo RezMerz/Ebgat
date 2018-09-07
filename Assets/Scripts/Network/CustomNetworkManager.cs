@@ -159,7 +159,9 @@ public class CustomNetworkManager : NetworkManager {
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == conn.connectionId){
                 Debug.Log("destroying");
-                NetworkServer.Destroy(playerConnections[i].gameObject);
+                PlayerConnection pc = playerConnections[i];
+                playerConnections.RemoveAt(i);
+                NetworkServer.Destroy(pc.gameObject);
                 break;
             }
         }
