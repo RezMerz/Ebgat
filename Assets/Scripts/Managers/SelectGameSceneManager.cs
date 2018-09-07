@@ -14,7 +14,8 @@ public class SelectGameSceneManager : MonoBehaviour {
     private List<ButtonManager> buttonManagers;
 
     public Vector2 initPosition;
-
+    public GameObject butonParent;
+    private int counter = 0;
 	// Use this for initialization
 	void Start () {
         networkDiscovery = GetComponent<CustomNetworkDiscovery>();
@@ -22,10 +23,7 @@ public class SelectGameSceneManager : MonoBehaviour {
         buttonManagers = new List<ButtonManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	
 
     public void LoadHostSceen(){
         GameManager.instance.playerName = playerName.text;
@@ -46,14 +44,15 @@ public class SelectGameSceneManager : MonoBehaviour {
                 return;
             }
         }
-        GameObject button = Instantiate(buttonSample, textHolder.transform);
-        button.transform.position = initPosition;
+
+        GameObject button = butonParent.transform.GetChild(counter).gameObject;
+        button.SetActive(true);
         string hostName = data + " Game";
         button.GetComponentInChildren<Text>().text = hostName;
         ButtonManager btnManager = button.GetComponent<ButtonManager>();
         btnManager.SetData(OnHostClicked, id++, ip);
         buttonManagers.Add(btnManager);
-        initPosition.x -= 40;
+        counter++;
     }
 
     public void OnHostClicked(string ip){
