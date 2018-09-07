@@ -7,6 +7,8 @@ public class Sounds : MonoBehaviour {
     protected CharacterAttributesClient charStatsClient;
     public AudioClip[] attackSounds;
     public AudioClip[] jumpSounds;
+    public AudioClip dashSound;
+
 
 	// Use this for initialization
 	void Start () {

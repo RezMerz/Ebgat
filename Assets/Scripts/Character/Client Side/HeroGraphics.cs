@@ -257,7 +257,7 @@ public class HeroGraphics : MonoBehaviour
         hpSliderParent.transform.position = Camera.main.WorldToScreenPoint(transform.position);
     }
 
-    public void SetSide(string value)
+    public virtual void SetSide(string value)
     {
         Vector2 side = Toolkit.DeserializeVector(value);
         if (side.x == 1)

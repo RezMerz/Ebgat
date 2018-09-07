@@ -20,6 +20,8 @@ public class PlayerControlClientside : MonoBehaviour
 
     private InputCharacter input;
 
+    private Sounds heroSounds;
+
 
     private Hashtable playerStatesHash = new Hashtable();
     public int lastStateChecked;
@@ -42,7 +44,7 @@ public class PlayerControlClientside : MonoBehaviour
         bulletmanager = GetComponent<BulletManager>();
         aim = GetComponent<CharacterAim>();
         input = GetComponent<InputCharacter>();
-      //  heroSounds = GetComponent<Sounds>();
+        heroSounds = GetComponent<Sounds>();
     }
 
     void Start()
@@ -256,8 +258,8 @@ public class PlayerControlClientside : MonoBehaviour
     {
         switch (code)
         {
-           // case 'c': heroSounds.HandState(value); break;
-           // case 'd': heroSounds.FeetState(value); break;
+            case 'c': heroSounds.HandState(value); break;
+            case 'd': heroSounds.FeetState(value); break;
         }
     }
 
