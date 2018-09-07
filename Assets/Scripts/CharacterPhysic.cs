@@ -198,7 +198,7 @@ public class CharacterPhysic : Physic
                 if (charStats.FeetState == EFeetState.OnWall)
                 {
                     timer += Time.deltaTime;
-                    if (timer >= 0.1f + Time.deltaTime)
+                    if (timer >= 0.12f + Time.deltaTime)
                     {
                         charStats.FeetState = EFeetState.Falling;
                     }

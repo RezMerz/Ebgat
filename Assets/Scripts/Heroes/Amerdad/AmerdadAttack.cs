@@ -110,7 +110,12 @@ public class AmerdadAttack : Attack
         Debug.Log(charStats.FeetState);
         if(charStats.FeetState == EFeetState.OnWall)
         {
-            attackSide.x = attackSide.x * -1;
+            if (!charStats.Aim)
+            {
+                attackSide = charStats.Side * -1;
+            }
+            startPos = startPos * Vector2.left;
+            
         }
         if (attackSide == Vector2.zero)
         {
