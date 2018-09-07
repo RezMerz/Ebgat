@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 82008673999114166}
   - component: {fileID: 114831832460651308}
   - component: {fileID: 114946412172713382}
+  - component: {fileID: 114850351072429990}
   m_Layer: 0
   m_Name: AmerdadClientSide
   m_TagString: Player
@@ -453,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroSounds: {fileID: 0}
   playerConnection: {fileID: 0}
   lastStateChecked: 0
 --- !u!114 &114660272723363822
@@ -480,6 +482,19 @@ MonoBehaviour:
   bulletObjects:
   - {fileID: 1644391085090094, guid: 718e2842cb77c2e4f9ad417e92f53c63, type: 2}
   - {fileID: 1644391085090094, guid: d4759f27065f216418b5532c9a952299, type: 2}
+--- !u!114 &114850351072429990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838980340684846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca353b89dc8e61e4fa1a7e05c8eb5e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSounds: []
+  jumpSounds: []
 --- !u!114 &114946412172713382
 MonoBehaviour:
   m_ObjectHideFlags: 1

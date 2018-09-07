@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 95969431932785578}
   - component: {fileID: 82515075569728862}
   - component: {fileID: 114284752092899120}
+  - component: {fileID: 114178617247558332}
   m_Layer: 0
   m_Name: Bahram_Clienside
   m_TagString: Player
@@ -414,6 +415,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114178617247558332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611565634832398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6735c2e9743d5a14192cf794b0f22fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSounds: []
+  jumpSounds: []
+  attackSounds: []
+  jumpSounds: []
 --- !u!114 &114284752092899120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroSounds: {fileID: 0}
   playerConnection: {fileID: 0}
   lastStateChecked: 0
 --- !u!114 &114701661618156024
