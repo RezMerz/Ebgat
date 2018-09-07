@@ -12,6 +12,7 @@ public class HeroSelect : MonoBehaviour {
     public void HeroShow(int value)
     {
         print(value);
+        GameManager.instance.playerConnection.CmdSetMyHero(GameManager.instance.playerConnection.clientId, value);
         animator.SetInteger("Hero", value);
     }
 }

@@ -56,16 +56,14 @@ public class LobbyManager : NetworkBehaviour
 
         for (int i = 0; i < lobbyData.Length; i++)
         {
-            if (lobbyData[i].name == null)
+            if (lobbyData[i] == null)
+            {
                 playerNames[i].text = "Empty";
-            else
-                playerNames[i].text = lobbyData[i].name;
+                heroNames[i].text = "No Hero";
+                continue;
+            }
+            playerNames[i].text = lobbyData[i].name;
             heroNames[i].text = lobbyData[i].heroName;
-            if (lobbyData[i].isReady)
-                readySprite[i].sprite = readySpriteSample;
-            else
-                readySprite[i].sprite = notReadySpriteSample;
-            
         }
     }
 

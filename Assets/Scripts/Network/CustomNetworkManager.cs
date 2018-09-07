@@ -167,6 +167,10 @@ public class CustomNetworkManager : NetworkManager {
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == conn.connectionId + 1){
                 Debug.Log("destroying");
+                if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Arena 2")){
+                    playerConnections[i].playerControl.Die();
+                    playerConnections[i].virtualPlayerControl.Die();
+                }
                 PlayerConnection pc = playerConnections[i];
                 playerConnections.RemoveAt(i);
                 NetworkServer.Destroy(pc.gameObject);

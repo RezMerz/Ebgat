@@ -386,12 +386,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1076935773}
-        m_MethodName: 
+      - m_Target: {fileID: 1076935774}
+        m_MethodName: OnLeaveClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -705,12 +705,12 @@ MonoBehaviour:
   serverManager: {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f,
     type: 2}
   serverSidePlayers:
-  - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
   - {fileID: 1053505828903372, guid: a7156a46f8c17594793d8f6aecb57e4e, type: 2}
+  - {fileID: 1341430771966434, guid: 9c9562e4436b4d444bcef4cdeaba8d93, type: 2}
   - {fileID: 1561336051650090, guid: 5bc495752fe962e42aba2d152f2b394b, type: 2}
   clientSidePlayers:
-  - {fileID: 1480360778776026, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
   - {fileID: 1611565634832398, guid: 9033c90f57d486f4fa102abd9e4b44ce, type: 2}
+  - {fileID: 1480360778776026, guid: a89d8fd9556069b45bde8273dbe352dc, type: 2}
   - {fileID: 1838980340684846, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
   heroSpawnPositions:
   - {fileID: 4079915046112102, guid: a5c88fc42f445d249b64fa421fc89d33, type: 2}
@@ -1332,7 +1332,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 565912565}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076935774}
+        m_MethodName: OnStartClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &565912565
@@ -2162,7 +2173,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1061679973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076935774}
+        m_MethodName: OnChangeTeamClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1061679973
@@ -2228,12 +2250,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Heroes: []
   texts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 645147024}
+  - {fileID: 563546082}
+  - {fileID: 1437718145}
+  - {fileID: 243644455}
+  - {fileID: 595860070}
+  - {fileID: 1434818512}
+  heroTexts:
+  - {fileID: 1350844047}
+  - {fileID: 2051941626}
+  - {fileID: 787771617}
+  - {fileID: 231851203}
+  - {fileID: 1522978071}
+  - {fileID: 1305472225}
+  readySprites: []
 --- !u!4 &1076935775
 Transform:
   m_ObjectHideFlags: 0

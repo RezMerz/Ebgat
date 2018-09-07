@@ -13,7 +13,7 @@ public class PlayerConnection : NetworkBehaviour {
     private ServerNetwork serverNetworkReciever;
 
     public PlayerControlClientside playerControl;
-    PlayerControl virtualPlayerControl = null;
+    public PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }
 
