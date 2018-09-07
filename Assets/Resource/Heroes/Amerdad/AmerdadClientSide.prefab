@@ -440,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
-  dieInstance: {fileID: 0}
+  dieInstance: {fileID: 1838980340684846}
   rootGroundInstance: {fileID: 1954952673507374, guid: 4fee53714e3c9694895492a20f944cba,
     type: 2}
 --- !u!114 &114308272760187236
@@ -454,7 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7077341853784d045a1fd34cd10b53b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSounds: {fileID: 0}
   playerConnection: {fileID: 0}
   lastStateChecked: 0
 --- !u!114 &114660272723363822
@@ -495,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSounds: []
   jumpSounds: []
+  dashSound: {fileID: 0}
 --- !u!114 &114946412172713382
 MonoBehaviour:
   m_ObjectHideFlags: 1
