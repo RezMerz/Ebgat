@@ -40,7 +40,7 @@ public class AmerdadDash : CharacterDash
 
     protected override void DashEffect()
     {
-        //amerdadAttack.StartIceShard();
+        amerdadAttack.StartIceShard();
         physic.DashLayerSet();
     }
 

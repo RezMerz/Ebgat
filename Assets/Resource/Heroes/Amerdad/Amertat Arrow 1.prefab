@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 95891378075671734}
   - component: {fileID: 114761623716615240}
   m_Layer: 0
-  m_Name: Amertat Arrow
+  m_Name: Amertat Arrow 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.6431373, g: 0.8352942, b: 0.3647059, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.5882353}
+      key1: {r: 0.9339623, g: 0.12818728, b: 0.030838395, a: 0.5882353}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

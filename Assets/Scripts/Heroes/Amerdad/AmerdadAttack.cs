@@ -107,11 +107,16 @@ public class AmerdadAttack : Attack
         // Calculate Side
         Vector2 startPos = (charStats.Side + Vector2.up) * virtualBullets[charStats.AttackNumber].startingPos;
         Vector2 attackSide = charStats.AimSide;
+        Debug.Log(charStats.FeetState);
+        if(charStats.FeetState == EFeetState.OnWall)
+        {
+            attackSide.x = attackSide.x * -1;
+        }
         if (attackSide == Vector2.zero)
         {
             if (charStats.FeetState == EFeetState.OnWall)
             {
-                attackSide = charStats.Side * -1;
+                attackSide = charStats.Side  * -1;
             }
             else
             {
