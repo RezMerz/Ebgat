@@ -22,15 +22,14 @@ public class ServerManager : NetworkBehaviour {
     public int maxClientCount, currentClientCount, spawnedHeroCount;
     private int bulletIdCounter = 0;
 
-    public float respawnTime, respawnPenalty;
+    public float respawnTime;
     public bool isInfinite;
     public float matchTime;
+    public int maxKillCount;
 
-    private float resTimeTeam1;
-    private float resTimeTeam2;
     private int team1Count = 0, team1DeadCount = 0, team1KillCount = 0;
     private int team2Count = 0, team2DeadCount = 0, team2KillCount = 0;
-    private float timeLeft;
+    private float matchTimeLeft;
 
 
     private Hashtable worldStatesStash;
@@ -47,12 +46,9 @@ public class ServerManager : NetworkBehaviour {
         worldStatesStash = new Hashtable();
         maxClientCount = networkManager.maxPlayerCount;
         respawnTime = networkManager.baseRespawnTime;
-        respawnPenalty = networkManager.respawnTimePenalty;
-        resTimeTeam1 = respawnTime;
-        resTimeTeam2 = respawnTime;
         isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
-        timeLeft = matchTime;
+        matchTimeLeft = matchTime;
         UpdatePlayers();
     }
 
@@ -82,10 +78,19 @@ public class ServerManager : NetworkBehaviour {
             }
         }
 
-        timeLeft -= matchTime;
-        if(timeLeft <= 0){
-            if(team)
+        matchTimeLeft -= matchTime;
+        if(matchTimeLeft <= 0){
+            if (team1KillCount > team2KillCount)
+                SendGameFinishedCommand(1);
+            else if (team1KillCount < team2KillCount)
+                SendGameFinishedCommand(2);
+            else
+                SendGameFinishedCommand(0);
         }
+        if (team1KillCount >= maxKillCount)
+            SendGameFinishedCommand(1);
+        else if (team2KillCount >= maxKillCount)
+            SendGameFinishedCommand(2);
     }
 
     private void SetWorldStateOnPlayers(){
@@ -214,14 +219,14 @@ public class ServerManager : NetworkBehaviour {
                 if (playerInfoList[i].teamId == 1)
                 {
                     team1DeadCount++;
-                    resTimeTeam1 += respawnPenalty;
-                    playerInfoList[i].respawnTimeLeft = resTimeTeam1;
+                    team2KillCount++;
+                    playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 else
                 {
                     team2DeadCount++;
-                    resTimeTeam2 += respawnPenalty;
-                    playerInfoList[i].respawnTimeLeft = resTimeTeam2;
+                    team1KillCount++;
+                    playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 SendKillCommand(playerId);
                 if (team1DeadCount > 0 && team1Count == team1DeadCount)
