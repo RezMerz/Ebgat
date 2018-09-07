@@ -68,7 +68,7 @@ public class CustomNetworkManager : NetworkManager {
 
     private void Update()
     {
-        if(NetworkServer.active && flag && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == onlineScene){
+        if(NetworkServer.active && flag && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Arena 2"){
             flag = false;
             InstantiateGameSceneObjects();
         }
@@ -95,13 +95,13 @@ public class CustomNetworkManager : NetworkManager {
                 break;
             }
         }
-        clientsData.Add(new ClientData(conn.connectionId, slot));
+        clientsData.Add(new ClientData(conn.connectionId + 1, slot));
 
-        connectionTable.Add(conn.connectionId, conn);
+        connectionTable.Add(conn.connectionId + 1, conn);
         GameObject playercon = Instantiate(playerConnectionPrefab);
         DontDestroyOnLoad(playercon);
         PlayerConnection p = playercon.GetComponent<PlayerConnection>();
-        p.clientId = conn.connectionId;
+        p.clientId = conn.connectionId + 1;
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
@@ -165,7 +165,7 @@ public class CustomNetworkManager : NetworkManager {
     {
         Debug.Log("fack");
         for (int i = 0; i < playerConnections.Count; i++){
-            if(playerConnections[i].clientId == conn.connectionId){
+            if(playerConnections[i].clientId == conn.connectionId + 1){
                 Debug.Log("destroying");
                 PlayerConnection pc = playerConnections[i];
                 playerConnections.RemoveAt(i);
@@ -174,13 +174,13 @@ public class CustomNetworkManager : NetworkManager {
             }
         }
         for (int i = 0; i < clientsData.Count; i++){
-            if(clientsData[i].id == conn.connectionId){
+            if(clientsData[i].id == conn.connectionId + 1){
                 Debug.Log("destroying clienst data");
                 clientsData.RemoveAt(i);
                 break;
             }
         }
-        connectionTable.Remove(conn.connectionId);
+        connectionTable.Remove(conn.connectionId + 1);
         isSlotFull[conn.connectionId] = false;
     }
 
@@ -221,7 +221,7 @@ public class CustomNetworkManager : NetworkManager {
         {
 
             GameObject.FindWithTag("NetworkDiscovery").GetComponent<NetworkDiscovery>().StopBroadcast();
-            ServerChangeScene(onlineScene);
+            ServerChangeScene("Arena 2");
             //Destroy(GetComponent<NetworkDiscovery>());
         }
     }

@@ -349,6 +349,7 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   lobbyManagerPrefab: {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046,
     type: 2}
+  isServer: 0
   serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
     type: 2}
   clientNetworkReciever: {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f,
@@ -364,11 +365,14 @@ MonoBehaviour:
   - {fileID: 1611565634832398, guid: 9033c90f57d486f4fa102abd9e4b44ce, type: 2}
   - {fileID: 1838980340684846, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
   heroSpawnPositions:
-  - {fileID: 4519804688994576, guid: 05628decb61884ffcaa82d900970f572, type: 2}
-  - {fileID: 4079915046112102, guid: 75f2c8b4d766d4816ab4e4ddb27eb5aa, type: 2}
+  - {fileID: 4079915046112102, guid: a5c88fc42f445d249b64fa421fc89d33, type: 2}
+  - {fileID: 4079915046112102, guid: 902a484ecf3affe4cb8d4646f4c6c687, type: 2}
   playerConnectionPrefab: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
     type: 2}
-  playerConnections: []
+  runesServeside: []
+  runeClientsides: []
+  runeSpawnPositions: []
+  runeSpawnTime: -1
   maxPlayerCount: 0
   baseRespawnTime: 0
   respawnTimePenalty: 0

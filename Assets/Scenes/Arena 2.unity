@@ -51777,11 +51777,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5c88fc42f445d249b64fa421fc89d33, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1228778000 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4079915046112102, guid: a5c88fc42f445d249b64fa421fc89d33,
-    type: 2}
-  m_PrefabInternal: {fileID: 1228777999}
 --- !u!1001 &1229208075
 Prefab:
   m_ObjectHideFlags: 0
@@ -71935,8 +71930,8 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: 
-  m_OnlineScene: Arena 2
+  m_OfflineScene: GameSelectScene
+  m_OnlineScene: LobbyScene
   m_SpawnPrefabs:
   - {fileID: 1005014730851976, guid: 1e5397177861d400591065ae507e209d, type: 2}
   - {fileID: 1314286711458398, guid: 009f797839ab0234c9963dd9b2e83fdc, type: 2}
@@ -71945,6 +71940,8 @@ MonoBehaviour:
   - {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f, type: 2}
   - {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168, type: 2}
   - {fileID: 1821535407384834, guid: 2a8418db062e54a44bb662eafb0b574f, type: 2}
+  - {fileID: 1768710473888078, guid: b10bebad151c54e8aa61570fae9b3570, type: 2}
+  - {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -71987,7 +71984,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -72000,6 +71997,9 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  lobbyManagerPrefab: {fileID: 1405687022283722, guid: 639f9d74a06a84b948948d70b0006046,
+    type: 2}
+  isServer: 0
   serverNetwork: {fileID: 1532578427468760, guid: 60ae22dc2b0304b8fb20c555aeb3999f,
     type: 2}
   clientNetworkReciever: {fileID: 1127347855398878, guid: 9e805401a359b42fc84488cd591c632f,
@@ -72015,19 +72015,14 @@ MonoBehaviour:
   - {fileID: 1611565634832398, guid: 9033c90f57d486f4fa102abd9e4b44ce, type: 2}
   - {fileID: 1838980340684846, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
   heroSpawnPositions:
-  - {fileID: 1228778000}
-  - {fileID: 1834284603}
+  - {fileID: 4079915046112102, guid: a5c88fc42f445d249b64fa421fc89d33, type: 2}
+  - {fileID: 4079915046112102, guid: 902a484ecf3affe4cb8d4646f4c6c687, type: 2}
   playerConnectionPrefab: {fileID: 1233662853172538, guid: 13958b03e03214a4e893ae7ede626168,
     type: 2}
-  runesServeside:
-  - {fileID: 114365543670104692, guid: 3fa67a83934ce79409bf4c4b8e8869c0, type: 2}
+  runesServeside: []
   runeClientsides: []
-  runeSpawnPositions:
-  - {fileID: 828325806}
-  - {fileID: 1312288332}
-  - {fileID: 653310409}
-  - {fileID: 844616237}
-  runeSpawnTime: 0
+  runeSpawnPositions: []
+  runeSpawnTime: -1
   maxPlayerCount: 0
   baseRespawnTime: 0
   respawnTimePenalty: 0
@@ -76612,11 +76607,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902a484ecf3affe4cb8d4646f4c6c687, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1834284603 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4079915046112102, guid: 902a484ecf3affe4cb8d4646f4c6c687,
-    type: 2}
-  m_PrefabInternal: {fileID: 1834284602}
 --- !u!1001 &1834401894
 Prefab:
   m_ObjectHideFlags: 0
