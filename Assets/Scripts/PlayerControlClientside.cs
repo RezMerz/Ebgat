@@ -133,7 +133,7 @@ public class PlayerControlClientside : MonoBehaviour
             }
             else if (currentStateNumber > biggestIdNumber && lastStateChecked < biggestIdNumber)
             {
-                // Debug.Log("miss 1 fram :" + Time.frameCount);
+                //Debug.Log("miss 1 fram :" + Time.frameCount);
 
                 for (int i = lastStateChecked + 1; i <= biggestIdNumber; i++)
                 {
@@ -272,9 +272,9 @@ public class PlayerControlClientside : MonoBehaviour
 
     public void AddTOHashTable(int id, string state)
     {
-        if (IsLocalPlayer())
+        if (IsLocalPlayer() && waitingForRequest)
         {
-           // Debug.Log(id + "+" + Time.frameCount);
+           Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {
