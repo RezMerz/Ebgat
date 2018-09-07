@@ -12,6 +12,11 @@ public class CustomNetworkManager : NetworkManager {
     public List<GameObject> clientSidePlayers;
     public List<Transform> heroSpawnPositions;
     public GameObject playerConnectionPrefab;
+    public List<RuneServerside> runesServeside;
+    public List<RuneClientside> runeClientsides;
+    public List<Transform> runeSpawnPositions;
+    public float runeSpawnTime;
+
 
     private bool flag;
     bool start;
@@ -19,8 +24,8 @@ public class CustomNetworkManager : NetworkManager {
     public int playerNumber { get; set; }
 
     private int playerID;
-    public Hashtable connectionTable;
-    public List<PlayerConnection> playerConnections;
+    public Hashtable connectionTable { get; set; }
+    public List<PlayerConnection> playerConnections { get; set; }
 
     public int maxPlayerCount;
     public float baseRespawnTime;
