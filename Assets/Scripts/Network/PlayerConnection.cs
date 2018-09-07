@@ -45,6 +45,7 @@ public class PlayerConnection : NetworkBehaviour {
         if (first && isLocalPlayer && clientId != -1)
         {
             first = false;
+            Debug.Log(GameManager.instance.playerName);
             playerName = GameManager.instance.playerName;
             CmdSetClientDataOnServer(clientId, playerName);
             GameManager.instance.playerConnection = this;

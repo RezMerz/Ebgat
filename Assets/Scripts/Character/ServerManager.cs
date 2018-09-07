@@ -78,7 +78,7 @@ public class ServerManager : NetworkBehaviour {
             }
         }
 
-        matchTimeLeft -= matchTime;
+        /*matchTimeLeft -= matchTime;
         if(matchTimeLeft <= 0){
             if (team1KillCount > team2KillCount)
                 SendGameFinishedCommand(1);
@@ -91,6 +91,7 @@ public class ServerManager : NetworkBehaviour {
             SendGameFinishedCommand(1);
         else if (team2KillCount >= maxKillCount)
             SendGameFinishedCommand(2);
+            */
     }
 
     private void SetWorldStateOnPlayers(){

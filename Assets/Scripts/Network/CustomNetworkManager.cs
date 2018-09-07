@@ -12,7 +12,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public List<ClientData> clientsData;
     private LobbyManager lobbyManager;
-    private bool isServer = false;
+    public bool isServer = false;
     private bool[] isSlotFull;
 
 
@@ -99,6 +99,8 @@ public class CustomNetworkManager : NetworkManager {
         playerConnections.Add(p);
         NetworkServer.AddPlayerForConnection(conn, playercon, playerControllerId);
 
+
+
     }
 
     public override void OnClientConnect(NetworkConnection conn)
@@ -111,6 +113,17 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnStopClient()
     {
         Debug.Log("stop client");
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+        {
+            Destroy(GameObject.FindWithTag("NetworkDiscovery"));
+            GameManager.instance.currentScene = CurrentScene.Menu;
+            StartCoroutine(StopPlease());
+        }
+    }
+
+    private IEnumerator StopPlease(){
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
     public override void OnStopServer()
@@ -121,7 +134,18 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         Debug.Log("client disconected");
-        localPlayerconnection.playerControl.DisconnectedFromServer();
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+        {
+            Debug.Log("shoop");
+            Destroy(GameObject.FindWithTag("NetworkDiscovery"));
+            GameObject[] go = GameObject.FindGameObjectsWithTag("PlayerConnection");
+            for (int i = 0; i < go.Length; i++)
+            {
+                Destroy(go[i]);
+            }
+        }
+        else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
+            localPlayerconnection.playerControl.DisconnectedFromServer();
     }
 
     public override void OnClientError(NetworkConnection conn, int errorCode)
@@ -131,6 +155,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        Debug.Log("fack");
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == conn.connectionId){
                 Debug.Log("destroying");
@@ -159,10 +184,6 @@ public class CustomNetworkManager : NetworkManager {
     {
         Debug.Log("Stoping host");
         base.OnStopHost();
-        GetComponent<CustomNetworkDiscovery>().Initialize();
-        GetComponent<CustomNetworkDiscovery>().StopBroadcast();
-        Start();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public override void OnStartHost()

@@ -50,6 +50,7 @@ public class LobbyManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartGame(){
+        Debug.Log("heloooo");
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
         /*if (isServer)
         {
@@ -65,11 +66,5 @@ public class LobbyManager : NetworkBehaviour {
             }
         }
         */
-    }
-
-    IEnumerator StopHostCo(int time){
-        yield return new WaitForSeconds(time);
-        networkManager.StopHost();
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Arena");
     }
 }

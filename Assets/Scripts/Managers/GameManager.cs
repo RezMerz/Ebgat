@@ -47,7 +47,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public void OnLeaveClicked(){
-        Debug.Log("hush");
+        customNetworkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        if (customNetworkManager.isServer)
+            customNetworkManager.StopHost();
+        else
+            customNetworkManager.StopClient();
     }
 
     public void OnStartClicked(){
