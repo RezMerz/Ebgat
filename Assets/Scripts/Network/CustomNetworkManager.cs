@@ -163,7 +163,7 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        Debug.Log("fack");
+        /*Debug.Log("fack");
         for (int i = 0; i < playerConnections.Count; i++){
             if(playerConnections[i].clientId == conn.connectionId + 1){
                 Debug.Log("destroying");
@@ -185,7 +185,7 @@ public class CustomNetworkManager : NetworkManager {
             }
         }
         connectionTable.Remove(conn.connectionId + 1);
-        isSlotFull[conn.connectionId] = false;
+        isSlotFull[conn.connectionId] = false;*/
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
