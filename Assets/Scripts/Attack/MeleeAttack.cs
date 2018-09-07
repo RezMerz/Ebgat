@@ -130,7 +130,7 @@ public class MeleeAttack : Attack
                     if (Toolkit.IsVisible(transform.position, targets[i].point, layerMask,targets[i].collider))
                     {
                         float force = (distance - Mathf.Abs((targets[i].point - (Vector2)transform.position).x)) / 10 + attackForce;
-                        targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, buffName);
+                        targets[i].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, buffName);
                         targets[i].collider.gameObject.GetComponentInParent<CharacterPhysic>().AddReductiveForce(charStats.Side, force, 0.15f, 0);
                     }
                 }

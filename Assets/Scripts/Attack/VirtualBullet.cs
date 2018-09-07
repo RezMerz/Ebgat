@@ -94,7 +94,7 @@ public class VirtualBullet : MonoBehaviour
             }
             enemy.GetComponent<CharacterPhysic>().AddReductiveForce(lastForce.normalized, force, 0.1f, 0);
             Debug.Log(enemy);
-            enemy.GetComponent<PlayerControl>().TakeAttack(damage, name);
+            enemy.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, name);
             Destroy();
         }
         else if(hitObject.collider.tag.Equals("VirtualBullet"))

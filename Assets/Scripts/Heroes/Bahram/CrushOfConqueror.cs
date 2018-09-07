@@ -136,7 +136,7 @@ public class CrushOfConqueror : Ability
                     {
                         float force = (landingSize.x/2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
                         enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.right,force,0.25f,0);
-                        enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                        enemy.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, buff.name);
                     }
                 }
                 else if(enemy.transform.position.x <= transform.position.x )
@@ -145,7 +145,7 @@ public class CrushOfConqueror : Ability
                     {
                         float force = (landingSize.x / 2 - Mathf.Abs((hit.point - (Vector2)transform.position).x)) / 9 + pushForce;
                         enemy.GetComponent<CharacterPhysic>().AddReductiveForce(Vector2.left, force, 0.25f, 0);
-                        enemy.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                        enemy.GetComponent<PlayerControl>().TakeAttack(playerControl ,damage, buff.name);
                     }
                 }
             }

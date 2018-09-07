@@ -70,7 +70,7 @@ public class AmerdadDisarm : Ability
             {
                 if (Toolkit.IsVisible(transform.position,target.point,visibilityLayerMask,target.collider))
                 {
-                    target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(damage, buff.name);
+                    target.collider.gameObject.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, buff.name);
                 }
             }
         }

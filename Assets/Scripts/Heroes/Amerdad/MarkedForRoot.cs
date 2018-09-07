@@ -30,7 +30,7 @@ public class MarkedForRoot : Buff {
 
     private void Root()
     {
-        playerControl.TakeAttack(damage, rootBuff.name);
+        playerControl.TakeAttack(playerControl,damage, rootBuff.name);
         charStats.MarkedForRoot = false;
     }
 

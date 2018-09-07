@@ -123,7 +123,7 @@ public class BahramDash : CharacterDash
         {
             if (hHits[0].collider.tag.Equals("VirtualPlayer"))
             {
-                hHits[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(0, buff.name);
+                hHits[0].collider.gameObject.GetComponent<PlayerControl>().TakeAttack(playerControl,0, buff.name);
                 hHits[0].collider.gameObject.GetComponent<CharacterPhysic>().AddReductiveForce(charStats.Side, dashForce, 0.1f, 0);
                 charStats.HandState = EHandState.Casting;
                 charStats.AbilityState = EAbility.Ability3Start;

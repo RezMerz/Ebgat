@@ -13,7 +13,7 @@ public class MeleeWaepon : MonoBehaviour {
     // Attack in direction and alert objects of attack
     public void Attack(Vector2 origin,float damage,Vector2 direction,int layer)
     {
-        print("Attack Meele");
+      /*  print("Attack Meele");
         RaycastHit2D[] hitObjects = Physics2D.BoxCastAll(origin, new Vector2(0.01f,size.y), 0, direction, size.x, layer, 0, 0);
         foreach (RaycastHit2D hit in hitObjects)
         {
@@ -27,8 +27,8 @@ public class MeleeWaepon : MonoBehaviour {
                     buffName = buff.name;
                 else
                     buffName = "";
-                hit.collider.GetComponent<PlayerControl>().TakeAttack(damage, buffName);
-            }
-        }
+                hit.collider.GetComponent<PlayerControl>().TakeAttack(playerControl,damage, buffName); 
+            } 
+        } */
     }
 }

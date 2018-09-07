@@ -175,7 +175,7 @@ public class CharacterPhysic : Physic
             if (hit.tag.Equals("VirtualPlayer"))
             {
                 force = Vector2.up * (charStats.JumpSpeed - direction.y * 20);
-                hit.gameObject.GetComponent<PlayerControl>().TakeAttack(fallDamage, "");
+                hit.gameObject.GetComponent<PlayerControl>().TakeAttack(playerControl,fallDamage, "");
                 AddPersistentForce(force, 0, 0);
             }
             else if (hit.tag.Equals("jump"))
@@ -245,7 +245,7 @@ public class CharacterPhysic : Physic
                 Vector2 force = Vector2.up * (charStats.JumpSpeed - direction.y * 15);
                 AddPersistentForce(force, 0, 0);
             }
-            playerControl.TakeAttack(spikeDamage, "");
+            playerControl.TakeAttack(null,spikeDamage, "");
         }
     }
 
@@ -267,7 +267,7 @@ public class CharacterPhysic : Physic
             {
                 hitDirection = Vector2.left;
             }
-            playerControl.TakeAttack(spikeDamage, "");
+            playerControl.TakeAttack(null,spikeDamage, "");
             AddReductiveForce(hitDirection * -1, 0.7f, 0.1f, 0);
         }
     }
