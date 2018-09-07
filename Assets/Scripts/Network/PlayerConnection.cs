@@ -5,14 +5,14 @@ using UnityEngine.Networking;
 
 public class PlayerConnection : NetworkBehaviour {
 
-    [SyncVar] public int clientId;
+    [SyncVar] public int clientId = -1;
 
     private CustomNetworkManager networkManager;
     private ServerManager serverManager;
     private ClientNetworkSender clientNetworkSender;
     private ServerNetwork serverNetworkReciever;
 
-    private PlayerControlClientside playerControl;
+    public PlayerControlClientside playerControl;
     PlayerControl virtualPlayerControl = null;
 
     public Vector2 spawnPoint { get; set; }
@@ -21,21 +21,39 @@ public class PlayerConnection : NetworkBehaviour {
     private GameObject player;
     private GameObject virtualPlayer;
 
+    public int slot;
+    bool first = true;
+    string playerName;
+
 	// Use this for initialization
 	void Start () {
         networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
         serverManager = ServerManager.instance;
         serverNetworkReciever = GetComponent<ServerNetwork>();
+        DontDestroyOnLoad(gameObject);
+        Debug.Log(isLocalPlayer);
+        Debug.Log(hasAuthority);
         if(isLocalPlayer){
-            serverNetworkReciever.CmdClientConnected(clientId, networkManager.playerNumber);
-            base.connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
-
+            connectionToServer.RegisterHandler(MsgType.Highest + 1, GetAbsoluteState);
+            Debug.Log("herhehrerheheheghrerhehrerbdfdfsbbdf");
+            networkManager.localPlayerconnection = this;
         }
 	}
 
     private void Update()
     {
-        //Debug.Log(isLocalPlayer);
+        if (first && isLocalPlayer && clientId != -1)
+        {
+            first = false;
+            Debug.Log(GameManager.instance.playerName);
+            playerName = GameManager.instance.playerName;
+            CmdSetClientDataOnServer(clientId, playerName);
+            GameManager.instance.playerConnection = this;
+        }
+    }
+
+    public void SetClientReady(){
+        serverNetworkReciever.CmdClientConnected(clientId);
     }
 
     public void SetClientNetworkSender(ClientNetworkSender clientNetworkSender){
@@ -139,5 +157,23 @@ public class PlayerConnection : NetworkBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team1 Win");
         else if (winnerTeamId == 2)
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team2 Win");
+    }
+
+    public void ChangeTeamClicked()
+    {
+        CmdChangeMyTeam(clientId);
+    }
+
+    [Command]
+    public void CmdSetClientDataOnServer(int id, string name)
+    {
+        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<CustomNetworkManager>();
+        networkManager.SetClientDataOnServer(id, name);
+    }
+
+    [Command]
+    public void CmdChangeMyTeam(int clientId)
+    {
+        networkManager.ChangeTeam(clientId);
     }
 }

@@ -22,13 +22,14 @@ public class ServerManager : NetworkBehaviour {
     public int maxClientCount, currentClientCount, spawnedHeroCount;
     private int bulletIdCounter = 0;
 
-    public float respawnTime, respawnPenalty;
+    public float respawnTime;
     public bool isInfinite;
+    public float matchTime;
+    public int maxKillCount;
 
-    private float resTimeTeam1;
-    private float resTimeTeam2;
-    private int team1Count = 0, team1DeadCount = 0;
-    private int team2Count = 0, team2DeadCount = 0;
+    private int team1Count = 0, team1DeadCount = 0, team1KillCount = 0;
+    private int team2Count = 0, team2DeadCount = 0, team2KillCount = 0;
+    private float matchTimeLeft;
 
 
     private Hashtable worldStatesStash;
@@ -48,13 +49,11 @@ public class ServerManager : NetworkBehaviour {
         worldStatesStash = new Hashtable();
         maxClientCount = networkManager.maxPlayerCount;
         respawnTime = networkManager.baseRespawnTime;
-        respawnPenalty = networkManager.respawnTimePenalty;
-        resTimeTeam1 = respawnTime;
-        resTimeTeam2 = respawnTime;
         isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
         runeSpawnTimeLeft = networkManager.runeSpawnTime;
         spawnedRunes = new List<RuneServerside>();
+        matchTimeLeft = matchTime;
         UpdatePlayers();
     }
 
@@ -83,6 +82,22 @@ public class ServerManager : NetworkBehaviour {
                 i--;
             }
         }
+
+        /*matchTimeLeft -= matchTime;
+        if(matchTimeLeft <= 0){
+            if (team1KillCount > team2KillCount)
+                SendGameFinishedCommand(1);
+            else if (team1KillCount < team2KillCount)
+                SendGameFinishedCommand(2);
+            else
+                SendGameFinishedCommand(0);
+        }
+        if (team1KillCount >= maxKillCount)
+            SendGameFinishedCommand(1);
+        else if (team2KillCount >= maxKillCount)
+            SendGameFinishedCommand(2);
+            */
+
         runeSpawnTimeLeft -= Time.fixedDeltaTime;
         if (runeSpawnTimeLeft <= 0)
             SpawnRune();
@@ -110,6 +125,7 @@ public class ServerManager : NetworkBehaviour {
         rune.transform.position = availableSpawnPositions[runeposnum];
         spawnedRunes.Add(rune);
         currentWorldState.AdditionalWorldData("R" + "&" + runenum + "&" + Toolkit.VectorSerialize(availableSpawnPositions[runeposnum]));
+
     }
 
     private void SetWorldStateOnPlayers(){
@@ -157,9 +173,13 @@ public class ServerManager : NetworkBehaviour {
     {
         for (int i = 0; i < networkManager.playerConnections.Count; i++)
         {
+            Debug.Log(networkManager.playerConnections[i].clientId);
+            Debug.Log(clientId);
             if (networkManager.playerConnections[i].clientId == clientId)
             {
+                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn");
                 networkManager.playerConnections[i].RpcInstansiateHero(heroId, teamId, Toolkit.VectorSerialize(SpawnPoint));
+                Debug.Log("djknsvjklfdgnkljvdfgnlbjnfl ghjnblfgn 000000000000");
                 break;
             }
         }
@@ -167,38 +187,39 @@ public class ServerManager : NetworkBehaviour {
     }
 
 
-    public void ClientConnected(int clientId, int heroId)
+    public void ClientConnected(int clientId)
     {
-        Debug.Log("id: " + clientId + " , " + heroId);
-        playerInfoList.Add(new PlayerInfo(clientId, heroId, true));
+        Debug.Log("id: " + clientId);
+        for (int i = 0; i < networkManager.clientsData.Count; i++){
+            if(networkManager.clientsData[i].id == clientId){
+                playerInfoList.Add(new PlayerInfo(networkManager.clientsData[i].id, networkManager.clientsData[i].heroId, networkManager.clientsData[i].team, true));
+            }
+        }
         currentClientCount++;
-
+        if(currentClientCount == networkManager.clientsData.Count){
+            StartGame();
+        }
     }
 
     public void StartGame()
     {
-        int teamId = 1;
-        networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
-        for (int i = 0; i < currentClientCount; i++)
+        //networkManager.gameObject.GetComponent<CustomNetworkDiscovery>().StopBroadcast();
+        for (int i = 0; i < playerInfoList.Count; i++)
         {
-            SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, teamId, networkManager.heroSpawnPositions[teamId - 1].position);
-            playerInfoList[i].teamId = teamId;
-           if (teamId == 1)
-            {
+            Debug.Log(playerInfoList[i].teamId - 1);
+            Debug.Log(networkManager.heroSpawnPositions.Count);
+            Debug.Log(networkManager.heroSpawnPositions[playerInfoList[i].teamId - 1].position);
+            SpawnHero(playerInfoList[i].clientId, playerInfoList[i].heroId, playerInfoList[i].teamId, networkManager.heroSpawnPositions[playerInfoList[i].teamId - 1].position);
+            if (playerInfoList[i].teamId == 1)
                 team1Count++;
-                teamId = 2;
-            }
             else
-            {
                 team2Count++;
-                teamId = 1;
-            }
         }
         UpdatePlayers();
         ClientNetworkReciever.instance.RpcUpdatePlayers();
     }
 
-    public void HeroSpawned(int cliendId){
+    /*public void HeroSpawned(int cliendId){
         spawnedHeroCount++;
         if(spawnedHeroCount == maxClientCount){ //spawn at the begining of the match
             for (int i = 0; i < maxClientCount; i++){
@@ -216,7 +237,7 @@ public class ServerManager : NetworkBehaviour {
                 }
             }
         }
-    }
+    }*/
 
     public int GetBulletID(int playerId)
     {
@@ -233,14 +254,14 @@ public class ServerManager : NetworkBehaviour {
                 if (playerInfoList[i].teamId == 1)
                 {
                     team1DeadCount++;
-                    resTimeTeam1 += respawnPenalty;
-                    playerInfoList[i].respawnTimeLeft = resTimeTeam1;
+                    team2KillCount++;
+                    playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 else
                 {
                     team2DeadCount++;
-                    resTimeTeam2 += respawnPenalty;
-                    playerInfoList[i].respawnTimeLeft = resTimeTeam2;
+                    team1KillCount++;
+                    playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 SendKillCommand(playerId);
                 if (team1DeadCount > 0 && team1Count == team1DeadCount)
@@ -287,11 +308,15 @@ class PlayerInfo{
     public float respawnTimeLeft;
     public PlayerConnection playerConnection;
 
-    public PlayerInfo(int clientId, int heroId, bool isAlive){
+    public PlayerInfo(int clientId, int heroId,int teamId , bool isAlive){
         this.heroId = heroId;
         this.clientId = clientId;
         this.isAlive = isAlive;
         respawnTimeLeft = 0;
-        teamId = 0;
+        this.teamId = teamId;
     }
+}
+
+public enum GameMode{
+    TeamDeathMatch, LastTeamStanding
 }

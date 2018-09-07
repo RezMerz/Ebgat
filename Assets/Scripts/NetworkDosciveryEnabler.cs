@@ -20,6 +20,6 @@ public class NetworkDosciveryEnabler : MonoBehaviour {
 
     public void start(){
 
-        GetComponent<LobbyNetworkManager>().StartGame();
+        //GetComponent<LobbyNetworkManager>().StartGame();
     }
 }
