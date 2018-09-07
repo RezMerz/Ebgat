@@ -440,7 +440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landInstance: {fileID: 1492730901853430, guid: dee106ce370a44e4494ed0d238a2fdca,
     type: 2}
-  dieInstance: {fileID: 0}
+  dieInstance: {fileID: 1992734664297520, guid: 425c6ed47967f3141933cba36c1d6415,
+    type: 2}
   rootGroundInstance: {fileID: 1954952673507374, guid: 4fee53714e3c9694895492a20f944cba,
     type: 2}
 --- !u!114 &114308272760187236
