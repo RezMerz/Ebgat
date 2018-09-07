@@ -64,6 +64,11 @@ public class ServerNetwork : NetworkBehaviour
 
     [Command]
     public void CmdClientConnected(int clientId){
+        StartCoroutine(ss(clientId));
+    }
+
+    IEnumerator ss(int clientId){
+        yield return new WaitForSeconds(1);
         ServerManager.instance.ClientConnected(clientId);
     }
 }

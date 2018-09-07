@@ -263,16 +263,6 @@ public class ServerManager : NetworkBehaviour {
                     playerInfoList[i].respawnTimeLeft = respawnTime;
                 }
                 SendKillCommand(playerId);
-                if (team1DeadCount > 0 && team1Count == team1DeadCount)
-                {
-                    Debug.Log("team 2 wins");
-                    SendGameFinishedCommand(2);
-                }
-                else if (team2DeadCount > 0 && team2Count == team2DeadCount)
-                {
-                    Debug.Log("team 1 wins");
-                    SendGameFinishedCommand(1);
-                }
                 break;
 
             }
