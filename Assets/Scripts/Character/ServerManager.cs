@@ -23,7 +23,6 @@ public class ServerManager : NetworkBehaviour {
     private int bulletIdCounter = 0;
 
     public float respawnTime;
-    public bool isInfinite;
     public float matchTime;
     public int maxKillCount;
 
@@ -49,11 +48,12 @@ public class ServerManager : NetworkBehaviour {
         worldStatesStash = new Hashtable();
         maxClientCount = networkManager.maxPlayerCount;
         respawnTime = networkManager.baseRespawnTime;
-        isInfinite = networkManager.isInfinite;
         currentClientCount = 0;
         runeSpawnTimeLeft = networkManager.runeSpawnTime;
         spawnedRunes = new List<RuneServerside>();
-        matchTimeLeft = matchTime;
+        matchTime = networkManager.maxtime;
+        maxKillCount = networkManager.maxkill;
+        matchTimeLeft = matchTime * 60;
         UpdatePlayers();
     }
 
@@ -83,7 +83,7 @@ public class ServerManager : NetworkBehaviour {
             }
         }
 
-        /*matchTimeLeft -= matchTime;
+        matchTimeLeft -= Time.fixedTime;
         if(matchTimeLeft <= 0){
             if (team1KillCount > team2KillCount)
                 SendGameFinishedCommand(1);
@@ -96,11 +96,6 @@ public class ServerManager : NetworkBehaviour {
             SendGameFinishedCommand(1);
         else if (team2KillCount >= maxKillCount)
             SendGameFinishedCommand(2);
-            */
-
-        runeSpawnTimeLeft -= Time.fixedDeltaTime;
-        if (runeSpawnTimeLeft <= 0)
-            SpawnRune();
     }
 
     private void SpawnRune(){
@@ -265,19 +260,13 @@ public class ServerManager : NetworkBehaviour {
                 SendKillCommand(playerId);
                 if (team1DeadCount > 0 && team1Count == team1DeadCount)
                 {
-                    if (!isInfinite)
-                    {
-                        Debug.Log("team 2 wins");
-                        SendGameFinishedCommand(2);
-                    }
+                    Debug.Log("team 2 wins");
+                    SendGameFinishedCommand(2);
                 }
                 else if (team2DeadCount > 0 && team2Count == team2DeadCount)
                 {
-                    if (!isInfinite)
-                    {
-                        Debug.Log("team 1 wins");
-                        SendGameFinishedCommand(1);
-                    }
+                    Debug.Log("team 1 wins");
+                    SendGameFinishedCommand(1);
                 }
                 break;
 

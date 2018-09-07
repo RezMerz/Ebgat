@@ -756,9 +756,9 @@ MonoBehaviour:
   runeSpawnPositions: []
   runeSpawnTime: -1
   maxPlayerCount: 0
-  baseRespawnTime: 0
-  respawnTimePenalty: 0
-  isInfinite: 0
+  baseRespawnTime: 10
+  maxtime: 0
+  maxkill: 0
 --- !u!114 &186228061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ready
+  m_Text: Start
 --- !u!222 &323699324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 413900471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ac67d95861c01f459eb6755f8486202, type: 3}
+  m_Script: {fileID: 11500000, guid: 3eea5010830144dc3b740011425b654f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &413900474

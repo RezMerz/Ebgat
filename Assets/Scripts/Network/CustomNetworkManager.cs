@@ -44,8 +44,8 @@ public class CustomNetworkManager : NetworkManager {
 
     public int maxPlayerCount;
     public float baseRespawnTime;
-    public float respawnTimePenalty;
-    public bool isInfinite;
+    public int maxtime;
+    public int maxkill;
 
     private NetworkConnection networkConnection;
     public PlayerConnection localPlayerconnection { get; set; }
@@ -215,8 +215,6 @@ public class CustomNetworkManager : NetworkManager {
         this.maxPlayerCount = maxPlayerCount;
         base.StartHost();
         this.baseRespawnTime = baseRespawnTime;
-        this.respawnTimePenalty = respawnTimePenalty;
-        this.isInfinite = isInfinite;
     }
 
     public void StartGame()
