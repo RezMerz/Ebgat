@@ -147,10 +147,10 @@ MonoBehaviour:
   range: 8
   coolDownTime: 1
   boarFormSpeed: 30
-  boarFormRange: 8
+  boarFormRange: 10
   dashForce: 0.3
   stunAnimationTime: 0.1
-  buff: {fileID: 0}
+  buff: {fileID: 114004682952367580, guid: dccdd0c6b4f7cbd46adf98c4803c56de, type: 2}
 --- !u!114 &114175303413705874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,6 +223,7 @@ MonoBehaviour:
   canDoubleJump: 1
   wallside: 0
   hitPointsBase: 100
+  energyBase: 1000
   attackDamageBase: 15
   attackAnimationTimeBase: 0.1
   attackCooldownBase: 0.3
@@ -237,7 +238,6 @@ MonoBehaviour:
   gravitySpeedMaxBase: 30
   baseCayoteTime: 0.1
   onWallGravitySpeed: 5
-  energyBase: 1000
   speedRate: 0
   energyRegenRate: 10
   attackEnergyConsume: 75

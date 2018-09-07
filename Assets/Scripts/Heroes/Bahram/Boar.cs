@@ -148,6 +148,10 @@ public class Boar : Ability
     private IEnumerator BacKToHumanForm()
     {
         charStats.HandState = EHandState.Casting;
+        if(charStats.BodyState == EBodyState.Dashing)
+        {
+            GetComponent<BahramDash>().DashEnd();
+        }
         physic.Lock(); 
         yield return new WaitForSeconds(castTime);
         charStats.HandState = EHandState.Idle;

@@ -8,6 +8,10 @@ public class RootBuff : Buff {
     {
         charStats.Root = true;
         charStats.GetComponent<Physic>().Lock();
+        if(charStats.BodyState == EBodyState.Dashing)
+        {
+            charStats.GetComponent<CharacterDash>().DashEnd();
+        }
     }
 
     public override void DebuffCharacter()

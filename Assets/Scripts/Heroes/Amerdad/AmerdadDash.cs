@@ -41,7 +41,6 @@ public class AmerdadDash : CharacterDash
     protected override void DashEffect()
     {
         amerdadAttack.StartIceShard();
-        physic.DashLayerSet();
     }
 
     private void MalkousDashHitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)

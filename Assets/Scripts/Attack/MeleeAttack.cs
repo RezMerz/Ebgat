@@ -140,7 +140,7 @@ public class MeleeAttack : Attack
                     {
                         VirtualBullet bullet = targets[i].collider.gameObject.GetComponent<VirtualBullet>();
                         bullet.Destroy();
-                        playerControl.TakeAttack(0, bullet.buff.name);
+                        //playerControl.TakeAttack(0, bullet.buff.name);
                     }
                 }
             }

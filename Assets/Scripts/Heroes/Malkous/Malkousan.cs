@@ -10,6 +10,8 @@ public class Malkousan : Ability {
     public int damage;
     public float maxHeight;
     public float minHeight;
+    public float leftBorder;
+    public float rightBorder;
     private int currentNumber;
     public float radius;
     private Coroutine intervalCo;
@@ -62,11 +64,29 @@ public class Malkousan : Ability {
         float gravityAcc = charStats.GravityAcceleration;
         int bulletID = ServerManager.instance.GetBulletID(playerControl.playerId);
         // Calculate Side
-        Vector2 startPos = new Vector2(Random.Range(-radius, radius), maxHeight - transform.position.y);
+        float randL = -radius;
+        if(transform.position.x - radius < leftBorder)
+        {
+            randL = -(transform.position.x - leftBorder);
+        }
+        float randR = radius;
+        if (transform.position.x + radius > rightBorder)
+        {
+            randR = rightBorder - transform.position.x;
+        }
+        Vector2 startPos = new Vector2(Random.Range(randL, randR), maxHeight - transform.position.y);
         Debug.Log(startPos);
-        float range = Random.Range(minHeight, maxHeight);
+
+        float range;
+        if(Random.Range(0,1) >= 0.5f)
+        {
+            range = (maxHeight - minHeight) - Random.Range(0, transform.position.y - minHeight);
+        }
+        else
+        {
+            range = Random.Range(0, maxHeight - transform.position.y);
+        }
         GameObject virtualBullet = Instantiate(this.virtualBullet, transform.position + (Vector3)startPos, Quaternion.identity);
-       
         virtualBullet.layer = gameObject.layer;
         virtualBullet.GetComponent<VirtualBullet>().Shoot(damage,Vector2.down, layer, gravityAcc, playerControl, bulletID, 0, range);
         // register bullet

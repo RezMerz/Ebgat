@@ -118,11 +118,14 @@ public class CharacterPhysic : Physic
     {
         layerMask -= LayerMask.GetMask(charStats.enemyTeamName);
         gravityLayerMask -= LayerMask.GetMask(charStats.enemyTeamName);
+
+        Debug.Log(layerMask);
     }
     public void DashLayerReset()
     {
         layerMask += LayerMask.GetMask(charStats.enemyTeamName);
         gravityLayerMask += LayerMask.GetMask(charStats.enemyTeamName);
+        Debug.Log(layerMask);
     }
     private void HitFunction(List<RaycastHit2D> vHits, List<RaycastHit2D> hHits, Vector2 direction)
     {

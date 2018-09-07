@@ -8,7 +8,7 @@ public class PlayerControlClientside : MonoBehaviour
     public Action ReadyAction;
 
 
-    public Sounds heroSounds;
+//public Sounds heroSounds;
     public CharacterAttributesClient charStatsClient { get; set; }
     public HeroGraphics heroGraphics { get; private set; }
     public ClientNetworkSender clientNetworkSender { get; private set; }
@@ -42,7 +42,7 @@ public class PlayerControlClientside : MonoBehaviour
         bulletmanager = GetComponent<BulletManager>();
         aim = GetComponent<CharacterAim>();
         input = GetComponent<InputCharacter>();
-        heroSounds = GetComponent<Sounds>();
+      //  heroSounds = GetComponent<Sounds>();
     }
 
     void Start()
@@ -146,6 +146,7 @@ public class PlayerControlClientside : MonoBehaviour
                 {
                     waitingForRequest = true;
                     clientNetworkSender.RequestWorldState(playerId, lastStateChecked);
+                    Debug.Log("request from : "+ lastStateChecked +" +"+ currentStateNumber   +  "+" + Time.frameCount);
                 }
             }
             currentStateNumber++;
@@ -255,8 +256,8 @@ public class PlayerControlClientside : MonoBehaviour
     {
         switch (code)
         {
-            case 'c': heroSounds.HandState(value); break;
-            case 'd': heroSounds.FeetState(value); break;
+           // case 'c': heroSounds.HandState(value); break;
+           // case 'd': heroSounds.FeetState(value); break;
         }
     }
 
@@ -264,7 +265,7 @@ public class PlayerControlClientside : MonoBehaviour
     {
         if (IsLocalPlayer())
         {
-            //Debug.Log(id + "+" + Time.frameCount);
+           // Debug.Log(id + "+" + Time.frameCount);
         }
         if (!start && (!firstRecieved || currentStateNumber <= id))
         {

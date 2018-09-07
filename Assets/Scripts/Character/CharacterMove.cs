@@ -30,14 +30,20 @@ public class CharacterMove : MonoBehaviour
     {
         if (movedPressed)
         {
-            if (charStats.BodyState != EBodyState.Dashing )
+            if (charStats.BodyState != EBodyState.Dashing)
                 charStats.BodyState = EBodyState.Moving;
         }
-        if ((charStats.HandState != EHandState.Idle || charStats.Root) && charStats.BodyState == EBodyState.Moving)
+        if (charStats.Root && charStats.BodyState == EBodyState.Moving)
         {
             charStats.BodyState = EBodyState.Standing;
             charStats.ResetMoveSpeed();
-            //return;
+            return;
+        }
+        if (charStats.HandState != EHandState.Idle && charStats.BodyState == EBodyState.Moving && charStats.FeetState == EFeetState.Onground) 
+        {
+            charStats.BodyState = EBodyState.Standing;
+            charStats.ResetMoveSpeed();
+            return;
         }
         if (charStats.BodyState == EBodyState.Moving)
             if (charStats.HeadState == EHeadState.Stunned)
@@ -58,13 +64,12 @@ public class CharacterMove : MonoBehaviour
     {
         movedPressed = true;
         moveSide = i;
-        if(charStats.HeadState == EHeadState.Stunned)
+        if (charStats.HeadState == EHeadState.Stunned)
         {
             return;
         }
-        if (charStats.BodyState != EBodyState.Dashing )
+        if (charStats.BodyState != EBodyState.Dashing)
         {
-            print("Attack Side");
             charStats.AimSide = new Vector2(i, 0);
             charStats.BodyState = EBodyState.Moving;
             SpeedCheck(moveSide);

@@ -66,16 +66,17 @@ public class BahramDash : CharacterDash
 
     protected override void DashStart()
     {
-        gameObject.layer = LayerMask.NameToLayer("Dashing");
-        if (charStats.AbilityState != EAbility.Ability1Start)
+        charStats.BodyState = EBodyState.Dashing;
+        if (charStats.AbilityState != EAbility.Ability2Start)
         {
-            charStats.BodyState = EBodyState.Dashing;
+            gameObject.layer = LayerMask.NameToLayer("Dashing");
+            physic.DashLayerSet();
         }
         else
         {
-            charStats.FeetState = EFeetState.NoGravity;
-            GetComponent<PlayerJump>().IntruptJump();
-            physic.RemoveTaggedForces(0);
+            //charStats.FeetState = EFeetState.NoGravity;
+            //GetComponent<PlayerJump>().IntruptJump();
+            //physic.RemoveTaggedForces(0);
         }
     }
 
@@ -88,7 +89,7 @@ public class BahramDash : CharacterDash
         }
         else
         {
-            charStats.FeetState = EFeetState.Onground;
+            //charStats.FeetState = EFeetState.Onground;
         }
         charStats.BodyState = EBodyState.Standing;
         distance = 0;
@@ -100,7 +101,6 @@ public class BahramDash : CharacterDash
         if (charStats.AbilityState != EAbility.Ability2Start)
         {
             charStats.AttackNumber = 2;
-            physic.DashLayerSet();
         }
         else
         {

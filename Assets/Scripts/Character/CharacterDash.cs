@@ -72,6 +72,7 @@ public class CharacterDash : MonoBehaviour
 
     protected virtual void DashStart()
     {
+        physic.DashLayerSet();
         charStats.BodyState = EBodyState.Dashing;
         gameObject.layer = LayerMask.NameToLayer("Dashing");
     }
