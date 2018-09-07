@@ -70981,6 +70981,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2128278139
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.723752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.9566314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.7376083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503180091406964, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114850351072429990, guid: 2ee1ec76544d2ff4eb760ec6da4db671,
+        type: 2}
+      propertyPath: onWallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a0c692ec7daaa1a4da288fc579cda17f, type: 3}
+    - target: {fileID: 114850351072429990, guid: 2ee1ec76544d2ff4eb760ec6da4db671,
+        type: 2}
+      propertyPath: onGroundSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 51187fb4a6bd46b418bac79fc738dd1f, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ee1ec76544d2ff4eb760ec6da4db671, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2131735584
 GameObject:
   m_ObjectHideFlags: 0

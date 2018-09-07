@@ -6,10 +6,13 @@ public class Sounds : MonoBehaviour {
     protected AudioSource audioSource;
     protected CharacterAttributesClient charStatsClient;
     public AudioClip[] attackSounds;
-    public AudioClip[] jumpSounds;
+    public AudioClip jumpSound;
     public AudioClip dashSound;
-
-
+    public AudioClip[] abilitySounds;
+    public AudioClip deathSound;
+    public AudioClip doubleJumpSound;
+    public AudioClip onGroundSound;
+    public AudioClip onWallSound;
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
@@ -43,8 +46,8 @@ public class Sounds : MonoBehaviour {
         }
         else if (value == "3")
         {
-            // Dash sound
-
+            audioSource.clip = dashSound;
+            audioSource.Play();
         }
     }
 
@@ -68,25 +71,41 @@ public class Sounds : MonoBehaviour {
     {
         if (value == "1")
         {
-            // On Ground Sound
+            audioSource.clip = onGroundSound;
+            audioSource.Play();
         }
         else if (value == "3")
         {
-            // Jump Sound
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
         else if (value == "5")
         {
-            // Double Jump Sound
-
+            audioSource.clip = doubleJumpSound;
+            audioSource.Play();
+        }
+        else if (value == "6")
+        {
+            if (onWallSound != null)
+            {
+                audioSource.clip = onWallSound;
+                audioSource.Play();
+            }
         }
         
     }
 
+    public void DieSound()
+    {
+        audioSource.clip = deathSound;
+        audioSource.Play();
+    }
     public virtual void AbilityState(string value)
     {
         if (value == "1")
         {
-            // Ability 1 Start
+            audioSource.clip = abilitySounds[0];
+            audioSource.Play();
         }
         else if(value == "2")
         {
@@ -94,7 +113,8 @@ public class Sounds : MonoBehaviour {
         }
         else if (value == "3")
         {
-            // Ability 2 Start
+            audioSource.clip = abilitySounds[1];
+            audioSource.Play();
         }
         else if (value == "4")
         {

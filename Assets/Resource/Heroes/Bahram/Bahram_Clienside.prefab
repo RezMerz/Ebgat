@@ -459,8 +459,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c25e65f54f7adaa43b1377c44e6b1312, type: 3}
   - {fileID: 8300000, guid: 6acea7048ade6374fbf92d0bbae669a3, type: 3}
   - {fileID: 8300000, guid: 7cbafe7e0e1a89046b016f9925637a54, type: 3}
-  jumpSounds: []
-  dashSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: c376bc555d26edf429e2488c7d351ca4, type: 3}
+  dashSound: {fileID: 8300000, guid: 3d814e72d98002444bfcb4229c0bfd87, type: 3}
+  abilitySounds:
+  - {fileID: 8300000, guid: 5861220c446c8a443bf83992529fd3db, type: 3}
+  - {fileID: 8300000, guid: d74c59b14cfe48c4bbeaf6a6ec750bf4, type: 3}
+  deathSound: {fileID: 8300000, guid: 9ded7c4e44330934b8a42633d1d64d7e, type: 3}
+  doubleJumpSound: {fileID: 8300000, guid: 81a8cac00a4d28342acee0630b124bc5, type: 3}
+  onGroundSound: {fileID: 8300000, guid: 5470aa7f2e91376439746bf8f6cc1297, type: 3}
 --- !u!114 &114284752092899120
 MonoBehaviour:
   m_ObjectHideFlags: 1

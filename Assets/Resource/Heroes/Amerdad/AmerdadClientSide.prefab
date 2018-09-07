@@ -495,9 +495,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca353b89dc8e61e4fa1a7e05c8eb5e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSounds: []
-  jumpSounds: []
-  dashSound: {fileID: 0}
+  attackSounds:
+  - {fileID: 8300000, guid: 3f6f965cd321c3d48b842e597b7a84cc, type: 3}
+  jumpSound: {fileID: 8300000, guid: c076559c36a1b334386e03437baaaf18, type: 3}
+  dashSound: {fileID: 8300000, guid: 3f5535ca47404534f99c7a50449ba636, type: 3}
+  abilitySounds:
+  - {fileID: 8300000, guid: a50ec152eb85bfe4cb1fe2fd745a70d7, type: 3}
+  - {fileID: 8300000, guid: 4a0cefcf385eae64f87b1e48896fce8a, type: 3}
+  deathSound: {fileID: 8300000, guid: a4e191b3a51c00146970c100c0c1bc44, type: 3}
+  doubleJumpSound: {fileID: 0}
+  onGroundSound: {fileID: 8300000, guid: 51187fb4a6bd46b418bac79fc738dd1f, type: 3}
+  onWallSound: {fileID: 8300000, guid: a0c692ec7daaa1a4da288fc579cda17f, type: 3}
 --- !u!114 &114946412172713382
 MonoBehaviour:
   m_ObjectHideFlags: 1
