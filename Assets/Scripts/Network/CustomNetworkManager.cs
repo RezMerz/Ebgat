@@ -117,6 +117,7 @@ public class CustomNetworkManager : NetworkManager {
         {
             Destroy(GameObject.FindWithTag("NetworkDiscovery"));
             GameManager.instance.currentScene = CurrentScene.Menu;
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameSelectScene");
             StartCoroutine(StopPlease());
         }
     }
@@ -143,6 +144,7 @@ public class CustomNetworkManager : NetworkManager {
             {
                 Destroy(go[i]);
             }
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("GameSelectScene");
         }
         else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("LobbyScene"))
             localPlayerconnection.playerControl.DisconnectedFromServer();
@@ -178,8 +180,12 @@ public class CustomNetworkManager : NetworkManager {
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        base.OnClientSceneChanged(conn);
-        localPlayerconnection.SetClientReady();
+        try
+        {
+            base.OnClientSceneChanged(conn);
+            localPlayerconnection.SetClientReady();
+        }
+        catch{}
     }
 
     public override void OnStopHost()
