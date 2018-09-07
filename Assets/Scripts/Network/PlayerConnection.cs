@@ -154,12 +154,16 @@ public class PlayerConnection : NetworkBehaviour {
     public void RpcGameFinished(int winnerTeamId){
         if (isLocalPlayer)
         {
+            
             Debug.Log("Team " + winnerTeamId + "Won the game");
-            if (winnerTeamId == 1)
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team1 Win");
-            else if (winnerTeamId == 2)
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Team2 Win");
+            GameObject.FindObjectOfType<EndGame>().EndGameFunction(winnerTeamId);
         }
+    }
+
+    private IEnumerator BackToMenu(float t)
+    {
+        yield return new WaitForSeconds(t);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 
     public void ChangeTeamClicked()

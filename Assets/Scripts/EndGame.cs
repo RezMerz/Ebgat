@@ -12,6 +12,7 @@ public class EndGame : MonoBehaviour {
 
     public void EndGameFunction(int n)
     {
+        transform.GetChild(2).gameObject.SetActive(true);
         if (n == 0)
             text.text = "Draw!";
         else if (n == 1)
