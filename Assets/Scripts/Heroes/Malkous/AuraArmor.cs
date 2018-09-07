@@ -60,7 +60,7 @@ public class AuraArmor : Ability
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, currentRadius + speed, layerMask, 0, 0);
             foreach (Collider2D obj in hitObjects)
             {
-                if ((obj.gameObject.transform.position - transform.position).magnitude > currentRadius)
+                if ((obj.gameObject.transform.position - transform.position).magnitude > currentRadius && obj.tag.Equals("VirtualPlayer"))
                 {
                     if (Toolkit.IsVisible(transform.position, obj.transform.position, visibilityLayerMask,obj))
                     {
