@@ -249,6 +249,7 @@ public class PlayerControlClientside : MonoBehaviour
             case 'E': heroGraphics.RootMark(value); break;
             case 'F': heroGraphics.Root(value); break;
             case 'G': heroGraphics.Aim(value); break;
+            case 'B': heroGraphics.RageChange(value); break;
         }
         charStatsClient.SetAttribute(code, value);
         SoundHandle(code, value);

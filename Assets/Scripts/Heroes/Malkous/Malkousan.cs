@@ -19,7 +19,6 @@ public class Malkousan : Ability {
     private int layer;
 
     private Physic physic;
-    private PlayerControl playerControl;
 
     void Start()
     {

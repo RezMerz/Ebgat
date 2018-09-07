@@ -276,9 +276,9 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != aimRotation) { aimRotation = value; playerControl.worldState.RegisterCharStat(ID, 'C', value + ""); } }
     }
 
-    private int maxRage;
-    private int rage;
-    public int Rage
+    public  int maxRage;
+    private float rage;
+    public float Rage
     {
         get { return rage; }
         private set { 
@@ -288,7 +288,7 @@ public class CharacterAttributes : MonoBehaviour {
         }
     } // B
 
-    public void AddRage(int r)
+    public void AddRage(float r)
     {
         if (r + Rage > maxRage)
         {
@@ -296,6 +296,7 @@ public class CharacterAttributes : MonoBehaviour {
         }
         else
             Rage += r;
+        print(Rage);
     }
 
 

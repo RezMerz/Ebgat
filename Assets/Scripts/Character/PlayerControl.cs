@@ -111,6 +111,9 @@ public class PlayerControl : MonoBehaviour
     // Some Damage has been done
     public void TakeAttack(PlayerControl damager,float damage, string buffName)
     {
+        if(damager != null)
+            damager.charStats.AddRage(damage);
+        charStats.AddRage(damage);
         if (buffName != "")
         {
             buffManager.ActivateBuff(buffName);

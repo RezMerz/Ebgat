@@ -26,7 +26,7 @@ public class HeroGraphics : MonoBehaviour
     private Animator rootMark;
     private GameObject rootGround;
     public GameObject rootGroundInstance;
-
+    float maxRage = 100;
     public void TakeDamage()
     {
         sprite.color = Color.red;
@@ -124,6 +124,11 @@ public class HeroGraphics : MonoBehaviour
         abilitiesInfo = GetComponent<CharacterHudProperty>().abilities;
     }
 
+    public void RageChange(string value)
+    {
+        float rage = float.Parse(value);
+        hud.RageBarFill(rage / maxRage);
+    }
     public virtual void AttackNumber(string value)
     {
 

@@ -11,7 +11,6 @@ public class BoarForm : Ability {
     private int layer;
     private float distance;
     private Vector2 originTransform;
-    private PlayerControl playerControl;
     private CharacterPhysic physic;
 	// Use this for initialization
 	void Start ()
