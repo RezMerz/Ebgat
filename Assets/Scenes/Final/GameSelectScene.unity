@@ -916,8 +916,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332478646}
-        m_MethodName: RefreshHosts
+      - m_Target: {fileID: 581744843}
+        m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1694,7 +1694,7 @@ MonoBehaviour:
   buttonSample: {fileID: 0}
   playerName: {fileID: 526545334}
   initPosition: {x: 355, y: 285}
-  butonParent: {fileID: 0}
+  butonParent: {fileID: 1925578376}
 --- !u!4 &1332478647
 Transform:
   m_ObjectHideFlags: 0
