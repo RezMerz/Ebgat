@@ -5,7 +5,6 @@ using UnityEngine;
 public class BahramGraphics : HeroGraphics{
     public GameObject IronFistInstance;
     private int attackNumber = 1;
-    public AudioClip[] audio_clips;
     void Start()
     {
         base.Start();
@@ -106,7 +105,6 @@ public class BahramGraphics : HeroGraphics{
         }
         else if (value == "3")
         {
-            audioSource.Play();
             animator.SetTrigger("Jump");
         }
         else if (value == "6")

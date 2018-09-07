@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BahramSounds :Sounds {
-    public AudioClip[] attackSounds;
-    public AudioClip[] jumpSounds;
     
 
     /*

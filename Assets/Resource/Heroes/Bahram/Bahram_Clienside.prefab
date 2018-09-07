@@ -294,7 +294,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -426,9 +426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6735c2e9743d5a14192cf794b0f22fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSounds: []
-  jumpSounds: []
-  attackSounds: []
+  attackSounds:
+  - {fileID: 8300000, guid: c25e65f54f7adaa43b1377c44e6b1312, type: 3}
+  - {fileID: 8300000, guid: 6acea7048ade6374fbf92d0bbae669a3, type: 3}
+  - {fileID: 8300000, guid: 7cbafe7e0e1a89046b016f9925637a54, type: 3}
   jumpSounds: []
 --- !u!114 &114284752092899120
 MonoBehaviour:
@@ -475,7 +476,6 @@ MonoBehaviour:
     type: 2}
   IronFistInstance: {fileID: 1307831854067140, guid: b63b78d5f2f450a4fb55428ab5d31da4,
     type: 2}
-  audio_clips: []
 --- !u!114 &114519488797203662
 MonoBehaviour:
   m_ObjectHideFlags: 1

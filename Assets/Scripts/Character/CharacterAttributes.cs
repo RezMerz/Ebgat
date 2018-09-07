@@ -276,11 +276,26 @@ public class CharacterAttributes : MonoBehaviour {
         set { if (value != aimRotation) { aimRotation = value; playerControl.worldState.RegisterCharStat(ID, 'C', value + ""); } }
     }
 
+    private int maxRage;
     private int rage;
     public int Rage
     {
         get { return rage; }
-        set { if (value != rage) { Rage = value; playerControl.worldState.RegisterCharStat(ID, 'B', value + ""); } }
+        private set { 
+            if (value != rage) { 
+                Rage = value; playerControl.worldState.RegisterCharStat(ID, 'B', value + ""); 
+    } 
+        }
+    } // B
+
+    public void AddRage(int r)
+    {
+        if (r + Rage > maxRage)
+        {
+            Rage = maxRage;
+        }
+        else
+            Rage += r;
     }
 
 
@@ -312,6 +327,7 @@ public class CharacterAttributes : MonoBehaviour {
         get { return aim; }
         set { if (value != aim) { aim = value; playerControl.worldState.RegisterCharStat(ID, 'G', value + ""); } }
     }  //G
+
 
     public int energyRegenRate;
     public int attackEnergyConsume;
@@ -613,6 +629,7 @@ public class CharacterAttributes : MonoBehaviour {
         data += 'w' + "&" + Toolkit.VectorSerialize(AimSide) + "$";
         data += 'x' + "&" + energy + "&";
         data += 'y' + '&' + attackNumber + '&';
+        data += 'B' + '&' + rage +'&';
         worldState.AppendCharstats(id, data);
     }
 }
