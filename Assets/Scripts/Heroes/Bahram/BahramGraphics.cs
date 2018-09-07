@@ -5,10 +5,19 @@ using UnityEngine;
 public class BahramGraphics : HeroGraphics{
     public GameObject IronFistInstance;
     private int attackNumber = 1;
+    private GameObject abilityEffectParent;
     void Start()
     {
         base.Start();
         hud.SetBlack(5,0);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "AbilityEffect")
+            {
+                abilityEffectParent = transform.GetChild(i).gameObject;
+            }
+        }
+           
     }
     public override void HandState(string value)
     {
@@ -86,6 +95,24 @@ public class BahramGraphics : HeroGraphics{
         }
         else
             print("Body State Wrong Code");
+    }
+
+    public override void SetSide(string value)
+    {
+        Vector2 side = Toolkit.DeserializeVector(value);
+        if (side.x == 1)
+        {
+            sprite.flipX = false;
+            abilityEffectParent.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (side.x == -1)
+        {
+           
+            abilityEffectParent.transform.rotation = Quaternion.Euler(0, 180, 0);
+            sprite.flipX = true;
+        }
+
+
     }
     public override void FeetState(string value)
     {
