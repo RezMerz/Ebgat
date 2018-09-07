@@ -70,7 +70,7 @@ public class HeroGraphics : MonoBehaviour
     {
         GameObject die = Instantiate(dieInstance);
         die.transform.position = transform.position;
-        DestoryObjectAfterTime(2, die);
+        StartCoroutine(DestoryObjectAfterTime(2, die));
     }
     public void SpeedRateChange(string value)
     {
