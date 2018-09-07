@@ -50,12 +50,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Roll
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: OnWall
     m_Type: 4
     m_DefaultFloat: 0
@@ -81,6 +75,18 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Idle
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Dash
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Roll
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -944,7 +950,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Boar
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Roll
+    m_ConditionEvent: Dash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102526466831208422}
@@ -1570,8 +1576,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Idle
+  - m_ConditionMode: 2
+    m_ConditionEvent: Dash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102830039555183570}
@@ -3031,10 +3037,10 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102347641454353528}
-    m_Position: {x: -156, y: -84, z: 0}
+    m_Position: {x: -144, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102161541658357208}
-    m_Position: {x: -240, y: 96, z: 0}
+    m_Position: {x: -192, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102072590709119868}
     m_Position: {x: 24, y: 288, z: 0}

@@ -76,10 +76,8 @@ public class BahramGraphics : HeroGraphics{
     }
     public override void BodyState(string value)
     {
-        if (charStats.bodyState == EBodyState.Dashing)
-            if (value == "1")
-                animator.SetTrigger("Idle");
         animator.SetBool("Walking", false);
+        animator.SetBool("Dash", false);
         gameObject.layer = LayerMask.NameToLayer(charStats.teamName);
         if (value == "1")
         {
@@ -96,6 +94,7 @@ public class BahramGraphics : HeroGraphics{
             if(playerControlClientside.IsLocalPlayer())
                 hud.AbilityStarted(1, abilitiesInfo[0].cooldown);
             animator.SetTrigger("Roll");
+            animator.SetBool("Dash", true);
         }
         else
             print("Body State Wrong Code");
